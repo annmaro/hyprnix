@@ -124,6 +124,12 @@
       installation_mode = "force_installed";
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
     };
+    # Raindrop
+    "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" = {
+      private_browsing = true;
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
+    };
     # Proton VPN
     "vpn@proton.ch" = {
       private_browsing = true;

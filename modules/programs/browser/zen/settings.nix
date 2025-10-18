@@ -176,7 +176,7 @@ in
   "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
   "browser.protections_panel.infoMessage.seen" = lock-true;
   "browser.ssb.enabled" = true;
-  "browser.toolbars.bookmarks.visibility" = "always"; # always, never, newtab
+  "browser.toolbars.bookmarks.visibility" = "never"; # always, never, newtab
   #"browser.urlbar.placeholderName" = "Google";
   "browser.urlbar.suggest.topsites" = lock-false;
   "browser.urlbar.suggest.openpage" = lock-false;
@@ -241,6 +241,7 @@ in
         "_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action"
         "firemonkey_eros_man-browser-action"
         "ublock0_raymondhill_net-browser-action"
+        "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84_jetpack-browser-action"
         # "addon_darkreader_org-browser-action"
         # "queryamoid_kaply_com-browser-action"
         # "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
