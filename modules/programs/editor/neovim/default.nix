@@ -4,9 +4,7 @@
   pkgs,
   ...
 }:
-let
-  inherit (import ../../../../hosts/${host}/variables.nix) terminal;
-in
+
 {
   home-manager.sharedModules = [
     (_: {
@@ -176,7 +174,7 @@ in
 
       statusline.lualine = {
         enable = true;
-        theme = "base16";
+        #theme = "base16";
       };
 
       autopairs.nvim-autopairs.enable = true;
@@ -198,7 +196,7 @@ in
       filetree.neo-tree.enable = true;
       notify = {
         nvim-notify.enable = true;
-        nvim-notify.setupOpts.background_colour = "#${config.lib.stylix.colors.base01}";
+       # nvim-notify.setupOpts.background_colour = "#${config.lib.stylix.colors.base01}";
       };
       utility = {
         preview.markdownPreview.enable = true;
