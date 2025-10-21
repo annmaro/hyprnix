@@ -18,42 +18,61 @@ in
             layer = "top";
             position = "top";
             mode = "dock"; # Fixes fullscreen issues
-            height = 35; # 35
+            height = 48; # 35
             exclusive = true;
             passthrough = false;
-            gtk-layer-shell = false;
+            gtk-layer-shell = true;
             ipc = true;
             fixed-center = true;
-            margin-top = 10;
-            margin-left = 10;
-            margin-right = 10;
+            margin-top = 5;
+            margin-left = 5;
+            margin-right = 5;
             margin-bottom = 0;
 
             modules-left = [
-               "custom/icon"
-               "cpu"
-               "memory"
-               "custom/gpuinfo" 
-               "temperature"
-               "custom/window-name"
-            ];
-            # modules-center = ["clock" "custom/notification"];
+              "group/gleft1"
+              "custom/window-name"
+             ];
             modules-center = [
               "hyprland/workspaces"
               "mpris"
             ];
             modules-right = [
               "custom/weather"
+              "group/gright1"
+              "clock"
+              "group/gright2"
+            ];
+            # Declaring the groups
+            "group/gleft1" = {
+              "orientation" = "horizontal";
+              modules = [
+               "custom/icon"
+               "cpu"
+               "memory"
+               "custom/gpuinfo" 
+               "temperature"
+              ];
+            };
+                    
+            "group/gright1" = {
+              "orientation" = "horizontal";
+              modules = [
               "battery"
               "backlight"
               "pulseaudio"
               "network"
-              "tray"
-              "clock"
-              "custom/notification"
-              "custom/power"
-            ];
-
+              ];
+            };
+            
+            "group/gright2" = {
+              "orientation" = "horizontal";
+              modules = [
+               "tray"
+               "custom/notification"
+               "custom/power"
+              ];
+            };
             "custom/notification" = {
               tooltip = false;
               format = "{icon}";
@@ -171,7 +190,7 @@ in
                "4" = "";
                "5" = "";
               urgent = "";
-              active = "";  
+              active = "";  
               default = "";
               sort-by-number = true;
               };
@@ -286,16 +305,16 @@ in
             "network" = {
               on-click = "nm-connection-editor";
               # "interface" = "wlp2*"; # (Optional) To force the use of this interface
-              #format-wifi = "󰤨 Wi-Fi";
+              format-wifi = "📡 Starlink";
               # format-wifi = " {bandwidthDownBits}  {bandwidthUpBits}";
-              format-wifi = "  {essid}";
+              # format-wifi = "  {essid}";
               format-ethernet = "󱘖 Wired";
               # format-ethernet = " {bandwidthDownBits}  {bandwidthUpBits}";
               #format-linked = "󰤪 Secure";
               format-linked = "󱘖 {ifname} (No IP)";
               #format-disconnected = "󰤮 Off";
               format-disconnected = "󰤮 Disconnected";
-              format-alt = "󰤨 {signalStrength}%";
+              # format-alt = "󰤨 {signalStrength}%";
               tooltip-format = "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
               interval = 5;
             };
@@ -341,7 +360,7 @@ in
             };
 
             "tray" = {
-              icon-size = 12;
+              icon-size = 20;
               spacing = 5;
             };
 
@@ -387,8 +406,11 @@ in
         ];
         style = ''
           * {
-            font-family: "monospace";
-            font-size: 14px;
+            font-family: "JetBrainsMono Nerd Font";
+            font-size: 16px;
+            border: none;
+            border-radius: 0px;
+            min-height: 0;
             margin: 0px;
             padding: 0px;
           }
@@ -425,19 +447,123 @@ in
           @define-color rosewater #f5e0dc;
 
           window#waybar {
-            transition-property: background-color;
-            transition-duration: 0.5s;
-            background: transparent;
-            /*border: 2px solid @overlay0;*/
-            /*background: @theme_base_color;*/
-            border-radius: 10px;
+           background: transparent;
+           
           }
 
           window#waybar.hidden {
             opacity: 0.2;
           }
 
-          tooltip {
+         
+          #pill#1 {
+            color: @pinks;
+            background: @theme_base_color;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          
+          #gleft1, #gright1 {
+             padding: 0px 0px 0px 5px;
+             margin: 6px 10px 2px 3px;
+             border: 3px solid rgba(14, 14, 14, .1);
+             border-radius:30px;
+             background: @theme_base_color;
+             box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+            transition: all .3s ease; 
+            min-width: 120px;
+          }
+           
+          #gright2 {
+             margin: 6px 10px 2px 3px;
+             border: 3px solid rgba(14, 14, 14, .1);
+             border-radius:30px;
+             background: @theme_base_color;
+             box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+             padding: 0px 0px 0px 5px;
+            transition: all .3s ease; 
+          } 
+
+          #custom-window-name {
+            padding: 0px;
+            margin: 6px 10px 2px 3px;
+            border: 3px solid rgba(14, 14, 14, .1);
+            border-radius: 30px;
+            padding: 0px 0px 0px 5px;;
+            color: #cad3f5;
+            min-width: 80px;
+            background: @theme_base_color;
+          }
+
+          #temperature {
+            color: @teal;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+
+          #temperature.critical {
+            background-color: @red;
+          }
+
+          #tray > .passive {
+            -gtk-icon-effect: dim;
+          }
+          #tray > .needs-attention {
+            -gtk-icon-effect: highlight;
+          }
+
+          #keyboard-state {
+            color: @flamingo;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+
+         #workspaces {
+          background: @theme_base_color;
+          margin: 5px 5px;
+          padding: 8px 5px;
+          border-radius: 30px;
+          color: #cba6f7
+         }
+         #workspaces button {
+          padding: 0px 5px;
+          margin: 0px 3px;
+          border-radius: 30px;
+          color: @teal;
+          background: transparent;
+          transition: all 0.3s ease-in-out;
+         }
+
+         #workspaces button.active {
+           background-color: @teal;
+           color: @teal;
+           border-radius: 16px;
+           min-width: 50px;
+           background-size: 400% 400%;
+          transition: all 0.3s ease-in-out;
+         }
+
+        #workspaces button:hover {
+          background-color: @maroon;
+          color: @maroon;
+          border-radius: 16px;
+          min-width: 50px;
+          background-size: 400% 400%;
+          }
+
+          #workspaces button.urgent {
+          	color: @red;
+           	border-radius: 0px;
+          }
+
+          #taskbar button.active {
+              padding-left: 8px;
+              padding-right: 8px;
+              animation: gradient_f 20s ease-in infinite;
+              transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+          }
+
+           tooltip {
             background: #1e1e2e;
             border-radius: 8px;
           }
@@ -448,26 +574,7 @@ in
             margin-left: 5px;
           }
 
-          /* This section can be use if you want to separate waybar modules */
-          .modules-left {
-          	background: @theme_base_color;
-            border-radius: 8px;
-            padding-right: 15px;
-            padding-left: 15px;
-          }
-          .modules-center {
-          	background: @theme_base_color;
-            border-radius: 8px;
-            padding-right: 15px;
-            padding-left: 15px;
-          }
-          .modules-right {
-          	background: @theme_base_color;
-           	border-radius: 8px;
-            padding-right: 15px;
-            padding-left: 15px;
-          }
-
+          
           #idle_inhibitor {
             color: @blue;
             padding-left: 5px;
@@ -482,14 +589,12 @@ in
           }
 
           #backlight {
-            color: @blue;
-            font-size: 15px;
+             color: @rosewater;
              padding-left: 5px;
              padding-right: 5px;
           }
 
           #battery {
-            font-size: 15px;
             color: #a6da95;
             padding-left: 5px;
             padding-right: 5px;
@@ -516,6 +621,7 @@ in
             color: @blue
           }
 
+
           #custom-notification {
             color: #dfdfdf;
             padding: 0px 5px;
@@ -528,9 +634,13 @@ in
 
           #clock {
             color: @yellow;
-            font-size: 15px;
-            padding-left: 5px;
+            background: @theme_base_color;
+            padding: 0px;
+            margin: 6px 10px 2px 2px;
+            border-radius: 30px;
+             padding-left: 5px;
             padding-right: 5px;
+            transition: all .3s ease; 
           }
 
           #custom-icon {
@@ -569,151 +679,6 @@ in
             padding-right: 5px;
           }
 
-          #mpris {
-            color: @pinks;
-            font-size: 15px;
-            padding-left: 5px;
-            padding-right: 5px;
-          }
-          
-          #custom-window-name {
-            font-size: 15px;
-            padding-left: 5px;
-            padding-right: 5px;;
-            color: #cad3f5;
-          }
-
-          #temperature {
-            font-size: 15px;
-            color: @teal;
-            padding-left: 5px;
-            padding-right: 5px;
-          }
-
-          #temperature.critical {
-            background-color: @red;
-          }
-
-          #tray > .passive {
-            -gtk-icon-effect: dim;
-          }
-          #tray > .needs-attention {
-            -gtk-icon-effect: highlight;
-          }
-
-          #keyboard-state {
-            color: @flamingo;
-            padding-left: 5px;
-            padding-right: 5px;
-          }
-
-          #workspaces button {
-              box-shadow: none;
-          	text-shadow: none;
-              padding: 0px;
-              border-radius: 9px;
-              padding-left: 4px;
-              padding-right: 4px;
-              animation: gradient_f 20s ease-in infinite;
-              transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-          }
-
-          #workspaces button:hover {
-          	border-radius: 10px;
-          	color: @overlay0;
-          	background-color: @surface0;
-           	padding-left: 2px;
-              padding-right: 2px;
-              animation: gradient_f 20s ease-in infinite;
-              transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-          }
-
-          #workspaces button.persistent {
-          	color: @surface1;
-          	border-radius: 10px;
-          }
-
-          #workspaces button.active {
-          	color: @peach;
-            	border-radius: 10px;
-              padding-left: 8px;
-              padding-right: 8px;
-              animation: gradient_f 20s ease-in infinite;
-              transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-          }
-
-          #workspaces button.urgent {
-          	color: @red;
-           	border-radius: 0px;
-          }
-
-          #taskbar button.active {
-              padding-left: 8px;
-              padding-right: 8px;
-              animation: gradient_f 20s ease-in infinite;
-              transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-          }
-
-          #workspaces button:nth-child(1) {
-             color: #89b4fa;
-              /* blue */
-             margin: 0px 2px;
-           }
-
-         #workspaces button:nth-child(2) {
-            color: #b4befe;
-           /* lavender */
-            margin: 0px 2px;
-          }
-
-         #workspaces button:nth-child(3) {
-            color: #74c7ec;
-            /* sapphire */
-           margin: 0px 2px;
-          }
-
-         #workspaces button:nth-child(4) {
-            color: #89dceb;
-             /* sky */
-             margin: 0px 2px;
-          }
-
-         #workspaces button:nth-child(5) {
-            color: #94e2d5;
-             /* teal */
-            margin: 0px 2px;
-          }
-
-        #workspaces button:nth-child(6) {
-            color: #a6e3a1;
-            /* green */
-            margin: 0px 2px;
-          }
-
-        #workspaces button:nth-child(7) {
-            color: #f9e2af;
-             /* yellow */
-            margin: 0px 2px;
-          }
-
-        #workspaces button:nth-child(8) {
-            color: #fab387;
-             /* peach */
-            margin: 0px 2px;
-          }
-
-        #workspaces button:nth-child(9) {
-             color: #eba0ac;
-               /* maroon */
-            margin: 0px 2px;
-          }
-
-        #workspaces button:nth-child(10) {
-             color: #f38ba8;
-              /* red */
-             margin: 0px 2px;
-         }
-
           #taskbar button:hover {
               padding-left: 2px;
               padding-right: 2px;
@@ -731,6 +696,13 @@ in
 
           #mpris {
           	color: @pink;
+            background: @theme_base_color;
+            padding: 0px;
+            margin: 6px 10px 2px 2px;
+            border-radius: 30px;
+            padding-left: 5px;
+            padding-right: 5px;
+            transition: all .3s ease; 
           }
 
           #custom-menu {
@@ -752,10 +724,15 @@ in
           }
 
           #custom-weather {
-           padding: 0.3rem 0.6rem;
-           margin: 0.4rem 0.25rem;
-           border-radius: 6px;
+           padding: 0px;
+           margin: 6px 10px 2px 2px;
+           border: 3px solid rgba(14, 14, 14, .1);
+           border-radius: 30px;
            color: #f9e2af;
+           background: @theme_base_color;
+            padding-left: 5px;
+            padding-right: 5px;
+           transition: all .3s ease; 
 
           }
 
@@ -793,13 +770,13 @@ in
 
           #pulseaudio {
             color: @sapphire;
-            font-size: 15px;
             padding-left: 5px;
             padding-right: 5px;
           }
 
           #pulseaudio.bluetooth {
             color: @pink;
+            background: @theme_base_color;
           }
           #pulseaudio.muted {
             color: @red;
@@ -814,8 +791,7 @@ in
           }
 
           #network {
-            color: #cdd6f4;
-            font-size: 15px;
+            color: #EE2091;
             padding-left: 5px;
             padding-right: 5px;
           }
