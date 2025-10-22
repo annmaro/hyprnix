@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  home-manager.sharedModules = [
+    (_: {
   imports = [
     inputs.nvf.homeManagerModules.default
     ./options.nix
@@ -14,8 +16,7 @@
     ./utils.nix
     ./mini.nix
   ];
-  home-manager.sharedModules = [
-    (_: {
+  
 
   programs.nvf = {
     enable = true;

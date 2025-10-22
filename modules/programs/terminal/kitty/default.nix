@@ -6,7 +6,7 @@
         enable = true;
         font = {
           size = 12.0;
-          name = "monospace";
+          name = "JetBrainsMono Nerd Font";
         };
         themeFile = "Catppuccin-Mocha";
         settings = {

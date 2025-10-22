@@ -30,44 +30,45 @@ in {
       modules = [
         "break"
         {
+          type = "command";
+          text = "echo \${USER}@\${HOSTNAME}";
+          key = "      ";
+          keyColor = nord10;
+        }
+        {
           type = "custom";
           format = "┌──────────────────────Hardware──────────────────────┐";
         }
         {
           type = "host";
-          key = " PC";
-          keyColor = nord14;
+          key = "   PC";
+          keyColor = nord11;
         }
         {
           type = "cpu";
-          key = "│ ├";
+          key = "   CPU";
           showPeCoreCount = true;
           keyColor = nord14;
         }
         {
           type = "gpu";
-          key = "│ ├󰍛";
+          key = "  󰊴 GPU";
           keyColor = nord14;
         } 
         {
           type = "memory";
-          key = "│ ├󰍛";
-          keyColor = nord14;
+          key = "  󰑭 Memory";
+          keyColor = nord13;
         }
         {
           type = "disk";
-          key = "│ ├";
-          keyColor = nord14;
+          key = "   Disk";
+          keyColor = nord13;
         }
         {
           type = "display";
-          key = "│ ├󰍹";
-          keyColor = nord14;
-        }
-        {
-          type = "sound";
-          key = "└ └󰓃";
-          keyColor = nord14;
+          key = "  󰍹 Display";
+          keyColor = nord13;
         }
         {
           type = "custom";
@@ -80,97 +81,39 @@ in {
         }
         {
           type = "os";
-          key = " OS";
-          keyColor = nord13;
-        }
-        {
-          type = "command";
-          text = "echo \${USER}@\${HOSTNAME}";
-          key = "│ ├";
-          keyColor = nord13;
+          key = "   OS";
+          keyColor = nord11;
         }
         {
           type = "kernel";
-          key = "│ ├";
-          keyColor = nord13;
-        }
-        {
-          type = "gpu";
-          key = "│ ├󰍛";
-          format = "{3}";
-          keyColor = nord13;
+          key = "   Kernel";
+          keyColor = nord11;
         }
         {
           type = "packages";
-          key = "└ └󰏖";
+          key = "  󰏖 Packages";
           keyColor = nord13;
         }  
-        "break"
         {
           type = "de";
           key = " DE";
-          keyColor = nord9;
+          keyColor = nord13;
         }
         {
           type = "wm";
-          key = " WM";
-          keyColor = nord9;
+          key = "   WM";
+          keyColor = nord13;
         }
         {
-          type = "lm";
-          key = "│ ├";
-          keyColor = nord9;
-        }  
-        {
           type = "terminal";
-          key = "│ ├";
-          keyColor = nord9;
+          key = "   Terminal";
+          keyColor = nord14;
         }
         {
           type = "shell";
-          key = "└ └";
-          keyColor = nord9;
+          key = "   Shell";
+          keyColor = nord14;
         } 
-        {
-          type = "custom";
-          format = "└────────────────────────────────────────────────────┘";
-        }
-        "break"
-        {
-          type = "custom";
-          format = "┌───────────────────────Themes───────────────────────┐";
-        }
-        
-        {
-          type = "theme";
-          key = "󰉼 Theme";
-          keyColor = nord10;
-        }
-        {
-          type = "wmtheme";
-          key = "│ ├󰉼";
-          keyColor = nord10;
-        }
-        {
-          type = "icons";
-          key = "│ ├";
-          keyColor = nord10;
-        }
-        {
-          type = "cursor";
-          key = "│ ├󰆿";
-          keyColor = nord10;
-        }
-        {
-          type = "font";
-          key = "│ ├";
-          keyColor = nord10;
-        }
-        {
-          type = "terminalfont";
-          key = "└ └";
-          keyColor = nord10;
-        }
         {
           type = "custom";
           format = "└────────────────────────────────────────────────────┘";
@@ -194,6 +137,11 @@ in {
         {
           type = "custom";
           format = "└────────────────────────────────────────────────────┘";
+        }
+        {
+            type = "colors";
+            paddingLeft = 2;
+            symbol = "circle";
         }
         "break"
 	    ];
