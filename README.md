@@ -66,7 +66,7 @@ git clone https://github.com/annmaro/hyprnix.git ~/hyprnix
 2. Change Directory:
 
 ```bash
-cd ~/NixOS
+cd ~/hyprnix
 ```
 
 3. Run the Installer:
