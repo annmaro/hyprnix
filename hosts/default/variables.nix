@@ -1,6 +1,6 @@
 {
   # User Configuration
-  username = "anand"; # Your username (auto-set with install.sh, live-install.sh, rebuild)
+  username = "annmaro"; # Your username (auto-set with install.sh, live-install.sh, rebuild)
   desktop = "hyprland"; # Options: hyprland, i3-gaps, gnome, plasma6
   terminal = "kitty"; # Options: kitty, alacritty
   editor = "vscode"; # Options: nixvim, vscode, helix, nvchad, neovim
