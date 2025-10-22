@@ -10,8 +10,8 @@ pkgs.writeShellScriptBin "rebuild" ''
     exit 1
   fi
 
-  if [ -f "$HOME/NixOS/flake.nix" ]; then
-    flake=$HOME/NixOS
+  if [ -f "$HOME/hyprnix/flake.nix" ]; then
+    flake=$HOME/hyprnix
   elif [ -f "/etc/nixos/flake.nix" ]; then
     flake=/etc/nixos
   else

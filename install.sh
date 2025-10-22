@@ -44,21 +44,21 @@ for file in "${paths[@]}"; do
 done
 
 # replace username variable in variables.nix with $USER
-sudo sed -i -e "s/username = \".*\"/username = \"$currentUser\"/" "./hosts/Default/variables.nix"
+sudo sed -i -e "s/username = \".*\"/username = \"$currentUser\"/" "./hosts/default/variables.nix"
 
 # rm -f ./hosts/Default/hardware-configuration.nix &>/dev/null
 if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
-  cat "/etc/nixos/hardware-configuration.nix" | sudo tee "./hosts/Default/hardware-configuration.nix" >/dev/null
+  cat "/etc/nixos/hardware-configuration.nix" | sudo tee "./hosts/default/hardware-configuration.nix" >/dev/null
 elif [ -f "/etc/nixos/hosts/Default/hardware-configuration.nix" ]; then
-  cat "/etc/nixos/hosts/Default/hardware-configuration.nix" | sudo tee "./hosts/Default/hardware-configuration.nix" >/dev/null
+  cat "/etc/nixos/hosts/default/hardware-configuration.nix" | sudo tee "./hosts/default/hardware-configuration.nix" >/dev/null
 else
-  sudo nixos-generate-config --show-hardware-config >"$flake/hosts/Default/hardware-configuration.nix"
+  sudo nixos-generate-config --show-hardware-config >"$flake/hosts/default/hardware-configuration.nix"
 fi
 
-sudo git -C . add hosts/Default/hardware-configuration.nix
+sudo git -C . add hosts/default/hardware-configuration.nix
 
 # clear
-sudo nixos-rebuild switch --flake .#Default && \
+sudo nixos-rebuild switch --flake .#default && \
     echo -e "${GREEN}Success!${NC}" && \
     echo "Make sure to reboot if this is your first time using this script!" || \
     exit 1

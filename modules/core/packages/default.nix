@@ -31,8 +31,6 @@ in
     bibata-cursors
     fzf # Fuzzy Finder
     fd # Better Find
-    #waybar-weather 
-   # gh # Github Authentication Client
     libjxl # Support for JXL Images
     microfetch # Small fetch (Blazingly fast)
     nix-prefetch-scripts # Find Hashes/Revisions of Nix Packages
@@ -52,7 +50,8 @@ in
     pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
-    #nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
+    digikam # Photo management application
+    mcomix # Comic book reader and image viewer
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program
@@ -75,7 +74,6 @@ in
     # pciutils # Collection Of Tools For Inspecting PCI Devices
     # picard # For Changing Music Metadata & Getting Cover Art
     # pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
-    # rhythmbox # audio player
     # socat # Needed For Screenshots
      usbutils # Good Tools For USB Devices
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
