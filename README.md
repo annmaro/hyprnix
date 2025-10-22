@@ -37,8 +37,6 @@
   - [Installation Steps](#installation-steps)
 - [Usage](#usage)
   - [Managing Hosts](#managing-hosts)
-  - [Rebuilding](#rebuilding)
-  - [Rollbacks](#rollbacks)
   - [Keybindings](#keybindings)
 - [Credits/Inspiration](#creditsinspiration)
 
@@ -47,9 +45,9 @@
 > [!Note]
 > Before proceeding with the installation, check these files and adjust them for your system:
 >
-> - `hosts/Default/variables.nix`: Contains host-specific variables.
-> - `hosts/Default/host-packages.nix`: Lists installed packages for the host.
-> - `hosts/Default/configuration.nix`: Module imports for the host and extra configuration.
+> - `hosts/default/variables.nix`: Contains host-specific variables.
+> - `hosts/default/host-packages.nix`: Lists installed packages for the host.
+> - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
 
 <!-- You can install this configuration either on a running system or from the NixOS live installer. The minimal ISO is recommended and can be downloaded from the [official NixOS website](https://nixos.org/download/#nixos-iso). -->
 
@@ -60,7 +58,7 @@ You can install on a running system or from the NixOS live installer. Get the mi
 1. Clone the Repository:
 
 ```bash
-git clone https://github.com/Sly-Harvey/NixOS.git ~/NixOS
+git clone https://github.com/annmaro/hyprnix.git ~/hyprnix
 ```
 
 <!-- 2. Navigate to the Directory: -->
@@ -93,15 +91,10 @@ The install and rebuild scripts automate the setup process, including hosts, use
 
 **Method 2: Manual:**
 
-1. Copy `hosts/Default` to a new directory (e.g., `hosts/Laptop`)
+1. Copy `hosts/default` to a new directory (e.g., `hosts/Laptop`)
 2. Edit the new host's `variables.nix` and `host-packages.nix`
 3. Add the host to `flake.nix`:
 
-   ```nix
-   nixosConfigurations = {
-     Default = mkHost "Default";
-     Laptop = mkHost "Laptop";
-   };
    ```
 
 <!-- 4. Rebuild with the new hostname (see below) -->
