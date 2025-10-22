@@ -9,11 +9,11 @@
    <div align="center">
       <p></p>
       <div align="center">
-         <a href="https://github.com/Sly-Harvey/NixOS/stargazers">
-            <img src="https://img.shields.io/github/stars/Sly-Harvey/NixOS?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6">
+         <a href="https://github.com/annmaro/hyprnix/stargazers">
+            <img src="https://img.shields.io/github/stars/annmaro/hyprnix?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6">
          </a>
-         <a href="https://github.com/Sly-Harvey/NixOS/network/members">
-            <img src="https://img.shields.io/github/forks/Sly-Harvey/NixOS?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
+         <a href="https://github.com/annmaro/hyprnix/network/members">
+            <img src="https://img.shields.io/github/forks/annmaro/hyprnix?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
          </a>
          <!-- <a href="https://github.com/Sly-Harvey/NixOS/"> -->
          <!--    <img src="https://img.shields.io/github/repo-size/Sly-Harvey/NixOS?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=github&logoColor=C6A0F6"> -->
@@ -22,7 +22,7 @@
             <img src="https://img.shields.io/badge/NixOS-Unstable-blue?style=for-the-badge&logo=NixOS&logoColor=91D7E3&label=NixOS&labelColor=303446&color=91D7E3">
             <!-- <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=303446&logo=NixOS&logoColor=white&color=91D7E3"> -->
          </a>
-         <a href="https://github.com/Sly-Harvey/NixOS/blob/main/LICENSE">
+         <a href="https://github.com/annmaro/hyprnix/blob/main/LICENSE">
             <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=313244&colorB=F5A97F&logo=unlicense&logoColor=F5A97F&"/>
          </a>
       </div>
