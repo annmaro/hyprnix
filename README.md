@@ -141,7 +141,7 @@ View all keybindings with `Super + ?` or `Super + Ctrl + K`.
 
 ## Credits/Inspiration
 
-| Credit                                                 | Reason                                      |
-| ------------------------------------------------------ | ------------------------------------------- |
-| [Sly-Harvey](//github.com/Sly-Harvey/NixOS/edit/maste) | Thanks for creating such a wonderful config |
-| [Nixy](https://github.com/anotherhadi/nixy)            | Amazing Neovim config                       |
+| Credit                                       | Reason                                      |
+| -------------------------------------------- | ------------------------------------------- |
+| [Sly-Harvey](//github.com/Sly-Harvey/NixOS/) | Thanks for creating such a wonderful config |
+| [Nixy](https://github.com/anotherhadi/nixy)  | Amazing Neovim config                       |
