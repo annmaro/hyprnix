@@ -37,6 +37,8 @@
   - [Installation Steps](#installation-steps)
 - [Usage](#usage)
   - [Managing Hosts](#managing-hosts)
+  - [Rebuilding](#rebuilding)
+  - [Rollbacks](#rollbacks)
   - [Keybindings](#keybindings)
 - [Credits/Inspiration](#creditsinspiration)
 
@@ -95,7 +97,6 @@ The install and rebuild scripts automate the setup process, including hosts, use
 2. Edit the new host's `variables.nix` and `host-packages.nix`
 3. Add the host to `flake.nix`:
 
-   ```
 
 <!-- 4. Rebuild with the new hostname (see below) -->
 
