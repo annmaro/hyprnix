@@ -108,7 +108,7 @@ Apply configuration changes:
 
 - **Keyboard shortcut:** `Super + U`
 - **rebuild script:** `rebuild`
-- **nixos-rebuild:** `sudo nixos-rebuild switch --flake ~/NixOS#<HOST>`
+- **nixos-rebuild:** `sudo nixos-rebuild switch --flake ~/hyprnix#<HOST>`
 - **nh:** `nh os switch --hostname <HOST>`
 
 Replace `<HOST>` with the name of your host (e.g., `Laptop`).
