@@ -1,5 +1,5 @@
 <h1 align="center">
-   <img src="assets/nixos-logo.png" width="100px" /> 
+   <img src="assets/nixos.png" width="100px" /> 
    <br>
       My NixOS Configuration
    <br>
