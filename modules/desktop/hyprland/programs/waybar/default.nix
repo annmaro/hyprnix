@@ -539,7 +539,7 @@ in
            color: @teal;
            border-radius: 16px;
            min-width: 50px;
-           background-size: 400% 400%;
+           background-size: 300% 300%;
           transition: all 0.3s ease-in-out;
          }
 
