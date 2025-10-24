@@ -44,7 +44,6 @@ in
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
     ../../modules/programs/misc/cpufreq
-    ../../modules/programs/cli/lazygit
     ../../modules/programs/cli/cava
     ../../modules/programs/cli/btop
     ../../modules/programs/media/discord
