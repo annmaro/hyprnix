@@ -4,7 +4,7 @@
   desktop = "hyprland"; # Options: hyprland, i3-gaps, gnome, plasma6
   terminal = "kitty"; # Options: kitty, alacritty
   editor = "vscode"; # Options: nixvim, vscode, helix, nvchad, neovim
-  browser = "firefox"; # Options: firefox, floorp, zen
+  browser = "zen"; # Options: firefox, floorp, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
   shell = "zsh"; # Options: zsh, bash
   games = true; # Whether to enable the gaming module

@@ -15,15 +15,15 @@
       "preempt=full" # lower latency but less throughput
     ];
     loader = {
-     # systemd-boot.enable = false;   
+      systemd-boot.enable = false;   
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
-      timeout = 10; # Display bootloader indefinitely until user selects OS
+      timeout = 10; # bootloader display duration
       grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
-      #  efiInstallAsRemovable = true;
+     #  efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system, kindly set "canTouchEfiVariables" to false before enabling this 
         useOSProber = true;
         #gfxmodeEfi = "2715x1527"; # for 4k: 3840x2160
         #gfxmodeBios = "2715x1527"; # for 4k: 3840x2160
