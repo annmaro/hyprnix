@@ -1,0 +1,3 @@
+[toolchain]
+channel = "stable" # This can also be "nightly" if you want a nightly rust
+# or nightly-20XX-XX-XX for a specific nightly.
