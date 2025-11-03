@@ -1,13 +1,19 @@
 { config, pkgs, ... }:
 
-let 
-  nord9 = "#81A1C1";
-  nord10 = "#5E81AC";
-  nord11 = "#BF616A";
-  nord13 = "#EBCB8B";
-  nord14 = "#A3BE8C";
+let
+  color1 = "#d6bc5d";
+  color2 = "#00FFFF";
+  color3 = "#40E0D0";
+  color4 = "#32CD32";
+  color5 = "#e5c100";
+  color6 = "#088F8F";
+  color7 = "#B4C424";
+  color8 = "#c59c79";
+  color9 = "#50C878";
+  color10 = "#40B5AD";
+in
 
-in {
+{
 
   home-manager.sharedModules = [
     (_: {   
@@ -33,7 +39,7 @@ in {
           type = "command";
           text = "echo \${USER}@\${HOSTNAME}";
           key = "      ";
-          keyColor = nord10;
+          keyColor = color10;
         }
         {
           type = "custom";
@@ -42,33 +48,33 @@ in {
         {
           type = "host";
           key = "   PC";
-          keyColor = nord11;
+          keyColor = color1;
         }
         {
           type = "cpu";
           key = "   CPU";
           showPeCoreCount = true;
-          keyColor = nord14;
+          keyColor = color2;
         }
         {
           type = "gpu";
           key = "  󰊴 GPU";
-          keyColor = nord14;
+          keyColor = color3;
         } 
         {
           type = "memory";
           key = "  󰑭 Memory";
-          keyColor = nord13;
+          keyColor = color4;
         }
         {
           type = "disk";
           key = "   Disk";
-          keyColor = nord13;
+          keyColor = color5;
         }
         {
           type = "display";
           key = "  󰍹 Display";
-          keyColor = nord10;
+          keyColor = color6;
         }
         {
           type = "custom";
@@ -82,37 +88,37 @@ in {
         {
           type = "os";
           key = "   OS";
-          keyColor = nord11;
+          keyColor = color7;
         }
         {
           type = "kernel";
           key = "   Kernel";
-          keyColor = nord11;
+          keyColor = color7;
         }
         {
           type = "packages";
           key = "  󰏖 Packages";
-          keyColor = nord10;
+          keyColor = color8;
         }  
         {
           type = "de";
           key = " DE";
-          keyColor = nord10;
+          keyColor = color9;
         }
         {
           type = "wm";
           key = "   WM";
-          keyColor = nord10;
+          keyColor = color8;
         }
         {
           type = "terminal";
           key = "   Terminal";
-          keyColor = nord14;
+          keyColor = color9;
         }
         {
           type = "shell";
           key = "   Shell";
-          keyColor = nord14;
+          keyColor = color9;
         } 
         {
           type = "custom";
@@ -121,18 +127,18 @@ in {
         "break"
         {
           type = "custom";
-          format = "┌────────────────────Uptime / Age────────────────────┐";
+          format = "┌────────────────────Uptime/Age────────────────────┐";
         }
         {
           type = "command";
           key = "  OS Age";
-          keyColor = nord11;
+          keyColor = color10;
           text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
         }
         {
           type = "uptime";
           key = "  Uptime";
-          keyColor = nord11;
+          keyColor = color10;
         }
         {
           type = "custom";

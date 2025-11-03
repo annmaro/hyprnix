@@ -1,5 +1,5 @@
 {
-  description = "A simple flake for an atomic system";
+  description = "My NixOS Hyprland flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 

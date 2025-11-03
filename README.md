@@ -30,8 +30,24 @@
    </div>
 </h1>
 
+## Screenshots
+
+![Screenshot](/img/preview1.png)
+![Screenshot](/img/preview2.png)
+![Screenshot](/img/preview3.png)
+
+<details>
+<summary>More screenshots</summary>
+
+![Screenshot](/img/preview4.png)
+![Screenshot](/img/preview5.png)
+![Screenshot](/img/preview6.png)
+
+</details>
+
 ## Table of Contents
 
+- [Screenshots](#screenshots)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
   - [Installation Steps](#installation-steps)
