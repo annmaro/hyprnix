@@ -42,6 +42,7 @@
 ![Screenshot](/img/preview4.png)
 ![Screenshot](/img/preview5.png)
 ![Screenshot](/img/preview6.png)
+![Screenshot](/img/preview7.png)
 
 </details>
 
