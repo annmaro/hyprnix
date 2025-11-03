@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let 
-    waybar-weather = pkgs.callPackage ../../desktop/hyprland/scripts/weather.nix { };
-in
 {
 
  # TODO: review
@@ -43,7 +40,6 @@ in
     calibre # Comprehensive e-book software
     foliate # Simple and modern GTK eBook reader
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
-    vivaldi #Browser for our Friends, powerful and personal
     uget # Download manager using GTK and libcurls
     easyeffects # Audio effects for PipeWire applications
     pay-respects # Magnificent app which corrects your previous console command
@@ -51,7 +47,8 @@ in
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     digikam # Photo management application
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
-    mcomix # Comic book reader and image viewer
+    papers # GNOME's document viewer
+    libreoffice-fresh # Comprehensive, professional-quality productivity suite
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program

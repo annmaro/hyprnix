@@ -22,7 +22,7 @@
             label = "logout";
             action = "hyprctl dispatch exit 0";
             # action = "killall -9 Hyprland sleep 2";
-            text = "Exit";
+            text = "Logout";
             keybind = "e";
           }
           {

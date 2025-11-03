@@ -68,7 +68,7 @@ in {
         {
           type = "display";
           key = "  󰍹 Display";
-          keyColor = nord13;
+          keyColor = nord10;
         }
         {
           type = "custom";
@@ -92,17 +92,17 @@ in {
         {
           type = "packages";
           key = "  󰏖 Packages";
-          keyColor = nord13;
+          keyColor = nord10;
         }  
         {
           type = "de";
           key = " DE";
-          keyColor = nord13;
+          keyColor = nord10;
         }
         {
           type = "wm";
           key = "   WM";
-          keyColor = nord13;
+          keyColor = nord10;
         }
         {
           type = "terminal";

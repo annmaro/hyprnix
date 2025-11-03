@@ -16,14 +16,14 @@ let
 in
 {
 
-    users.anand = {
+    home-manager.users.anand = {
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
 
       xdg.enable = true;
       home = {
         username = "anand";
-        homeDirectory = "/home/amamd";
+        homeDirectory = "/home/anand";
         stateVersion = "25.05"; # Do not change!
         sessionVariables = {
           EDITOR = "vscode"; 
@@ -32,7 +32,6 @@ in
         };
       };
     };
-  };
   
   users = {
     users.anand = {

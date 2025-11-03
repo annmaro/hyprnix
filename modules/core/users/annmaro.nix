@@ -16,7 +16,7 @@ let
 in
 {
   
-    users.${username} = {
+    home-manager.users.${username} = {
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
 
@@ -38,7 +38,6 @@ in
         };
       };
     };
-  };
   
   users = {
     mutableUsers = true;

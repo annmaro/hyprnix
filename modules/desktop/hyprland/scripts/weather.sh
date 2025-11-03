@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-/home/anand/.cargo/bin/waybar-weather
+/home/annmaro/.cargo/bin/waybar-weather
