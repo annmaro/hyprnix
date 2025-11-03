@@ -86,7 +86,6 @@
         };
     in
     {
-      templates = import ./dev-shells;
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
       nixosConfigurations = {
         default = mkHost "default";
