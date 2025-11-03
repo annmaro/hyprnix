@@ -106,7 +106,7 @@
             nfu = "nix flake update";
             wp = "hyprctl hyprpaper reload ,";
             nrs = "sudo nixos-rebuild switch --flake .#default|& nom";
-            nhu = "nh os switch -hostname default"
+            nhu = "nh os switch --hostname default"
             ncg = "sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
 
             # Directory Shortcuts.
