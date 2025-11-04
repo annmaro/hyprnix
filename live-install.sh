@@ -146,15 +146,15 @@ while true; do
   read -p "Enter choice (1, 2 or 3): " driver_choice
   case $driver_choice in
   1)
-    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"nvidia\"/" "./hosts/Default/variables.nix"
+    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"nvidia\"/" "./hosts/default/variables.nix"
     break
     ;;
   2)
-    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"amdgpu\"/" "./hosts/Default/variables.nix"
+    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"amdgpu\"/" "./hosts/default/variables.nix"
     break
     ;;
   3)
-    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"intel\"/" "./hosts/Default/variables.nix"
+    sed -i -e "s/videoDriver = \".*\"/videoDriver = \"intel\"/" "./hosts/default/variables.nix"
     break
     ;;
   *) error "Invalid choice. Enter 1, 2, or 3." ;;
@@ -216,7 +216,7 @@ if [ "$editor" != "none" ]; then
   echo "Edit the 'settings' block to customize username, editor, browser, hostname, etc."
   echo "Save and exit when done (e.g., :wq for vim & vi, Ctrl+O then Ctrl+X for nano)."
   read -p "Press Enter to continue..."
-  $editor ./hosts/Default/variables.nix || {
+  $editor ./hosts/default/variables.nix || {
     warn "Editor exited with an error. Continuing with default settings."
   }
 else
@@ -761,14 +761,14 @@ echo "All filesystems mounted successfully."
 
 # Generate hardware configuration
 info "Generating hardware configuration..."
-nixos-generate-config --root /mnt --show-hardware-config >./hosts/Default/hardware-configuration.nix || {
+nixos-generate-config --root /mnt --show-hardware-config >./hosts/default/hardware-configuration.nix || {
   error "Failed to generate hardware configuration."
   exit 1
 }
 echo "Hardware configuration generated."
 
 # Update username in variables.nix
-sed -i -e "s/username = \".*\"/username = \"$username\"/" "./hosts/Default/variables.nix"
+sed -i -e "s/username = \".*\"/username = \"$username\"/" "./hosts/default/variables.nix"
 git add * 2>/dev/null || true
 
 # Copy flake to /etc/nixos
@@ -780,7 +780,7 @@ cp -r ./ /mnt/etc/nixos || {
 
 # Run nixos-install
 info "Installing system..."
-nixos-install --flake /mnt/etc/nixos#Default --no-root-passwd || exit 1
+nixos-install --flake /mnt/etc/nixos#default --no-root-passwd || exit 1
 
 # Set the user password
 echo -e "\n${BLUE}Setting password for $username...${NC}"

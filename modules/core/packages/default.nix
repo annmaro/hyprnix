@@ -33,6 +33,7 @@
     nix-prefetch-scripts # Find Hashes/Revisions of Nix Packages
     ripgrep # Improved Grep
     tldr # Improved Man
+    rimgo # Alternative frontend for Imgurss
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     vlc # Cross-platform media player and streaming server

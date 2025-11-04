@@ -49,7 +49,7 @@ sudo sed -i -e "s/username = \".*\"/username = \"$currentUser\"/" "./hosts/defau
 # rm -f ./hosts/Default/hardware-configuration.nix &>/dev/null
 if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
   cat "/etc/nixos/hardware-configuration.nix" | sudo tee "./hosts/default/hardware-configuration.nix" >/dev/null
-elif [ -f "/etc/nixos/hosts/Default/hardware-configuration.nix" ]; then
+elif [ -f "/etc/nixos/hosts/default/hardware-configuration.nix" ]; then
   cat "/etc/nixos/hosts/default/hardware-configuration.nix" | sudo tee "./hosts/default/hardware-configuration.nix" >/dev/null
 else
   sudo nixos-generate-config --show-hardware-config >"$flake/hosts/default/hardware-configuration.nix"
