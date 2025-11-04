@@ -127,7 +127,7 @@ in
         "break"
         {
           type = "custom";
-          format = "┌────────────────────Uptime/Age────────────────────┐";
+          format = "┌────────────────────Uptime/Age──────────────────────┐";
         }
         {
           type = "command";
