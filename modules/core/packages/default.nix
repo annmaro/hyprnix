@@ -39,6 +39,7 @@
     vlc # Cross-platform media player and streaming server
     peazip # File and archive manager
     calibre # Comprehensive e-book software
+    vivaldi # Browser for our Friends, powerful and personal
     foliate # Simple and modern GTK eBook reader
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
     uget # Download manager using GTK and libcurls
