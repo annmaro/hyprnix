@@ -39,7 +39,7 @@ in
     ../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
     ../../modules/programs/cli/tmux
-    ../../modules/programs/editor/neovim
+   # ../../modules/programs/editor/neovim
     ../../modules/programs/browser/firefox
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
