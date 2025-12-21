@@ -10,5 +10,4 @@
   };
   # Archive manager
  environment.systemPackages = with pkgs; [ file-roller ];
-  };
 }
