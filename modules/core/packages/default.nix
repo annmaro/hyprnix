@@ -50,6 +50,7 @@
     digikam # Photo management application
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
     papers # GNOME's document viewer
+    qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
