@@ -346,12 +346,12 @@ in
                 "tag +games, match:class ^(osu!)"
 
                 # Games
-                "syncfullscreen,tag:games"
-                "fullscreen,tag:games"
+                "sync_fullscreen on,match:tag games"
+                "fullscreen on,match:tag games"
                 "noborder 1,tag:games"
-                "noshadow,tag:games"
-                "noblur,tag:games"
-                "noanim,tag:games"
+                "no_shadow on,match:tag games"
+                "no_blur on,match:tag games"
+                "no_anim on,match:tag games"
 
                 "float true,match:class ^(qt5ct)$"
                 "float true,match:class ^(nwg-look)$"
