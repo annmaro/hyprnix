@@ -212,15 +212,14 @@ in
                 "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
               };
               layerrule = [
-                "blur, rofi"
-                "ignorezero, rofi"
-                "ignorealpha 0.7, rofi"
+                "blur on, match:namespace rofi"
+                "ignore_alpha 0.7, rofi"
 
-                "blur, swaync-control-center"
-                "blur, swaync-notification-window"
-                "ignorezero, swaync-control-center"
-                "ignorezero, swaync-notification-window"
-                "ignorealpha 0.7, swaync-control-center"
+                "blur on, match:namespace swaync-control-center"
+                "blur on, match:namespace swaync-notification-window"
+                #"ignorezero, swaync-control-center"
+                #"ignorezero, swaync-notification-window"
+                "ignore_alpha 0.7, swaync-control-center"
                 # "ignorealpha 0.8, swaync-notification-window"
                 # "dimaround, swaync-control-center"
               ];
