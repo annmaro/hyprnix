@@ -281,7 +281,7 @@ in
               };
               windowrule = [
                 #"noanim, class:^(Rofi)$
-                "tile,title:(.*)(Godot)(.*)$"
+                "tile on,match:title (.*)(Godot)(.*)$"
                 # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
                 # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
                 # "workspace 3, class:^(krita)$"
@@ -348,7 +348,7 @@ in
                 # Games
                 "sync_fullscreen on,match:tag games"
                 "fullscreen on,match:tag games"
-                "noborder 1,tag:games"
+                "border_size 1,match:tag sames"
                 "no_shadow on,match:tag games"
                 "no_blur on,match:tag games"
                 "no_anim on,match:tag games"
