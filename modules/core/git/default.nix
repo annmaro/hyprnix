@@ -12,66 +12,45 @@
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "annmaro";
-    userEmail = "anandk60440@gmail.com";
-
-   
-
-    lfs = {
+     lfs = {
       enable = true;
       skipSmudge = true;
     };
 
-    extraConfig = {
-      # core.editor = "vscode";
-      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
-
+     settings = {
+      user.name = "annmaro";
+      user.email = "anandkumar60440@gmail.com";
       init.defaultBranch = "main";
-      branch.autosetupmerge = "true";
-      pull.ff = "only";
-      color.ui = "auto";
-
-      push = {
-        default = "current";
-        followTags = true;
-        autoSetupRemote = true;
-      };
-
-      merge = {
-        conflictstyle = "diff3";
-        stat = "true";
-      };
-
-      rebase = {
-        autoSquash = true;
-        autoStash = true;
-      };
-
-      rerere = {
-        enabled = true;
-        autoupdate = true;
+      pull.rebase = "false";
+      push.autoSetupRemote = true;
+      color.ui = "1";
+      alias = {
+        essa = "push --force";
+        co = "checkout";
+        fuck = "commit --amend -m";
+        c = "commit -m";
+        ca = "commit -am";
+        forgor = "commit --amend --no-edit";
+        graph = "log --all --decorate --graph --oneline";
+        oops = "checkout --";
+        l = "log";
+        r = "rebase";
+        s = "status --short";
+        ss = "status";
+        d = "diff";
+        ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
+        pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
+        af = "!git add $(git ls-files -m -o --exclude-standard | sk -m)";
+        st = "status";
+        br = "branch";
+        df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}";
+        hist = ''
+          log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
+        llog = ''
+          log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative'';
+        edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; hx `f`";
       };
     };
-    
-    aliases = {
-      # Semantic commit message aliases
-      chore = "!f() { git commit -m \"chore($1): $2\"; }; f";
-      docs = "!f() { git commit -m \"docs($1): $2\"; }; f";
-      feat = "!f() { git commit -m \"feat($1): $2\"; }; f";
-      fix = "!f() { git commit -m \"fix($1): $2\"; }; f";
-      refactor = "!f() { git commit -m \"refactor($1): $2\"; }; f";
-      style = "!f() { git commit -m \"style($1): $2\"; }; f";
-      test = "!f() { git commit -m \"test($1): $2\"; }; f";
-    };
-     
-    ignores = [
-      "*~"
-      "*.swp"
-      "*result*"
-      ".direnv"
-      "node_modules"
-    ]; 
-  };
     })
   ];
 }
