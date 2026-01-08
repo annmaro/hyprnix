@@ -294,56 +294,56 @@ in
                 # "workspace 6, title:(.*)(Spotify)(.*)$"
 
                 # Can use FLOAT FLOAT for active and inactive or just FLOAT
-                "opacity 0.80 0.80,match:class:^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$"
-                "opacity 0.80 0.80,match:class:^(nvim-wrapper)$"
-                "opacity 0.90 0.90,match:class:^(gcr-prompter)$" # keyring prompt
-                "opacity 0.90 0.90,match:title:^(Hyprland Polkit Agent)$" # polkit prompt
-                "opacity 1.00 1.00,match:class:^(firefox)$"
-                "opacity 0.90 0.90,match:class:^(Brave-browser)$"
-                "opacity 0.80 0.80,match:class:^(org.gnome.Nautilus|thunar)$"
-                "opacity 0.80 0.80,match:class:^(Steam)$"
-                "opacity 0.80 0.80,match:class:^(steam)$"
-                "opacity 0.80 0.80,match:class:^(steamwebhelper)$"
-                "opacity 0.80 0.80,match:class:^(Spotify)$"
-                "opacity 0.80 0.80,match:title:(.*)(Spotify)(.*)$"
-                "opacity 0.80 0.80,match:class:^(VSCodium)$"
-                "opacity 0.80 0.80,match:class:^(codium-url-handler)$"
-                "opacity 0.80 0.80,match:class:^(code)$"
-                "opacity 0.80 0.80,match:class:^(code-url-handler)$"
-                "opacity 0.80 0.80,match:class:^(tuiFileManager)$"
-                "opacity 0.80 0.80,match:class:^(org.kde.dolphin)$"
-                "opacity 0.80 0.80,match:class:^(org.kde.ark)$"
-                "opacity 0.80 0.80,match:class:^(nwg-look)$"
-                "opacity 0.80 0.80,match:class:^(qt5ct)$"
-                "opacity 0.80 0.80,match:class:^(qt6ct)$"
-                "opacity 0.80 0.80,match:class:^(yad)$"
+                "opacity 0.80 0.80,match:class ^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$"
+                "opacity 0.80 0.80,match:class ^(nvim-wrapper)$"
+                "opacity 0.90 0.90,match:class ^(gcr-prompter)$" # keyring prompt
+                "opacity 0.90 0.90,match:title ^(Hyprland Polkit Agent)$" # polkit prompt
+                "opacity 1.00 1.00,match:class ^(firefox)$"
+                "opacity 0.90 0.90,match:class ^(Brave-browser)$"
+                "opacity 0.80 0.80,match:class ^(org.gnome.Nautilus|thunar)$"
+                "opacity 0.80 0.80,match:class ^(Steam)$"
+                "opacity 0.80 0.80,match:class ^(steam)$"
+                "opacity 0.80 0.80,match:class ^(steamwebhelper)$"
+                "opacity 0.80 0.80,match:class ^(Spotify)$"
+                "opacity 0.80 0.80,match:title (.*)(Spotify)(.*)$"
+                "opacity 0.80 0.80,match:class ^(VSCodium)$"
+                "opacity 0.80 0.80,match:class ^(codium-url-handler)$"
+                "opacity 0.80 0.80,match:class ^(code)$"
+                "opacity 0.80 0.80,match:class ^(code-url-handler)$"
+                "opacity 0.80 0.80,match:class ^(tuiFileManager)$"
+                "opacity 0.80 0.80,match:class ^(org.kde.dolphin)$"
+                "opacity 0.80 0.80,match:class ^(org.kde.ark)$"
+                "opacity 0.80 0.80,match:class ^(nwg-look)$"
+                "opacity 0.80 0.80,match:class ^(qt5ct)$"
+                "opacity 0.80 0.80,match:class ^(qt6ct)$"
+                "opacity 0.80 0.80,match:class ^(yad)$"
 
-                "opacity 0.90 0.90,match:class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-                "opacity 0.80 0.80,match:class:^(com.github.tchx84.Flatseal)$" # Flatseal-Gtk
-                "opacity 0.80 0.80,match:class:^(hu.kramo.Cartridges)$" # Cartridges-Gtk
-                "opacity 0.80 0.80,match:class:^(com.obsproject.Studio)$" # Obs-Qt
-                "opacity 0.80 0.80,match:class:^(gnome-boxes)$" # Boxes-Gtk
-                "opacity 0.90 0.90,match:class:^(discord)$" # Discord-Electron
-                "opacity 0.90 0.90,match:class:^(WebCord)$" # WebCord-Electron
-                "opacity 0.80 0.80,match:class:^(app.drey.Warp)$" # Warp-Gtk
-                "opacity 0.80 0.80,match:class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-                "opacity 0.80 0.80,match:class:^(Signal)$" # Signal-Gtk
-                "opacity 0.80 0.80,match:class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
+                "opacity 0.90 0.90,match:class ^(com.github.rafostar.Clapper)$" # Clapper-Gtk
+                "opacity 0.80 0.80,match:class ^(com.github.tchx84.Flatseal)$" # Flatseal-Gtk
+                "opacity 0.80 0.80,match:class ^(hu.kramo.Cartridges)$" # Cartridges-Gtk
+                "opacity 0.80 0.80,match:class ^(com.obsproject.Studio)$" # Obs-Qt
+                "opacity 0.80 0.80,match:class ^(gnome-boxes)$" # Boxes-Gtk
+                "opacity 0.90 0.90,match:class ^(discord)$" # Discord-Electron
+                "opacity 0.90 0.90,match:class ^(WebCord)$" # WebCord-Electron
+                "opacity 0.80 0.80,match:class ^(app.drey.Warp)$" # Warp-Gtk
+                "opacity 0.80 0.80,match:class ^(net.davidotek.pupgui2)$" # ProtonUp-Qt
+                "opacity 0.80 0.80,match:class ^(Signal)$" # Signal-Gtk
+                "opacity 0.80 0.80,match:class ^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
 
-                "opacity 0.80 0.70,match:class:^(pavucontrol)$"
-                "opacity 0.80 0.70,match:class:^(org.pulseaudio.pavucontrol)$"
-                "opacity 0.80 0.70,match:class:^(blueman-manager)$"
-                "opacity 0.80 0.70,match:class:^(.blueman-manager-wrapped)$"
-                "opacity 0.80 0.70,match:class:^(nm-applet)$"
-                "opacity 0.80 0.70,match:class:^(nm-connection-editor)$"
-                "opacity 0.80 0.70,match:class:^(org.kde.polkit-kde-authentication-agent-1)$"
+                "opacity 0.80 0.70,match:class ^(pavucontrol)$"
+                "opacity 0.80 0.70,match:class ^(org.pulseaudio.pavucontrol)$"
+                "opacity 0.80 0.70,match:class ^(blueman-manager)$"
+                "opacity 0.80 0.70,match:class ^(.blueman-manager-wrapped)$"
+                "opacity 0.80 0.70,match:class ^(nm-applet)$"
+                "opacity 0.80 0.70,match:class ^(nm-connection-editor)$"
+                "opacity 0.80 0.70,match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
 
                 "content game, tag:games"
                 "tag +games, content:game"
-                "tag +games, match:class:^(steam_app.*|steam_app_\d+)$"
-                "tag +games, match:class:^(gamescope)$"
-                "tag +games, match:class:(Waydroid)"
-                "tag +games, match:class:(osu!)"
+                "tag +games, match:class ^(steam_app.*|steam_app_\d+)$"
+                "tag +games, match:class ^(gamescope)$"
+                "tag +games, match:class ^(Waydroid)"
+                "tag +games, match:class ^(osu!)"
 
                 # Games
                 "syncfullscreen,tag:games"
@@ -353,22 +353,22 @@ in
                 "noblur,tag:games"
                 "noanim,tag:games"
 
-                "float true,match:class:^(qt5ct)$"
-                "float true,match:class:^(nwg-look)$"
-                "float true,match:class:^(org.kde.ark)$"
-                "float true,match:class:^(Signal)$" # Signal-Gtk
-                "float true,match:class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-                "float true,match:class:^(app.drey.Warp)$" # Warp-Gtk
-                "float true,match:class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-                "float true,match:class:^(eog)$" # Imageviewer-Gtk
-                "float true,match:class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
-                "float true,match:class:^(yad)$"
-                "float true,match:class:^(pavucontrol)$"
-                "float true,match:class:^(blueman-manager)$"
-                "float true,match:class:^(.blueman-manager-wrapped)$"
-                "float true,match:class:^(nm-applet)$"
-                "float true,match:class:^(nm-connection-editor)$"
-                "float true,match:class:^(org.kde.polkit-kde-authentication-agent-1)$"
+                "float true,match:class ^(qt5ct)$"
+                "float true,match:class ^(nwg-look)$"
+                "float true,match:class ^(org.kde.ark)$"
+                "float true,match:class ^(Signal)$" # Signal-Gtk
+                "float true,match:class ^(com.github.rafostar.Clapper)$" # Clapper-Gtk
+                "float true,match:class ^(app.drey.Warp)$" # Warp-Gtk
+                "float true,match:class ^(net.davidotek.pupgui2)$" # ProtonUp-Qt
+                "float true,match:class ^(eog)$" # Imageviewer-Gtk
+                "float true,match:class ^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
+                "float true,match:class ^(yad)$"
+                "float true,match:class ^(pavucontrol)$"
+                "float true,match:class ^(blueman-manager)$"
+                "float true,match:class ^(.blueman-manager-wrapped)$"
+                "float true,match:class ^(nm-applet)$"
+                "float true,match:class ^(nm-connection-editor)$"
+                "float true,match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
               ];
               binde = [
                 # Resize windows
