@@ -338,8 +338,8 @@ in
                 "opacity 0.80 0.70,match:class ^(nm-connection-editor)$"
                 "opacity 0.80 0.70,match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
 
-                "content game, tag:games"
-                "tag +games, content:game"
+                "content game, match:tag games"
+                "tag +games,  match:content game"
                 "tag +games, match:class ^(steam_app.*|steam_app_\d+)$"
                 "tag +games, match:class ^(gamescope)$"
                 "tag +games, match:class ^(Waydroid)"
