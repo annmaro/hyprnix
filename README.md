@@ -131,7 +131,7 @@ Apply configuration changes:
 Replace `<HOST>` with the name of your host (e.g., `Laptop`).
 
 > [!Note]
-> If you face any error during the rebuilding phase, kindly uncomment the neovim config from the configuration.nix file. Once you have successfully booted into NixOS, ypu can add neovim.
+> If you face any error during the rebuilding phase, kindly uncomment the neovim config from the configuration.nix file. Once you have successfully booted into NixOS, you can add neovim.
 
 ### Rollbacks
 
