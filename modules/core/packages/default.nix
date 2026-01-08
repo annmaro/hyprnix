@@ -67,7 +67,7 @@
      lshw # Detailed Hardware Information
     # mpv # Incredible Video Player
      ncdu # Disk Usage Analyzer With Ncurses Interface
-     nixfmt-style # Nix Formatter
+     nixfmt # Nix Formatter
     # nwg-displays # configure monitor configs via GUI
     # onefetch # provides zsaneyos build info on current system
     # pavucontrol # For Editing Audio Levels & Devices
