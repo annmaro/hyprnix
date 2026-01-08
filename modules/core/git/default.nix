@@ -20,6 +20,7 @@
      settings = {
       user.name = "annmaro";
       user.email = "anandkumar60440@gmail.com";
+      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
       init.defaultBranch = "main";
       pull.rebase = "false";
       push.autoSetupRemote = true;
