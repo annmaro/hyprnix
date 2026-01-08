@@ -213,13 +213,13 @@ in
               };
               layerrule = [
                 "blur on, match:namespace rofi"
-                "ignore_alpha 0.7, rofi"
+                "ignore_alpha 0.7, match:namespace rofi"
 
                 "blur on, match:namespace swaync-control-center"
                 "blur on, match:namespace swaync-notification-window"
                 #"ignorezero, swaync-control-center"
                 #"ignorezero, swaync-notification-window"
-                "ignore_alpha 0.7, swaync-control-center"
+                "ignore_alpha 0.7, match:namespace swaync-control-center"
                 # "ignorealpha 0.8, swaync-notification-window"
                 # "dimaround, swaync-control-center"
               ];
