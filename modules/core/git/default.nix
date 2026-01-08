@@ -51,6 +51,7 @@
         edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; hx `f`";
       };
     };
-    })
+  };
+  })
   ];
 }
