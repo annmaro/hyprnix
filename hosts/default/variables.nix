@@ -12,8 +12,7 @@
   # Hardware Configuration
   videoDriver = "intel"; # CRITICAL: Choose your GPU driver (nvidia, amdgpu, intel)
   hostname = "hyprnix"; # Your system hostname
-  system = "stdenv.hostplatform.system"; # Still figuring it out
-
+  
   # Localization
   clock24h = true; # 24H or 12H clock in waybar
   kbdLayout = "us"; # Keyboard layout

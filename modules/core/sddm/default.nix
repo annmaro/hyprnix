@@ -17,7 +17,7 @@ in  {
    qt.enable = true;
    services = {
     displayManager = {
-      preStart = ''
+      generic.preStart = ''
         echo "Sleeping to wait for session registration..."
         sleep 1
       '';
