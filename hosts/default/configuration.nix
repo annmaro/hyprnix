@@ -1,7 +1,6 @@
 { lib, ... }:
 let
   vars = import ./variables.nix;
-  system = "stdenv.hostplatform.system";
 in
 {
   imports = [
