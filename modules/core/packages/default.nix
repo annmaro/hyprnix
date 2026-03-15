@@ -42,8 +42,8 @@
     pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
-    geeqie # Lightweight GTK based image
-    photoqt # Simple, yet powerful and good looking image viewer
+    nomacs # Qt-based image viewer
+    digikam # Photo management application
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
     papers # GNOME's document viewer
     qbittorrent # Featureful free software BitTorrent client
