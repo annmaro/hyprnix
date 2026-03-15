@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-
-{
-
- # TODO: review
+{pkgs, ...}: {
+  # TODO: review
   programs = {
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -14,7 +11,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
- 
 
   environment.systemPackages = with pkgs; [
     appimage-run # Needed For AppImage Support
@@ -46,7 +42,8 @@
     pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
-    digikam # Photo management application
+    geeqie # Lightweight GTK based image
+    photoqt # Simple, yet powerful and good looking image viewer
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
     papers # GNOME's document viewer
     qbittorrent # Featureful free software BitTorrent client
@@ -60,14 +57,14 @@
     # ffmpeg # Terminal Video / Audio Editing
     # gemini-cli # CLI AI client ONLY (optional)
     # glxinfo # needed for inxi diag util
-     inxi # CLI System Information Tool
+    inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
     # lolcat # Add Colors To Your Terminal Command Output
-     lshw # Detailed Hardware Information
+    lshw # Detailed Hardware Information
     # mpv # Incredible Video Player
-     ncdu # Disk Usage Analyzer With Ncurses Interface
-     nixfmt # Nix Formatter
+    ncdu # Disk Usage Analyzer With Ncurses Interface
+    nixfmt # Nix Formatter
     # nwg-displays # configure monitor configs via GUI
     # onefetch # provides zsaneyos build info on current system
     # pavucontrol # For Editing Audio Levels & Devices
@@ -75,12 +72,12 @@
     # picard # For Changing Music Metadata & Getting Cover Art
     # pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     # socat # Needed For Screenshots
-     usbutils # Good Tools For USB Devices
+    usbutils # Good Tools For USB Devices
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
     # v4l-utils # Used For Things Like OBS Virtual Camera
     # warp-terminal # Terminal with AI support build in
-     wget # Tool For Fetching Files With Links
-   
+    wget # Tool For Fetching Files With Links
+
     # devenv
     # devbox
     # shellify
