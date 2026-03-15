@@ -15,8 +15,9 @@
           extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
             # arrterian.nix-env-selector
-            eamodio.gitlens
+            # eamodio.gitlens
             github.vscode-github-actions
+            github.vscode-pull-request-github
             yzhang.markdown-all-in-one
             catppuccin.catppuccin-vsc
             catppuccin.catppuccin-vsc-icons
