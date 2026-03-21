@@ -12,6 +12,7 @@
         "com.github.tchx84.Flatseal"      # Manage flatpak permissions - should always have this
         "io.github.flattool.Warehouse"    # Manage flatpaks, clean data, remove flatpaks and deps
         "app.opencomic.OpenComic"         # Comic and Manga reader
+        "org.sabnzbd.sabnzbd"             # Free and easy binary newsreader
         #"it.mijorus.gearlever"           # Manage and support AppImages
         #"com.rtosta.zapzap"              # WhatsApp client
         #"io.github.freedoom.Phase1"      #  Classic Doom FPS 1
