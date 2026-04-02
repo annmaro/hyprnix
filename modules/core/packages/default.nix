@@ -35,7 +35,8 @@
     peazip # File and archive manager
     calibre # Comprehensive e-book software
     vivaldi # Browser for our Friends, powerful and personal
-    foliate # Simple and modern GTK eBook reader
+    koodo-reader # Cross-platform ebook reader
+    readest # Modern, feature-rich ebook reader
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
     uget # Download manager using GTK and libcurls
     easyeffects # Audio effects for PipeWire applications
@@ -45,7 +46,6 @@
     nomacs # Qt-based image viewer
     digikam # Photo management application
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
-    papers # GNOME's document viewer
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
