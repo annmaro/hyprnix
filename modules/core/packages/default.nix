@@ -35,8 +35,7 @@
     peazip # File and archive manager
     calibre # Comprehensive e-book software
     vivaldi # Browser for our Friends, powerful and personal
-    koodo-reader # Cross-platform ebook reader
-    readest # Modern, feature-rich ebook reader
+    pdf4qt # Open source PDF editor
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
     uget # Download manager using GTK and libcurls
     easyeffects # Audio effects for PipeWire applications
