@@ -10,7 +10,7 @@
 
   # Packages needed for wallpapers
   home.packages = with pkgs; [
-    swww
+    awww
     waypaper
   ];
 
@@ -42,13 +42,13 @@
     # Animated Wayland wallpaper daemon
     swww-daemon = {
       Unit = {
-        Description = "swww daemon";
+        Description = "awww daemon";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session-pre.target" ];
       };
       Service = {
         Type = "simple";
-        ExecStart = "${pkgs.swww}/bin/swww-daemon";
+        ExecStart = "${pkgs.awww}/bin/awww-daemon";
         Restart = "on-failure";
         RestartSec = 1;
       };
@@ -63,7 +63,7 @@
         Description = "Restore wallpaper with Waypaper";
         PartOf = [ "graphical-session.target" ];
         After = [
-          "swww-daemon.service"
+          "awww-daemon.service"
           "graphical-session-pre.target"
         ];
       };

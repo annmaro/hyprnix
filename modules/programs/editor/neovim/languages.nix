@@ -63,6 +63,9 @@
               "BufWritePost"
               "InsertLeave"
             ];
+            presets.tailwindcss-language-server = {
+              enable = true;
+            }; 
           };
         };
       };
@@ -99,7 +102,7 @@
         };
         extraDiagnostics.enable = true;
       };
-      ts = {
+      typescript = {
         enable = true;
         extensions.ts-error-translator.enable = true;
       };
@@ -108,7 +111,6 @@
       html.enable = true;
       bash.enable = true;
       nix.enable = true;
-      tailwind.enable = true;
     };
     formatter = {
       conform-nvim = {

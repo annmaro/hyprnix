@@ -11,7 +11,7 @@ in
         enable = true;
         systemd = {
           enable = false;
-          target = "graphical-session.target";
+          targets = "graphical-session.target";
         };
         settings = [
           {

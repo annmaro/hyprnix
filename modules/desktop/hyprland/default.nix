@@ -22,7 +22,7 @@ in
     ./programs/rofi
     ./programs/hypridle
     ./programs/hyprlock
-    ./programs/swww
+    ./programs/awww
     ./programs/swaync
     # ./programs/dunst
   ];
