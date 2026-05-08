@@ -9,7 +9,7 @@
     (_: {
       programs.firefox = {
         enable = true;
-        configPath = "${xdg.configHome}/mozilla/firefox";
+        configPath = "${./mozilla/firefox";
         policies = import ./policies.nix { inherit lib; };
         languagePacks = [
           "en-GB"
