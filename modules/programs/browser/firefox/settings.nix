@@ -1,3 +1,4 @@
+{ lib, ... }:
 let
   lock-false = {
     Value = false;
@@ -7,6 +8,7 @@ let
     Value = true;
     Status = "locked";
   };
+  extensions = import ../extensions.nix { inherit lib; };
 in
 {
   # enable custom userchrome
@@ -19,13 +21,6 @@ in
   "privacy.userContext.enabled" = true;
   "privacy.userContext.ui.enabled" = true;
   "privacy.userContext.longPressBehavior" = 2;
-
-  # Performance settings
-  # "gfx.webrender.all" = true; # Force enable GPU acceleration
-  # "media.ffmpeg.vaapi.enabled" = true;
-  # "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
-  # "reader.parse-on-load.force-enabled" = true;
-  # "privacy.webrtc.legacyGlobalIndicator" = false;
 
   # Smooth Scroll
   "general.smoothScroll" = true;
@@ -45,10 +40,10 @@ in
   "toolkit.scrollbox.horizontalScrollDistance" = 6;
   "toolkit.scrollbox.verticalScrollDistance" = 2;
 
-  # Use cloudflare for better security/privacy
-  "network.trr.mode" = 2; # 2 if your havng DNS problems
-  "network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
-  "network.trr.uri" = "https://dns.quad9.net/dns-query";
+  # Commented because we are using adguard + cloudflare dns in modules/core/dns.nix
+  # "network.trr.mode" = 3; # 2 if your havng DNS problems
+  # "network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
+  # "network.trr.uri" = "https://dns.quad9.net/dns-query";
 
   # Remove trackers
   "privacy.purge_trackers.enabled" = lock-true;
@@ -215,14 +210,7 @@ in
     newElementCount = 7;
     placements = {
       widget-overflow-fixed-list = [ ];
-      unified-extensions-area = [
-        # "extension_one-tab_com-browser-action"
-        "ublock0_raymondhill_net-browser-action"
-        "firemonkey_eros_man-browser-action"
-        "addon_darkreader_org-browser-action"
-        "queryamoid_kaply_com-browser-action"
-        # "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
-      ];
+      unified-extensions-area = extensions.unified-extensions-area;
       nav-bar = [
         "back-button"
         "forward-button"
@@ -231,19 +219,7 @@ in
         # "developer-button"
         "downloads-button"
         "unified-extensions-button"
-
-        # Extensions
-        "extension_one-tab_com-browser-action"
-        "ublock0_raymondhill_net-browser-action"
-        "firemonkey_eros_man-browser-action"
-        "446900e4-71c2-419f-a6a7-df9c091e268b-browser-action"
-        "vpn_proton.ch-browser-action"
-        "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84_jetpack-browser-action"
-        "_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action"
-        # "addon_darkreader_org-browser-action"
-        # "queryamoid_kaply_com-browser-action"
-        # "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
-      ];
+      ] ++ extensions.nav-bar;
       toolbar-menubar = [ "menubar-items" ];
       TabsToolbar = [
         "firefox-view-button"

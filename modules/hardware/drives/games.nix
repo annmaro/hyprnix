@@ -1,8 +1,9 @@
 { lib, ... }:
 {
-  fileSystems."/mnt/games" = lib.mkForce {
-    device = "/dev/disk/by-uuid/01DA12C1CBDE9100";
-    fsType = "ntfs-3g";
+  # change according to your partition name and format
+  fileSystems."/mnt/Data" = lib.mkForce {
+    device = "/dev/disk/by-uuid/fcd8693d-39c7-49cc-a9de-c18d15f2d69d";
+    fsType = "btrfs";
     options = [
       "rw"
       "uid=1000"

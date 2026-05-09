@@ -2,7 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     obsidian
-    protonvpn-gui # VPN
+    proton-vpn # VPN
+    inputs.cursor.packages.${pkgs.stdenv.hostPlatform.system}.default # AI-powered code editor built on vscode
     # github-desktop
      pokego # Overlayed
   ];

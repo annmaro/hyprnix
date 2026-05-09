@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   force = true;
-  default = "google";
-  privateDefault = "Startpage";
+  default = "Startpage";
+  privateDefault = "goggle";
   order = [
     "Startpage"
     "Searx"

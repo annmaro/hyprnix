@@ -48,7 +48,6 @@
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
-    inputs.cursor.packages.${pkgs.stdenv.hostPlatform.system}.default # AI-powered code editor built on vscode
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program

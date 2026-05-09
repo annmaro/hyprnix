@@ -24,7 +24,7 @@ in
       home = {
         username = "anand";
         homeDirectory = "/home/anand";
-        stateVersion = "25.05"; # Do not change!
+        stateVersion = "26.05"; # Do not change!
         sessionVariables = {
           EDITOR = "vscode"; 
           BROWSER = "${browser}";

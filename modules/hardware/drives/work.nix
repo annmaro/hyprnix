@@ -1,8 +1,9 @@
 { lib, ... }:
 {
-  fileSystems."/mnt/work" = lib.mkForce {
-    device = "/dev/disk/by-uuid/f6f6d68c-68f8-4c50-8155-105a22b9ff35";
-    fsType = "ext4";
+  # change according to your partition name and format
+  fileSystems."/mnt/entertainment" = lib.mkForce {
+    device = "/dev/disk/by-uuid/1f018bd5-9915-4aa5-8061-024081929247";
+    fsType = "btrfs";
     options = [
       "defaults" # Default flags
       "async" # Run all operations async
