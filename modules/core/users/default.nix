@@ -83,12 +83,15 @@ in
       anand = homeAttrs "anand" "vscode";
     };
 
-  users = if username == "anand"
-    then {
-      "${username}" = userAttrs "${username}";
-    }
-    else {
-      "${username}" = userAttrs "${username}";
-      anand = userAttrs "anand";
-    };
+  users = {
+    mutableUsers = true;
+    users = if username == "anand"
+      then {
+        "${username}" = userAttrs username;
+      }
+      else {
+        "${username}" = userAttrs username;
+        anand = userAttrs "anand";
+      };
+  };
 }
