@@ -13,17 +13,82 @@ let
     browser
     shell
     ;
+
+  userGroups = [
+    "wheel"
+    "input"
+    "networkmanager"
+    "video"
+    "audio"
+    "libvirtd"
+    "kvm"
+    "docker"
+    "disk"
+    "adbusers"
+    "lp"
+    "scanner"
+    "vboxusers"
+  ];
+
+  sessionVariablesFor = editorArg: {
+    EDITOR =
+      if (editorArg == "nixvim" || editorArg == "neovim" || editorArg == "nvchad") then
+        "nvim"
+      else if editorArg == "vscode" then
+        "code"
+      else
+        "nano";
+    BROWSER = browser;
+    TERMINAL = terminal;
+  };
+
+  homeAttrs = userName: editorArg: {
+    programs.home-manager.enable = true;
+    xdg.enable = true;
+    home = {
+      username = userName;
+      homeDirectory = "/home/${userName}";
+      stateVersion = "26.05";
+      sessionVariables = sessionVariablesFor editorArg;
+    };
+  };
+
+  userAttrs = userName: {
+    isNormalUser = true;
+    extraGroups = userGroups;
+    shell = pkgs.${shell};
+    ignoreShellProgramCheck = true;
+  };
+
 in
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager
-     ./anand.nix
-     ./annmaro.nix
-   ];
-  programs.dconf.enable = true; # Enable dconf for home-manager
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+  programs.dconf.enable = true;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
+  };
+
+  nix.settings.allowed-users = if username == "anand" then [ "anand" ] else [ "${username}" "anand" ];
+
+  home-manager.users = if username == "anand"
+    then {
+      "${username}" = homeAttrs username editor;
+    }
+    else {
+      "${username}" = homeAttrs username editor;
+      anand = homeAttrs "anand" "vscode";
     };
-  nix.settings.allowed-users = [ "${username}" "anand" ];
+
+  users = if username == "anand"
+    then {
+      "${username}" = userAttrs "${username}";
+    }
+    else {
+      "${username}" = userAttrs "${username}";
+      anand = userAttrs "anand";
+    };
 }
