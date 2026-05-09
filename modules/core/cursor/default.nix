@@ -1,13 +1,14 @@
 { inputs, pkgs, ... }:
 
+let
+  cursorPkg = inputs.cursor.packages.${pkgs.stdenv.hostPlatform.system}.cursor;
+in
 {
   home-manager.sharedModules = [
     (
-      { config, pkgs, ... }:
+      { config, ... }:
       {
-        home.packages = [
-          inputs.cursor.packages.${pkgs.system}.cursor
-        ];
+        home.packages = [ cursorPkg ];
 
         # Optional: Create a desktop entry if it doesn't exist
         home.file.".local/share/applications/cursor.desktop" = {
