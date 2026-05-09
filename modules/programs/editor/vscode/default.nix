@@ -7,10 +7,11 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
   home-manager.sharedModules = [
     (_: {
-      programs.vscode = {
+       programs.vscode = {
         enable = true;
-        # mutableExtensionsDir = true; # TODO: test with home-manager
-        package = pkgs.vscodium;
+        mutableExtensionsDir = true;
+        # package = pkgs.vscodium;
+        package = pkgs.vscode;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
@@ -36,7 +37,7 @@
             # pkief.material-icon-theme
             # equinusocio.vsc-material-theme
             # dracula-theme.theme-dracula
-          ];
+            ];
           keybindings = [
             {
               key = "ctrl+q";
@@ -53,17 +54,17 @@
             # "extensions.autoUpdate" = false; # Fixes vscode freaking out when theres an update
             "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
             "window.menuBarVisibility" = "classic";
-            "window.zoomLevel" = 0.5;
-            "editor.fontSize" = 14;
+            # "window.zoomLevel" = 0.5;
+            "editor.fontSize" = 16;
             "workbench.colorTheme" = "Catppuccin Mocha";
             "workbench.iconTheme" = "catppuccin-mocha";
-            "catppuccin.accentColor" = "lavender";
+            "catppuccin.accentColor" = "mauve";
             "vsicons.dontShowNewVersionMessage" = true;
             "explorer.confirmDragAndDrop" = false;
             "editor.fontLigatures" = true;
             "workbench.startupEditor" = "none";
-           # "telemetry.enableCrashReporter" = false;
-           # "telemetry.enableTelemetry" = false;
+            "telemetry.enableCrashReporter" = false;
+            "telemetry.enableTelemetry" = false;
 
             "security.workspace.trust.untrustedFiles" = "open";
 

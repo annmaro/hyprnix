@@ -6,10 +6,9 @@
     fsType = "btrfs";
     options = [
       "rw"
-      "uid=1000"
-      "gid=100"
+      "defaults" # Default flags
+      "async" # Run all operations async
       "noatime"
-      "umask=000"
       "nofail"
       "x-gvfs-show"
       "x-systemd.mount-timeout=5"

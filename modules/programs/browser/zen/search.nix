@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   force = true;
-  default = "Startpage";
+  default = "brave";
   privateDefault = "Startpage";
   order = [
     "Startpage"
