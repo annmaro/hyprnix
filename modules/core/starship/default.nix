@@ -6,7 +6,7 @@
         enable = true;
         settings = {
           add_newline = false;
-          scan_timeout = 10;
+          scan_timeout = 20;
           format = "$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$python$nix_shell$character";
           directory = {
             truncate_to_repo = false;
