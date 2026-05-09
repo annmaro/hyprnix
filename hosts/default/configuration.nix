@@ -27,7 +27,7 @@ in
     ../../modules/core/system
     ../../modules/core/users
     ../../modules/core/flatpak
-    ../../modules/core/xdg
+    ../../modules/core/xdg          
     # ../../modules/core/virtualisation.nix
     # ../../modules/core/dlna.nix
 
@@ -41,6 +41,7 @@ in
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
     ../../modules/programs/cli/tmux
     ../../modules/programs/editor/neovim
+    ../../modules/core/cursor
    ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch

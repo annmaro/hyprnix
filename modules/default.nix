@@ -23,6 +23,7 @@ in
     ./core/system.nix
     ./core/users.nix
     ./core/xdg
+    ./core/cursor
     # ./core/flatpak.nix
     # ./core/virtualisation.nix
     # ./core/dlna.nix
