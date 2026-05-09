@@ -27,6 +27,7 @@ in
     ../../modules/core/system
     ../../modules/core/users
     ../../modules/core/flatpak
+    ../../modules/core/xdg
     # ../../modules/core/virtualisation.nix
     # ../../modules/core/dlna.nix
 
