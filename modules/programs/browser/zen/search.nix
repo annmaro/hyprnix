@@ -1,17 +1,16 @@
 { pkgs, ... }:
 {
   force = true;
-  default = "brave";
-  privateDefault = "Startpage";
+  default = "DuckDuckGo";
+  privateDefault = "google";
   order = [
-    "Startpage"
     "Searx"
-    "Brave"
+    "Perplexity"
+    "google"
     "NixOS Packages"
     "NixOS Options"
     "NixOS Wiki"
     "Home Manager Options"
-    "google"
   ];
   engines =
     let
