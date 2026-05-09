@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   force = true;
-  default = "DuckDuckGo";
+  default = "ddg";
   privateDefault = "google";
   order = [
     "Searx"
