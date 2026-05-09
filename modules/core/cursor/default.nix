@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 
 let
-  cursorPkg = inputs.cursor.packages.${pkgs.system}.default;
+  cursorPkg = inputs.cursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   home-manager.sharedModules = [
