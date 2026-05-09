@@ -4,11 +4,10 @@
   ...
 }:
 {
-  home-manager.sharedModules = [
-    (
-        home.packages = [
-        inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhs
-        ];       
-)
+home-manager.sharedModules = [
+    (_: {
+      imports = [antigravity-nix.packages.${system}.google-antigravity-no-fhs];
+    }
+    )
 ];
 }  
