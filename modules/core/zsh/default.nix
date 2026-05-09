@@ -136,7 +136,7 @@
             nfu = "nix flake update";
             nfs = "nix flake show";
             wp = "hyprctl hyprpaper reload ,";
-            nrs = "sudo nixos-rebuild switch --flake .#default|& nom";
+            nrs = "sudo nixos-rebuild boot --flake .#default";
             nhu = "nh os switch --hostname default";
             ncg = "sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
 
