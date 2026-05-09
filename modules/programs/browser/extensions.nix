@@ -28,6 +28,24 @@
       installation_mode = "force_installed";
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
     };
+    "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+      private_browsing = true;
+      default_area = "navbar";
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+    };
+    "vpn@proton.ch" = {
+      private_browsing = true;
+      default_area = "navbar";
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-vpn-firefox-extension/latest.xpi";
+    };
+    "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" = {
+      private_browsing = true;
+      default_area = "navbar";
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
+    };
     "firemonkey@eros.man" = {
       private_browsing = true;
       default_area = "navbar";
