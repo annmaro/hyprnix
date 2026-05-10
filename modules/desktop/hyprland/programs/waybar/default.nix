@@ -280,16 +280,16 @@ in
               tooltip-format = " {used:.1f}GB/{total:.1f}GB";
             };
            
-           /* "custom/weather" = {
+            "custom/weather" = {
               # https://github.com/wneessen/waybar-weather — JSON fields {text},{tooltip},{class}; Waybar default format "{}" breaks fmt — use {text}.
-              exec = /home/annmaro/Downloads/waybar-weather;
+              exec = waybar-weather;
               restart-interval = 60;
               return-type = "json";
               format = "{text}";
               tooltip-format = "{tooltip}";
               hide-empty-text = false;
               on-click = "pkill -USR1 waybar-weather";
-            }; */
+            }; 
             "backlight" = {
               format = "{icon} {percent}%";
               format-icons = [
