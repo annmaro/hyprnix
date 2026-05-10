@@ -25,6 +25,11 @@ let
         export WAYBARWEATHER_UNITS=metric
       fi
     fi
+    # Check if binary exists before executing
+    if [ ! -f "$bin" ]; then
+      echo "{\"text\": \"⚠ weather unavailable\", \"tooltip\": \"waybar-weather binary not found\", \"class\": \"\"}"
+      exit 0
+    fi
     exec "$bin"
   '';
 
@@ -33,7 +38,8 @@ in
   
   home-manager.sharedModules = [
     (_: {
-      home.packages = [ pkgs.waybar-weather ];
+      home.packages = home.packages = with pkgs; [ 
+        waybar-weather];
       programs.waybar = {
         enable = true;
         systemd = {
