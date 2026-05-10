@@ -7,6 +7,7 @@ in
   
   home-manager.sharedModules = [
     (_: {
+      home.packages = [ pkgs.waybar-weather ];
       programs.waybar = {
         enable = true;
         systemd = {
@@ -281,11 +282,13 @@ in
             };
            
             "custom/weather" = {
-              # https://github.com/wneessen/waybar-weather — Open-Meteo + geolocation; runs as a daemon and emits JSON for Waybar.
+              # https://github.com/wneessen/waybar-weather — JSON fields {text},{tooltip},{class}; Waybar default format "{}" breaks fmt — use {text}.
               exec = "${pkgs.waybar-weather}/bin/waybar-weather";
               restart-interval = 60;
               return-type = "json";
-              hide-empty-text = true;
+              format = "{text}";
+              tooltip-format = "{tooltip}";
+              hide-empty-text = false;
               on-click = "pkill -USR1 waybar-weather";
             };
             "backlight" = {
