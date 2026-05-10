@@ -283,12 +283,9 @@ in
             "custom/weather" = {
               # https://github.com/wneessen/waybar-weather — JSON fields {text},{tooltip},{class}; Waybar default format "{}" breaks fmt — use {text}.
               exec = "${../../scripts/weather.sh}";
-              restart-interval = 60;
+              restart-interval = 600;
               return-type = "json";
-              format = "{text}";
-              tooltip-format = "{tooltip}";
-              hide-empty-text = false;
-              on-click = "pkill -USR1 waybar-weather";
+             on-click = "pkill -USR1 waybar-weather";
             }; 
             "backlight" = {
               format = "{icon} {percent}%";
