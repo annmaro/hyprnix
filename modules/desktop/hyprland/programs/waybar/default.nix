@@ -281,10 +281,13 @@ in
             };
            
             "custom/weather" = {
-             exec = "${../../scripts/weather.sh}";
-             restart-interval = 600;
-             return-type = "json";
-             }; 
+              # https://github.com/wneessen/waybar-weather — Open-Meteo + geolocation; runs as a daemon and emits JSON for Waybar.
+              exec = "${pkgs.waybar-weather}/bin/waybar-weather";
+              restart-interval = 60;
+              return-type = "json";
+              hide-empty-text = true;
+              on-click = "pkill -USR1 waybar-weather";
+            };
             "backlight" = {
               format = "{icon} {percent}%";
               format-icons = [
@@ -732,36 +735,36 @@ in
            background: @theme_base_color;
             padding-left: 5px;
             padding-right: 5px;
-           transition: all .3s ease; 
-
+           transition: all .3s ease;
           }
 
-          #custom-weather.severe {
-           color: #eb937d;
+          /* Classes from waybar-weather: waybar-weather, alt-view, cold, hot, rain, snow, smoke */
+          #custom-weather.waybar-weather.alt-view {
+            font-style: italic;
           }
 
-          #custom-weather.sunnyDay {
-           color: #c2ca76;
+          #custom-weather.waybar-weather.hot {
+            color: #a91313;
           }
 
-          #custom-weather.clearNight {
-           color: #2b2b2a;
+          #custom-weather.waybar-weather.cold {
+            color: #5fa4ec;
           }
 
-          #custom-weather.cloudyFoggyDay, #custom-weather.cloudyFoggyNight {
-          color: #c2ddda;
+          @keyframes blink-condition {
+            to {
+              opacity: 0.55;
+            }
           }
 
-          #custom-weather.rainyDay, #custom-weather.rainyNight {
-           color: #5aaca5;
-          }
-
-          #custom-weather.snowyIcyDay, #custom-weather.snowyIcyNight {
-            color: #d6e7e5;
-          }
-
-          #custom-weather.default {
-            color: #dbd9d8;
+          #custom-weather.waybar-weather.rain,
+          #custom-weather.waybar-weather.snow,
+          #custom-weather.waybar-weather.smoke {
+            animation-name: blink-condition;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
           }
 
           #custom-lock {
