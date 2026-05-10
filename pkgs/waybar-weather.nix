@@ -23,6 +23,10 @@ buildGoModule rec {
     "-w"
   ];
 
+  postPatch = ''
+    substituteInPlace go.mod --replace "go 1.25.6" "go 1.25.5"
+  '';
+
   meta = with lib; {
     description = "Waybar weather module with Open-Meteo and automatic geolocation";
     homepage = "https://github.com/wneessen/waybar-weather";

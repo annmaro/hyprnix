@@ -2,45 +2,11 @@
 let
   inherit (import ../../../../../hosts/${host}/variables.nix) clock24h;
 
-  # waybar-weather config.Validate() only accepts lowercase "metric"/"imperial"; typos like "Metric" error out.
-  # Export WAYBARWEATHER_UNITS so fig/env overrides a mis-cased units line in config.toml.
-  waybar-weather-exec = pkgs.writeShellScript "waybar-weather-exec" ''
-    set -eu
-    bin="${pkgs.waybar-weather}/bin/waybar-weather"
-    norm_from_val() {
-      _v=$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')
-      case "$_v" in
-        imperial) printf imperial ;;
-        *) printf metric ;;
-      esac
-    }
-    if [ -n "''${WAYBARWEATHER_UNITS:-}" ]; then
-      export WAYBARWEATHER_UNITS="$(norm_from_val "$WAYBARWEATHER_UNITS")"
-    else
-      cfg="''${XDG_CONFIG_HOME:-$HOME/.config}/waybar-weather/config.toml"
-      if [ -f "$cfg" ]; then
-        raw=$(grep -E '^[[:space:]]*units[[:space:]]*=' "$cfg" | head -1 | sed 's/^[^=]*=[[:space:]]*//' | sed 's/^"\(.*\)"[[:space:]]*$/\1/' | sed "s/^'\(.*\)'[[:space:]]*$/\1/" | tr -d '\r')
-        export WAYBARWEATHER_UNITS="$(norm_from_val "''${raw:-}")"
-      else
-        export WAYBARWEATHER_UNITS=metric
-      fi
-    fi
-    # Check if binary exists before executing
-    if [ ! -f "$bin" ]; then
-      echo "{\"text\": \"⚠ weather unavailable\", \"tooltip\": \"waybar-weather binary not found\", \"class\": \"\"}"
-      exit 0
-    fi
-    exec "$bin"
-  '';
-
 in
 {
   
   home-manager.sharedModules = [
     (_: {
-      home.packages = with pkgs; [ 
-        waybar-weather
-        ];
       programs.waybar = {
         enable = true;
         systemd = {
@@ -316,7 +282,7 @@ in
            
             "custom/weather" = {
               # https://github.com/wneessen/waybar-weather — JSON fields {text},{tooltip},{class}; Waybar default format "{}" breaks fmt — use {text}.
-              exec = waybar-weather-exec;
+              exec = waybar-weather;
               restart-interval = 60;
               return-type = "json";
               format = "{text}";
