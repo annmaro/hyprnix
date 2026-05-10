@@ -38,7 +38,7 @@ in
   
   home-manager.sharedModules = [
     (_: {
-      home.packages = home.packages = with pkgs; [ 
+      home.packages = with pkgs; [ 
         waybar-weather];
       programs.waybar = {
         enable = true;
