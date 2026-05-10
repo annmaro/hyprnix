@@ -42,7 +42,8 @@ in
     ../../modules/programs/cli/tmux
     ../../modules/programs/editor/neovim
     ../../modules/core/cursor
-   ../../modules/programs/browser/zen
+    ../../modules/core/antigravity
+    ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
     ../../modules/programs/misc/cpufreq
