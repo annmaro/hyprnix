@@ -40,7 +40,7 @@ in
     ../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
     ../../modules/programs/cli/tmux
-    ../../modules/programs/editor/neovim
+    ../../modules/programs/editor/vscode
     ../../modules/core/cursor
     ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
