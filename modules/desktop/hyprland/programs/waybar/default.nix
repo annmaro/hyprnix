@@ -281,7 +281,6 @@ in
             };
            
             "custom/weather" = {
-              # https://github.com/wneessen/waybar-weather — JSON fields {text},{tooltip},{class}; Waybar default format "{}" breaks fmt — use {text}.
               exec = "${../../scripts/weather.sh}";
               restart-interval = 600;
               return-type = "json";
