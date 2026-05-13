@@ -4,5 +4,5 @@
   # for example: environment.systemPackages = with pkgs; [pokego];
   pokego = pkgs.callPackage ./pokego.nix { };
   waybar-weather = pkgs.callPackage ./waybar-weather.nix { };
-  openldap = pkgs.callPackage ./openldap.nix { };
+  
 }
