@@ -9,11 +9,7 @@ in
     import ../pkgs {
       pkgs = final;
       inherit host;
-      openldap = prev.openldap.overrideAttrs {
-        doCheck = !prev.stdenv.hostPlatform.isi686;
       };
-    };
-
   # https://wiki.nixos.org/wiki/Overlays
   modifications = final: _prev: {
     nur = inputs.nur.overlays.default;

@@ -16,7 +16,7 @@
     enable32Bit = true;
   };
   environment.systemPackages = with pkgs; [
-    lutris
+    stable.lutris
     heroic
     # bottles
     # ryujinx
