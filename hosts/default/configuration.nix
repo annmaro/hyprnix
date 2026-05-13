@@ -11,7 +11,9 @@ in
     ../../modules/scripts
     ../../modules/core/boot
     ../../modules/core/bash
+    ../../modules/core/cursor
     ../../modules/core/zsh
+    ../../modules/core/games
     ../../modules/core/starship
     ../../modules/core/fonts
     ../../modules/core/git
@@ -41,7 +43,6 @@ in
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
     ../../modules/programs/cli/tmux
     ../../modules/programs/editor/vscode
-    ../../modules/core/cursor
     ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
