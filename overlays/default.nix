@@ -8,11 +8,10 @@ in
     final: _prev:
     import ../pkgs {
       pkgs = final;
-      inherit host;{
+      inherit host;
       openldap = prev.openldap.overrideAttrs {
         doCheck = !prev.stdenv.hostPlatform.isi686;
       };
-    };
     };
 
   # https://wiki.nixos.org/wiki/Overlays
