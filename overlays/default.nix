@@ -5,14 +5,14 @@ in
 {
   # Overlay custom derivations into nixpkgs so you can use pkgs.<name>
   additions =
-    final: _prev:{
+    final: _prev:
+    import ../pkgs {
+      pkgs = final;
+      inherit host;{
       openldap = prev.openldap.overrideAttrs {
         doCheck = !prev.stdenv.hostPlatform.isi686;
       };
     };
-    import ../pkgs {
-      pkgs = final;
-      inherit host;
     };
 
   # https://wiki.nixos.org/wiki/Overlays
