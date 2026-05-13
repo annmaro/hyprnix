@@ -22,12 +22,7 @@
     cursor = {
       url = "github:omarcresp/cursor-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };  
+    }; 
 
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
