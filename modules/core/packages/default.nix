@@ -48,6 +48,7 @@
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
+    transmission_4-gtk # Fast, easy, and free BitTorrent client (GTK4)
     # vulkan-tools # Khronos official Vulkan Tools and Utilities
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
