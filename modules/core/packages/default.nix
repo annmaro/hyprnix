@@ -48,9 +48,7 @@
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
-    transmission_4-gtk # Fast, easy, and free BitTorrent client (GTK4)
-    kopia-ui # Fast and secure open-source backup tool
-    # vulkan-tools # Khronos official Vulkan Tools and Utilities
+    vulkan-tools # Khronos official Vulkan Tools and Utilities
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program
@@ -58,7 +56,7 @@
     # dysk # Disk space util nice formattting
     # ffmpeg # Terminal Video / Audio Editing
     # gemini-cli # CLI AI client ONLY (optional)
-    # glxinfo # needed for inxi diag util
+    glxinfo # needed for inxi diag util
     inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
