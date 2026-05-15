@@ -57,7 +57,6 @@
     # dysk # Disk space util nice formattting
     # ffmpeg # Terminal Video / Audio Editing
     # gemini-cli # CLI AI client ONLY (optional)
-    glxinfo # needed for inxi diag util
     inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
