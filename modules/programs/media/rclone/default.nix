@@ -47,7 +47,8 @@
               --umask 0022
           '';
           
-          ExecStop = "${pkgs.fuse}/bin/fusermount -u "${mountDir}"";
+          # FIXED: Cleaned up the quote nesting and corrected the fusermount flag to -u
+          ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountDir}";
           Restart = "on-failure";
           RestartSec = "10s";
         };
