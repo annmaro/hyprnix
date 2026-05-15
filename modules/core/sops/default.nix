@@ -19,6 +19,8 @@
             mode = "0600";
           };
           "rclone_gdrive_env" = {};
+          "git_email" = {};  # <-- Tracked smoothly in volatile memory
+          "git_key_id" = {}; # <-- Tracked smoothly in volatile memory
         };
       };
     })
