@@ -3,7 +3,7 @@
 {
   home-manager.sharedModules = [
     (
-      { ... }: {
+      { config, ... }: {
       
       home.packages = [ 
         pkgs.gnupg 
