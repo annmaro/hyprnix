@@ -25,6 +25,7 @@ in
     ../../modules/core/sddm
     ../../modules/core/security
     ../../modules/core/services
+    ../../modules/core/sops
     ../../modules/core/syncthing
     ../../modules/core/system
     ../../modules/core/users
@@ -55,6 +56,7 @@ in
     # ../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
+    ../../modules/programs/media/rclone
     ../../modules/programs/misc/tlp
     ../../modules/programs/misc/thunar
     ../../modules/programs/misc/lact # GPU fan, clock and power configuration
