@@ -13,6 +13,7 @@
         "io.github.flattool.Warehouse"    # Manage flatpaks, clean data, remove flatpaks and deps
         "app.opencomic.OpenComic"         # Comic and Manga reader
         "org.sabnzbd.sabnzbd"             # Free and easy binary newsreader
+        "org.freefilesync.FreeFileSync"   # Visual folder comparison and synchronization  
         #"it.mijorus.gearlever"           # Manage and support AppImages
         #"com.rtosta.zapzap"              # WhatsApp client
         #"io.github.freedoom.Phase1"      #  Classic Doom FPS 1

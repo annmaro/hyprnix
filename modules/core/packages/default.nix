@@ -49,7 +49,6 @@
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
     vulkan-tools # Khronos official Vulkan Tools and Utilities
-    freefilesync # Open Source File Synchronization & Backup Software
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program
