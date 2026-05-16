@@ -27,9 +27,8 @@ jobs:
       - name: Execute Link Consistency Validation
         uses: lycheeverse/lychee-action@v2
         with:
-          # FIXED: Simplified arguments. Exclusions are handled cleanly by .lycheeignore
           args: --verbose --no-progress --accept-empty "./index.md"
-          fail: false
+          fail: false 
 
   deploy:
     needs: link-validator 
@@ -137,6 +136,9 @@ jobs:
 
       - name: Upload Production Web Page Artifacts
         uses: actions/upload-pages-artifact@v3
+        with:
+          # FIXED: Explicitly instructs the runner to upload the built package directory
+          path: '_site'
 
       - name: Deploy Production Web Page to GitHub Pages
         id: deployment
