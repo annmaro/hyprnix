@@ -27,16 +27,8 @@ jobs:
       - name: Execute Link Consistency Validation
         uses: lycheeverse/lychee-action@v2
         with:
-          # FIXED: Excludes dummy placeholder URLs from being verified over the network
-          args: >
-            --verbose 
-            --no-progress 
-            --accept-empty 
-            --exclude "your-username"
-            --exclude "your-repository-name"
-            --exclude "your-custom-domain"
-            --exclude "your_email@example.com"
-            "./index.md"
+          # FIXED: Simplified arguments. Exclusions are handled cleanly by .lycheeignore
+          args: --verbose --no-progress --accept-empty "./index.md"
           fail: true
 
   deploy:
