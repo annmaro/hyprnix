@@ -58,7 +58,7 @@ The system configuration is split into independent, decoupled components under t
 Imports the core sops-nix engine and establishes dynamic volatile memory mappings for all decrypted user-space credentials.
 
 ### 📚 Cloud Mount Optimization Module
-**File System Path:** `modules/programs/media/rclone.nix`  
+**File System Path:** `modules/core/rclone/default.nix`  
 Establishes an automated user Systemd daemon (`rclone-gdrive-mount.service`) to mount cloud assets on boot.
 It features optimized read-ahead and block-caching configurations designed to strip streaming latency from compressed digital archives (.cbz, .cbr).
 
@@ -71,7 +71,7 @@ It features optimized read-ahead and block-caching configurations designed to st
 ```
 
 ### 💻 Signed Git & Development Tooling Module
-**File System Path:** `modules/programs/git/default.nix`  
+**File System Path:** `modules/core/git/default.nix`  
 Deploys a complete git environment. It dynamically resolves unencrypted keys straight out of memory objects, configures persistent system variables, handles automated historical storage pruning, and loads custom workflow helper utilities.
 
 **🧰 Integrated Core Aliases Ecosystem:**
@@ -91,7 +91,7 @@ Execute these operations in order within your terminal window to securely compil
 git add .sops.yaml modules/core/sops/default.nix modules/core/rclone/default.nix modules/core/git/default.nix secrets/secrets.yaml
 
 # 2. Compile system derivations and activate the new software generation
-sudo nixos-rebuild switch --flake .#default
+sudo nixos-rebuild boot --flake .#default
 
 # 3. Monitor active connection statuses and cloud storage mount tracking logs
 systemctl --user status rclone-gdrive-mount.service
