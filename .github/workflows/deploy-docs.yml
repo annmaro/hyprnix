@@ -8,6 +8,10 @@ on:
       - 'index.md' # Tracks your renamed configuration file name
       - '.github/workflows/deploy-docs.yml'
 
+# --- FIXED: FORCE GLOBAL RUNNER ENGINES TO USE THE MODERN NODE 24 RUNTIME ---
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
