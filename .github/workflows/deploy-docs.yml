@@ -18,18 +18,22 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # STEP A: RUN BROKEN LINK ANALYSIS FIRST (USING MODERN LYCHEE ENGINE)
   link-validator:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code Repository
-        uses: actions/checkout@v6 # UPGRADED: Runs natively on Node 24 without warning flags
+        uses: actions/checkout@v6 
 
-      - name: Execute Markdown Dead Link Checker
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
+      - name: Execute Link Consistency Validation
+        uses: lycheeverse/lychee-action@v2
         with:
-          file-path: './index.md'
-          config-file: '.mlc_config.json'
+          # Point explicitly to your system documentation file
+          args: --verbose --no-progress "./index.md"
+          # Stop the build if dead links are encountered
+          fail: true
 
+  # STEP B: DEPLOY THE WEBPAGE ONLY IF ALL LINKS ARE VALID
   deploy:
     needs: link-validator 
     environment:
@@ -38,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code Repository
-        uses: actions/checkout@v6 # UPGRADED: Matches version 6 infrastructure
+        uses: actions/checkout@v6 
 
       - name: Staging Workspace Asset Transformation
         run: |
