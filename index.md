@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Technical Report: Secure Infrastructure Deployment"
+---
+
 ## 💻 1. Cryptographic Security Foundations
 
 ### 🔑 Local Identity Decoupling

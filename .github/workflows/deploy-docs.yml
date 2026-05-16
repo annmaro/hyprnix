@@ -1,0 +1,48 @@
+name: Deploy Documentation Webpage
+
+on:
+  push:
+    branches:
+      - main # Triggers whenever you push code changes to the main branch
+    paths:
+      - 'index.md' # Only runs if this specific document is modified
+
+# Set up strict security tokens for the cloud environment runner
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Prevent concurrent overlapping deployment operations
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code Repository
+        uses: actions/checkout@v4
+
+      # Setup staging folders so GitHub Pages can process the data cleanly
+      - name: Staging Workspace Asset Transformation
+        run: |
+          mkdir _site
+          cp sops-rclone.md _site/index.md
+          
+          # Inject Jekyll theme instructions directly to the top of the file
+          echo -e "---\nlayout: default\ntitle: 'System Documentation Matrix'\n---\n$(cat _site/index.md)" > _site/index.md
+          
+          # Explicitly instruct Jekyll to use a sleek developer layout style
+          echo "theme: jekyll-theme-cayman" > _site/_config.yml
+
+      - name: Upload Production Web Page Artifacts
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy Production Web Page to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
