@@ -27,8 +27,16 @@ jobs:
       - name: Execute Link Consistency Validation
         uses: lycheeverse/lychee-action@v2
         with:
-          # FIXED: Added --accept-empty to pass safely if the doc has no links
-          args: --verbose --no-progress --accept-empty "./index.md"
+          # FIXED: Excludes dummy placeholder URLs from being verified over the network
+          args: >
+            --verbose 
+            --no-progress 
+            --accept-empty 
+            --exclude "your-username"
+            --exclude "your-repository-name"
+            --exclude "your-custom-domain"
+            --exclude "your_email@example.com"
+            "./index.md"
           fail: true
 
   deploy:
