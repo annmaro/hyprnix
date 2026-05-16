@@ -3,23 +3,35 @@ name: Deploy Documentation Webpage
 on:
   push:
     branches:
-      - main # Triggers whenever you push code changes to the main branch
+      - main
     paths:
-      - 'index.md' # Only runs if this specific document is modified
+      - 'index.md' # Tracks your renamed configuration file name
+      - '.github/workflows/deploy-docs.yml'
 
-# Set up strict security tokens for the cloud environment runner
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Prevent concurrent overlapping deployment operations
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  link-validator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code Repository
+        uses: actions/checkout@v4
+
+      - name: Execute Markdown Dead Link Checker
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          file-path: './index.md' # Validates renamed document paths
+          config-file: '.mlc_config.json'
+
   deploy:
+    needs: link-validator 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -28,17 +40,123 @@ jobs:
       - name: Checkout Source Code Repository
         uses: actions/checkout@v4
 
-      # Setup staging folders so GitHub Pages can process the data cleanly
       - name: Staging Workspace Asset Transformation
         run: |
-          mkdir _site
-          cp sops-rclone.md _site/index.md
+          mkdir -p _site
           
-          # Inject Jekyll theme instructions directly to the top of the file
-          echo -e "---\nlayout: default\ntitle: 'System Documentation Matrix'\n---\n$(cat _site/index.md)" > _site/index.md
+          # AUTOMATED TOC INJECTION: Creates a clean sidebar wrapper at the front of your document
+          echo -e "---\nlayout: default\ntitle: 'System Documentation Matrix'\n---\n\n<div class='custom-layout-wrapper'>\n\n<nav class='sidebar-toc-container' markdown='1'>\n### 🗺️ Navigation\n* TOC\n{:toc}\n</nav>\n\n<main class='main-article-content' markdown='1'>\n" > _site/index.md
           
-          # Explicitly instruct Jekyll to use a sleek developer layout style
+          # Append your original configuration content block and close the open layout div wrappers
+          cat index.md >> _site/index.md
+          echo -e "\n\n</main>\n\n</div>" >> _site/index.md
+          
           echo "theme: jekyll-theme-cayman" > _site/_config.yml
+          
+          # Build custom theme style overrides for the Cayman Sidebar view
+          mkdir -p _site/assets/css
+          cat << 'EOF' > _site/assets/css/style.scss
+          @import "{{ site.theme }}";
+
+          body {
+            background-color: #050505 !important; 
+            color: #e0e0e0 !important;             
+            font-family: 'Inter', system-ui, sans-serif !important;
+          }
+
+          .page-header {
+            background-color: #0c0c0c !important;
+            background-image: linear-gradient(120deg, #111, #001a08) !important;
+            border-bottom: 1px solid #222 !important;
+            padding: 2rem 1rem !important;
+          }
+
+          .project-name, .project-tagline { color: #ffffff !important; }
+
+          h1, h2, h3, h4 {
+            color: #00ff66 !important;             
+            border-bottom: 1px solid #222 !important;
+            padding-top: 1rem;
+          }
+
+          pre, code {
+            background-color: #111111 !important;
+            border: 1px solid #333333 !important;
+            color: #50fa7b !important;             
+            border-radius: 6px !important;
+          }
+
+          a {
+            color: #00a3ff !important;             
+            text-decoration: none !important;
+            &:hover { text-decoration: underline !important; }
+          }
+
+          // --- GRID RESPONSIVENESS ARCHITECTURE ---
+          // Removes standard maximum layout constraint blocks to allow sidebars to clear safely
+          .main-content {
+            max-width: 1200px !important;
+            padding: 2rem 1rem !important;
+          }
+
+          .custom-layout-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            
+            @media (min-width: 800px) {
+              flex-direction: row;
+              align-items: flex-start;
+            }
+          }
+
+          // Floating Sidebar CSS properties
+          .sidebar-toc-container {
+            background-color: #0d0d0d !important;
+            border: 1px solid #222222 !important;
+            border-radius: 8px;
+            padding: 1.5rem !important;
+            width: 100%;
+            
+            @media (min-width: 800px) {
+              width: 280px !important;
+              position: sticky !important; // Keeps the sidebar visible during page scrolling
+              top: 2rem;
+              max-height: 85vh;
+              overflow-y: auto;
+            }
+
+            h3 {
+              margin-top: 0 !important;
+              color: #ffffff !important;
+              font-size: 1.1rem !important;
+              border-bottom: 2px solid #00ff66 !important;
+            }
+
+            // Strips numbers and cleans layout spacing inside the Kramdown-generated tree
+            ul {
+              list-style-type: none !important;
+              padding-left: 0 !important;
+              margin-left: 0 !important;
+              
+              li {
+                margin-bottom: 0.6rem !important;
+                font-size: 0.9rem !important;
+                
+                ul {
+                  padding-left: 1rem !important; // Indents nested sub-headers neatly
+                  margin-top: 0.4rem !important;
+                }
+              }
+            }
+          }
+
+          .main-article-content {
+            flex: 1;
+            width: 100%;
+            min-width: 0; // Prevents pre-wrapped system blocks from breaking layout grids
+          }
+          EOF
 
       - name: Upload Production Web Page Artifacts
         uses: actions/upload-pages-artifact@v3
