@@ -18,7 +18,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # STEP A: RUN BROKEN LINK ANALYSIS FIRST (USING MODERN LYCHEE ENGINE)
   link-validator:
     runs-on: ubuntu-latest
     steps:
@@ -28,12 +27,10 @@ jobs:
       - name: Execute Link Consistency Validation
         uses: lycheeverse/lychee-action@v2
         with:
-          # Point explicitly to your system documentation file
-          args: --verbose --no-progress "./index.md"
-          # Stop the build if dead links are encountered
+          # FIXED: Added --accept-empty to pass safely if the doc has no links
+          args: --verbose --no-progress --accept-empty "./index.md"
           fail: true
 
-  # STEP B: DEPLOY THE WEBPAGE ONLY IF ALL LINKS ARE VALID
   deploy:
     needs: link-validator 
     environment:
