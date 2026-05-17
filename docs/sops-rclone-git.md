@@ -7,7 +7,7 @@ title: "Technical Report: Secure Infrastructure Deployment"
 
 ### 🔑 Local Identity Decoupling
 
-To enforce pure evaluation execution within sandboxed Nix Flakes, local system references to absolute cryptographic keys must be completely removed.
+To enforce pure evaluation execution within sandboxed Nix Flakes, local system references to absolute cryptographic keys must be completely removed. 
 Identity paths are initialized dynamically as unprivileged symlinks managed at runtime.
 
 | Identification Asset   | Target Mount Path       | Functional Role                    | Access Scope               |

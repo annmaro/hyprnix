@@ -46,5 +46,5 @@ This repository uses a modular design to keep the configuration organized. The m
 
 The `flake.nix` file binds everything together:
 
-- **Inputs**: Pulls from `nixos-unstable` for up-to-date packages. It also brings in powerful community tools like `home-manager` (for user-level dotfiles), `sops-nix` (for secret management), `nvf` (Neovim flake), and various other flakes for themes and specific applications.
+- **Inputs**: Pulls from `nixos-unstable` for up-to-date packages. It also brings in powerful community tools like `home-manager` (for user-level dotfiles), `sops-nix` (for secret management), `nvf` (Neovim flake), and various other flakes for themes and specific applications. 
 - **Outputs**: Defines the `nixosConfigurations`. The `mkHost` function automatically constructs the NixOS system for each host by injecting standard modules, overlays, and system variables, creating a highly reproducible build.

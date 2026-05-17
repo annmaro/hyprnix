@@ -5,7 +5,7 @@ The `modules/core` directory contains the foundational building blocks of this N
 ## Directory Context
 
 - **Location:** `modules/core/`
-- **Entry Point:** These modules are imported via the main `modules/default.nix` file.
+- **Entry Point:** These modules are imported via the main `modules/default.nix` file. 
 
 Each component is isolated into its own subdirectory (e.g., `modules/core/boot/default.nix`), keeping the configuration clean and strictly separated by concern.
 

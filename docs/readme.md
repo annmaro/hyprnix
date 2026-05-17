@@ -2,7 +2,7 @@
 <div align="center">
    <img src="/img/nixos-logo.png" width="100px" alt="NixOS Logo" /> 
    <br>
-   <h1>My NixOS Configuration</h1>
+   <h1>My NixOS Configuration</h1> 
    <br>
    <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" alt="Catppuccin Macchiato Color Palette" />
    <br>

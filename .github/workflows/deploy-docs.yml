@@ -46,7 +46,7 @@ jobs:
 
       - name: Staging Workspace Asset Transformation
         run: |
-          mkdir -p _site/docs
+          mkdir -p _site/docs 
 
           # 1. DEFINE YOUR REUSABLE HTML GENERATOR PIPELINE
           compile_page() {

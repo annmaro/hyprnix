@@ -7,7 +7,7 @@ The Hyprland setup in this NixOS configuration is located at `modules/desktop/hy
 - `default.nix`: The main entry point module for Hyprland.
 - `icons/`: Contains custom icons for notifications, volume, brightness, battery, etc.
 - `programs/`: Contains individual configurations for desktop components (Waybar, Rofi, etc.).
-- `scripts/`: Holds utility bash scripts that perform various system actions.
+- `scripts/`: Holds utility bash scripts that perform various system actions. 
 
 ---
 

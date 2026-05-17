@@ -150,7 +150,7 @@ in
                 
                             
                 "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                "dbus-update-activation-environment --all"
+                "dbus-update-activation-environment --all" 
                 "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
                 "waybar"
                 "swaync"

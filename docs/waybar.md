@@ -1,6 +1,6 @@
 # Waybar Configuration Structure Overview
 
-The Waybar configuration for the Hyprland setup is located at `modules/desktop/hyprland/programs/waybar/default.nix`. It uses Home Manager to declaratively define both the functionality (settings/modules) and the aesthetics (CSS styling) of the status bar.
+The Waybar configuration for the Hyprland setup is located at `modules/desktop/hyprland/programs/waybar/default.nix`. It uses Home Manager to declaratively define both the functionality (settings/modules) and the aesthetics (CSS styling) of the status bar. 
 
 ## Directory Context
 
