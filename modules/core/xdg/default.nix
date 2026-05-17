@@ -73,6 +73,9 @@ with lib;
             "x-scheme-handler/http" = ["firefox.desktop"];
             "x-scheme-handler/https" = ["firefox.desktop"];
 
+            # Antigravity Auth Handler
+            "x-scheme-handler/antigravity" = ["antigravity.desktop"];
+
             # Terminal
             "application/x-terminal-emulator" = ["kitty.desktop"];
             "x-scheme-handler/terminal" = ["kitty.desktop"];

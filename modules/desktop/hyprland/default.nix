@@ -56,16 +56,6 @@ in
     xdgOpenUsePortal = true;
   };
 
-# Add this configuration block to resolve the Wayland conflict:
-  config = {
-    common = {
-      default = [ "hyprland" ];
-    };
-    hyprland = {
-      default = [ "hyprland" "gtk" ];
-      "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ]; # Fixes browser links
-    };
-  };
 
   programs.hyprland = {
     enable = true;
