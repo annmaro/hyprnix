@@ -93,6 +93,16 @@ jobs:
 
                 .main-article-content { flex: 1; width: 100%; min-width: 0; }
                 h1, h2, h3, h4 { color: #00ff66; border-bottom: 1px solid #222; padding-bottom: 0.3rem; margin-top: 2rem; }
+                /* Add this to constrain image sizes */
+                .main-article-content img {
+                  max-width: 100%;
+                  height: auto;
+                  max-height: 400px; /* Adjust this number to make them smaller/larger */
+                  border-radius: 6px;
+                  border: 1px solid #333;
+                  margin: 1rem 0;
+                  display: block;
+                }
                 pre { background-color: #111; border: 1px solid #333; padding: 1rem; overflow-x: auto; border-radius: 6px; }
                 code { background-color: #111; color: #50fa7b; font-family: monospace; padding: 0.2rem 0.4rem; border-radius: 4px; }
                 pre code { padding: 0; color: #50fa7b; background-color: transparent; }
