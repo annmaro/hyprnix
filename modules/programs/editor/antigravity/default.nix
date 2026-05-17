@@ -9,14 +9,15 @@
         enable = true;
         
         # Inject your custom package right here!
-        package = inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhs;
-        buildInputs = (oldAttrs.buildInputs or []) ++ [
-            pkgs.curl
-            pkgs.openssl
-            pkgs.webkitgtk_4_1
-            pkgs.libsoup_3
-    ];
-      };
+        package = (inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhst).overrideAttrs (old: {
+        buildInputs = (old.buildInputs or []) ++ [
+           pkgs.curl
+           pkgs.openssl
+           pkgs.webkitgtk_4_1
+           pkgs.libsoup_3
+          ];
+        });
+    };
 
       # Custom Desktop Entry
       home.file.".local/share/applications/antigravity.desktop".text = ''
