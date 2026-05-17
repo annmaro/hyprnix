@@ -48,6 +48,11 @@ jobs:
         run: |
           mkdir -p _site/docs 
 
+          # ---> NEW: Copy the images folder to the live website <---
+          if [ -d "img" ]; then
+            cp -r img _site/img
+          fi
+
           # 1. DEFINE YOUR REUSABLE HTML GENERATOR PIPELINE
           compile_page() {
             local src_file=$1
@@ -115,7 +120,7 @@ jobs:
                         <li>🔮 <a href="/hyprnix/docs/hyprland.html">Hyprland Config</a></li>
                         <li>⚙️ <a href="/hyprnix/docs/core.html">Core Modules</a></li>
                         <li>📊 <a href="/hyprnix/docs/waybar.html">Waybar Config</a></li>
-                        <li>🔐 <a href="/hyprnix/docs/sops-clone-git.html">Security & Deployment</a></li>
+                        <li>🔐 <a href="/hyprnix/docs/sops-rclone-git.html">Security & Deployment</a></li>
                       </ul>
                     </div>
                   </nav>
