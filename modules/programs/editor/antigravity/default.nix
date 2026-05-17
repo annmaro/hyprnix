@@ -9,7 +9,7 @@
         enable = true;
         
         # Inject your custom package right here!
-        package = (inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhst).overrideAttrs (old: {
+        package = (inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhs).overrideAttrs (old: {
         buildInputs = (old.buildInputs or []) ++ [
            pkgs.curl
            pkgs.openssl
