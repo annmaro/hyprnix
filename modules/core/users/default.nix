@@ -13,85 +13,61 @@ let
     browser
     shell
     ;
-
-  userGroups = [
-    "wheel"
-    "input"
-    "networkmanager"
-    "video"
-    "audio"
-    "libvirtd"
-    "kvm"
-    "docker"
-    "disk"
-    "adbusers"
-    "lp"
-    "scanner"
-    "vboxusers"
-  ];
-
-  sessionVariablesFor = editorArg: {
-    EDITOR =
-      if (editorArg == "nixvim" || editorArg == "neovim" || editorArg == "nvchad") then
-        "nvim"
-      else if editorArg == "vscode" then
-        "code"
-      else
-        "nano";
-    BROWSER = browser;
-    TERMINAL = terminal;
-  };
-
-  homeAttrs = userName: editorArg: {
-    programs.home-manager.enable = true;
-    xdg.enable = true;
-    home = {
-      username = userName;
-      homeDirectory = "/home/${userName}";
-      stateVersion = "26.05";
-      sessionVariables = sessionVariablesFor editorArg;
-    };
-  };
-
-  userAttrs = userName: {
-    isNormalUser = true;
-    extraGroups = userGroups;
-    shell = pkgs.${shell};
-    ignoreShellProgramCheck = true;
-  };
-
 in
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
-
-  programs.dconf.enable = true;
-
+  programs.dconf.enable = true; # Enable dconf for home-manager
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    overwriteBackup = true;
     backupFileExtension = "backup";
-  };
+    users.${username} = {
+      # Let Home Manager install and manage itself.
+      programs.home-manager.enable = true;
+      xdg.enable = true;
 
-  nix.settings.allowed-users = if username == "anand" then [ "anand" ] else [ "${username}" "anand" ];
-
-  home-manager.users = if username == "anand"
-    then {
-      "${username}" = homeAttrs username editor;
-    }
-    else {
-      "${username}" = homeAttrs username editor;
-      anand = homeAttrs "anand" "vscode";
+      home = {
+        username = "${username}";
+        homeDirectory = "/home/${username}";
+        stateVersion = "26.05"; # Do not change!
+        sessionVariables = {
+          EDITOR =
+            if (editor == "nixvim" || editor == "neovim" || editor == "nvchad") then
+              "nvim"
+            else if editor == "vscode" then
+              "code"
+            else
+              "nano";
+          BROWSER = "${browser}";
+          TERMINAL = "${terminal}";
+        };
+      };
     };
-
+  };
   users = {
     mutableUsers = true;
-    users = if username == "anand"
-      then {
-        "${username}" = userAttrs username;
-      }
-      else {
-        "${username}" = userAttrs username;
-        anand = userAttrs "anand";
-      };
+    users.${username} = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel" # sudo access
+        "input"
+        "networkmanager"
+        "video"
+        "audio"
+        "libvirtd"
+        "kvm"
+        "docker"
+        "disk"
+        "adbusers"
+        "lp"
+        "scanner"
+        "vboxusers" # Virtual Box
+      ];
+      shell = pkgs.${shell};
+      ignoreShellProgramCheck = true;
+    };
   };
+  nix.settings.allowed-users = [ "${username}" ];
 }
+
