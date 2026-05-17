@@ -7,7 +7,6 @@
       # Core Program Configuration
       programs.antigravity = {
         enable = true;
-        enableWayland = true; 
         
         # Inject your custom package right here!
         package = inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhst;
