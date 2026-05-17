@@ -10,6 +10,12 @@
         
         # Inject your custom package right here!
         package = inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-no-fhs;
+        buildInputs = (oldAttrs.buildInputs or []) ++ [
+            pkgs.curl
+            pkgs.openssl
+            pkgs.webkitgtk_4_1
+            pkgs.libsoup_3
+    ];
       };
 
       # Custom Desktop Entry
