@@ -61,7 +61,7 @@
 > - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
 > - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
 
-You can also check the [Production Docs](//https://annmaro.github.io/hyprnix/) for a better understanding of the entire NixOS setup.
+You can also check the [Production Docs](//https://annmaro.github.io/hyprnix) for a better understanding of the entire NixOS setup.
 
 Install on a running system or from the NixOS live installer. Get the minimal ISO from the [NixOS website](https://nixos.org/download/#nixos-iso).
 
