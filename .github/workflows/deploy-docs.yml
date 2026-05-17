@@ -45,134 +45,99 @@ jobs:
 
       - name: Staging Workspace Asset Transformation
         run: |
-          mkdir -p _site
+          mkdir -p _site/docs
           
-          # 1. Compile the main article body content block into raw HTML
-          pandoc index.md -f markdown -t html -o _site/content.html
-          
-          # 2. FIXED: Create a custom inline template to extract the standalone TOC data block
-          echo '$toc$' > _site/toc-template.html
-          pandoc index.md -f markdown -t html -s --template=_site/toc-template.html --toc --toc-depth=3 -o _site/toc.html
+          compile_page() {
+            local src_file=$1
+            local dest_html=$2
+            local page_title=$3
+            
+            echo '$toc$' > _site/toc-template.html
+            pandoc "$src_file" -f markdown -t html -s --template=_site/toc-template.html --toc --toc-depth=3 -o _site/toc.html
+            pandoc "$src_file" -f markdown -t html -o _site/content.html
 
-          # 3. Assemble everything into a single, unified index.html file
-          cat << 'EOF' > _site/index.html
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>System Documentation Matrix</title>
-            <style>
-              html { scroll-behavior: smooth; }
-              body {
-                background-color: #050505;
-                color: #e0e0e0;
-                font-family: 'Inter', system-ui, -apple-system, sans-serif;
-                margin: 0;
-                padding: 0;
-              }
-              .page-header {
-                background-color: #0c0c0c;
-                background-image: linear-gradient(120deg, #111, #001a08);
-                border-bottom: 1px solid #222;
-                padding: 3rem 2rem;
-                text-align: center;
-              }
-              .page-header h1 { color: #ffffff; margin: 0; font-size: 2.5rem; }
-              .page-header p { color: #888; margin: 0.5rem 0 0 0; font-size: 1.1rem; }
-              
-              .main-content {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 2rem 1rem;
-              }
-              .custom-layout-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-              }
-              @media (min-width: 800px) {
-                .custom-layout-wrapper { flex-direction: row; align-items: flex-start; }
-              }
-              
-              .sidebar-toc-container {
-                background-color: #0d0d0d;
-                border: 1px solid #222;
-                border-radius: 8px;
-                padding: 1.5rem;
-                width: 100%;
-                box-sizing: border-box;
-              }
-              @media (min-width: 800px) {
-                .sidebar-toc-container {
-                  width: 280px;
-                  position: sticky;
-                  top: 2rem;
-                  max-height: 85vh;
-                  overflow-y: auto;
+            cat << 'EOF' > "$dest_html"
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>System Documentation Matrix</title>
+              <style>
+                html { scroll-behavior: smooth; }
+                body { background-color: #050505; color: #e0e0e0; font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; }
+                .page-header { background-color: #0c0c0c; background-image: linear-gradient(120deg, #111, #001a08); border-bottom: 1px solid #222; padding: 3rem 2rem; text-align: center; }
+                .page-header h1 { color: #ffffff; margin: 0; font-size: 2.5rem; }
+                .page-header p { color: #888; margin: 0.5rem 0 0 0; font-size: 1.1rem; }
+                .main-content { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+                .custom-layout-wrapper { display: flex; flex-direction: column; gap: 2rem; }
+                @media (min-width: 800px) { .custom-layout-wrapper { flex-direction: row; align-items: flex-start; } }
+                .sidebar-toc-container { background-color: #0d0d0d; border: 1px solid #222; border-radius: 8px; padding: 1.5rem; width: 100%; box-sizing: border-box; }
+                @media (min-width: 800px) { .sidebar-toc-container { width: 280px; position: sticky; top: 2rem; max-height: 85vh; overflow-y: auto; } }
+                .sidebar-toc-container h3 { margin-top: 0; color: #ffffff; font-size: 1.1rem; border-bottom: 2px solid #00ff66; padding-bottom: 0.5rem; }
+                
+                /* Added styling for the persistent sidebar page links */
+                .sidebar-wiki-links {
+                  border-bottom: 1px dashed #333;
+                  padding-bottom: 0.75rem;
+                  margin-bottom: 1rem;
                 }
-              }
-              .sidebar-toc-container h3 {
-                margin-top: 0;
-                color: #ffffff;
-                font-size: 1.1rem;
-                border-bottom: 2px solid #00ff66;
-                padding-bottom: 0.5rem;
-              }
-              
-              /* Structured style definitions for the nested Pandoc TOC list */
-              .sidebar-toc-container id { display: none; }
-              .sidebar-toc-container ul {
-                list-style-type: none;
-                padding-left: 0;
-                margin: 0;
-              }
-              .sidebar-toc-container li { margin-top: 0.6rem; font-size: 0.9rem; }
-              .sidebar-toc-container ul ul { padding-left: 1rem; margin-top: 0.4rem; }
-              
-              .main-article-content { flex: 1; width: 100%; min-width: 0; }
-              h1, h2, h3, h4 { color: #00ff66; border-bottom: 1px solid #222; padding-bottom: 0.3rem; margin-top: 2rem; }
-              pre {
-                background-color: #111;
-                border: 1px solid #333;
-                padding: 1rem;
-                overflow-x: auto;
-                border-radius: 6px;
-              }
-              code { background-color: #111; color: #50fa7b; font-family: monospace; padding: 0.2rem 0.4rem; border-radius: 4px; }
-              pre code { padding: 0; color: #50fa7b; background-color: transparent; }
-              a { color: #00a3ff; text-decoration: none; }
-              a:hover { text-decoration: underline; }
-              table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-              th, td { border: 1px solid #333; padding: 0.75rem; text-align: left; }
-              th { background-color: #111; color: #00ff66; }
-            </style>
-          </head>
-          <body>
-            <header class="page-header">
-              <h1>System Documentation Matrix</h1>
-              <p>Declarative NixOS Profile Production Deployment Configurations</p>
-            </header>
-            <div class="main-content">
-              <div class="custom-layout-wrapper">
-                <nav class="sidebar-toc-container">
-                  <h3>🗺️ Navigation</h3>
+                .sidebar-wiki-links ul { list-style-type: none; padding-left: 0; margin: 0; }
+                .sidebar-wiki-links li { margin-bottom: 0.5rem; font-size: 0.95rem; }
+                .sidebar-wiki-links a { color: #ffffff !important; font-weight: 500; }
+                .sidebar-wiki-links a:hover { color: #00ff66 !important; text-decoration: none; }
+
+                .sidebar-toc-container ul { list-style-type: none; padding-left: 0; margin: 0; }
+                .sidebar-toc-container li { margin-top: 0.6rem; font-size: 0.9rem; }
+                .sidebar-toc-container ul ul { padding-left: 1rem; margin-top: 0.4rem; }
+                .main-article-content { flex: 1; width: 100%; min-width: 0; }
+                h1, h2, h3, h4 { color: #00ff66; border-bottom: 1px solid #222; padding-bottom: 0.3rem; margin-top: 2rem; }
+                pre { background-color: #111; border: 1px solid #333; padding: 1rem; overflow-x: auto; border-radius: 6px; }
+                code { background-color: #111; color: #50fa7b; font-family: monospace; padding: 0.2rem 0.4rem; border-radius: 4px; }
+                pre code { padding: 0; color: #50fa7b; background-color: transparent; }
+                a { color: #00a3ff; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+                table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+                th, td { border: 1px solid #333; padding: 0.75rem; text-align: left; }
+                th { background-color: #111; color: #00ff66; }
+              </style>
+            </head>
+            <body>
+              <header class="page-header">
+                <h1>System Documentation Matrix</h1>
+                <p>Declarative NixOS Profile Production Deployment Configurations</p>
+              </header>
+              <div class="main-content">
+                <div class="custom-layout-wrapper">
+                  <nav class="sidebar-toc-container">
+                    <h3>🗺️ Navigation</h3>
+                    
+                    <!-- FIXED: PERSISTENT MULTI-PAGE SIDEBAR LINK DIRECTORY -->
+                    <div class="sidebar-wiki-links">
+                      <ul>
+                        <li>🏠 <a href="/hyprnix/index.html">Home Wiki</a></li>
+                        <li>🔮 <a href="/hyprnix/docs/hyprland.html">Hyprland Config</a></li>
+                        <li>🔌 <a href="/hyprnix/docs/hardware.html">Hardware Mapping</a></li>
+                      </ul>
+                    </div>
           EOF
           
-          # Inject the compiled dynamic TOC and Content maps cleanly into the body wrapper
-          cat _site/toc.html >> _site/index.html
-          echo -e "</nav>\n<main class='main-article-content'>" >> _site/index.html
-          cat _site/content.html >> _site/index.html
-          echo -e "</main>\n</div>\n</div>\n</body>\n</html>" >> _site/index.html
+          # Continue merging the dynamic TOC headings below the links
+          cat _site/toc.html >> "$dest_html"
+          echo -e "</nav>\n<main class='main-article-content'>" >> "$dest_html"
+          cat _site/content.html >> "$dest_html"
+          echo -e "</main>\n</div>\n</div>\n</body>\n</html>" >> "$dest_html"
           
-          # Clean up temporary construction tracks
           rm _site/toc.html _site/content.html _site/toc-template.html
+          }
 
-      - name: Upload Production Web Page Artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '_site'
+          compile_page "index.md" "_site/index.html" "Home Dashboard"
 
-      - name: Deploy Production Web Page to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if [ -d "docs" ]; then
+            for f in docs/*.md; do
+              if [ -f "$f" ]; then
+                filename=$(basename "$f" .md)
+                compile_page "$f" "_site/docs/${filename}.html" "$filename"
+              fi
+            done
+          fi
