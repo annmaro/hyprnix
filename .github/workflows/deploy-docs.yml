@@ -34,7 +34,7 @@ jobs:
   deploy:
     needs: link-validator
     environment:
-      name: github-pages
+      name: Production Docs
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
@@ -101,15 +101,27 @@ jobs:
                 table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
                 th, td { border: 1px solid #333; padding: 0.75rem; text-align: left; }
                 th { background-color: #111; color: #00ff66; }
-                /* Add this to constrain image sizes */
+                /* Constrain large screenshots but allow inline badges */
                 .main-article-content img {
                   max-width: 100%;
                   height: auto;
-                  max-height: 400px; /* Adjust this number to make them smaller/larger */
                   border-radius: 6px;
+                }
+                
+                /* Target paragraph images (screenshots) to make them block-level */
+                .main-article-content p > img {
+                  max-height: 400px; /* Adjust height here */
                   border: 1px solid #333;
                   margin: 1rem 0;
                   display: block;
+                }
+                
+                /* Ensure links wrapping images (like your badges) stay inline */
+                .main-article-content a > img {
+                  display: inline-block;
+                  border: none;
+                  margin: 0 0.2rem;
+                  max-height: none;
                 }
               </style>
             </head>
