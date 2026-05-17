@@ -47,15 +47,15 @@ jobs:
         run: |
           mkdir -p _site/docs
           
+          # 1. DEFINE YOUR REUSABLE HTML GENERATOR PIPELINE
           compile_page() {
             local src_file=$1
             local dest_html=$2
-            local page_title=$3
             
-            echo '$toc$' > _site/toc-template.html
-            pandoc "$src_file" -f markdown -t html -s --template=_site/toc-template.html --toc --toc-depth=3 -o _site/toc.html
+            # Generate the local body content map for this specific file
             pandoc "$src_file" -f markdown -t html -o _site/content.html
 
+            # Assemble the complete web shell frame with your persistent links embedded
             cat << 'EOF' > "$dest_html"
             <!DOCTYPE html>
             <html lang="en">
@@ -76,20 +76,15 @@ jobs:
                 @media (min-width: 800px) { .sidebar-toc-container { width: 280px; position: sticky; top: 2rem; max-height: 85vh; overflow-y: auto; } }
                 .sidebar-toc-container h3 { margin-top: 0; color: #ffffff; font-size: 1.1rem; border-bottom: 2px solid #00ff66; padding-bottom: 0.5rem; }
                 
-                /* Added styling for the persistent sidebar page links */
                 .sidebar-wiki-links {
-                  border-bottom: 1px dashed #333;
-                  padding-bottom: 0.75rem;
-                  margin-bottom: 1rem;
+                  padding-bottom: 0.5rem;
+                  margin-bottom: 0.5rem;
                 }
                 .sidebar-wiki-links ul { list-style-type: none; padding-left: 0; margin: 0; }
-                .sidebar-wiki-links li { margin-bottom: 0.5rem; font-size: 0.95rem; }
-                .sidebar-wiki-links a { color: #ffffff !important; font-weight: 500; }
-                .sidebar-wiki-links a:hover { color: #00ff66 !important; text-decoration: none; }
+                .sidebar-wiki-links li { margin-bottom: 0.75rem; font-size: 1rem; }
+                .sidebar-wiki-links a { color: #ffffff !important; font-weight: 500; text-decoration: none; }
+                .sidebar-wiki-links a:hover { color: #00ff66 !important; }
 
-                .sidebar-toc-container ul { list-style-type: none; padding-left: 0; margin: 0; }
-                .sidebar-toc-container li { margin-top: 0.6rem; font-size: 0.9rem; }
-                .sidebar-toc-container ul ul { padding-left: 1rem; margin-top: 0.4rem; }
                 .main-article-content { flex: 1; width: 100%; min-width: 0; }
                 h1, h2, h3, h4 { color: #00ff66; border-bottom: 1px solid #222; padding-bottom: 0.3rem; margin-top: 2rem; }
                 pre { background-color: #111; border: 1px solid #333; padding: 1rem; overflow-x: auto; border-radius: 6px; }
@@ -112,7 +107,6 @@ jobs:
                   <nav class="sidebar-toc-container">
                     <h3>🗺️ Navigation</h3>
                     
-                    <!-- FIXED: PERSISTENT MULTI-PAGE SIDEBAR LINK DIRECTORY -->
                     <div class="sidebar-wiki-links">
                       <ul>
                         <li>🏠 <a href="/hyprnix/index.html">Home Wiki</a></li>
@@ -120,24 +114,25 @@ jobs:
                         <li>🔌 <a href="/hyprnix/docs/hardware.html">Hardware Mapping</a></li>
                       </ul>
                     </div>
+                  </nav>
+                  <main class='main-article-content'>
           EOF
           
-          # Continue merging the dynamic TOC headings below the links
-          cat _site/toc.html >> "$dest_html"
-          echo -e "</nav>\n<main class='main-article-content'>" >> "$dest_html"
+          # 2. MERGE CONTENT AND CLOSE THE HTML ENVELOPE
           cat _site/content.html >> "$dest_html"
           echo -e "</main>\n</div>\n</div>\n</body>\n</html>" >> "$dest_html"
           
-          rm _site/toc.html _site/content.html _site/toc-template.html
+          rm _site/content.html
           }
 
-          compile_page "index.md" "_site/index.html" "Home Dashboard"
+          # 3. TRIGGER COMPILATION ACROSS REPOSITORY ASSETS
+          compile_page "index.md" "_site/index.html"
 
           if [ -d "docs" ]; then
             for f in docs/*.md; do
               if [ -f "$f" ]; then
                 filename=$(basename "$f" .md)
-                compile_page "$f" "_site/docs/${filename}.html" "$filename"
+                compile_page "$f" "_site/docs/${filename}.html"
               fi
             done
           fi
