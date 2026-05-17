@@ -1,47 +1,40 @@
-<h1 align="center">
-   <img src="/img/nixos-logo.png" width="100px" /> 
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+   <img src="/img/nixos-logo.png" width="100px" alt="NixOS Logo" /> 
    <br>
-      My NixOS Configuration
+   <h1>My NixOS Configuration</h1>
    <br>
-      <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" /> <br>
-   <div align="center">
-
-   <div align="center">
-      <p></p>
-      <div align="center">
-         <a href="https://github.com/annmaro/hyprnix/stargazers">
-            <img src="https://img.shields.io/github/stars/annmaro/hyprnix?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6">
-         </a>
-         <a href="https://github.com/annmaro/hyprnix/network/members">
-            <img src="https://img.shields.io/github/forks/annmaro/hyprnix?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
-         </a>
-         <!-- <a href="https://github.com/Sly-Harvey/NixOS/"> -->
-         <!--    <img src="https://img.shields.io/github/repo-size/Sly-Harvey/NixOS?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=github&logoColor=C6A0F6"> -->
-         <!-- </a> -->
-         <a href="https://nixos.org">
-            <img src="https://img.shields.io/badge/NixOS-Unstable-blue?style=for-the-badge&logo=NixOS&logoColor=91D7E3&label=NixOS&labelColor=303446&color=91D7E3">
-            <!-- <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=303446&logo=NixOS&logoColor=white&color=91D7E3"> -->
-         </a>
-         <a href="https://github.com/annmaro/hyprnix/blob/main/LICENSE">
-            <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=313244&colorB=F5A97F&logo=unlicense&logoColor=F5A97F&"/>
-         </a>
-      </div>
-      <br>
-   </div>
-</h1>
+   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" alt="Catppuccin Macchiato Color Palette" />
+   <br>
+   <br>
+   <p>
+      <a href="https://github.com/annmaro/hyprnix/stargazers">
+         <img src="https://img.shields.io/github/stars/annmaro/hyprnix?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6" alt="GitHub Stars">
+      </a>
+      <a href="https://github.com/annmaro/hyprnix/network/members">
+         <img src="https://img.shields.io/github/forks/annmaro/hyprnix?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
+      </a>
+      <a href="https://nixos.org">
+         <img src="https://img.shields.io/badge/NixOS-Unstable-blue?style=for-the-badge&logo=NixOS&logoColor=91D7E3&label=NixOS&labelColor=303446&color=91D7E3" alt="NixOS Unstable">
+      </a>
+      <a href="https://github.com/annmaro/hyprnix/blob/main/LICENSE">
+         <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=313244&colorB=F5A97F&logo=unlicense&logoColor=F5A97F&" alt="MIT License"/>
+      </a>
+   </p>
+</div>
 
 ## Screenshots
 
-![Screenshot](/img/preview1.png)
-![Screenshot](/img/preview2.png)
-![Screenshot](/img/preview3.png)
+![Screenshot](../img/preview1.png)
+![Screenshot](../img/preview2.png)
+![Screenshot](../img/preview3.png)
 
 <details>
 <summary>More screenshots</summary>
-![Screenshot](/img/preview4.png)
-![Screenshot](/img/preview5.png)
-![Screenshot](/img/preview6.png)
-![Screenshot](/img/preview7.png)
+![Screenshot](../img/preview4.png)
+![Screenshot](../img/preview5.png)
+![Screenshot](../img/preview6.png)
+![Screenshot](../img/preview7.png)
 
 </details>
 
@@ -68,8 +61,6 @@
 > - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
 > - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
 
-
-
 You can install on a running system or from the NixOS live installer. Get the minimal ISO from the [NixOS website](https://nixos.org/download/#nixos-iso).
 
 ### Installation Steps
@@ -79,8 +70,6 @@ You can install on a running system or from the NixOS live installer. Get the mi
 ```bash
 git clone https://github.com/annmaro/hyprnix.git ~/hyprnix
 ```
-
-
 
 2. Change Directory:
 
@@ -93,8 +82,6 @@ cd ~/hyprnix
 ```bash
 ./install.sh
 ```
-
-
 
 The install and rebuild scripts automate the setup process, including hosts, username, and applying the configuration. It also automatically generates the hardware-configuration.nix file based on your system's detected hardware, eliminating the need to manually generate it.
 
@@ -114,9 +101,7 @@ The install and rebuild scripts automate the setup process, including hosts, use
 2. Edit the new host's `variables.nix` and `host-packages.nix`
 3. Add the host to `flake.nix`:
 
-
-
-1. Rebuild with the new hostname using either `nixos-rebuild` or `nh` (see [Rebuilding](#rebuilding) below). Once rebuilt, any rebuilding method can be used, as the host name will be implicitly recognised.
+4. Rebuild with the new hostname using either `nixos-rebuild` or `nh` (see [Rebuilding](#rebuilding) below). Once rebuilt, any rebuilding method can be used, as the host name will be implicitly recognised.
 
 ### Rebuilding
 
@@ -155,10 +140,7 @@ View all keybindings with `Super + ?` or `Super + Ctrl + K`.
 
 ## Credits/Inspiration
 
-
 | Credit                                      | Reason                                      |
 | ------------------------------------------- | ------------------------------------------- |
 | [Sly-Harvey](//github.com/Sly-Harvey/NixOS) | Thanks for creating such a wonderful config |
 | [Nixy](https://github.com/anotherhadi/nixy) | Amazing Neovim config                       |
-
-

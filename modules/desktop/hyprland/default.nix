@@ -148,11 +148,10 @@ in
                 #"[workspace special silent] ${browser} --private-window"
                 #"[workspace special silent] ${terminal}"
                 
-                
-                
-                "gnome-keyring-daemon --start --components=secrets"
+                            
                 "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                 "dbus-update-activation-environment --all"
+                "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
                 "waybar"
                 "swaync"
                 "nm-applet --indicator"

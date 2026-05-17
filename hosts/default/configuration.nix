@@ -34,6 +34,7 @@ in
     # ../../modules/core/dlna.nix
 
     # Optional
+    #../../modules/hardware/drives # Auto-mounts the internal/external drives  
     ../../modules/hardware/video/${vars.videoDriver}.nix # Enable gpu drivers defined in variables.nix
     ../../modules/desktop/${vars.desktop} # Set window manager defined in variables.nix
     ../../modules/programs/browser/${vars.browser} # Set browser defined in variables.nix

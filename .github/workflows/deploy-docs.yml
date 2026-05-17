@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'index.md'
-      - '.github/workflows/deploy-docs.yml'
+      - "index.md"
+      - "docs/**.md"
+      - ".github/workflows/deploy-docs.yml"
 
 permissions:
   contents: read
@@ -22,23 +23,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code Repository
-        uses: actions/checkout@v6 
+        uses: actions/checkout@v6
 
       - name: Execute Link Consistency Validation
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --accept-empty "./index.md"
-          fail: false 
+          args: --verbose --no-progress --accept-empty "./index.md" "./docs/*.md"
+          fail: false
 
   deploy:
-    needs: link-validator 
+    needs: link-validator
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code Repository
-        uses: actions/checkout@v6 
+        uses: actions/checkout@v6
 
       - name: Install System Compilation Dependencies
         run: sudo apt-get update && sudo apt-get install -y pandoc
@@ -46,7 +47,7 @@ jobs:
       - name: Staging Workspace Asset Transformation
         run: |
           mkdir -p _site/docs
-          
+
           # 1. DEFINE YOUR REUSABLE HTML GENERATOR PIPELINE
           compile_page() {
             local src_file=$1
@@ -109,19 +110,22 @@ jobs:
                     
                     <div class="sidebar-wiki-links">
                       <ul>
-                        <li>🏠 <a href="/hyprnix/index.html">Home Wiki</a></li>
+                        <li>🏠 <a href="/hyprnix/index.html">NixOS Overview (Home)</a></li>
+                        <li>📖 <a href="/hyprnix/docs/readme.html">Installation & Usage</a></li>
                         <li>🔮 <a href="/hyprnix/docs/hyprland.html">Hyprland Config</a></li>
-                        <li>🔌 <a href="/hyprnix/docs/hardware.html">Hardware Mapping</a></li>
+                        <li>⚙️ <a href="/hyprnix/docs/core.html">Core Modules</a></li>
+                        <li>📊 <a href="/hyprnix/docs/waybar.html">Waybar Config</a></li>
+                        <li>🔐 <a href="/hyprnix/docs/sops-clone-git.html">Security & Deployment</a></li>
                       </ul>
                     </div>
                   </nav>
                   <main class='main-article-content'>
           EOF
-          
+
           # 2. MERGE CONTENT AND CLOSE THE HTML ENVELOPE
           cat _site/content.html >> "$dest_html"
           echo -e "</main>\n</div>\n</div>\n</body>\n</html>" >> "$dest_html"
-          
+
           rm _site/content.html
           }
 
@@ -136,3 +140,12 @@ jobs:
               fi
             done
           fi
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
