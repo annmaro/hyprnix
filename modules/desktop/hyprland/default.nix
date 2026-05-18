@@ -212,8 +212,8 @@ in
                 "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
               };
               layerrule = [
-                "blur on, match:namespace rofi"
-                "ignore_alpha 0.7, match:namespace rofi"
+                #"blur on, match:namespace rofi"
+                #"ignore_alpha 0.7, match:namespace rofi"
 
                 "blur on, match:namespace swaync-control-center"
                 "blur on, match:namespace swaync-notification-window"
