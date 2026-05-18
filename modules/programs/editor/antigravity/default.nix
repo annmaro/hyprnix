@@ -5,6 +5,8 @@
     ({ config, ... }: {
       
       # Core Program Configuration
+      # NOTE: If you experience issues signing in (e.g. browser redirect fails), 
+      # please refer to the fix documented at: docs/antigravit-sign-in-fix.md
       programs.antigravity = {
         enable = true;
         
