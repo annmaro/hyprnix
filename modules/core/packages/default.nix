@@ -45,6 +45,7 @@
     nomacs # Qt-based image viewer
     digikam # Photo management application
     gapless # Beautiful, fast, fluent, light weight music player written in GTK4
+    spek # Acoustic spectrum analyser for audio files
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
