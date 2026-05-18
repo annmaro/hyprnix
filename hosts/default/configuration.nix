@@ -17,6 +17,7 @@ in
     ../../modules/core/fonts
     ../../modules/core/git
     ../../modules/core/hardware
+    ../../modules/core/memory
     ../../modules/core/network
     ../../modules/core/nh
     ../../modules/core/packages
