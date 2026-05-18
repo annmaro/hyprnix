@@ -44,7 +44,7 @@
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     nomacs # Qt-based image viewer
     digikam # Photo management application
-    tauon # Linux desktop music player from the future
+    gapless # Beautiful, fast, fluent, light weight music player written in GTK4
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
