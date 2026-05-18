@@ -7,7 +7,7 @@ The Hyprland setup in this NixOS configuration is located at `modules/desktop/hy
 - `default.nix`: The main entry point module for Hyprland.
 - `icons/`: Contains custom icons for notifications, volume, brightness, battery, etc.
 - `programs/`: Contains individual configurations for desktop components (Waybar, Rofi, etc.).
-- `scripts/`: Holds utility bash scripts that perform various system actions. 
+- `scripts/`: Holds utility bash scripts that perform various system actions.
 
 ---
 
@@ -55,6 +55,7 @@ This folder is populated with utility scripts used heavily by the keybindings de
 - **UI Integrations**: `rofimusic.sh`, `ClipManager.sh` (integrating rofi with cliphist).
 
 ### The `icons/` Directory
+
 A collection of `.png` and `.svg` files that provide customized visual assets for UI elements. These include:
 
 - Status indicators (e.g., `volume-high.png`, `brightness-80.png`, `battery-status.png`).

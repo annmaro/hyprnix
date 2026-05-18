@@ -139,10 +139,16 @@ jobs:
                       <ul>
                         <li>🏠 <a href="/hyprnix/index.html">NixOS Overview (Home)</a></li>
                         <li>📖 <a href="/hyprnix/docs/readme.html">Installation & Usage</a></li>
+                        <li>🎛️ <a href="/hyprnix/docs/variables.html">System Variables</a></li>
+                        <li>🚀 <a href="/hyprnix/docs/boot.html">Boot Config</a></li>
+                        <li>🖥️ <a href="/hyprnix/docs/system.html">System Config</a></li>
+                        <li>🛠️ <a href="/hyprnix/docs/services.html">Services Config</a></li>
+                        <li>🐚 <a href="/hyprnix/docs/zsh.html">Zsh Config</a></li>
+                        <li>🌐 <a href="/hyprnix/docs/browser.html">Browser Config</a></li>
                         <li>🔮 <a href="/hyprnix/docs/hyprland.html">Hyprland Config</a></li>
                         <li>⚙️ <a href="/hyprnix/docs/core.html">Core Modules</a></li>
                         <li>📊 <a href="/hyprnix/docs/waybar.html">Waybar Config</a></li>
-                        <li>🔐 <a href="/hyprnix/docs/rofi.html">Rofi Config</a></li>
+                        <li>🔍 <a href="/hyprnix/docs/rofi.html">Rofi Config</a></li>
                         <li>🔐 <a href="/hyprnix/docs/sops-rclone-git.html">Security & Deployment</a></li>
                       </ul>
                     </div>

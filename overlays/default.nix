@@ -21,7 +21,7 @@ in
     nomacs = prev.nomacs.overrideAttrs (old: {
       qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
         "--set" "QT_QPA_PLATFORM" "xcb"
-      ];
+       ];
     });
   };
 }
