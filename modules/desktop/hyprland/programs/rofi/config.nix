@@ -36,7 +36,7 @@
   run-shell-command = "{terminal} -e {cmd}";
 
   # ---------- Window switcher settings ----------
-  window-match-fields = "title,class,role,name,desktop";
+  window-match-fields = "title,class,role";
   window-command = "wmctrl -i -R {window}";
   window-format = "{w} - {c} - {t:0}";
   window-thumbnail = false;

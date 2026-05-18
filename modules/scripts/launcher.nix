@@ -14,7 +14,7 @@ pkgs.writeShellScriptBin "launcher" ''
   drun)
     # rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-4/style-7.rasi"
     # rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-4/style-3.rasi"
-    rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-2/style-2.rasi"
+    rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-7/style-2.rasi"
     r_override="entry{placeholder:'Search Applications...';}listview{lines:9;}"
 
     rofi -show drun -theme-str "$r_override" -theme "$rofi_theme"
