@@ -18,14 +18,10 @@ in
       config.allowUnfree = true;
     };
     # Override nomacs with our custom XWayland wrapper
-    nomacs = prev.symlinkJoin {
-      name = "nomacs-xwayland";
-      paths = [ prev.nomacs ];
-      buildInputs = [ prev.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/nomacs \
-          --set QT_QPA_PLATFORM xcb
-      '';
-    };
+    nomacs = prev.nomacs.overrideAttrs (old: {
+      qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
+        "--set" "QT_QPA_PLATFORM" "xcb"
+      ];
+    });
   };
 }
