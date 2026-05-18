@@ -126,7 +126,7 @@ Update the `background-image` line to use the new `.png`:
 
 ```css
 inputbar {
-    background-image: url("~/.config/rofi/images/bg-fast.png", width);
+    background-image: url("~/.config/rofi/images/your-image-fast.png", width);
 }
 ```
 
