@@ -11,7 +11,7 @@ in
       inherit host;
       };
   # https://wiki.nixos.org/wiki/Overlays
-  modifications = final: _prev: {
+  modifications = final: prev: {
     nur = inputs.nur.overlays.default;
     stable = import inputs.nixpkgs-stable {
       system = final.stdenv.hostPlatform.system;
