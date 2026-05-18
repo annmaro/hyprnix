@@ -69,3 +69,69 @@ To change the color scheme for these themes:
 ## Applying Changes
 
 Once you've made changes to the `launcher.nix`, `keybinds-rofi.sh`, or the Rasi files, rebuild your NixOS system or update your Home Manager configuration (e.g., by running your custom rebuild script) for the changes to take effect.
+
+## Troubleshooting: Micro-stutter or Lag with Images
+
+That micro-stutter or lag when you press your hotkey is a very common quirk when adding images to Rofi. Because Rofi is designed to be extremely lightweight, it doesn't run as a persistent background service (daemon) by default. This means every single time you press your shortcut, Rofi has to wake up, read the image file from your hard drive, decode it, and scale it down to fit the window.
+
+If your background image is a high-resolution 1080p or 4K wallpaper (which is usually the case with these themes), the CPU has to do a lot of heavy lifting in those few milliseconds, causing that noticeable delay.
+
+Here is how to eliminate the lag and make Rofi instant again.
+
+### 1. The Quick Fix: Downscale and Compress
+
+The absolute best way to fix this is to pre-scale the image to the exact size Rofi needs. Rofi windows are usually quite small (e.g., 600x400 pixels). There is no reason to force it to load a 4K image.
+
+Since you are on NixOS, you don't even need to permanently install an image editor. You can use ImageMagick temporarily to create a lightning-fast, optimized version of your background.
+
+Run this command in your terminal (make sure to replace `telescope.png` with your actual image filename):
+
+```bash
+# This creates a much smaller, compressed version of the image
+nix run nixpkgs#imagemagick -- convert ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/telescope.png -resize 800x ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/telescope-fast.jpg
+```
+
+### 2. If ImageMagick is already installed
+
+If you already have ImageMagick installed on your system, you can run the commands directly without `nix run`.
+
+**For a single file:**
+
+```bash
+magick ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image.png -resize 800x ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image-fast.png
+```
+
+**To batch convert all images in the folder:**
+
+```bash
+cd ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/ 
+
+for img in *.{png,jpg,jpeg}; do
+    # Check if the file exists and skip files that already have "-fast" in the name
+    if [[ -f "$img" && "$img" != *"-fast"* ]]; then
+        # Strip the old extension, add -fast.png, and convert
+        magick "$img" -resize 800x "${img%.*}-fast.png"
+        echo "Optimized: $img -> ${img%.*}-fast.png"
+    fi
+done
+```
+
+### 3. Update your Theme File
+
+Now, update your `.rasi` file to point to this new, lightweight image.
+
+Open your theme file (e.g., `modules/desktop/hyprland/programs/rofi/launchers/type-2/style-2.rasi`).
+
+Update the `background-image` line to use the new `.png`:
+
+```css
+inputbar {
+    background-image: url("~/.config/rofi/images/bg-fast.png", width);
+}
+```
+
+### 4. Rebuild and Test
+
+Run your system rebuild command (`sudo nixos-rebuild switch --flake .#default`).
+
+Because the new image is significantly smaller in both dimensions and file size (often dropping from 3MB to around 50KB), Rofi will be able to parse and paint it to your screen almost instantly.
