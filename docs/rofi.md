@@ -101,21 +101,6 @@ If you already have ImageMagick installed on your system, you can run the comman
 magick ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image.png -resize 800x ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image-fast.png
 ```
 
-**To batch convert all images in the folder:**
-
-```bash
-cd ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/ 
-
-for img in *.{png,jpg,jpeg}; do
-    # Check if the file exists and skip files that already have "-fast" in the name
-    if [[ -f "$img" && "$img" != *"-fast"* ]]; then
-        # Strip the old extension, add -fast.png, and convert
-        magick "$img" -resize 800x "${img%.*}-fast.png"
-        echo "Optimized: $img -> ${img%.*}-fast.png"
-    fi
-done
-```
-
 ### 3. Update your Theme File
 
 Now, update your `.rasi` file to point to this new, lightweight image.

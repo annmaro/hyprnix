@@ -280,7 +280,7 @@ in
                 mfact = 0.5;
               };
               windowrule = [
-                #"noanim, class:^(Rofi)$
+                "noanim, class:^(Rofi)$
                 "tile on,match:title (.*)(Godot)(.*)$"
                 # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
                 # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
