@@ -11,6 +11,10 @@
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_zen; # _latest, _zen, _xanmod_latest, _hardened, _rt, _OTHER_CHANNEL, etc.
+    # Kernel Parameter Tuning for zRAM
+    kernel.sysctl = {
+    "vm.swappiness" = 100; 
+  };
     kernelParams = [
       "preempt=full" # lower latency but less throughput
     ];
