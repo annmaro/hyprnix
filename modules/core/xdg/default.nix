@@ -6,6 +6,16 @@ with lib;
     (
       { config, ... }:
       {
+        # --- NEW: xdg-user-dirs configuration ---
+        xdg.userDirs = {
+          enable = true;
+          createDirectories = true;
+          
+          # Optional: You can explicitly set paths here if you want to override the defaults.
+          # For example, if you wanted a custom name for the Downloads folder:
+          # download = "${config.home.homeDirectory}/Downloads";
+        };
+
         xdg.mimeApps = {
           enable = true;
           defaultApplications = {
