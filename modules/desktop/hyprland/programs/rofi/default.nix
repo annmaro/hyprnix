@@ -31,6 +31,11 @@ in
         source = ./colors;
         recursive = true;
       };
+      # Add this new block:
+      xdg.configFile."rofi/images" = {
+        source = ./images;
+        recursive = true;
+      };
     })
   ];
 }

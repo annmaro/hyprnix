@@ -44,7 +44,7 @@ in
     ../../modules/programs/cli/tmux
     ../../modules/programs/editor/vscode
     ../../modules/programs/editor/antigravity
-    ../../modules/programs/editor/cursor
+    #../../modules/programs/editor/cursor
     ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
