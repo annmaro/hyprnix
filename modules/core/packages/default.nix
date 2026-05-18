@@ -42,7 +42,6 @@
     pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
-    nomacs # Qt-based image viewer
     digikam # Photo management application
     quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
     qbittorrent # Featureful free software BitTorrent client
