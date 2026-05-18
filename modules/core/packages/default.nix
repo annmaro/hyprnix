@@ -44,7 +44,7 @@
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     nomacs # Qt-based image viewer
     digikam # Photo management application
-    quodlibet-full # GTK-based audio player written in Python, using the Mutagen tagging library
+    tauon # Linux desktop music player from the future
     qbittorrent # Featureful free software BitTorrent client
     libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
