@@ -100,7 +100,7 @@ in
           wayland.windowManager.hyprland = {
             enable = true;
             plugins = [];
-            system = {
+            systemd = {
               enable = true;
               variables = [ "--all" ];
             };
