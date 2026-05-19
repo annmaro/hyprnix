@@ -160,8 +160,8 @@ in
             };
 
             group = {
-              "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-              "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+              "col.border_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "col.border_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
               "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
             };
 
@@ -206,9 +206,9 @@ in
             ];
 
             layerrule = [
-              "blur, swaync-control-center"
-              "blur, swaync-notification-window"
-              "ignorealpha 0.7, swaync-control-center"
+              "blur on, match:namespace swaync-control-center"
+              "blur on, match:namespace swaync-notification-window"
+              "ignore_alpha 0.7, match:namespace swaync-control-center"
             ];
 
             bind = [
