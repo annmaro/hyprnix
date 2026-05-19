@@ -50,6 +50,8 @@
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
           "default.clock.rate" = 48000;
+          # Add this line below to allow dynamic high-res switching:
+          "default.clock.allowed-rates" = [ 44100 48000 88200 96000 192000 ];
           "default.clock.quantum" = 256;
           "default.clock.min-quantum" = 256;
           "default.clock.max-quantum" = 256;
