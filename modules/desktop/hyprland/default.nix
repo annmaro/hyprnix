@@ -12,6 +12,8 @@ let
     kbdLayout
     kbdVariant
     ;
+    # Define the autoclicker package path here so it's accessible everywhere below!
+  autoclicker = pkgs.callPackage ./scripts/autoclicker.nix { };
 in
 {
   imports = [
