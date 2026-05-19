@@ -80,6 +80,7 @@ in
 
         wayland.windowManager.hyprland = {
           enable = true;
+          configType = "hyprlang";
           systemd = {
             enable = true;
             variables = [ "--all" ];
@@ -102,7 +103,7 @@ in
             ];
 
             # Lua handles keys with hyphens cleanly when wrapped like ["exec-once"]
-            "[\"exec-once\"]" = [
+            "exec-once" = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
               "waybar"
@@ -138,8 +139,8 @@ in
               resize_on_border = true;
               layout = "dwindle";
               # Safely escaped dot syntax for Lua colors
-              "[\"col.active_border\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-              "[\"col.inactive_border\"]" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+              "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
             };
 
             decoration = {
@@ -159,9 +160,9 @@ in
             };
 
             group = {
-              "[\"col.active_border\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-              "[\"col.inactive_border\"]" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
-              "[\"col.border_locked_active\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+              "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
             };
 
             animations = {
@@ -186,7 +187,7 @@ in
             };
 
             # Direct Lua object injection to circumvent translation errors
-            "[\"render\"]" = {
+            "render" = {
               direct_scanout = 2;
             };
 
