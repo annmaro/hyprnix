@@ -85,9 +85,9 @@ in
             variables = [ "--all" ];
           };
 
-          # Structural Lua generation via Home Manager
+          # We feed native Lua code inside string attributes to bypass Home Manager's translator bugs.
           settings = {
-            env = [
+            "env" = [
               "XDG_CURRENT_DESKTOP,Hyprland"
               "XDG_SESSION_DESKTOP,Hyprland"
               "XDG_SESSION_TYPE,wayland"
@@ -101,7 +101,8 @@ in
               "QT_AUTO_SCREEN_SCALE_FACTOR,1.25"
             ];
 
-            exec-once = [
+            # Lua handles keys with hyphens cleanly when wrapped like ["exec-once"]
+            "[\"exec-once\"]" = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
               "waybar"
@@ -124,17 +125,21 @@ in
               follow_mouse = 1;
               sensitivity = 0;
               accel_profile = "flat";
-              "touchpad:natural_scroll" = false;
+              # Safely escaped dot syntax for Lua tables
+              "touchpad" = {
+                natural_scroll = false;
+              };
             };
 
             general = {
               gaps_in = 4;
               gaps_out = 9;
               border_size = 2;
-              "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-              "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
               resize_on_border = true;
               layout = "dwindle";
+              # Safely escaped dot syntax for Lua colors
+              "[\"col.active_border\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "[\"col.inactive_border\"]" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
             };
 
             decoration = {
@@ -154,9 +159,9 @@ in
             };
 
             group = {
-              "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-              "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
-              "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "[\"col.active_border\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+              "[\"col.inactive_border\"]" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+              "[\"col.border_locked_active\"]" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
             };
 
             animations = {
@@ -180,7 +185,10 @@ in
               vrr = 2;
             };
 
-            "render:direct_scanout" = 2;
+            # Direct Lua object injection to circumvent translation errors
+            "[\"render\"]" = {
+              direct_scanout = 2;
+            };
 
             windowrulev2 = [
               "noanim, class:^(Rofi)$"
