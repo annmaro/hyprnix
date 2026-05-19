@@ -86,7 +86,6 @@ in
           };
 
           extraConfig = ''
-            # --- Environment Variables ---
             env = XDG_CURRENT_DESKTOP,Hyprland
             env = XDG_SESSION_DESKTOP,Hyprland
             env = XDG_SESSION_TYPE,wayland
@@ -99,7 +98,6 @@ in
             env = QT_QPA_PLATFORMTHEME,qt6ct
             env = QT_AUTO_SCREEN_SCALE_FACTOR,1.25
 
-            # --- Initialization ---
             exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
             exec-once = gnome-keyring-daemon --start --components=secrets,ssh,pkcs11
             exec-once = waybar
@@ -112,7 +110,6 @@ in
             exec-once = ${./scripts/autowaybar.sh}
             exec-once = pamixer --set-volume 50
 
-            # --- Input Settings ---
             input {
               kb_layout = ${kbdLayout},ru
               kb_variant = ${kbdVariant},
@@ -127,7 +124,6 @@ in
               }
             }
 
-            # --- Window Styling & Layout ---
             general {
               gaps_in = 4
               gaps_out = 9
@@ -181,7 +177,6 @@ in
               direct_scanout = 2
             }
 
-            # --- Window Rules ---
             windowrulev2 = noanim, class:^(Rofi)$
             windowrulev2 = tile, title:(.*)(Godot)(.*)$
             windowrulev2 = opacity 0.80 0.80, class:^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$
@@ -198,7 +193,6 @@ in
             layerrule = blur, swaync-notification-window
             layerrule = ignorealpha 0.7, swaync-control-center
 
-            # --- Keybinds ---
             bind = SUPER, Return, exec, ${termExe}
             bind = SUPER, E, exec, ${fileManagerExe}
             bind = SUPER, C, exec, ${editorExe}
@@ -214,7 +208,6 @@ in
             bind = SUPER, up, movefocus, u
             bind = SUPER, down, movefocus, d
 
-            # Workspace iteration loop generated via Nix string templates
             ${builtins.concatStringsSep "\n" (builtins.genList (x: 
               let ws = toString (if (x + 1) == 10 then 0 else x + 1);
               in ''
