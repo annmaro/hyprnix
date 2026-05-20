@@ -190,8 +190,8 @@ in
               direct_scanout = 2;
             };
 
-            windowrule = [
-              "noanim on, class:^(Rofi)$"
+            windowrulev2 =[
+              "noanim, class:^(Rofi)$"
               "tile, title:(.*)(Godot)(.*)$"
               "opacity 0.80 0.80, class:^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$"
               "opacity 0.80 0.80, class:^(nvim-wrapper|tuiFileManager)$"
@@ -199,9 +199,8 @@ in
               "opacity 0.80 0.70, class:^(pavucontrol|blueman-manager|nm-applet)$"
               "float, class:^(qt5ct|nwg-look|org.kde.ark|Signal|yad|pavucontrol)$"
               "tag +games, class:^(steam_app.*|gamescope|Waydroid|osu!)$"
-              "content game, tag:games"
               "fullscreen, tag:games"
-              "noanim on, tag:games"
+              "noanim, tag:games"
             ];
 
             layerrule = [
