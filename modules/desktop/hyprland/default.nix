@@ -182,7 +182,6 @@ in
             misc = {
               force_default_wallpaper = 0;
               disable_hyprland_logo = true;
-              vfr = true;
               vrr = 2;
             };
 
@@ -191,8 +190,8 @@ in
               direct_scanout = 2;
             };
 
-            windowrulev2 = [
-              "noanim, class:^(Rofi)$"
+            windowrule = [
+              "noanim on, class:^(Rofi)$"
               "tile, title:(.*)(Godot)(.*)$"
               "opacity 0.80 0.80, class:^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$"
               "opacity 0.80 0.80, class:^(nvim-wrapper|tuiFileManager)$"
@@ -202,7 +201,7 @@ in
               "tag +games, class:^(steam_app.*|gamescope|Waydroid|osu!)$"
               "content game, tag:games"
               "fullscreen, tag:games"
-              "noanim, tag:games"
+              "noanim on, tag:games"
             ];
 
             layerrule = [
