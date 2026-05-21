@@ -17,6 +17,13 @@ in
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
+    # Force VS Code to run natively on Wayland for Hyprland + Intel GPU
+    vscode = prev.vscode.override {
+      commandLineArgs = [
+        "--ozone-platform-hint=auto"
+        "--enable-features=WaylandWindowDecorations"
+      ];
+    };
     # Override nomacs with our custom XWayland wrapper
     nomacs = prev.nomacs.overrideAttrs (old: {
       qtWrapperArgs = (old.qtWrapperArgs or []) ++ [

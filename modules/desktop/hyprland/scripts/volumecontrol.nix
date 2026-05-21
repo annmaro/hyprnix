@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "volume-control";
+  name = "volumecontrol";
 
   runtimeInputs = with pkgs; [
     coreutils

@@ -1,5 +1,7 @@
+{ pkgs, ... }:
+
 pkgs.writeShellApplication {
-  name = "hypr-gamemode";
+  name = "gamemode";
 
   runtimeInputs = with pkgs; [
     hyprland   # Provides hyprctl

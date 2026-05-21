@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "playerctl-control";
+  name = "mediacontrol";
 
   runtimeInputs = with pkgs; [
     coreutils

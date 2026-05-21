@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 pkgs.writeShellApplication {
   name = "smart-kill";
 

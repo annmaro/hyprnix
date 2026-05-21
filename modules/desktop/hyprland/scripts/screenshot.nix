@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "screenshot-swappy";
+  name = "screenshot";
 
   runtimeInputs = with pkgs; [
     coreutils

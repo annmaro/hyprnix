@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "hyprland-window-icon";
+  name = "window-name";
 
   runtimeInputs = with pkgs; [
     coreutils

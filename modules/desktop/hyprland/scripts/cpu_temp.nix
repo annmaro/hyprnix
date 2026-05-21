@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "cputemp";
+  name = "cpu_temp";
 
   runtimeInputs = with pkgs; [
     coreutils

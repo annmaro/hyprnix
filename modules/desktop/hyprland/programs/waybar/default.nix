@@ -1,7 +1,8 @@
 { host, pkgs, ... }:
 let
   inherit (import ../../../../../hosts/${host}/variables.nix) clock24h;
-
+  gpuinfo = pkgs.callPackage ../../scripts/gpuinfo.nix { };
+  keyboardswitch = pkgs.callPackage ../../scripts/keyboardswitch.nix { };
 in
 {
   
@@ -101,7 +102,7 @@ in
               on-scroll-down = "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100";
             };
             "custom/cava_mviz" = {
-              exec = "${../../scripts/WaybarCava.sh}";
+              exec = "$${waybar-cava}/bin/waybar-cava";
               format = "{}";
             };
             "cava" = {
@@ -125,10 +126,10 @@ in
               on-click = "playerctl play-pause";
             };
             "custom/gpuinfo" = {
-              exec = "${../../scripts/gpuinfo.sh}";
+              exec = "${gpuinfo}/bin/gpuinfo";
               return-type = "json";
               format = "{0}";
-              on-click = "${../../scripts/gpuinfo.sh} --toggle";
+              on-click = "${gpuinfo}/bin/gpuinfo --toggle";
               interval = 5; # once every 5 seconds
               tooltip = true;
               max-length = 1000;
@@ -175,7 +176,7 @@ in
             };
             "hyprland/language" = {
               format = "{short}"; # can use {short} and {variant}
-              on-click = "${../../scripts/keyboardswitch.sh}";
+              on-click = "${keyboardswitch}/bin/keyboardswitch";
             };
             "hyprland/workspaces" = {
               disable-scroll = true;
@@ -394,7 +395,7 @@ in
             "custom/window-name" = {
               format = "<b>{}</b>";
               interval = 1;
-              exec = "${../../scripts/window_name.sh}";
+              exec = "${window-name}/bin/window-name";
             };
 
             "custom/power" = {
