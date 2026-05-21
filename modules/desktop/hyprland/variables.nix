@@ -24,13 +24,13 @@ let
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
   keyboardswitch = pkgs.callPackage ./scripts/keyboardswitch.nix { };
   keybinds = pkgs.callPackage ./scripts/keybinds.nix { };
-  # keybinds-rofi = pkgs.callPackage ./scripts/keybinds-yad.nix { };
-  # mediactrl = pkgs.callPackage ./scripts/mediactrl.nix { };
+  mediactrl = pkgs.callPackage ./scripts/mediactrl.nix { };
   launcher = pkgs.callPackage ../../scripts/launcher.nix { inherit lib pkgs terminal; };
   rofimusic = pkgs.callPackage ./scripts/rofimusic.nix { };
   screen-record = pkgs.callPackage ./scripts/screen-record.nix { };
   screenshot = pkgs.callPackage ./scripts/screenshot.nix { };
   wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
+  zoom = pkgs.callPackage ./scripts/zoom.nix { };
 in
 {
   home-manager.sharedModules = [
@@ -47,10 +47,13 @@ in
             gamemode = "${getExe gamemode}"
             keyboardswitch = "${getExe keyboardswitch}"
             keybinds = "${getExe keybinds}"
+            mediactrl = "${getExe mediactrl}"
             rofimusic = "${getExe rofimusic}"
             screen_record = "${getExe screen-record}"
             screenshot = "${getExe screenshot}"
             wallpaper = "${getExe wallpaper}"
+            zoom = "${getExe zoom}"
+
 
             mainMod = "SUPER"
             launcher = "${getExe launcher}"

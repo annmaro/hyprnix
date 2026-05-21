@@ -32,9 +32,9 @@ hl.bind("xf86AudioPrev", hl.dsp.exec_cmd("playerctl previous")) -- go to previou
 -- hl.bind("XF86AudioPause", hl.dsp.exec_cmd(mediactrl .. "play-pause")) -- go to next media
 
 -- Keybinds help menu
-hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds_yad))
-hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds_yad))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds_yad))
+hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds))
+hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds))
 
 hl.bind(
 	mainMod .. " + F8",
