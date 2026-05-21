@@ -2,7 +2,7 @@
 let
   inherit (import ../../../../../hosts/${host}/variables.nix) clock24h;
   gpuinfo = pkgs.callPackage ../../scripts/gpuinfo.nix { };
-  window-name = pkgs.callPackage ./scripts/window-name.nix { };
+  window-name = pkgs.callPackage ../../scripts/window-name.nix { };
   keyboardswitch = pkgs.callPackage ../../scripts/keyboardswitch.nix { };
 in
 {
