@@ -2,8 +2,6 @@
 pkgs.writeShellApplication {
   name = "gpuinfo";
 
-  # Nix automatically adds these binaries to the script's run path,
-  # keeping the Bash code clean and easy to maintain.
   runtimeInputs = with pkgs; [
     coreutils
     gnugrep
@@ -162,4 +160,75 @@ pkgs.writeShellApplication {
             echo "$value"
             return
           fi
-        elif
+        elif [[ -n "$num" && -n "$key" && "$num" > "$key" ]]; then
+          echo "$value"
+          return
+        fi
+      done
+      [ -n "$def_val" ] && echo "$def_val" || echo " "
+    }
+
+    get_temp_color() {
+      local temp=$1
+      declare -A temp_colors=(
+        [90]="#8b0000"
+        [85]="#ad1f2f"
+        [80]="#d22f2f"
+        [75]="#ff471a"
+        [70]="#ff6347"
+        [65]="#ff8c00"
+        [60]="#ffa500"
+        [45]=""
+        [40]="#add8e6"
+        [35]="#87ceeb"
+        [30]="#4682b4"
+        [25]="#4169e1"
+        [20]="#0000ff"
+        [0]="#00008b"
+      )
+
+      for threshold in $(echo "''${!temp_colors[@]}" | tr ' ' '\n' | sort -nr); do
+        if ((temp >= threshold)); then
+          color=''${temp_colors[$threshold]}
+          if [[ -n $color ]]; then
+            echo "<span color='$color'><b>''${temp}°C</b></span>"
+          else
+            echo "''${temp}°C"
+          fi
+          return
+        fi
+      done
+    }
+
+    generate_json() {
+      if [[ $GPUINFO_EMOJI -ne 1 ]]; then
+        temp_lv="85:, 65:, 45:☁, ❄"
+      else
+        temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
+      fi
+      util_lv="90:, 60:󰓅, 30:󰾅, 󰾆"
+
+      icons="$(map_floor "$util_lv" "$utilization")$(map_floor "$temp_lv" "''${temperature}")"
+      speedo=''${icons:0:1}
+      thermo=''${icons:1:1}
+      emoji=''${icons:2}
+      temp_color=$(get_temp_color "''${temperature}")
+
+      local json="{\"text\":\"''${thermo} ''${temperature}°C\", \"tooltip\":\"''${emoji} ''${primary_gpu}\n''${thermo} Temperature: ''${temp_color}"
+
+      declare -A tooltip_parts
+      if [[ -n "''${utilization}" ]]; then tooltip_parts["\n$speedo Utilization: "]="''${utilization}%"; fi
+      if [[ -n "''${current_clock_speed}" ]] && [[ -n "''${max_clock_speed}" ]]; then tooltip_parts["\n Clock Speed: "]="''${current_clock_speed}/''${max_clock_speed} MHz"; fi
+      if [[ -n "''${core_clock}" ]]; then tooltip_parts["\n Clock Speed: "]="''${core_clock} MHz"; fi
+      if [[ -n "''${power_usage}" ]]; then
+        if [[ -n "''${power_limit}" ]]; then
+          tooltip_parts["\n󱪉 Power Usage: "]="''${power_usage}/''${power_limit} W"
+        else
+          tooltip_parts["\n󱪉 Power Usage: "]="''${power_usage} W"
+        fi
+      fi
+      if [[ -n "''${power_discharge}" ]] && [[ "''${power_discharge}" != "0" ]]; then tooltip_parts["\n Power Discharge: "]="''${power_discharge} W"; fi
+      if [[ -n "''${fan_speed}" ]]; then tooltip_parts["\n Fan Speed: "]="''${fan_speed} RPM"; fi
+
+      for key in "''${!tooltip_parts[@]}"; do
+        local value="''
