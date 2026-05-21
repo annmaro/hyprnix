@@ -32,6 +32,7 @@ let
   rofimusic = pkgs.callPackage ./scripts/rofimusic.nix { };
   screen-record = pkgs.callPackage ./scripts/screen-record.nix { };
   screenshot = pkgs.callPackage ./scripts/screenshot.nix { };
+  window-name = pkgs.callPackage ./scripts/window-name.nix { };
   wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { inherit defaultWallpaper; };
 in
 {
@@ -52,6 +53,7 @@ in
             rofimusic = "${getExe rofimusic}"
             screen_record = "${getExe screen-record}"
             screenshot = "${getExe screenshot}"
+            window-name = "${getExe window-name}"
             wallpaper = "${getExe wallpaper}"
 
             mainMod = "SUPER"
