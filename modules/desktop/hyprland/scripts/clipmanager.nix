@@ -5,7 +5,7 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs; [
     cliphist
-    rofi-wayland # Uses rofi-wayland for native Wayland support needed by wl-clipboard
+    rofi
     wl-clipboard
   ];
 
