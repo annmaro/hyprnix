@@ -19,7 +19,7 @@ in
     ./programs/rofi
     ./programs/hypridle
     ./programs/hyprlock
-  ];
+  ]
   ++ optional (bar != "wayle") ./programs/swaync;
 
   nix.settings = {
