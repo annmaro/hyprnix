@@ -7,19 +7,20 @@
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix);
+  inherit (lib) optional;
+  inherit (import ../../../hosts/${host}/variables.nix) bar;
 in
 {
   imports = [
     ../../themes/Catppuccin
     ./variables.nix
-    ./programs/waybar
+    ./programs/${bar}
     ./programs/wlogout
     ./programs/rofi
     ./programs/hypridle
     ./programs/hyprlock
-    ./programs/swaync
   ];
+  ++ optional (bar != "wayle") ./programs/swaync;
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];

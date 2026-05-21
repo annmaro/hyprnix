@@ -5,15 +5,6 @@ hl.layer_rule({
 	ignore_alpha = 0.7,
 })
 
--- Hyprpanel Menus
-hl.layer_rule({
-	match = {
-		namespace = "^(bar-.*|notifications-window|mediamenu|notificationsmenu|calendarmenu|audiomenu|networkmenu|energymenu|dashboardmenu)$",
-	},
-	blur = true,
-	ignore_alpha = 0.7,
-})
-
 -- Swaync
 hl.layer_rule({
 	match = { namespace = "^(swaync-control-center)$" },
