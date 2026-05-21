@@ -160,13 +160,3 @@ hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.move({ workspace = "special", fo
 hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move({ workspace = "special", follow = false }))
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("special"))
 
--- Dynamically bind 5 workspaces to your single real BOE monitor.
--- This keeps them persistent and visible on your bar so you can switch them via mouse clicks!
-for i = 1, 5 do
-	hl.workspace_rule({
-		workspace = tostring(i),
-		persistent = true,
-		monitor = "desc:BOE 0x0690",
-		default = (i == 1),
-	})
-end
