@@ -5,24 +5,17 @@
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix)
-    browser
-    terminal
-    tuiFileManager
-    kbdLayout
-    kbdVariant
-    ;
-  autoclicker = pkgs.callPackage ./scripts/autoclicker.nix { };
+  inherit (import ../../../hosts/${host}/variables.nix);
 in
 {
   imports = [
     ../../themes/Catppuccin
+    ./variables.nix
     ./programs/waybar
     ./programs/wlogout
     ./programs/rofi
     ./programs/hypridle
     ./programs/hyprlock
-    ./programs/awww
     ./programs/swaync
   ];
 
@@ -56,14 +49,18 @@ in
     xdgOpenUsePortal = true;
   };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
 
   home-manager.sharedModules = [
     ({ ... }:
       let
         inherit (lib) getExe getExe';
         termExe = "${getExe pkgs.${terminal}}";
-        editorExe = "code --disable-gpu";
+        editorExe = "code";
         fileManagerExe = "${termExe} --class \"tuiFileManager\" -e ${tuiFileManager}";
       in
       {
