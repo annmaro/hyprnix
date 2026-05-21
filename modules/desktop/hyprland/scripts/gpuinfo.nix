@@ -41,7 +41,6 @@ pkgs.writeShellApplication {
     power_limit=""
     power_discharge=""
     fan_speed=""
-    lt=0
 
     # Handle tired flag
     if [[ " $* " =~ " --tired " ]]; then
@@ -261,7 +260,7 @@ pkgs.writeShellApplication {
             echo "<span color='$color'><b>''${temp}°C</b></span>"
           else
             echo "''${temp}°C"
-          fi # FIXED: Replaced 'end' with 'fi' to resolve builder evaluation crash
+          fi
           return
         fi
       done
