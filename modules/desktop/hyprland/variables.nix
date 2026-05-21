@@ -13,8 +13,6 @@ let
     tuiFileManager
     kbdLayout
     kbdVariant
-    capslockAsESC
-    defaultWallpaper
     ;
 
   # Import script modules
@@ -61,7 +59,6 @@ in
             editor = "code"
             browser = "${browser}"
             tuiFileManager = "${tuiFileManager}"
-            capslockAsESC = ${lib.boolToString capslockAsESC}
             kbdLayout = "${kbdLayout}"
             kbdVariant = "${kbdVariant}"
           '';
