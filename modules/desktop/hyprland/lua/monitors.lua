@@ -1,7 +1,7 @@
 hl.monitor({
-	name = "eDP-1",
+	output = "desc:BOE 0x0690",
 	mode = "preferred",
-	offset = "0x0",
+	position = "0x0",
 	scale = 1,
 })
 --[[ Add extra monitors here, find desc with: hyprctl monitors
