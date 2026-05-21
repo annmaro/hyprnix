@@ -115,7 +115,6 @@ pkgs.writeShellApplication {
     }
 
     fn_status () {
-      # FIXED SC2081: Swapped out POSIX test `[` brackets with Bash native `[[` brackets to support the wildcard glob pattern matching
       if [[ "$battery_percentage" -ge "$battery_full_threshold" ]] && [[ "$battery_status" == *"Charging"* ]]; then
         battery_status="Full"
       fi
@@ -199,15 +198,3 @@ pkgs.writeShellApplication {
     main
   '';
 }
-```
-eof
-
-### Summary of fixes in the Canvas:
-I have updated your script by changing the single brackets `[` to native double-brackets `[[` for evaluating the battery status wildcard matching condition inside `fn_status()`. 
-
-```bash
-# Before:
-[ "$battery_status" == *"Charging"* ]
-
-# After:
-[[ "$battery_status" == *"Charging"* ]]
