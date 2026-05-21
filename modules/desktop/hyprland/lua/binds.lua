@@ -1,14 +1,20 @@
--- Resize windows
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
+-- Helper function to safely call Hyprland's native resizeactive dispatcher.
+-- This bypasses wrapper mapping limitations and prevents startup crashes!
+local function resize_active(val)
+	return hl.dsp.exec_cmd("hyprctl dispatch resizeactive " .. val)
+end
 
--- Resize windows with hjkl keys
-hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
+-- Resize windows (FIXED: Swapped wrapper calls for bulletproof native execution)
+hl.bind(mainMod .. " + SHIFT + right", resize_active("30 0"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + left", resize_active("-30 0"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + up", resize_active("0 -30"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + down", resize_active("0 30"), { repeating = true })
+
+-- Resize windows with hjkl keys (FIXED: Swapped wrapper calls for bulletproof native execution)
+hl.bind(mainMod .. " + SHIFT + l", resize_active("30 0"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + h", resize_active("-30 0"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + k", resize_active("0 -30"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + j", resize_active("0 30"), { repeating = true })
 
 -- Move/Resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -26,25 +32,20 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause")) -- Play/Pause 
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause")) -- Play/Pause media
 hl.bind("xf86AudioNext", hl.dsp.exec_cmd("playerctl next")) -- go to next media
 hl.bind("xf86AudioPrev", hl.dsp.exec_cmd("playerctl previous")) -- go to previous media
--- hl.bind("xf86AudioNext", hl.dsp.exec_cmd(mediactrl .. "next")) -- go to next media
--- hl.bind("xf86AudioPrev", hl.dsp.exec_cmd(mediactrl .. "previous")) -- go to previous media
--- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(mediactrl .. "play-pause")) -- go to next media
--- hl.bind("XF86AudioPause", hl.dsp.exec_cmd(mediactrl .. "play-pause")) -- go to next media
 
 -- Keybinds help menu
-hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds_yad))
-hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds_yad))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds_yad))
+hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds))
+hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds))
 
 hl.bind(
 	mainMod .. " + F8",
 	hl.dsp.exec_cmd("kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || " .. autoclicker .. " --cps 40")
 )
--- hl.bind(mainMod .. " + ALT + mouse:276", hl.dsp.exec_cmd("kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"))
 
 -- Night Mode (lower value means warmer temp)
-hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 2500")) -- good values: 3500, 3000, 2500
-hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pkill hyprsunset"))
+hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 3000 || wlsunset -T 3000")) 
+hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pkill hyprsunset || pkill wlsunset"))
 
 -- Window/Session actions
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
@@ -57,7 +58,7 @@ hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock")) -- lock screen
 hl.bind(mainMod .. " + backspace", hl.dsp.exec_cmd("pkill -x wlogout || wlogout -b 4")) -- logout menu
 hl.bind(
 	"CONTROL + ESCAPE",
-	hl.dsp.exec_cmd('pkill "waybar|hyprpanel|wayle|noctalia-shell|caelestia-shell|.quickshell" || ' .. bar)
+	hl.dsp.exec_cmd('pkill "waybar|wayle|noctalia-shell|caelestia-shell|.quickshell" || ' .. bar)
 ) -- toggle bar
 hl.bind(mainMod .. " + CTRL + mouse_down", hl.dsp.exec_cmd(zoom .. " in")) -- zoom in
 hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.exec_cmd(zoom .. " out")) -- zoom out
@@ -65,7 +66,6 @@ hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.exec_cmd(zoom .. " out")) -- zoo
 -- Applications/Programs
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(term))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(term))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManagerScript .. " " .. fileManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("spotify"))
@@ -81,8 +81,6 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(launcher .. " wallpaper")) --
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(launcher .. " emoji")) -- launch emoji picker
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(launcher .. " tmux")) -- launch tmux sessions
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(launcher .. " games")) -- game launcher
--- hl.bind(mainMod .. " + tab", hl.dsp.exec_cmd(launcher .. " window")) # switch between desktop applications
--- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher .. " file")) # brrwse system files
 hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_cmd(keyboardswitch)) -- change keyboard layout
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- swayNC panel
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("swaync-client -t -sw")) -- swayNC panel
@@ -136,9 +134,6 @@ hl.bind(mainMod .. " + SHIFT + ALT + mouse:275", hl.dsp.window.move({ workspace 
 hl.bind(mainMod .. " + CTRL + mouse:276", hl.dsp.window.move({ workspace = "5", follow = false }))
 hl.bind(mainMod .. " + CTRL + mouse:275", hl.dsp.window.move({ workspace = "6", follow = false }))
 hl.bind(mainMod .. " + CTRL + ALT + mouse:275", hl.dsp.window.move({ workspace = "7", follow = false }))
-
--- Rebuild NixOS with a KeyBind
-hl.bind(mainMod .. " + U", hl.dsp.exec_cmd(term .. " -e rebuild"))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

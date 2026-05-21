@@ -91,7 +91,6 @@ in
         wl-clipboard    # Clipboard access commands (wl-copy, wl-paste)
         xdotool         # X11 automation simulation compatibility
         hyprsunset      # Wayland blue light filter manager
-        # Audio, Media & Hardware Controls
         pavucontrol     # PulseAudio Volume Control GUI
         brightnessctl   # Lightweight screen brightness control utility
         playerctl       # Command-line utility for controlling media players
