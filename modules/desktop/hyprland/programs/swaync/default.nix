@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  gamemode = pkgs.callPackage ../../scripts/gamemode.nix { };
+  #togglepowermode = pkgs.callPackage ../../scripts/togglepowermode.nix { };
+in
 {
   #  use later
   home-manager.sharedModules = [
@@ -143,7 +147,7 @@
                 {
                   label = "🎮";
                   type = "toggle";
-                  command = "${../../../hyprland/scripts/gamemode.sh}";
+                  command = "${gamemode}/bin/gamemode";
                   update-command = "hyprctl getoption animations:enabled | grep -q 'int: 1' && echo false || echo true";
                 }
 
