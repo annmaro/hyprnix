@@ -261,7 +261,7 @@ pkgs.writeShellApplication {
             echo "<span color='$color'><b>''${temp}°C</b></span>"
           else
             echo "''${temp}°C"
-          end
+          fi # FIXED: Replaced 'end' with 'fi' to resolve builder evaluation crash
           return
         fi
       done

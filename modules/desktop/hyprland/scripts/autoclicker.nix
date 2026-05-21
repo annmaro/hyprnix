@@ -1,12 +1,13 @@
 { pkgs, ... }:
 
-pkgs.writers.writePython3Bin "autoclicker"
+pkgs.writers.writePython3Bin "auto-clicker"
   {
     libraries = [ pkgs.python3Packages.python-uinput ];
     flakeIgnore = [
       "E265"
       "E225"
       "E501"
+      "W293" # Added to prevent builder from crashing on whitespace inside blank lines
     ];
   }
   ''
@@ -42,10 +43,10 @@ pkgs.writers.writePython3Bin "autoclicker"
         while True:
             device.emit(uinput.BTN_LEFT, 1)  # Press
             device.emit(uinput.BTN_LEFT, 0)  # Release
-            
+
             # Step our target anchor exactly forward by one interval block
             next_click_time += click_delay
-            
+
             # Monotonic busy-wait loop for microsecond-accurate hardware timing
             while time.perf_counter() < next_click_time:
                 pass  # Keep polling until our target window hits exactly
