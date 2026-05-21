@@ -1,20 +1,14 @@
--- Helper function to safely call Hyprland's native resizeactive dispatcher.
--- This bypasses wrapper mapping limitations and prevents startup crashes!
-local function resize_active(val)
-	return hl.dsp.exec_cmd("hyprctl dispatch resizeactive " .. val)
-end
+-- Resize windows using framework native dispatchers (Fixes key-repeating freeze)
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ address = "active", horizontal = 30, vertical = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ address = "active", horizontal = -30, vertical = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ address = "active", horizontal = 0, vertical = -30 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ address = "active", horizontal = 0, vertical = 30 }), { repeating = true })
 
--- Resize windows (FIXED: Swapped wrapper calls for bulletproof native execution)
-hl.bind(mainMod .. " + SHIFT + right", resize_active("30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + left", resize_active("-30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + up", resize_active("0 -30"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + down", resize_active("0 30"), { repeating = true })
-
--- Resize windows with hjkl keys (FIXED: Swapped wrapper calls for bulletproof native execution)
-hl.bind(mainMod .. " + SHIFT + l", resize_active("30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + h", resize_active("-30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + k", resize_active("0 -30"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + j", resize_active("0 30"), { repeating = true })
+-- Resize windows with HJKL keys
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.resize({ address = "active", horizontal = 30, vertical = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.resize({ address = "active", horizontal = -30, vertical = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.resize({ address = "active", horizontal = 0, vertical = -30 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.resize({ address = "active", horizontal = 0,
 
 -- Move/Resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -135,9 +129,9 @@ hl.bind(mainMod .. " + CTRL + mouse:276", hl.dsp.window.move({ workspace = "5", 
 hl.bind(mainMod .. " + CTRL + mouse:275", hl.dsp.window.move({ workspace = "6", follow = false }))
 hl.bind(mainMod .. " + CTRL + ALT + mouse:275", hl.dsp.window.move({ workspace = "7", follow = false }))
 
--- Scroll through existing workspaces with mainMod + scroll
+--[[ Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))--]]
 
 -- Move active window to a relative workspace with mainMod + CTRL + ALT + [←→]
 hl.bind(mainMod .. " + CTRL + ALT + right", hl.dsp.window.move({ workspace = "r+1" }))
