@@ -1,14 +1,14 @@
--- Resize windows (FIXED: Swapped table layouts for native resizeactive parameters)
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.resizeactive("30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.resizeactive("-30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.resizeactive("0 -30"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.resizeactive("0 30"), { repeating = true })
+-- Resize windows
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
 
--- Resize windows with hjkl keys (FIXED: Swapped table layouts for native resizeactive parameters)
-hl.bind(mainMod .. " + SHIFT + l", hl.dsp.resizeactive("30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.resizeactive("-30 0"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + k", hl.dsp.resizeactive("0 -30"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + j", hl.dsp.resizeactive("0 30"), { repeating = true })
+-- Resize windows with hjkl keys
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
 
 -- Move/Resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -26,20 +26,25 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause")) -- Play/Pause 
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause")) -- Play/Pause media
 hl.bind("xf86AudioNext", hl.dsp.exec_cmd("playerctl next")) -- go to next media
 hl.bind("xf86AudioPrev", hl.dsp.exec_cmd("playerctl previous")) -- go to previous media
+-- hl.bind("xf86AudioNext", hl.dsp.exec_cmd(mediactrl .. "next")) -- go to next media
+-- hl.bind("xf86AudioPrev", hl.dsp.exec_cmd(mediactrl .. "previous")) -- go to previous media
+-- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(mediactrl .. "play-pause")) -- go to next media
+-- hl.bind("XF86AudioPause", hl.dsp.exec_cmd(mediactrl .. "play-pause")) -- go to next media
 
 -- Keybinds help menu
-hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds))
-hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds))
+hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds_yad))
+hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds_yad))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(keybinds_yad))
 
 hl.bind(
 	mainMod .. " + F8",
 	hl.dsp.exec_cmd("kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || " .. autoclicker .. " --cps 40")
 )
+-- hl.bind(mainMod .. " + ALT + mouse:276", hl.dsp.exec_cmd("kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"))
 
--- Night Mode (lower value means warmer temp - FIXED with automatic wlsunset fallback)
-hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 3000 || wlsunset -T 3000")) 
-hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pkill hyprsunset || pkill wlsunset"))
+-- Night Mode (lower value means warmer temp)
+hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 2500")) -- good values: 3500, 3000, 2500
+hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pkill hyprsunset"))
 
 -- Window/Session actions
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
@@ -52,7 +57,7 @@ hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock")) -- lock screen
 hl.bind(mainMod .. " + backspace", hl.dsp.exec_cmd("pkill -x wlogout || wlogout -b 4")) -- logout menu
 hl.bind(
 	"CONTROL + ESCAPE",
-	hl.dsp.exec_cmd('pkill "waybar|wayle|noctalia-shell|caelestia-shell|.quickshell" || ' .. bar)
+	hl.dsp.exec_cmd('pkill "waybar|hyprpanel|wayle|noctalia-shell|caelestia-shell|.quickshell" || ' .. bar)
 ) -- toggle bar
 hl.bind(mainMod .. " + CTRL + mouse_down", hl.dsp.exec_cmd(zoom .. " in")) -- zoom in
 hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.exec_cmd(zoom .. " out")) -- zoom out
@@ -60,6 +65,7 @@ hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.exec_cmd(zoom .. " out")) -- zoo
 -- Applications/Programs
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(term))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(term))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManagerScript .. " " .. fileManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("spotify"))
@@ -75,6 +81,8 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(launcher .. " wallpaper")) --
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(launcher .. " emoji")) -- launch emoji picker
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(launcher .. " tmux")) -- launch tmux sessions
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(launcher .. " games")) -- game launcher
+-- hl.bind(mainMod .. " + tab", hl.dsp.exec_cmd(launcher .. " window")) # switch between desktop applications
+-- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher .. " file")) # brrwse system files
 hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_cmd(keyboardswitch)) -- change keyboard layout
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- swayNC panel
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("swaync-client -t -sw")) -- swayNC panel
