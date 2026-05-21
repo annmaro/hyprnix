@@ -39,9 +39,12 @@ hl.workspace_rule({ workspace = "10", persistent = true, monitor = "desc:BNQ Ben
 --]]
 -- Dynamically bind 5 workspaces to your single real BOE monitor.
 -- Bind number keys 1-5 for workspace navigation and window moving
+-- This keeps them persistent and visible on your bar for mouse clicking!
 for i = 1, 5 do
-	-- mainMod + [1-5] to switch to a workspace
-	hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = tostring(i) }))
-	-- mainMod + SHIFT + [1-5] to move the active window to a workspace
-	hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = tostring(i) }))
+	hl.workspace_rule({
+		workspace = tostring(i),
+		persistent = true,
+		monitor = "desc:BOE 0x0690",
+		default = (i == 1),
+	})
 end
