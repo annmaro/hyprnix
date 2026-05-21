@@ -10,7 +10,7 @@ let
     bar
     browser
     terminal
-    fileManager
+    tuiFileManager
     kbdLayout
     kbdVariant
     capslockAsESC
