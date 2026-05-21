@@ -160,10 +160,10 @@ hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.move({ workspace = "special", fo
 hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move({ workspace = "special", follow = false }))
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("special"))
 
--- Bind number keys 1-5 for keyboard navigation and window moving
-for i = 1, 5 do
-	-- mainMod + [1-5] to switch to a workspace via keyboard
-	hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = tostring(i) }))
-	-- mainMod + SHIFT + [1-5] to move the active window to a workspace
-	hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = tostring(i) }))
+-- Bind number keys 1-10 for keyboard navigation and window moving
+for i = 1, 10 do
+	-- mainMod + [1-10] to switch to a workspace via keyboard
+	hl.bind(mainMod .. " + " .. (i % 10), hl.dsp.focus({ workspace = tostring(i) }))
+	-- mainMod + SHIFT + [1-10] to move the active window to a workspace
+	hl.bind(mainMod .. " + SHIFT + " .. (i % 10), hl.dsp.window.move({ workspace = tostring(i) }))
 end
