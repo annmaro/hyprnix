@@ -80,6 +80,19 @@ in
       # Set wallpaper
       services.awww.enable = true;
 
+      # User packages for desktop functionality and workflow scripts
+      home.packages = with pkgs; [
+        hyprpicker      # Color picker utility
+        cliphist        # Clipboard history manager daemon
+        grimblast       # Screen grabber helper script
+        swappy          # Snapshot editor and annotator
+        libnotify       # Notification send tool (notify-send)
+        wtype           # Wayland keyboard input simulator
+        wl-clipboard    # Clipboard access commands (wl-copy, wl-paste)
+        xdotool         # X11 automation simulation compatibility
+        hyprsunset      # Wayland blue light filter manager
+      ];
+
       # Hyprland config
       xdg.configFile = {
         "hypr/hyprland.lua".source = ./lua/hyprland.lua;
