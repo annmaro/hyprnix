@@ -30,7 +30,7 @@ let
   rofimusic = pkgs.callPackage ./scripts/rofimusic.nix { };
   screen-record = pkgs.callPackage ./scripts/screen-record.nix { };
   screenshot = pkgs.callPackage ./scripts/screenshot.nix { };
-  wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { inherit defaultWallpaper; };
+  wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
 in
 {
   home-manager.sharedModules = [
