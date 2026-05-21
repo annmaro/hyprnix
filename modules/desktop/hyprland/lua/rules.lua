@@ -299,12 +299,13 @@ hl.window_rule({
 	float = true,
 })
 
+-- FIXED: Swapped out the literal string wrapper to a native table to avoid parsing errors
 hl.window_rule({
 	match = { class = "^(microfetch)$" },
 	opacity = "0.80 0.70",
 	float = true,
 	center = true,
-	size = "{ x = 802, y = 261 }",
+	size = { x = 802, y = 261 },
 })
 hl.window_rule({
 	match = { class = "^(eog)$" },
