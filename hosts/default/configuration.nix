@@ -44,7 +44,7 @@ in
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
     ../../modules/programs/cli/tmux
     ../../modules/programs/editor/vscode
-    ../../modules/programs/editor/antigravity
+    #../../modules/programs/editor/antigravity
     #../../modules/programs/editor/cursor
     ../../modules/programs/browser/zen
     ../../modules/programs/cli/direnv
