@@ -25,7 +25,7 @@ let
   fileManagerScript = pkgs.callPackage ./scripts/file-manager.nix { inherit terminal; };
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
   keyboardswitch = pkgs.callPackage ./scripts/keyboardswitch.nix { };
-  keybinds-yad = pkgs.callPackage ./scripts/keybinds-yad.nix { };
+  keybinds = pkgs.callPackage ./scripts/keybinds.nix { };
   # keybinds-rofi = pkgs.callPackage ./scripts/keybinds-yad.nix { };
   # mediactrl = pkgs.callPackage ./scripts/mediactrl.nix { };
   launcher = pkgs.callPackage ../../scripts/launcher.nix { inherit lib pkgs terminal; };
@@ -33,7 +33,6 @@ let
   screen-record = pkgs.callPackage ./scripts/screen-record.nix { };
   screenshot = pkgs.callPackage ./scripts/screenshot.nix { };
   wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { inherit defaultWallpaper; };
-  zoom = pkgs.callPackage ./scripts/zoom.nix { };
 in
 {
   home-manager.sharedModules = [
@@ -54,7 +53,6 @@ in
             screen_record = "${getExe screen-record}"
             screenshot = "${getExe screenshot}"
             wallpaper = "${getExe wallpaper}"
-            zoom = "${getExe zoom}"
 
             mainMod = "SUPER"
             launcher = "${getExe launcher}"
