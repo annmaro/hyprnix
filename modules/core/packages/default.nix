@@ -24,7 +24,7 @@
     fzf # Fuzzy Finder
     fd # Better Find
     wev # Wayland event viewer
-    ibinput # Handles input devices in Wayland compositors and provides a generic X.Org input driver
+    libinput # Handles input devices in Wayland compositors and provides a generic X.Org input driver
     libjxl # Support for JXL Images
     microfetch # Small fetch (Blazingly fast)
     nix-prefetch-scripts # Find Hashes/Revisions of Nix Packages
