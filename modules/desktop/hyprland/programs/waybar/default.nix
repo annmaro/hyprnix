@@ -2,7 +2,7 @@
 let
   inherit (import ../../../../../hosts/${host}/variables.nix) clock24h;
   gpuinfo = pkgs.callPackage ../../scripts/gpuinfo.nix { };
-  window-name = pkgs.callPackage ../../scripts/window-name.nix { };
+  window_name = pkgs.callPackage ../../scripts/window_name.nix { };
   keyboardswitch = pkgs.callPackage ../../scripts/keyboardswitch.nix { };
 in
 {
@@ -396,7 +396,7 @@ in
             "custom/window-name" = {
               format = "<b>{}</b>";
               interval = 1;
-              exec = "${window-name}/bin/window-name";
+              exec = "${window_name}/bin/window_name";
             };
 
             "custom/power" = {
