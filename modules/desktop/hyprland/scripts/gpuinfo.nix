@@ -38,8 +38,6 @@ pkgs.writeShellScriptBin "gpuinfo" ''
     vendor_id=$(${pkgs.pciutils}/bin/lspci -nn -s "''${slot_number}")
     declare -A vendors=(["10de"]="nvidia" ["8086"]="intel" ["1002"]="amd")
     
-    # --- SYNTAX ERROR FIXED HERE ---
-    # Escaped the array expander using dual escape wrappers to stop Nix parsing it as an attribute
     for vendor in "''${!vendors[@]}"; do
       if [[ ''${vendor_id} == *"''${vendor}"* ]]; then
         initGPU="''${vendors[''${vendor}]}"
@@ -120,7 +118,6 @@ pkgs.writeShellScriptBin "gpuinfo" ''
       mapfile -t anchor < <(${pkgs.gnugrep}/bin/grep "_ENABLE=1" "''${gpuinfo_file}" | ${pkgs.coreutils}/bin/cut -d '=' -f 1)
       GPUINFO_PRIORITY=$(${pkgs.gnugrep}/bin/grep "GPUINFO_PRIORITY=" "''${gpuinfo_file}" | ${pkgs.coreutils}/bin/cut -d'=' -f 2)
       
-      # Fixed the loop reference formatting for anchor keys expansion inside Nix blocks
       for index in "''${!anchor[@]}"; do
         if [[ "''${anchor[''${index}]}" = "''${GPUINFO_PRIORITY}" ]]; then
           current_index=''${index}
@@ -176,7 +173,6 @@ pkgs.writeShellScriptBin "gpuinfo" ''
       [0]="#00008b"
     )
 
-    # Fixed formatting wrapper loop targeting temp_colors key variables
     for threshold in $(echo "''${!temp_colors[@]}" | ${pkgs.coreutils}/bin/tr ' ' '\n' | ${pkgs.coreutils}/bin/sort -nr); do
       if ((temp >= threshold)); then
         color=''${temp_colors[$threshold]}
@@ -208,46 +204,4 @@ pkgs.writeShellScriptBin "gpuinfo" ''
 
     declare -A tooltip_parts
     if [[ -n "''${utilization}" ]]; then tooltip_parts["\n$speedo Utilization: "]="''${utilization}%"; fi
-    if [[ -n "''${current_clock_speed}" ]] && [[ -n "''${max_clock_speed}" ]]; then tooltip_parts["\n Clock Speed: "]="''${current_clock_speed}/''${max_clock_speed} MHz"; fi
-    if [[ -n "''${core_clock}" ]]; then tooltip_parts["\n Clock Speed: "]="''${core_clock} MHz"; fi
-    if [[ -n "''${power_usage}" ]]; then
-      if [[ -n "''${power_limit}" ]]; then
-        tooltip_parts["\n󱪉 Power Usage: "]="''${power_usage}/''${power_limit} W"
-      else
-        tooltip_parts["\n󱪉 Power Usage: "]="''${power_usage} W"
-      fi
-    fi
-    if [[ -n "''${power_discharge}" ]] && [[ "''${power_discharge}" != "0" ]]; then tooltip_parts["\n Power Discharge: "]="''${power_discharge} W"; fi
-    if [[ -n "''${fan_speed}" ]]; then tooltip_parts["\n Fan Speed: "]="''${fan_speed} RPM"; fi
-
-    for key in "''${!tooltip_parts[@]}"; do
-      local value="''${tooltip_parts[''${key}]}"
-      if [[ -n "''${value}" && "''${value}" =~ [a-zA-Z0-9] ]]; then
-        json+="''${key}''${value}"
-      fi
-    done
-    json="''${json}\"}"
-    echo "''${json}"
-  }
-
-  general_query() {
-    filter=""
-    sensors_data=$(${pkgs.lm_sensors}/bin/sensors 2>/dev/null)
-    temperature=$(echo "''${sensors_data}" | ''${filter} ${pkgs.gnugrep}/bin/grep -m 1 -E "(edge|Package id.*|junction|hotspot)" | ${pkgs.gawk}/bin/awk -F ':' '{print int($2)}')
-    fan_speed=$(echo "''${sensors_data}" | ''${filter} ${pkgs.gnugrep}/bin/grep -m 1 -E "fan[1-9]" | ${pkgs.gawk}/bin/awk -F ':' '{print int($2)}')
-
-    for file in /sys/class/power_supply/BAT*/power_now; do
-      [[ -f "''${file}" ]] && power_discharge=$(${pkgs.gawk}/bin/awk '{print $1*10^-6 ""}' "''${file}") && break
-    done
-    [[ -z "''${power_discharge}" ]] && for file in /sys/class/power_supply/BAT*/current_now; do
-      [[ -e "''${file}" ]] && power_discharge=$(${pkgs.gawk}/bin/awk -v current="$(cat "''${file}")" -v voltage="$(cat "''${file/current_now/voltage_now}")" 'BEGIN {print (current * voltage) / 10^12 ""}') && break
-    done
-
-    get_utilization() {
-      statFile=$(${pkgs.coreutils}/bin/head -1 /proc/stat)
-      if [[ -z "$GPUINFO_PREV_STAT" ]]; then
-        GPUINFO_PREV_STAT=$(${pkgs.gawk}/bin/awk '{print $2+$3+$4+$6+$7+$8 }' <<<"$statFile")
-        echo "GPUINFO_PREV_STAT=\"$GPUINFO_PREV_STAT\"" >>"''${gpuinfo_file}"
-      fi
-      if [[ -z "$GPUINFO_PREV_IDLE" ]]; then
-        GPUINFO_PREV_IDLE=$
+    if
