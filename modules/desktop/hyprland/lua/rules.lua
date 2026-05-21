@@ -5,6 +5,15 @@ hl.layer_rule({
 	ignore_alpha = 0.7,
 })
 
+-- Hyprpanel Menus
+hl.layer_rule({
+	match = {
+		namespace = "^(bar-.*|notifications-window|mediamenu|notificationsmenu|calendarmenu|audiomenu|networkmenu|energymenu|dashboardmenu)$",
+	},
+	blur = true,
+	ignore_alpha = 0.7,
+})
+
 -- Swaync
 hl.layer_rule({
 	match = { namespace = "^(swaync-control-center)$" },
@@ -299,13 +308,13 @@ hl.window_rule({
 	float = true,
 })
 
--- FIXED: Swapped out the literal string wrapper to a native table to avoid parsing errors
+-- FIXED: Cleaned up window size parameters using native strings to bypass wrapper and compiler warnings
 hl.window_rule({
 	match = { class = "^(microfetch)$" },
 	opacity = "0.80 0.70",
 	float = true,
 	center = true,
-	size = { x = 802, y = 261 },
+	size = "802 261",
 })
 hl.window_rule({
 	match = { class = "^(eog)$" },
