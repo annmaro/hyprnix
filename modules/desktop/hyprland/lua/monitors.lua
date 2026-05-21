@@ -37,3 +37,13 @@ hl.workspace_rule({ workspace = "8", persistent = true, monitor = "desc:BNQ BenQ
 hl.workspace_rule({ workspace = "9", persistent = true, monitor = "desc:BNQ BenQ xl2420t 99D06760SL0" })
 hl.workspace_rule({ workspace = "10", persistent = true, monitor = "desc:BNQ BenQ EL2870U PCK00489SL0" })
 --]]
+-- Dynamically bind all 10 workspaces to your single real BOE monitor.
+-- This keeps them persistent and visible on your bar so you can switch them via mouse clicks!
+for i = 1, 10 do
+	hl.workspace_rule({
+		workspace = tostring(i),
+		persistent = true,
+		monitor = "desc:BOE 0x0690",
+		default = (i == 1),
+	})
+end
