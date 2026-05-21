@@ -23,6 +23,7 @@
     bibata-cursors
     fzf # Fuzzy Finder
     fd # Better Find
+    wev # Wayland event viewer
     libjxl # Support for JXL Images
     microfetch # Small fetch (Blazingly fast)
     nix-prefetch-scripts # Find Hashes/Revisions of Nix Packages
