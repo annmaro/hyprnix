@@ -17,6 +17,14 @@ in
     python314Packages.gpustat
     brightnessctl
     wf-recorder
+    hyprpicker
+    cliphist
+    grimblast
+    swappy
+    libnotify
+    xdotool
+    wtype
+    hyprsunset
   ];
 
   # Wayle reads avatar from ~/.face

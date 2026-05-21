@@ -304,7 +304,7 @@ hl.window_rule({
 	opacity = "0.80 0.70",
 	float = true,
 	center = true,
-	size = "802 261",
+	size = "{ x = 802, y = 261 }",
 })
 hl.window_rule({
 	match = { class = "^(eog)$" },

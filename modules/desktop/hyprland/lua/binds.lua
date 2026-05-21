@@ -43,7 +43,7 @@ hl.bind(
 -- hl.bind(mainMod .. " + ALT + mouse:276", hl.dsp.exec_cmd("kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"))
 
 -- Night Mode (lower value means warmer temp)
-hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 2500")) -- good values: 3500, 3000, 2500
+hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("hyprsunset --temperature 3000")) -- good values: 3500, 3000, 2500
 hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pkill hyprsunset"))
 
 -- Window/Session actions
