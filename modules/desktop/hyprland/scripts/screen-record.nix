@@ -3,9 +3,9 @@
 pkgs.writeShellApplication {
   name = "screen-record";
 
-  # Nix seamlessly provides these specific binaries to the script environment
+  # Nix securely injects all of these packages into the script's execution path
   runtimeInputs = with pkgs; [
-    coreutils    # Provides mkdir, date, basename
+    coreutils    # Provides mkdir, date, basename, etc.
     procps       # Provides pidof, pkill
     libnotify    # Provides notify-send
     slurp        # Provides slurp
@@ -13,8 +13,8 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    XDG_VIDEOS_DIR="\${XDG_VIDEOS_DIR:-$HOME/Videos}"
-    DIR="\${XDG_VIDEOS_DIR}/screen-record"
+    XDG_VIDEOS_DIR="''${XDG_VIDEOS_DIR:-$HOME/Videos}"
+    DIR="''${XDG_VIDEOS_DIR}/screen-record"
 
     mkdir -p "$DIR"
 
@@ -33,7 +33,7 @@ pkgs.writeShellApplication {
     if pidof wf-recorder > /dev/null; then
       pkill wf-recorder
       notify-send -e -t 2500 -u low "Recording Finished" \
-        "Saved to $DIR/recording_\${timestamp}.mp4"
+        "Saved to $DIR/recording_''${timestamp}.mp4"
       exit 0
     fi
 
@@ -43,8 +43,7 @@ pkgs.writeShellApplication {
       *) print_error ;;
     esac
 
-    # Triggering notification inside wf-recorder's geometry parameter initialization step
     notify-send -e -t 2500 -u low "Recording Started"
-    wf-recorder --audio -g "$REGION" -f "$DIR/recording_\${timestamp}.mp4"
+    wf-recorder --audio -g "$REGION" -f "$DIR/recording_''${timestamp}.mp4"
   '';
 }
