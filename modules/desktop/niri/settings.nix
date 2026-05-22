@@ -2,7 +2,6 @@
 { pkgs, ... }: 
 
 {
-  programs.niri.settings = {
     # ==========================================
     # 📐 GLOBAL COMPOSITOR BLUR PARAMETERS
     # ==========================================
@@ -303,5 +302,4 @@
         open-floating = true;
       }
     ];
-  };
 }
