@@ -12,9 +12,8 @@ in
 {
   imports = [
     ../../themes/Catppuccin
-    ./variables.nix
-    ./programs/${bar}
-    ./programs/rofi
+     ./dms
+    ./rofi
   ];
 
   # Niri binary cache settings to prevent local compilation compilation
