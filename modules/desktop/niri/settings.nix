@@ -138,9 +138,8 @@
       "Mod+Alt+L".action.spawn = [ "dms" "session" "lock" ];
       "Mod+N".action.spawn = [ "dms" "ipc" "call" "notifications" "toggle" ];
       "Mod+Shift+E".action.spawn = [ "dms" "ipc" "call" "session" "toggle" ];
+      "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ];
       
-      "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ];
-      "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ];
 
       # Media & Quick Commands
       "Mod+Shift+S".action.spawn = [ "spotify" ];
