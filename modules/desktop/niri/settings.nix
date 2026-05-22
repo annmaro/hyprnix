@@ -184,7 +184,6 @@
         { app-id = "^gapless$"; }
       ];
       opacity = 1.0;
-      background-effect = { blur = false; };
     }
     {
       matches = [
@@ -197,10 +196,10 @@
         { app-id = "^code$"; }
       ];
       opacity = 0.94;
-      background-effect = {
-        blur = true;
-        xray = true; 
-      };
+      # 🛠️ FIXED SYNTAX FOR HOME MANAGER:
+      # We tell Niri to render the window background using alpha transparency,
+      # which allows the compositor's blur rules to see through the window surface.
+      draw-background-with-alpha = true;
     }
     {
       matches = [
