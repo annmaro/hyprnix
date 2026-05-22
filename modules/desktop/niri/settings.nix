@@ -52,7 +52,7 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus = true;
+    warp-mouse-to-focus.enable = true; 
     focus-follows-mouse.enable = true;
   };
 

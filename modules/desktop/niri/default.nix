@@ -42,7 +42,7 @@
   # Core Flake deployment hooks
   programs.niri = {
     enable = true;
-    package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+    package = pkgs.niri;
   };
 
   home-manager.sharedModules = [
