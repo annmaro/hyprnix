@@ -1,22 +1,24 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 1. zRAM Configuration (Compressed RAM Swap)
+  # 1. Swap/zRAM Configuration (highly recommended for systemd-oomd)
   zramSwap = {
     enable = true;
-    # 50% dynamically allocates exactly 8GB on your 16GB system
     memoryPercent = 50;
-    
-    # Explicitly set the compression algorithm. 'zstd' is the modern standard 
-    # for a great balance of speed and compression ratio.
-    algorithm = "zstd"; 
+    algorithm = "zstd";
   };
 
-  # 2. Out-Of-Memory (OOM) Daemon
-  # Prevents hard system freezes by killing memory hogs before RAM completely runs out
-  services.earlyoom = {
+  # 2. Modern Systemd-OOMD Configuration
+  systemd.oomd = {
     enable = true;
-    # Kills the largest unessential process when free RAM drops to 5%
-    freeMemThreshold = 5; 
+    enableUserSlices = true; # Automatically applies OOM tracking to user processes
+  };
+
+  # 3. Configure user.slice to tolerate 90% pressure before killing anything
+  systemd.slices."user" = {
+    sliceConfig = {
+      ManagedOOMMemoryPressure = "kill";
+      ManagedOOMMemoryPressureLimit = "90%";
+    };
   };
 }
