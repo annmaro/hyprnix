@@ -4,6 +4,7 @@
   ...
 }:
 {
+  # Allow unfree packages for gaming
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
@@ -11,10 +12,14 @@
       "steam-original"
       "steam-run"
     ];
+
+  # Graphics Configuration
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
+
+  # System-wide packages
   environment.systemPackages = with pkgs; [
     stable.lutris
     heroic
@@ -25,8 +30,39 @@
     steam-run
     wineWow64Packages.staging
   ];
+
+  # User groups configuration
+  users.users.annmaro.extraGroups = [ "gamemode" ];
+
+  # Programs & Gaming Configurations
   programs = {
-    gamemode.enable = true;
+    # Integrated GameMode with custom hooks and optimizations
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;                # Sets nice priority of the game to -10 (high priority)
+          ioprio = 0;                 # Gives games the highest I/O scheduling priority
+          inhibit_screensaver = 1;    # Stops screensavers or monitors turning off while playing
+        };
+
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode' 'Optimizations activated. Performance governor engaged.'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode' 'Optimizations deactivated. Balanced governor restored.'";
+        };
+
+        # Optional GPU Optimizations (Uncomment if using a dedicated graphics card)
+        # gpu = {
+        #   apply_gpu_optimisations = "accept-responsibility";
+        #   gpu_vendor = "amd"; # Choose: amd or nvidia
+        #   amd_performance_level = "high";
+        #   nv_core_clock_mhz_offset = 100;
+        #   nv_mem_clock_mhz_offset = 100;
+        # };
+      };
+    };
+
+    # Steam configuration
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -34,6 +70,8 @@
       gamescopeSession.enable = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
+
+    # Gamescope configuration
     gamescope = {
       enable = true;
       capSysNice = true;
@@ -43,6 +81,8 @@
       ];
     };
   };
+
+  # MangoHud configuration via Home Manager shared modules
   home-manager.sharedModules = [
     (_: {
       programs.mangohud = {
@@ -65,9 +105,8 @@
           fps_limit_method = "late"; # late = low input lag but less smooth, early = more smooth
           vsync = 2; # https://github.com/flightlessmango/MangoHud#vsync
           gl_vsync = 1; # https://github.com/flightlessmango/MangoHud#vsync
-          # testing for gl_vsync: 1.045
 
-          # keybinds
+          # Keybinds
           toggle_hud = "Shift_R+F12";
           # toggle_hud_position="Shift_R+F11";
           toggle_fps_limit = "Shift_R+F1";
