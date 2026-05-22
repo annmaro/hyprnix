@@ -9,7 +9,6 @@
 
 {
   imports = [
-    ../../themes/Catppuccin
     ./dms                  # Points exactly to your uppercase DMS folder
     ./rofi
     ./themes
