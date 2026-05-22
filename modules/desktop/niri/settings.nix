@@ -38,7 +38,7 @@
     # ==========================================
     # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
     # ==========================================
-    spawn = 
+    spawn = [
       # Standard desktop elements
       { command = [ "dms" "run" ]; } 
       { command = [ "hyprsunset" "--temperature" "3000" ]; } 
@@ -49,7 +49,7 @@
       
       # Clean up cliphist safely at start
       { command = [ "sh" "-c" "rm -f \${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/db" ]; } 
-
+    ];
 
     # ==========================================
     # ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
