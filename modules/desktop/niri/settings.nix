@@ -196,10 +196,6 @@
         { app-id = "^code$"; }
       ];
       opacity = 0.94;
-      # 🛠️ FIXED SYNTAX FOR HOME MANAGER:
-      # We tell Niri to render the window background using alpha transparency,
-      # which allows the compositor's blur rules to see through the window surface.
-      draw-background-with-alpha = true;
     }
     {
       matches = [
