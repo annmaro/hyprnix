@@ -6,6 +6,11 @@
         enable = true;
         enableBashIntegration = true;
         enableZshIntegration = true;
+        theme = {
+        flavor = {
+          use = "catppuccin-mocha";
+        };
+      };
         shellWrapperName = "y";
 
         # 1. DECLARE THE GVFS PLUGIN HERE
