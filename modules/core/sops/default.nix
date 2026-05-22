@@ -7,6 +7,11 @@
         inputs.sops-nix.homeManagerModules.sops
       ];
 
+      # This installs the actual 'sops' command-line tool for your user
+      home.packages = [
+        pkgs.sops
+      ];
+
       sops = {
         age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
         # Resolves automatically relative to your Flake repository folder root
@@ -21,6 +26,7 @@
           "rclone_gdrive_env" = {};
           "git_email" = {};  # <-- Tracked smoothly in volatile memory
           "git_key_id" = {}; # <-- Tracked smoothly in volatile memory
+          "gemini_api_key" = {};
         };
       };
     })
