@@ -1,158 +1,112 @@
 { config, pkgs, ... }:
 
 let
-  color1 = "#d6bc5d";
-  color2 = "#00FFFF";
-  color3 = "#40E0D0";
-  color4 = "#32CD32";
-  color5 = "#e5c100";
-  color6 = "#088F8F";
-  color7 = "#B4C424";
-  color8 = "#c59c79";
-  color9 = "#50C878";
-  color10 = "#40B5AD";
+  # Brand New Color Palette (Catppuccin Mocha)
+  labels     = "#89b4fa"; # Blue
+  kernelCol  = "#cba6f7"; # Mauve
+  uptimeCol  = "#a6e3a1"; # Green
+  pkgsCol    = "#eba0ac"; # Maroon
+  shellCol   = "#f9e2af"; # Yellow
+  cpuCol     = "#94e2d5"; # Teal
+  gpuCol     = "#89dceb"; # Sky
+  memCol     = "#f5c2e7"; # Pink
+  wmCol      = "#fab387"; # Peach
+  termCol    = "#89b4fa"; # Blue
 in
-
 {
-
   home-manager.sharedModules = [
     (_: {   
-  programs.fastfetch = {
-    enable = true;
-    package = pkgs.fastfetch;
-    settings = {
-      "$schema" = "https:#github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
-    
-      logo = {
-        source = ./nixos.png;
-        height = 15;
-        width = 30;
-        padding = {
-          top = 10;
-          left = 3;
+      programs.fastfetch = {
+        enable = true;
+        package = pkgs.fastfetch;
+        settings = {
+          "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+        
+          logo = {
+            source = "nixos"; # Uses fastfetch's beautiful built-in sleek NixOS logo
+            padding = {
+              top = 2;
+              right = 4;
+            };
+          };
+
+          display = {
+            separator = " ── ";
+            color = {
+              keys = "magenta";
+              title = "blue";
+            };
+          };
+
+          modules = [
+            {
+              type = "title";
+              color = {
+                user = "blue";
+                host = "mauve";
+              };
+            }
+            "break"
+            {
+              type = "os";
+              key = "󱄅 os";
+              keyColor = labels;
+            }
+            {
+              type = "kernel";
+              key = "󰌽 kernel";
+              keyColor = kernelCol;
+            }
+            {
+              type = "uptime";
+              key = "󱎫 uptime";
+              keyColor = uptimeCol;
+            }
+            {
+              type = "packages";
+              key = "󰏖 packages";
+              keyColor = pkgsCol;
+            }
+            {
+              type = "shell";
+              key = "󱆃 shell";
+              keyColor = shellCol;
+            }
+            "break"
+            {
+              type = "cpu";
+              key = "󰻠 cpu";
+              keyColor = cpuCol;
+            }
+            {
+              type = "gpu";
+              key = "󰢮 gpu";
+              keyColor = gpuCol;
+            }
+            {
+              type = "memory";
+              key = "󰍛 memory";
+              keyColor = memCol;
+            }
+            {
+              type = "wm";
+              key = " wm";
+              keyColor = wmCol;
+            }
+            {
+              type = "terminal";
+              key = " terminal";
+              keyColor = termCol;
+            }
+            "break"
+            {
+              type = "colors";
+              symbol = "block";
+              paddingLeft = 2;
+            }
+          ];
         };
       };
-
-      modules = [
-        "break"
-        {
-          type = "command";
-          text = "echo \${USER}@\${HOSTNAME}";
-          key = "      ";
-          keyColor = color10;
-        }
-        {
-          type = "custom";
-          format = "┌──────────────────────Hardware──────────────────────┐";
-        }
-        {
-          type = "host";
-          key = "   PC";
-          keyColor = color1;
-        }
-        {
-          type = "cpu";
-          key = "   CPU";
-          showPeCoreCount = true;
-          keyColor = color2;
-        }
-        {
-          type = "gpu";
-          key = "  󰊴 GPU";
-          keyColor = color3;
-        } 
-        {
-          type = "memory";
-          key = "  󰑭 Memory";
-          keyColor = color4;
-        }
-        {
-          type = "disk";
-          key = "   Disk";
-          keyColor = color5;
-        }
-        {
-          type = "display";
-          key = "  󰍹 Display";
-          keyColor = color6;
-        }
-        {
-          type = "custom";
-          format = "└────────────────────────────────────────────────────┘";
-        }
-        "break"
-        {
-          type = "custom";
-          format = "┌──────────────────────Software──────────────────────┐";
-        }
-        {
-          type = "os";
-          key = "   OS";
-          keyColor = color7;
-        }
-        {
-          type = "kernel";
-          key = "   Kernel";
-          keyColor = color7;
-        }
-        {
-          type = "packages";
-          key = "  󰏖 Packages";
-          keyColor = color8;
-        }  
-        {
-          type = "de";
-          key = " DE";
-          keyColor = color9;
-        }
-        {
-          type = "wm";
-          key = "   WM";
-          keyColor = color8;
-        }
-        {
-          type = "terminal";
-          key = "   Terminal";
-          keyColor = color9;
-        }
-        {
-          type = "shell";
-          key = "   Shell";
-          keyColor = color9;
-        } 
-        {
-          type = "custom";
-          format = "└────────────────────────────────────────────────────┘";
-        }
-        "break"
-        {
-          type = "custom";
-          format = "┌────────────────────Uptime/Age──────────────────────┐";
-        }
-        {
-          type = "command";
-          key = "  OS Age";
-          keyColor = color10;
-          text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
-        }
-        {
-          type = "uptime";
-          key = "  Uptime";
-          keyColor = color10;
-        }
-        {
-          type = "custom";
-          format = "└────────────────────────────────────────────────────┘";
-        }
-        {
-            type = "colors";
-            paddingLeft = 2;
-            symbol = "circle";
-        }
-        "break"
-	    ];
-    };
-  };
     })
   ];
 }
