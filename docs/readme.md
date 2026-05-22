@@ -23,6 +23,16 @@
    </p>
 </div>
 
+> [!CAUTION]
+> ### 🚨 ARCHITECTURAL SHIFT: SWITCHED FROM HYPRLAND TO NIRI 🚨
+> 
+> **This repository has permanently moved away from the Hyprland ecosystem and Waybar.** The desktop environment is now completely driven by the **Niri scrollable-tiling compositor** and **Dank Material Shell (DMS)** for the top bar, notification stack, and session management.
+> 
+> If you have an active fork of this repository:
+> * Your existing configurations for `hyprlock`, `hypridle`, and `waybar` have been structural entry points that are no longer supported.
+> * Blindly pulling the latest upstream changes into an older Hyprland-based layout **will break your Nix system evaluation due to module/variable import modifications**.
+> * To properly transition your machine or review what changed, please follow the comprehensive **[Niri Migration & Switching Guide](./niri-migration.md)** *(link to be updated)* before running your next rebuild.
+
 ## Screenshots
 
 ![Screenshot](../img/preview1.png)
