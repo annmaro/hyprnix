@@ -90,14 +90,7 @@
       active.color = "#ca9ee6";
       inactive.color = "#b4befe"; 
     };
-    blur = {
-      enable = true;
-      passes = 2;       
-      offset = 2.0;     
-      noise = 0.01;
-      saturation = 1.1;
-    };
-    preset-column-widths = [
+   preset-column-widths = [
       { proportion = 1.0 / 3.0; }
       { proportion = 1.0 / 2.0; }
       { proportion = 2.0 / 3.0; }
