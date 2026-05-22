@@ -138,6 +138,7 @@
             wp = "hyprctl hyprpaper reload ,";
             nrs = "sudo nixos-rebuild boot --flake .#default";
             nhu = "nh os switch --hostname default";
+            nrb = "nh os boot --hostname default";
             da = "sudo nixos-rebuild dry-activate --flake .#default";
             dr = "nixos-rebuild dry-run --flake .#default";
             ncg = "sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
