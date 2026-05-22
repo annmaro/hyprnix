@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (import ../../../../../hosts/${host}/variables.nix) terminal;
+  inherit (import ../../../../hosts/${host}/variables.nix) terminal;
 in
 {
   home-manager.sharedModules = [
