@@ -10,13 +10,8 @@
   programs.dank-material-shell = {
     enable = true;
     
-    # Auto-generates the background systemd services for tracking idle states
+  # Auto-generates the background systemd services for tracking idle states
     systemd.enable = true; 
-  };
-
-  # 3. Hard-lock DMS variables to bypass Matugen auto-theming
-  home.sessionVariables = {
-    DMS_DISABLE_MATUGEN = "1";
   };
 
   # 4. Declarative Structural Configurations for the Shell
