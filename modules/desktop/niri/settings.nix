@@ -27,6 +27,7 @@
       "QT_ENABLE_HIGHDPI_SCALING" = "1";
       "WLR_RENDERER_ALLOW_SOFTWARE" = "1";
       "NIXPKGS_ALLOW_UNFREE" = "1";
+      "DMS_DISABLE_MATUGEN" = "1";
     };
 
     # ==========================================
@@ -34,8 +35,7 @@
     # ==========================================
     spawn = [
       # Standard desktop elements
-      { command = [ "swaync" ]; }
-      { command = [ "nm-applet" "--indicator" ]; }
+      { command = [ "dms" "run" ]; }
       { command = [ "hyprsunset" "--temperature" "3000" ]; }
       
       # Clipboard history recording daemons
@@ -134,7 +134,12 @@
       # Session controls
       "Mod+Q".action.close-window = [ ];
       "Mod+Delete".action.quit = [ ];
-      "Mod+Alt+L".action.spawn = [ "hyprlock" ];
+      # Updated Keyboard Session Controls for DMS
+      "Mod+Alt+L".action.spawn = [ "dms" "session" "lock" ];
+      "Mod+N".action.spawn = [ "dms" "ipc" "call" "notifications" "toggle" ];
+      "Mod+Shift+E".action.spawn = [ "dms" "ipc" "call" "session" "toggle" ];
+      
+      "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ]
       "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ];
 
       # Media & Quick Commands
