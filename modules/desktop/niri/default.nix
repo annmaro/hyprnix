@@ -13,24 +13,22 @@
     ./awww                  
     ./rofi
     ./themes
-    ./settings.nix
   ];
 
-   # Standard core CLI/desktop utility tools
-
-      environment.systemPackages = with pkgs; [
-        cliphist        # Clipboard history manager daemon
-        swappy          # Snapshot editor and annotator
-        libnotify       # Notification send tool (notify-send)
-        wtype           # Wayland keyboard input simulator
-        wl-clipboard    # Clipboard access commands (wl-copy, wl-paste)
-        pavucontrol     # PulseAudio Volume Control GUI
-        brightnessctl   # Lightweight screen brightness control utility
-        playerctl       # Command-line utility for controlling media players
-        pamixer         # PulseAudio command-line mixer
-        grim            # Pure Wayland screen grabber
-        slurp           # Region selector for screenshots
-      ];
+  # Standard core CLI/desktop utility tools
+  environment.systemPackages = with pkgs; [
+    cliphist        # Clipboard history manager daemon
+    swappy          # Snapshot editor and annotator
+    libnotify       # Notification send tool (notify-send)
+    wtype           # Wayland keyboard input simulator
+    wl-clipboard    # Clipboard access commands (wl-copy, wl-paste)
+    pavucontrol     # PulseAudio Volume Control GUI
+    brightnessctl   # Lightweight screen brightness control utility
+    playerctl       # Command-line utility for controlling media players
+    pamixer         # PulseAudio command-line mixer
+    grim            # Pure Wayland screen grabber
+    slurp           # Region selector for screenshots
+  ];
 
   # Niri binary cache settings to prevent local compilation
   nix.settings = {
@@ -49,16 +47,20 @@
 
   home-manager.sharedModules = [
     (_: {
-      
-     imports = [
+      imports = [
         inputs.niri.homeModules.niri
       ];
+
+      # Automatically map the clean options from settings.nix into Home Manager's Niri module
+      programs.niri.settings = import ./settings.nix { inherit pkgs config; };
+
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
           xdg-desktop-portal-gnome
           xdg-desktop-portal-gtk
         ];
+        
         xdgOpenUsePortal = true;
         configPackages = [ config.programs.niri.package ];
         config.niri = {

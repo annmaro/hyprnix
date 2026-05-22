@@ -1,16 +1,22 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  # We define this as a reusable Home Manager module snippet
   home-manager.sharedModules = [
     (_: { 
       imports = [
         inputs.dms.homeModules.dank-material-shell
+        inputs.dms.homeModules.niri # ◄ 1. Enforce native Niri features & auto-spawning
       ];
 
       programs.dank-material-shell = {
         enable = true;
         systemd.enable = true; 
+        
+        # ◄ 2. Automatically bind native DMS media control shortcuts
+        niri = {
+          enableKeybinds = true; 
+          enableSpawn = true;
+        };
       };
 
       home.packages = with pkgs; [
@@ -25,8 +31,8 @@
           notifications = true;
           idle = true;          
           lockscreen = true;    
-          wallpaper = false;    
-          launcher = false;     
+          wallpaper = false; # Handled perfectly by your separate awww + waypaper setup!
+          launcher = false;  # Handled by your native rofi setup
           dock = false;         
         };
 
