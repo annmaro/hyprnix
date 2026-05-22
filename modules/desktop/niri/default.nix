@@ -49,7 +49,10 @@
 
   home-manager.sharedModules = [
     (_: {
-     
+      
+     imports = [
+        inputs.niri.homeModules.niri
+      ];
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
