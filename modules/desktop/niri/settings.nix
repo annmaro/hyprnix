@@ -2,6 +2,9 @@
 { pkgs, ... }: 
 
 {
+  home-manager.sharedModules = [
+  (_: {
+  
   programs.niri.settings = {
     # ==========================================
     # 📐 GLOBAL COMPOSITOR BLUR PARAMETERS
@@ -304,4 +307,6 @@
       }
     ];
   };
+ })
+ ];
 }
