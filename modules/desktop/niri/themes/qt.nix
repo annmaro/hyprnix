@@ -9,7 +9,7 @@ in
 {
   # Install the core Qt style sheet engines globally
   environment.systemPackages = with pkgs; [
-    qt6ct
+    qt6Packages.qt6ct
     libsForQt5.qt5ct
     catppuccin-kvantum-pkg
   ];
