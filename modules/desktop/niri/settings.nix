@@ -29,7 +29,7 @@
         # ==========================================
         # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
         # ==========================================
-        spawn = [
+        spawn-at-startup = [
           { command = [ "dms" "run" ]; }
           { command = [ "hyprsunset" "--temperature" "3000" ]; }
           { command = [ "wl-paste" "--type" "text" "--watch" "cliphist" "store" ]; }
