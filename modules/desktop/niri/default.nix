@@ -12,6 +12,7 @@
     ../../themes/Catppuccin
     ./dms                  # Points exactly to your uppercase DMS folder
     ./rofi
+    ./themes
   ];
 
   # Niri binary cache settings to prevent local compilation
