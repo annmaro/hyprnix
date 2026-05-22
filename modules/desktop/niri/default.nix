@@ -7,21 +7,15 @@
   ...
 }:
 let
-  inherit (lib) optional;
-  inherit (import ../../../hosts/${host}/variables.nix) bar;
+    inherit (import ../../../hosts/${host}/variables.nix) bar;
 in
 {
   imports = [
     ../../themes/Catppuccin
     ./variables.nix
     ./programs/${bar}
-    ./programs/wlogout
     ./programs/rofi
-    # If your idle/lock setups are generic hypridle configurations, they work on Niri too!
-    ./programs/hypridle 
-    ./programs/hyprlock
-  ]
-  ++ optional (bar != "wayle") ./programs/swaync;
+  ];
 
   # Niri binary cache settings to prevent local compilation compilation
   nix.settings = {
