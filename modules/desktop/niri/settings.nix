@@ -29,9 +29,6 @@
   spawn-at-startup = [
     { command = [ "dms" "run" ]; }
     { command = [ "hyprsunset" "--temperature" "3000" ]; }
-    { command = [ "wl-paste" "--type" "text" "--watch" "cliphist" "store" ]; }
-    { command = [ "wl-paste" "--type" "image" "--watch" "cliphist" "store" ]; }
-    { command = [ "sh" "-c" "rm -f \${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/db" ]; }
   ];
 
   # ==========================================
