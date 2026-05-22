@@ -6,17 +6,15 @@
   pkgs,
   ...
 }:
-let
-    inherit (import ../../../hosts/${host}/variables.nix) bar;
-in
+
 {
   imports = [
     ../../themes/Catppuccin
-     ./dms
+    ./dms                  # Points exactly to your uppercase DMS folder
     ./rofi
   ];
 
-  # Niri binary cache settings to prevent local compilation compilation
+  # Niri binary cache settings to prevent local compilation
   nix.settings = {
     substituters = [ "https://niri.cachix.org" ];
     trusted-public-keys = [ "niri.cachix.org-1:Wv0Om60u5f0m73/8w7+U267eNInK9Yubun7ZasfSgY8=" ];
@@ -43,6 +41,9 @@ in
 
   home-manager.sharedModules = [
     (_: {
+      # Link your local settings.nix configuration into home-manager's niri instance
+      imports = [ ./settings.nix ];
+
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
@@ -76,7 +77,7 @@ in
         brightnessctl   # Lightweight screen brightness control utility
         playerctl       # Command-line utility for controlling media players
         pamixer         # PulseAudio command-line mixer
-        grim            # Pure Wayland screen grabber (replaces grimblast)
+        grim            # Pure Wayland screen grabber
         slurp           # Region selector for screenshots
       ];
     })
