@@ -49,7 +49,7 @@
       
       # Clean up cliphist safely at start
       { command = [ "sh" "-c" "rm -f \${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/db" ]; } 
-    ];
+
 
     # ==========================================
     # ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
