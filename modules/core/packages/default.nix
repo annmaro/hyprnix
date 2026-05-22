@@ -20,7 +20,6 @@
     jq # Json Formatting Utility
     libsecret # Library for storing and retrieving passwords and other secrets
     seahorse # Application for managing encryption keys and passwords in the GnomeKeyring
-    bibata-cursors
     fzf # Fuzzy Finder
     fd # Better Find
     wev # Wayland event viewer
