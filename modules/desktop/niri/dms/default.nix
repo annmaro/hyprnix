@@ -40,25 +40,13 @@
         # ==========================================
         # 📊 BAR INTERFACE & SIZING CONFIGURATION
         # ==========================================
-        bar = {
-          # Increase this value to make the top bar larger.
-          # Default is usually around 28-32. Try 40 or 44 for a clearer size.
-          height = 44; 
-          
-          # Optional: You can also adjust the font size here if the text 
-          # feels too small inside your newly sized bar
-          fontSize = 12;
-
-        weather = {
-          enabled = true;
-          latitude = 23.6303;     # Coordinates for Ramgarh, Jharkhand, India 
-          longitude = 85.5216;
-          unit = "celsius";     # "celsius" or "fahrenheit"
-          interval = 1800;      # Refresh period calculation metric (in seconds)
-        };
-
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;
+
+        weatherEnabled = true;
+        weatherLocation = "Ramgarh, Jharkhand, India";
+        weatherCoordinates = "23.6303,85.5216";
+        useFahrenheit = false;
 
         barConfigs = [
           {
@@ -68,9 +56,10 @@
             position = "top";
             floating = true;       
             margin = 8;            
-            height = 30;           
+            height = 44;           
             borderRadius = 6;
             opacity = 0.92;
+            fontSize = 12;
 
             network_click_action = "applet";
             audio_click_action = "applet";
@@ -91,7 +80,6 @@
             ];
           }
         ];
-        };
       };
     })
   ];
