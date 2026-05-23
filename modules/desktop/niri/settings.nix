@@ -211,7 +211,7 @@
       # FIX FOR ELECTRON EDITORS & CSD
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = { radius = 12; };
+      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       # File Managers & Media Players Block (0.80 Opacity)
@@ -230,7 +230,7 @@
       # FIX FOR ELECTRON MEDIA APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = { radius = 12; };
+      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       # Notes, Launchers, & Social Block (0.90 Opacity)
@@ -249,7 +249,7 @@
       # FIX FOR CHAT/NOTE APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = { radius = 12; };
+      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       matches = [
