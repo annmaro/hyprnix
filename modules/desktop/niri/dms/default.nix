@@ -47,7 +47,7 @@
           
           # Optional: You can also adjust the font size here if the text 
           # feels too small inside your newly sized bar
-          fontSize = 11;
+          fontSize = 12;
 
         weather = {
           enabled = true;
