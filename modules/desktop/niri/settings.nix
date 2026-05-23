@@ -28,7 +28,7 @@
   # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
   # ==========================================
   spawn-at-startup = [
-    { command = [ "sh" "-c" "pkill wlsunset; wlsunset -l 23.3 -L 85.3 -T 6500 -t 3000" ]; }
+    { command = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000" ]; }
   ];
 
   # ==========================================
@@ -92,6 +92,20 @@
       { proportion = 2.0 / 3.0; }
     ];
   };
+
+  # ==========================================
+  # 🎨 GRAPHICAL STYLING & OVERVIEW BACKDROP
+  # ==========================================
+  styling = {
+    # 🛠️ FIXED: This adds the custom overview workspace backdrop
+    # It perfectly matches the deep purple background hex of your style-2.rasi theme!
+    layers = {
+      background = {
+        color = "#0f2739ec"; # Hex color + Alpha opacity (~92% translucent)
+      };
+    };
+  };                                   
+
 
   # ==========================================
   # 🕹️ KEYBINDINGS & WORKFLOW CONTROLS

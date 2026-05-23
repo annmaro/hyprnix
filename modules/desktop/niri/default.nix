@@ -32,16 +32,17 @@
     wlsunset              # Day/night gamma adjustments for Wayland
 
     (pkgs.writeShellScriptBin "wlsunset-toggle" ''
-      # If forced night mode is running, switch to auto
-      if pgrep -f "wlsunset -T 3001" > /dev/null; then
-        pkill wlsunset
-        wlsunset -l 23.3 -L 85.3 -T 6500 -t 3000 &
-        notify-send -i weather-clear "Display" "Auto color temperature enabled"
+      # 🛠️ FIXED: Use direct interpolation paths to ensure binaries are always found
+      WLSUNSET="${lib.getExe pkgs.wlsunset}"
+
+      if pgrep -f "$WLSUNSET -T 3001" > /dev/null; then
+        pkill -f "$WLSUNSET"
+        $WLSUNSET -l 23.3 -L 85.3 -T 6500 -t 3000 &
+        ${pkgs.libnotify}/bin/notify-send -i weather-clear "Display" "Auto color temperature enabled"
       else
-        # Else force night mode
-        pkill wlsunset
-        wlsunset -T 3001 -t 3000 &
-        notify-send -i weather-clear-night "Display" "Night mode forced (3000K)"
+        pkill -f "$WLSUNSET"
+        $WLSUNSET -T 3001 -t 3000 &
+        ${pkgs.libnotify}/bin/notify-send -i weather-clear-night "Display" "Night mode forced (3000K)"
       fi
     '')
   ];

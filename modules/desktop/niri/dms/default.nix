@@ -21,6 +21,9 @@
 
       home.packages = with pkgs; [
         dgop # Required for DMS system tracking features
+        nerd-fonts.jetbrains-mono
+        material-symbols
+        material-design-icons
       ];
 
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
@@ -42,6 +45,9 @@
         # ==========================================
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;
+        
+        fontSize = 18;
+        iconSize = 22;       
 
         styling = {
           layers = {
