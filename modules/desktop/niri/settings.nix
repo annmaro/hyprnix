@@ -6,7 +6,10 @@
   # 🌍 ENVIRONMENT VARIABLES & SYSTEM SETTINGS
   # ==========================================
   prefer-no-csd = true;
-  hotkey-overlay.skip-at-startup = true;
+  hotkey-overlay = {
+    skip-at-startup = true;
+  };
+
   environment = {
     "XDG_CURRENT_DESKTOP" = "niri";
     "XDG_SESSION_DESKTOP" = "niri";
@@ -51,7 +54,7 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus.enable = true; 
+    warp-mouse-to-focus.enable = true;
     focus-follows-mouse.enable = true;
   };
 
@@ -86,7 +89,7 @@
       active.color = "#ca9ee6";
       inactive.color = "#b4befe"; 
     };
-   preset-column-widths = [
+    preset-column-widths = [
       { proportion = 1.0 / 3.0; }
       { proportion = 1.0 / 2.0; }
       { proportion = 2.0 / 3.0; }
@@ -97,13 +100,9 @@
   # 🌐 OVERVIEW & WORKSPACE SWITCHER CONFIG
   # ==========================================
   overview = {
-    # 🛠️ Scale down the preview windows in the overview mode
     zoom = 1.0 / 3.0;
-    
-    # 🛠️ Customize your backdrop color here!
-    backdrop-color = "#390f19ec"; # Matches your deep purple Rofi theme
+    backdrop-color = "#390f19ec"; 
   };
-
 
   # ==========================================
   # 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
@@ -119,7 +118,6 @@
     "Mod+Z".action.spawn = [ "rofi" "-show" "emoji" ];
     "Mod+G".action.spawn = [ "launcher" "games" ];
     "Mod+Alt+G".action.spawn = [ "gamemode" ];
-    
     "Mod+Q".action.close-window = [ ];
     "Mod+Delete".action.quit = [ ];
     "Mod+Alt+L".action.spawn = [ "dms" "session" "lock" ];
@@ -130,7 +128,6 @@
     "Mod+Shift+Y".action.spawn = [ "youtube-music" ];
     "Ctrl+Alt+Delete".action.spawn = [ "ghostty" "-e" "btop" ];
     "Mod+Ctrl+C".action.spawn = [ "hyprpicker" "--autocopy" "--format=hex" ];
-    
     "Mod+F9".action.spawn = [ "wlsunset-toggle" ];
     "Mod+F10".action.spawn = [ "sh" "-c" "pkill wlsunset" ];
     
@@ -142,19 +139,16 @@
     "Mod+Ctrl+Left".action.move-column-left = [ ];
     "Mod+Ctrl+Right".action.move-column-right = [ ];
     
-       
     "Mod+K".action.focus-window-up = [ ];
     "Mod+J".action.focus-window-down = [ ];
     "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
     "Mod+Ctrl+J".action.move-column-to-workspace-down = [ ];
-
     "Mod+WheelScrollDown".action.focus-workspace-down = [ ];
     "Mod+WheelScrollUp".action.focus-workspace-up = [ ];
 
     "Mod+R".action.switch-preset-column-width = [ ];
     "Alt+Return".action.fullscreen-window = [ ];
     "Mod+W".action.toggle-window-floating = [ ];
-    
     "Mod+1".action.focus-workspace = [ 1 ];
     "Mod+2".action.focus-workspace = [ 2 ];
     "Mod+3".action.focus-workspace = [ 3 ];
@@ -202,6 +196,7 @@
       opacity = 1.0;
     }
     {
+      # Terminal & Editor Block (0.94 Opacity)
       matches = [
         { app-id = "^kitty$"; }
         { app-id = "^com.mitchellh.ghostty$"; }
@@ -212,8 +207,14 @@
         { app-id = "^code$"; }
       ];
       opacity = 0.94;
+      
+      # FIX FOR ELECTRON EDITORS (VS Code / Codium) & GHOSTTY CSD
+      draw-border-with-background = false;
+      clip-to-geometry = true;
+      geometry-corner-radius = 12;
     }
     {
+      # File Managers & Media Players Block (0.80 Opacity)
       matches = [
         { app-id = "^gnome-disks$"; }
         { app-id = "^org.gnome.Nautilus$"; }
@@ -225,8 +226,14 @@
         { app-id = "^com.github.th_ch.youtube_music$"; }
       ];
       opacity = 0.80;
+
+      # FIX FOR ELECTRON MEDIA APPS (Spotify / YT Music Web wrappers)
+      draw-border-with-background = false;
+      clip-to-geometry = true;
+      geometry-corner-radius = 12;
     }
     {
+      # Notes, Launchers, & Social Block (0.90 Opacity)
       matches = [
         { app-id = "^Emacs$"; }
         { app-id = "^obsidian$"; }
@@ -238,6 +245,11 @@
         { app-id = "^vesktop$"; }
       ];
       opacity = 0.90;
+
+      # FIX FOR CHAT/NOTE APPS (Obsidian, Discord Electron instances)
+      draw-border-with-background = false;
+      clip-to-geometry = true;
+      geometry-corner-radius = 12;
     }
     {
       matches = [
