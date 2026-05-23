@@ -80,11 +80,6 @@
   layout = {
     gaps = 9;
     center-focused-column = "never";
-    layers = {
-      background = {
-        color = "#390f25ec";
-      };
-    }; 
     border = {
       enable = true;
       width = 2;
@@ -97,6 +92,15 @@
       { proportion = 2.0 / 3.0; }
     ];
   };
+
+  # ==========================================
+  # 🎨 FIXED: NEW TOP-LEVEL BACKGROUND SYNTAX
+  # ==========================================
+  # This targets Niri's top-level background rules directly
+  background = {
+    color = "#180F39EC"; # Your custom deep translucent purple
+  };
+
 
   # ==========================================
   # 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
