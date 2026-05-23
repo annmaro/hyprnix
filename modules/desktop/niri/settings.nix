@@ -29,7 +29,7 @@
   spawn-at-startup = [
     { command = [ "awww-daemon" ]; }
     { command = [ "waypaper" "--restore" ]; }
-    { command = [ "wlsunset" "-T" "3000" "-t" "3000" ]; }
+    { command = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "3000" "-t" "3000" ]; }
   ];
 
   # ==========================================
@@ -120,7 +120,7 @@
     "Ctrl+Alt+Delete".action.spawn = [ "ghostty" "-e" "btop" ];
     "Mod+Ctrl+C".action.spawn = [ "hyprpicker" "--autocopy" "--format=hex" ];
     
-    "Mod+F9".action.spawn = [ "sh" "-c" "pkill wlsunset; wlsunset -T 3000 -t 3000" ];
+    "Mod+F9".action.spawn = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "3000" "-t" "3000" ];
     "Mod+F10".action.spawn = [ "pkill" "wlsunset" ];
     
     "Mod+Left".action.focus-column-left = [ ];

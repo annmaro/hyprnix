@@ -15,7 +15,7 @@
         # ◄ 2. Automatically bind native DMS media control shortcuts
         niri = {
           enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
-          enableSpawn = true;
+          enableSpawn = false;   # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
         };
       };
 
