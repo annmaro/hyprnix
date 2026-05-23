@@ -17,20 +17,20 @@
 
   # Standard core CLI/desktop utility tools
   environment.systemPackages = with pkgs; [
-    cliphist        # Clipboard history manager daemon
-    swappy          # Snapshot editor and annotator
-    libnotify       # Notification send tool (notify-send)
-    wtype           # Wayland keyboard input simulator
-    wl-clipboard    # Clipboard access commands (wl-copy, wl-paste)
-    pavucontrol     # PulseAudio Volume Control GUI
-    brightnessctl   # Lightweight screen brightness control utility
-    playerctl       # Command-line utility for controlling media players
-    pamixer         # PulseAudio command-line mixer
-    grim            # Pure Wayland screen grabber
-    slurp           # Region selector for screenshots
-    xfce.thunar-volman  # Necessary if you use Thunar for drive popups
-    gnome-disk-utility  # Gives you a clean GUI to verify physical blocks
-    hyprsunset       # Automatic color temperature adjustment daemon
+    cliphist              # Clipboard history manager daemon
+    swappy                # Snapshot editor and annotator
+    libnotify             # Notification send tool (notify-send)
+    wtype                 # Wayland keyboard input simulator
+    wl-clipboard          # Clipboard access commands (wl-copy, wl-paste)
+    pavucontrol           # PulseAudio Volume Control GUI
+    brightnessctl         # Lightweight screen brightness control utility
+    playerctl             # Command-line utility for controlling media players
+    pamixer               # PulseAudio command-line mixer
+    grim                  # Pure Wayland screen grabber
+    slurp                 # Region selector for screenshots
+    xfce.thunar-volman    # Necessary if you use Thunar for drive popups
+    gnome-disk-utility    # Gives you a clean GUI to verify physical blocks
+    hyprsunset            # Automatic color temperature adjustment daemon
   ];
 
   # Niri binary cache settings to prevent local compilation
