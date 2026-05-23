@@ -16,7 +16,7 @@
       systemd.user.services.waypaper-restore = {
         Unit = {
           Description = "Restore waypaper wallpaper profile on graphical boot";
-          PartOf = [ "graphical-session.target" ];
+          PartOf = [ "graphical-session.target" "awww.service" ];
           After = [ "awww.service" ]; # Wait until the awww daemon backend is actively running
         };
 

@@ -36,10 +36,22 @@
           dock = false;         
         };
 
+        # ==========================================
+        # 📊 BAR INTERFACE & SIZING CONFIGURATION
+        # ==========================================
+        bar = {
+          # Increase this value to make the top bar larger.
+          # Default is usually around 28-32. Try 40 or 44 for a clearer size.
+          height = 42; 
+          
+          # Optional: You can also adjust the font size here if the text 
+          # feels too small inside your newly sized bar
+          fontSize = 11;
+
         weather = {
           enabled = true;
-          latitude = 23.63;     # Coordinates for Ramgarh, Jharkhand, India 
-          longitude = 85.52;
+          latitude = 23.6303;     # Coordinates for Ramgarh, Jharkhand, India 
+          longitude = 85.5216;
           unit = "celsius";     # "celsius" or "fahrenheit"
           interval = 1800;      # Refresh period calculation metric (in seconds)
         };
@@ -78,6 +90,7 @@
             ];
           }
         ];
+        };
       };
     })
   ];

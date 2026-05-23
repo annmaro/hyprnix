@@ -16,7 +16,7 @@
         # 2. Native Nix adaptation of your style-2.rasi theme configurations
         theme = let
           # Use inherit to grab the global variables defined below
-          inherit (config.lib.formats.rasi) mkLiteral;
+          inherit (pkgs.formats.rasi) mkLiteral;
         in {
           # Global Properties
           "*" = {
