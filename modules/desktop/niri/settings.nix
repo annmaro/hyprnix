@@ -135,8 +135,6 @@
     "Mod+Down".action.focus-workspace-down = [ ];
     "Mod+K".action.focus-workspace-up = [ ];
     "Mod+J".action.focus-workspace-down = [ ];
-    "Mod+Ctrl+Up".action.move-column-to-workspace-up = [ ];
-    "Mod+Ctrl+Down".action.move-column-to-workspace-down = [ ];
     "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
     "Mod+Ctrl+J".action.move-column-to-workspace-down = [ ];
 
