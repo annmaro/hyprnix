@@ -36,6 +36,14 @@
           dock = false;         
         };
 
+        weather = {
+          enabled = true;
+          latitude = 23.63;     # Coordinates for Ramgarh, Jharkhand, India 
+          longitude = 85.52;
+          unit = "celsius";     # "celsius" or "fahrenheit"
+          interval = 1800;      # Refresh period calculation metric (in seconds)
+        };
+
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;
 
@@ -62,6 +70,7 @@
               "clock"              
             ];
             rightWidgets = [
+              "weather"
               "systemTray"         
               "cpuUsage"           
               "memUsage"
