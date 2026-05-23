@@ -80,6 +80,11 @@
   layout = {
     gaps = 9;
     center-focused-column = "never";
+    layers = {
+      background = {
+        color = "#390f25ec";
+      };
+    }; 
     border = {
       enable = true;
       width = 2;
@@ -92,20 +97,6 @@
       { proportion = 2.0 / 3.0; }
     ];
   };
-
-  # ==========================================
-  # 🎨 GRAPHICAL STYLING & OVERVIEW BACKDROP
-  # ==========================================
-  styling = {
-    # 🛠️ FIXED: This adds the custom overview workspace backdrop
-    # It perfectly matches the deep purple background hex of your style-2.rasi theme!
-    layers = {
-      background = {
-        color = "#0f2739ec"; # Hex color + Alpha opacity (~92% translucent)
-      };
-    };
-  };                                   
-
 
   # ==========================================
   # 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
