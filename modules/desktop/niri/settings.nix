@@ -83,6 +83,7 @@
   layout = {
     gaps = 9;
     center-focused-column = "never";
+    geometry-corner-radius = 12; # 🛠️ Placed globally here where Home Manager type definitions allow it safely.
     border = {
       enable = true;
       width = 2;
@@ -211,7 +212,6 @@
       # FIX FOR ELECTRON EDITORS & CSD
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       # File Managers & Media Players Block (0.80 Opacity)
@@ -230,7 +230,6 @@
       # FIX FOR ELECTRON MEDIA APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       # Notes, Launchers, & Social Block (0.90 Opacity)
@@ -249,7 +248,6 @@
       # FIX FOR CHAT/NOTE APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = [ 12 12 12 12 ];
     }
     {
       matches = [
