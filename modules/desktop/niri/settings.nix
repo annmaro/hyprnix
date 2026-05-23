@@ -28,7 +28,7 @@
   # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
   # ==========================================
   spawn-at-startup = [
-    { command = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000" ]; }
+    { command = [ "sh" "-c" "pkill wlsunset; wlsunset -l 23.3 -L 85.3 -T 6500 -t 3000" ]; }
   ];
 
   # ==========================================
@@ -98,10 +98,10 @@
   # ==========================================
   binds = {
     "Mod+Return".action.spawn = [ "ghostty" ];
-    "Mod+T".action.spawn = [ "ghostty" ];
+    "Mod+T".action.spawn = [ "kitty" ];
     "Mod+C".action.spawn = [ "editor" ];
-    "Mod+F".action.spawn = [ "browser" ];
-    "Mod+A".action.spawn = [ "rofi" "-show" "drun" ];
+    "Mod+F".action.spawn = [ "firefox" ];
+    "Mod+A".action.spawn = [ "antigravity" ];
     "Mod+Space".action.spawn = [ "rofi" "-show" "drun" ];
     "Mod+V".action.spawn = [ "rofi" "-show" "clipboard" ];
     "Mod+Z".action.spawn = [ "rofi" "-show" "emoji" ];
@@ -119,8 +119,8 @@
     "Ctrl+Alt+Delete".action.spawn = [ "ghostty" "-e" "btop" ];
     "Mod+Ctrl+C".action.spawn = [ "hyprpicker" "--autocopy" "--format=hex" ];
     
-    "Mod+F9".action.spawn = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000" ];
-    "Mod+F10".action.spawn = [ "pkill" "wlsunset" ];
+    "Mod+F9".action.spawn = [ "wlsunset-toggle" ];
+    "Mod+F10".action.spawn = [ "sh" "-c" "pkill wlsunset" ];
     
     "Mod+Left".action.focus-column-left = [ ];
     "Mod+Right".action.focus-column-right = [ ];

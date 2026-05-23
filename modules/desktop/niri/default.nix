@@ -9,8 +9,7 @@
 
 {
   imports = [
-    ./dms
-    ./awww                  
+    ./dms              
     ./rofi
     ./themes
   ];
@@ -31,6 +30,20 @@
     thunar-volman    # Necessary if you use Thunar for drive popups
     gnome-disk-utility    # Gives you a clean GUI to verify physical blocks
     wlsunset              # Day/night gamma adjustments for Wayland
+
+    (pkgs.writeShellScriptBin "wlsunset-toggle" ''
+      # If forced night mode is running, switch to auto
+      if pgrep -f "wlsunset -T 3001" > /dev/null; then
+        pkill wlsunset
+        wlsunset -l 23.3 -L 85.3 -T 6500 -t 3000 &
+        notify-send -i weather-clear "Display" "Auto color temperature enabled"
+      else
+        # Else force night mode
+        pkill wlsunset
+        wlsunset -T 3001 -t 3000 &
+        notify-send -i weather-clear-night "Display" "Night mode forced (3000K)"
+      fi
+    '')
   ];
 
   # Niri binary cache settings to prevent local compilation

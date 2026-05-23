@@ -5,14 +5,14 @@
     (_: {
       # 1. Ensure the required tools are installed in your user profile
       home.packages = with pkgs; [
-        awww       # The core wallpaper engine backend
-        waypaper   # The graphical frontend configuration manager
+        #awww       # The core wallpaper engine backend
+        #waypaper   # The graphical frontend configuration manager
       ];
 
       # 2. Configure awww to run as a supervised background service
-      services.awww.enable = true;
+      services.awww.enable = false;
 
-      # 3. Create a managed post-start service hook to handle the waypaper restoration delay
+    /* # 3. Create a managed post-start service hook to handle the waypaper restoration delay
       systemd.user.services.waypaper-restore = {
         Unit = {
           Description = "Restore waypaper wallpaper profile on graphical boot";
@@ -30,7 +30,7 @@
         Install = {
           WantedBy = [ "graphical-session.target" ];
         };
-      };
+      };*/
     })
   ];
 }

@@ -56,10 +56,10 @@
             position = "top";
             floating = true;       
             margin = 8;            
-            height = 44;           
+            height = 66;           
             borderRadius = 6;
             opacity = 0.92;
-            fontSize = 12;
+            fontSize = 18;
 
             network_click_action = "applet";
             audio_click_action = "applet";
