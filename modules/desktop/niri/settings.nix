@@ -100,10 +100,14 @@
   binds = {
     "Mod+Return".action.spawn = [ "ghostty" ];
     "Mod+T".action.spawn = [ "ghostty" ];
+    "Mod+C".action.spawn = [ "editor" ];
+    "Mod+F".action.spawn = [ "browser" ];
     "Mod+A".action.spawn = [ "rofi" "-show" "drun" ];
     "Mod+Space".action.spawn = [ "rofi" "-show" "drun" ];
     "Mod+V".action.spawn = [ "rofi" "-show" "clipboard" ];
     "Mod+Z".action.spawn = [ "rofi" "-show" "emoji" ];
+    "Mod+G".action.spawn = [ "launcher" "games" ];
+    "Mod+Alt+G".action.spawn = [ "gamemode" ];
     
     "Mod+Q".action.close-window = [ ];
     "Mod+Delete".action.quit = [ ];
@@ -165,6 +169,10 @@
     "XF86AudioNext".action.spawn = [ "playerctl" "next" ];
     "XF86AudioPrev".action.spawn = [ "playerctl" "previous" ];
     "XF86Sleep".action.spawn = [ "systemctl" "suspend" ];
+    "Mod+Up".action.focus-window-or-workspace-up = [ ];
+    "Mod+Down".action.focus-window-or-workspace-down = [ ];
+    "Mod+Ctrl+Up".action.move-workspace-up = [ ];
+    "Mod+Ctrl+Down".action.move-workspace-down = [ ];
     "Mod+P".action.spawn = [ "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -" ];
     "Mod+Ctrl+P".action.spawn = [ "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -" ];
   };
