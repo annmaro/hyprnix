@@ -208,10 +208,10 @@
       ];
       opacity = 0.94;
       
-      # FIX FOR ELECTRON EDITORS (VS Code / Codium) & GHOSTTY CSD
+      # FIX FOR ELECTRON EDITORS & CSD
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = 12;
+      geometry-corner-radius = { bottom-left = 12; bottom-right = 12; top-left = 12; top-right = 12; };
     }
     {
       # File Managers & Media Players Block (0.80 Opacity)
@@ -227,10 +227,10 @@
       ];
       opacity = 0.80;
 
-      # FIX FOR ELECTRON MEDIA APPS (Spotify / YT Music Web wrappers)
+      # FIX FOR ELECTRON MEDIA APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = 12;
+      geometry-corner-radius = { bottom-left = 12; bottom-right = 12; top-left = 12; top-right = 12; };
     }
     {
       # Notes, Launchers, & Social Block (0.90 Opacity)
@@ -246,10 +246,10 @@
       ];
       opacity = 0.90;
 
-      # FIX FOR CHAT/NOTE APPS (Obsidian, Discord Electron instances)
+      # FIX FOR CHAT/NOTE APPS
       draw-border-with-background = false;
       clip-to-geometry = true;
-      geometry-corner-radius = 12;
+      geometry-corner-radius = { bottom-left = 12; bottom-right = 12; top-left = 12; top-right = 12; };
     }
     {
       matches = [
