@@ -11,6 +11,15 @@
       programs.dank-material-shell = {
         enable = true;
         systemd.enable = true; 
+
+        # 🛠️ ADD THIS BLOCK: Forces DMS to scale up fonts and icons nicely together
+        systemd.user.services.dms = {
+          Service = {
+            Environment = [
+            "QT_SCALE_FACTOR=1.2" # 1.2 = 120% size. Adjust this up or down as needed!
+          ];
+        };
+      };
         
         # ◄ 2. Automatically bind native DMS media control shortcuts
         niri = {
@@ -44,10 +53,7 @@
         # 📊 BAR INTERFACE & SIZING CONFIGURATION
         # ==========================================
         theme = "catppuccin-macchiato"; 
-        dynamicTheming = false;
-        
-        fontSize = 18;
-        iconSize = 22;       
+        dynamicTheming = false;      
 
         styling = {
           layers = {
@@ -68,10 +74,9 @@
             position = "top";
             floating = true;       
             margin = 8;            
-            height = 66;           
+            height = 76;           
             borderRadius = 6;
             opacity = 0.92;
-            fontSize = 18;
 
             network_click_action = "applet";
             audio_click_action = "applet";
