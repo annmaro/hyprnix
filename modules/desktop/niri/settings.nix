@@ -27,7 +27,6 @@
   # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
   # ==========================================
   spawn-at-startup = [
-    { command = [ "sh" "-c" "pkill -x dms || true; dms run" ]; }
     { command = [ "hyprsunset" "--temperature" "3000" ]; }
   ];
 
