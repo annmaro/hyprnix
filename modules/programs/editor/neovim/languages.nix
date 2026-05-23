@@ -90,7 +90,7 @@
       enableFormat = true;
       enableTreesitter = true;
 
-      astro.enable = true;
+      astro.enable = false; # Not really usable yet, and just causes errors in the log
       go.enable = true;
       markdown = {
         enable = true;
