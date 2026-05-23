@@ -38,8 +38,7 @@
   input = {
     keyboard = {
       xkb = {
-        layout = "us,ru";
-        options = "caps:swapescape";
+        layout = "us,in";
       };
       repeat-delay = 275;
       repeat-rate = 35;
