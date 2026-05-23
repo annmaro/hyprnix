@@ -142,7 +142,6 @@
     "Mod+WheelScrollUp".action.focus-workspace-up = [ ];
 
     "Mod+R".action.switch-preset-column-width = [ ];
-    "Mod+F".action.maximize-column = [ ];
     "Alt+Return".action.fullscreen-window = [ ];
     "Mod+W".action.toggle-window-floating = [ ];
     
