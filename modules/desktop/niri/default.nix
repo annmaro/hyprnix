@@ -28,6 +28,9 @@
     pamixer         # PulseAudio command-line mixer
     grim            # Pure Wayland screen grabber
     slurp           # Region selector for screenshots
+    xfce.thunar-volman  # Necessary if you use Thunar for drive popups
+    gnome-disk-utility  # Gives you a clean GUI to verify physical blocks
+    hyprsunset       # Automatic color temperature adjustment daemon
   ];
 
   # Niri binary cache settings to prevent local compilation
