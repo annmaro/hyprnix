@@ -43,6 +43,12 @@
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;
 
+        styling = {
+          layers = {
+            background = "#180F39D9";
+          };
+        };
+
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
         weatherCoordinates = "23.6303,85.5216";
