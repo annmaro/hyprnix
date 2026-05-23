@@ -128,13 +128,14 @@
     "Mod+Right".action.focus-column-right = [ ];
     "Mod+H".action.focus-column-left = [ ];
     "Mod+L".action.focus-column-right = [ ];
+    "Mod+S".action.toggle-overview = [ ];
     "Mod+Ctrl+Left".action.move-column-left = [ ];
     "Mod+Ctrl+Right".action.move-column-right = [ ];
     
-    "Mod+Up".action.focus-workspace-up = [ ];
-    "Mod+Down".action.focus-workspace-down = [ ];
-    "Mod+K".action.focus-workspace-up = [ ];
-    "Mod+J".action.focus-workspace-down = [ ];
+    "Mod+Up".action.focus-window-up = [ ];        
+    "Mod+Down".action.focus-window-down = [ ];    
+    "Mod+K".action.focus-window-up = [ ];
+    "Mod+J".action.focus-window-down = [ ];
     "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
     "Mod+Ctrl+J".action.move-column-to-workspace-down = [ ];
 
