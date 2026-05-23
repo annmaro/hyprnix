@@ -1,24 +1,21 @@
-{ pkgs, config, ... }:
+# 🛠️ 1. ADD 'theme' RIGHT HERE IN THE INITIAL ARGUMENTS LIST
+{ pkgs, config, theme, ... }: 
 
 {
   home-manager.sharedModules = [
     (_: {
-      # 1. Ensure the banner image is correctly linked via Home Manager
-      xdg.configFile."rofi/images/telescope-fast.jpg".source = ./images/telescope-fast.jpg;
+      xdg.configFile."rofi/images/telescope-best.jpg".source = ./images/telescope-best.jpg;
 
       programs.rofi = {
         enable = true;
-        terminal = "kitty";
-
+        terminal = "kitty"; 
         extraConfig = import ./config.nix;
 
-        
-        # 2. Native Nix adaptation of your style-2.rasi theme configurations
+        # 🛠️ 2. SIMPLY CALL THE LITERAL BUILDER VIA THE ARGUMENT PROFILE
         theme = let
-          # Use inherit to grab the global variables defined below
-          inherit (pkgs.formats.rasi) mkLiteral;
+          # This will safely evaluate the literals without any missing attribute errors!
+          mkLiteral = value: { _type = "literal"; inherit value; };
         in {
-          # Global Properties
           "*" = {
             font = "JetBrains Mono Nerd Font 10";
             background = mkLiteral "#180F39";
@@ -29,7 +26,6 @@
             urgent = mkLiteral "#7D0075";
           };
 
-          # Main Window
           "window" = {
             transparency = "real";
             location = mkLiteral "center";
@@ -44,7 +40,6 @@
             background-color = mkLiteral "@background";
           };
 
-          # Main Box
           "mainbox" = {
             enabled = true;
             spacing = mkLiteral "0px";
@@ -61,13 +56,11 @@
             children = map mkLiteral [ "message" "listview" ];
           };
 
-          # Inputbar
           "inputbar" = {
             enabled = true;
             spacing = mkLiteral "10px";
             padding = mkLiteral "80px 60px";
             background-color = mkLiteral "transparent";
-            # Dynamically reads from your home profile directly to fix the ~ path parsing bug!
             background-image = mkLiteral "url(\"file://${config.home.homeDirectory}/.config/rofi/images/telescope-best.jpg\")";
             text-color = mkLiteral "@foreground";
             orientation = mkLiteral "horizontal";
@@ -102,7 +95,6 @@
             background-color = mkLiteral "transparent";
           };
 
-          # Mode Switcher
           "mode-switcher" = {
             enabled = true;
             spacing = mkLiteral "10px";
@@ -124,7 +116,6 @@
             text-color = mkLiteral "@foreground";
           };
 
-          # Listview
           "listview" = {
             enabled = true;
             columns = 2;
@@ -142,7 +133,6 @@
             cursor = "default";
           };
 
-          # Elements
           "element" = {
             enabled = true;
             spacing = mkLiteral "10px";
@@ -198,7 +188,6 @@
             horizontal-align = mkLiteral "0.0";
           };
 
-          # Messages
           "message" = {
             background-color = mkLiteral "transparent";
           };
