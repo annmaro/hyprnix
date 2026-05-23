@@ -74,7 +74,8 @@
     "2" = { open-on-output = "desc:BOE 0x0690"; };
     "3" = { open-on-output = "desc:BOE 0x0690"; };
     "4" = { open-on-output = "desc:BOE 0x0690"; };
-    };
+    "5" = { open-on-output = "desc:BOE 0x0690"; }; 
+  };
 
   # ==========================================
   # 📐 LAYOUT STYLE, WINDOW GAPS, & BLUR
@@ -183,6 +184,7 @@
   # ==========================================
   window-rules = [
     {
+      # Clean browsers and video targets (No Canvas Clipping needed)
       matches = [
         { app-id = "^firefox$"; }
         { app-id = "^zen-"; }
@@ -207,10 +209,8 @@
       ];
       opacity = 0.94;
       
-      # FIX FOR ELECTRON EDITORS (VS Code / Codium) & GHOSTTY CSD
+      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
-      clip-to-geometry = true;
-      geometry-corner-radius = 12;
     }
     {
       # File Managers & Media Players Block (0.80 Opacity)
@@ -226,10 +226,8 @@
       ];
       opacity = 0.80;
 
-      # FIX FOR ELECTRON MEDIA APPS (Spotify / YT Music Web wrappers)
+      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
-      clip-to-geometry = true;
-      geometry-corner-radius = 12;
     }
     {
       # Notes, Launchers, & Social Block (0.90 Opacity)
@@ -245,10 +243,8 @@
       ];
       opacity = 0.90;
 
-      # FIX FOR CHAT/NOTE APPS (Obsidian, Discord Electron instances)
+      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
-      clip-to-geometry = true;
-      geometry-corner-radius = 12;
     }
     {
       matches = [
