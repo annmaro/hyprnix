@@ -83,7 +83,6 @@
   layout = {
     gaps = 9;
     center-focused-column = "never";
-    geometry-corner-radius = 12; # 🛠️ Placed globally here where Home Manager type definitions allow it safely.
     border = {
       enable = true;
       width = 2;
