@@ -11,6 +11,12 @@
       programs.dank-material-shell = {
         enable = true;
         systemd.enable = true; 
+ 
+        niri = {
+          enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
+          enableSpawn = false;   # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
+        };
+      };
 
         # 🛠️ ADD THIS BLOCK: Forces DMS to scale up fonts and icons nicely together
         systemd.user.services.dms = {
@@ -18,13 +24,6 @@
             Environment = [
             "QT_SCALE_FACTOR=1.2" # 1.2 = 120% size. Adjust this up or down as needed!
           ];
-        };
-      };
-        
-        # ◄ 2. Automatically bind native DMS media control shortcuts
-        niri = {
-          enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
-          enableSpawn = false;   # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
         };
       };
 
