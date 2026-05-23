@@ -27,6 +27,8 @@
   # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
   # ==========================================
   spawn-at-startup = [
+    { command = [ "awww-daemon" ]; }
+    { command = [ "waypaper" "--restore" ]; }
     { command = [ "hyprsunset" "--temperature" "3000" ]; }
   ];
 
