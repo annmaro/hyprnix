@@ -43,7 +43,7 @@
         bar = {
           # Increase this value to make the top bar larger.
           # Default is usually around 28-32. Try 40 or 44 for a clearer size.
-          height = 42; 
+          height = 44; 
           
           # Optional: You can also adjust the font size here if the text 
           # feels too small inside your newly sized bar
