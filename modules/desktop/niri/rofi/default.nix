@@ -1,19 +1,17 @@
-# 🛠️ 1. ADD 'theme' RIGHT HERE IN THE INITIAL ARGUMENTS LIST
-{ pkgs, config, theme, ... }: 
+# 🛠️ FIXED: Removed 'theme' from here to avoid system evaluation crashes
+{ pkgs, config, ... }: 
 
 {
   home-manager.sharedModules = [
-    (_: {
-      xdg.configFile."rofi/images/telescope-best.jpg".source = ./images/telescope-best.jpg;
+    # 🛠️ FIXED: Changed from (_: { to ({ ... }: { to avoid dropping module context
+    ({ ... }: {
 
       programs.rofi = {
         enable = true;
         terminal = "kitty"; 
         extraConfig = import ./config.nix;
 
-        # 🛠️ 2. SIMPLY CALL THE LITERAL BUILDER VIA THE ARGUMENT PROFILE
         theme = let
-          # This will safely evaluate the literals without any missing attribute errors!
           mkLiteral = value: { _type = "literal"; inherit value; };
         in {
           "*" = {
@@ -61,7 +59,8 @@
             spacing = mkLiteral "10px";
             padding = mkLiteral "80px 60px";
             background-color = mkLiteral "transparent";
-            background-image = mkLiteral "url(\"file://${config.home.homeDirectory}/.config/rofi/images/telescope-best.jpg\")";
+            # 🌟 BEAUTIFUL: Nix evaluates this path directly into the Nix Store!
+            background-image = mkLiteral "url(\"${./images/telescope-best.jpg}\")";
             text-color = mkLiteral "@foreground";
             orientation = mkLiteral "horizontal";
             children = map mkLiteral [ "textbox-prompt-colon" "entry" "dummy" "mode-switcher" ];
