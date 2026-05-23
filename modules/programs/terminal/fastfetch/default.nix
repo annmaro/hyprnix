@@ -43,7 +43,7 @@ in
               type = "title";
               color = {
                 user = "blue";
-                host = "mauve";
+                host = kernelCol;
               };
             }
             "break"
