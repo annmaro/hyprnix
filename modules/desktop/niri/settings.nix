@@ -94,11 +94,14 @@
   };
 
   # ==========================================
-  # 🎨 FIXED: NEW TOP-LEVEL BACKGROUND SYNTAX
+  # 🌐 OVERVIEW & WORKSPACE SWITCHER CONFIG
   # ==========================================
-  # This targets Niri's top-level background rules directly
-  background = {
-    color = "#180F39EC"; # Your custom deep translucent purple
+  overview = {
+    # 🛠️ Scale down the preview windows in the overview mode
+    zoom = 1.0 / 3.0;
+    
+    # 🛠️ Customize your backdrop color here!
+    backdrop-color = "#390f19ec"; # Matches your deep purple Rofi theme
   };
 
 
