@@ -132,8 +132,7 @@
     "Mod+Ctrl+Left".action.move-column-left = [ ];
     "Mod+Ctrl+Right".action.move-column-right = [ ];
     
-    "Mod+Up".action.focus-window-up = [ ];        
-    "Mod+Down".action.focus-window-down = [ ];    
+       
     "Mod+K".action.focus-window-up = [ ];
     "Mod+J".action.focus-window-down = [ ];
     "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
