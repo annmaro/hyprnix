@@ -25,6 +25,7 @@
 
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
         configVersion = 2;
+        disableWallpaper = true; # Handled perfectly by your separate awww + waypaper setup!
         
         modules = {
           bar = true;
