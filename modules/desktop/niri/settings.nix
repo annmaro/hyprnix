@@ -301,7 +301,7 @@
         enable = true;
         radius = 15;
       };
-    };
+    }
       # Catch-all rule for general system-wide window blur
     {
       matches = [
