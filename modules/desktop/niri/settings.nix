@@ -180,6 +180,23 @@
   };
 
   # ==========================================
+  # 🎛️ SYSTEM-WIDE LAYER BLUR (Panels & UI elements)
+  # ==========================================
+  layer-rules = [
+    {
+      # Matches panels, desktop bars, and background notification shells
+      matches = [
+        { namespace = ".*"; }
+      ];
+      
+      blur = {
+        enable = true;
+        radius = 15;
+      };
+    }
+  ];
+
+  # ==========================================
   # 🖼️ WINDOW RULES, TRANSPARENCY & BLUR FILTERS
   # ==========================================
   window-rules = [
@@ -268,5 +285,44 @@
       matches = [ { title = "^Picture-in-Picture$"; } ];
       open-floating = true;
     }
+    # 🌟 ADDED: Target block for Rofi window blurring and floating behaviour
+    {
+      matches = [
+        { app-id = "^rofi$"; }
+      ];
+      open-floating = true;
+      geometry-corner-radius = {
+        top-left = 12.0;
+        top-right = 12.0;
+        bottom-left = 12.0;
+        bottom-right = 12.0;
+      };
+      blur = {
+        enable = true;
+        radius = 15;
+      };
+    };
+      # Catch-all rule for general system-wide window blur
+    {
+      matches = [
+        # Leaving this empty or matching an app-id regex like ".*" applies it universally
+        { app-id = ".*"; }
+      ];
+      # Exclude full-screen games or video players from trying to blur content underneath
+      excludes = [
+        { app-id = "^vlc$"; } 
+        { app-id = "^mpv$"; }
+        { app-id = "^steam$"; }
+        { app-id = "^heroic$"; }
+        { app-id = "^lutris$"; }
+        { app-id = "^bottles$"; }
+      ];
+      
+      blur = {
+        enable = true;
+        radius = 12;      # Higher = softer blur
+        simulate-alpha = false; # Set to true if you want solid windows to look transparent/blurred
+    };
+    };    
   ];
 }

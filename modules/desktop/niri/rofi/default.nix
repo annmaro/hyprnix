@@ -38,7 +38,9 @@
             border = mkLiteral "0px solid";
             border-radius = mkLiteral "12px";
             border-color = mkLiteral "@selected";
-            background-color = mkLiteral "black / 10%";
+            
+            # 💡 CHANGED: Hex color with alpha channel transparency (70% opacity)
+            background-color = mkLiteral "#1E2127B3"; 
             cursor = "default";
           };
 
