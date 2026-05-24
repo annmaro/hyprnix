@@ -22,7 +22,7 @@
     
     loader = {
       systemd-boot.enable = true;   
-      consoleMode = "auto"; # Automatically scales up the text/resolution
+      systemd-boot.consoleMode = "auto"; # Automatically scales up the text/resolution
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
       timeout = 10; # bootloader display duration
