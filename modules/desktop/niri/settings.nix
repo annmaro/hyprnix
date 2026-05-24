@@ -213,7 +213,7 @@
       draw-border-with-background = false;
     }
     {
-      # File Managers & Media Players Block (0.80 Opacity)
+      # File Managers & Media Players Block (0.90 Opacity)
       matches = [
         { app-id = "^gnome-disks$"; }
         { app-id = "^org.gnome.Nautilus$"; }
@@ -224,7 +224,7 @@
         { app-id = "^Spotify$"; }
         { app-id = "^com.github.th_ch.youtube_music$"; }
       ];
-      opacity = 0.80;
+      opacity = 0.90;
 
       # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;

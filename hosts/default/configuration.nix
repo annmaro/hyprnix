@@ -1,3 +1,5 @@
+# My NixOS Config
+
 { lib, ... }:
 let
   vars = import ./variables.nix;
@@ -8,14 +10,13 @@ in
     ./host-packages.nix
 
     # Core Modules (Don't change unless you know what you're doing)
-    ../../modules/scripts
     ../../modules/core/boot
     ../../modules/core/bash
     ../../modules/core/zsh
     ../../modules/core/games
     ../../modules/core/starship
     ../../modules/core/fonts
-    ../../modules/core/git
+  # ../../modules/core/git
     ../../modules/core/hardware
     ../../modules/core/memory
     ../../modules/core/network
@@ -25,7 +26,7 @@ in
     ../../modules/core/sddm
     ../../modules/core/security
     ../../modules/core/services
-    ../../modules/core/sops
+    #../../modules/core/sops
     ../../modules/core/syncthing
     ../../modules/core/system
     ../../modules/core/users
@@ -42,7 +43,6 @@ in
     ../../modules/programs/terminal/${vars.terminal} # Set terminal defined in variables.nix
     ../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
-    ../../modules/programs/cli/tmux
    # ../../modules/programs/editor/vscode
     ../../modules/programs/editor/antigravity
     #../../modules/programs/editor/cursor
@@ -50,7 +50,7 @@ in
     ../../modules/programs/cli/direnv
     ../../modules/programs/terminal/fastfetch
     ../../modules/programs/misc/cpufreq
-    ../../modules/programs/cli/cava
+    #../../modules/programs/cli/cava
     ../../modules/programs/cli/btop
     ../../modules/programs/media/discord
     ../../modules/programs/media/spicetify
@@ -58,7 +58,7 @@ in
     # ../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
-    ../../modules/programs/media/rclone
+   # ../../modules/programs/media/rclone
     ../../modules/programs/misc/tlp
     ../../modules/programs/misc/thunar
     ../../modules/programs/misc/lact # GPU fan, clock and power configuration
