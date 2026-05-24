@@ -1,4 +1,5 @@
-{pkgs, inputs, ...}: {
+{ pkgs, inputs, ... }:
+{
   # TODO: review
   programs = {
     fuse.userAllowOther = true;
@@ -40,16 +41,16 @@
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
     uget # Download manager using GTK and libcurls
     easyeffects # Audio effects for PipeWire applications
-   # pay-respects # Magnificent app which corrects your previous console command
+    # pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     nomacs # Qt-based image viewer
-   # digikam # Photo management application
+    # digikam # Photo management application
     gapless # Beautiful, fast, fluent, light weight music player written in GTK4
     spek # Acoustic spectrum analyser for audio files
     losslessaudiochecker # Utility to check whether audio is truly lossless or not
     qbittorrent # Featureful free software BitTorrent client
-   # libreoffice-fresh # Comprehensive, professional-quality productivity suite
+    libreoffice-fresh # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
     vulkan-tools # Khronos official Vulkan Tools and Utilities
     age # Modern encryption tool with small explicit keys
