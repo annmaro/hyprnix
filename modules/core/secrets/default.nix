@@ -1,6 +1,11 @@
 { config, inputs, pkgs, ... }: 
 
 {
+
+  home-manager.users.annmaro = { config, pkgs, ... }: 
+
+ {  
+
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     ./git.nix 
@@ -26,4 +31,5 @@
       "gemini_api_key" = {};
     };
   };
+};
 }
