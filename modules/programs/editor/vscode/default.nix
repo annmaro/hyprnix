@@ -14,26 +14,26 @@
         package = pkgs.vscode;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
-            bbenoist.nix
+           # bbenoist.nix
             # arrterian.nix-env-selector
             github.vscode-github-actions
             github.vscode-pull-request-github
-            yzhang.markdown-all-in-one
+          #  yzhang.markdown-all-in-one
             catppuccin.catppuccin-vsc
             catppuccin.catppuccin-vsc-icons
             # asvetliakov.vscode-neovim
             # vscodevim.vim
-            tamasfe.even-better-toml
+           # tamasfe.even-better-toml
             #jnoortheen.nix-ide
             # redhat.vscode-yaml
             # vadimcn.vscode-lldb
-            rust-lang.rust-analyzer
-            ms-vscode.cpptools
-            ms-vscode.cmake-tools
-            ms-vscode.makefile-tools
-            ziglang.vscode-zig
+            #rust-lang.rust-analyzer
+           # ms-vscode.cpptools
+          #  ms-vscode.cmake-tools
+            #ms-vscode.makefile-tools
+           # ziglang.vscode-zig
             # ms-dotnettools.csharp
-            ms-python.python
+          #  ms-python.python
             # pkief.material-icon-theme
             # equinusocio.vsc-material-theme
             # dracula-theme.theme-dracula
