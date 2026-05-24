@@ -323,6 +323,6 @@
         radius = 12;      # Higher = softer blur
         simulate-alpha = false; # Set to true if you want solid windows to look transparent/blurred
     };
-    };    
+    }    
   ];
 }
