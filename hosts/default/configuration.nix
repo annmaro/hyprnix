@@ -16,7 +16,6 @@ in
     ../../modules/core/games
     ../../modules/core/starship
     ../../modules/core/fonts
-  # ../../modules/core/git
     ../../modules/core/hardware
     ../../modules/core/memory
     ../../modules/core/network
@@ -26,7 +25,7 @@ in
     ../../modules/core/sddm
     ../../modules/core/security
     ../../modules/core/services
-    #../../modules/core/sops
+    ../../modules/core/secrets
     ../../modules/core/syncthing
     ../../modules/core/system
     ../../modules/core/users
