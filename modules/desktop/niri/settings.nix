@@ -68,7 +68,6 @@
     position.x = 0; 
     position.y = 0; 
   };
-
   workspaces = {
     "1" = { open-on-output = "desc:BOE 0x0690"; };
     "2" = { open-on-output = "desc:BOE 0x0690"; };
@@ -94,6 +93,14 @@
       { proportion = 1.0 / 2.0; }
       { proportion = 2.0 / 3.0; }
     ];
+  };
+
+  # ✨ GLOBAL BLUR TUNING (Strength, Quality, Noise)
+  blur = {
+    passes = 3;         # Higher = smoother, heavier blur
+    offset = 3.0;       # Sample spacing multiplier
+    noise = 0.02;       # Grain overlay to stop color banding
+    saturation = 1.2;   # Color pop boost for blurred elements
   };
 
   # ==========================================
@@ -184,14 +191,25 @@
   # ==========================================
   layer-rules = [
     {
-      # Matches panels, desktop bars, and background notification shells
+      # True backdrop blur for top-level interactive overlays (Launchers, Bars)
       matches = [
-        { namespace = ".*"; }
+        { layer = "top"; }
+        { layer = "overlay"; }
       ];
-      
-      blur = {
-        enable = true;
-        radius = 15;
+      background-effect = {
+        blur = true;
+        xray = false; # Premium look where windows blur behind the bar/launcher
+      };
+    }
+    {
+      # High-performance wallpaper blur for background layers
+      matches = [
+        { layer = "bottom"; }
+        { layer = "background"; }
+      ];
+      background-effect = {
+        blur = true;
+        xray = true;  # Highly efficient cached-wallpaper blur method
       };
     }
   ];
@@ -285,7 +303,7 @@
       matches = [ { title = "^Picture-in-Picture$"; } ];
       open-floating = true;
     }
-    # 🌟 ADDED: Target block for Rofi window blurring and floating behaviour
+    # 🌟 Target block for Rofi window blurring and floating behaviour
     {
       matches = [
         { app-id = "^rofi$"; }
@@ -297,18 +315,19 @@
         bottom-left = 12.0;
         bottom-right = 12.0;
       };
-      blur = {
-        enable = true;
-        radius = 15;
+      background-effect = {
+        blur = true;
+        xray = false;
       };
-    }
-      # Catch-all rule for general system-wide window blur
+    }   
+
+    # ==========================================
+    # 🎛️ POPUPS & PERFORMANCE EXCLUSIONS
+    # ==========================================
     {
-      matches = [
-        # Leaving this empty or matching an app-id regex like ".*" applies it universally
-        { app-id = ".*"; }
-      ];
-      # Exclude full-screen games or video players from trying to blur content underneath
+      # Match application popups and right-click menus globally
+      matches = [ { is-popup = true; } ]; 
+      
       excludes = [
         { app-id = "^vlc$"; } 
         { app-id = "^mpv$"; }
@@ -317,12 +336,28 @@
         { app-id = "^lutris$"; }
         { app-id = "^bottles$"; }
       ];
+
+      geometry-corner-radius = 8;
+      background-effect = {
+        blur = true;
+        xray = false; 
+      };
+    }
+    {
+      # Strictly disable background effects for heavy media/gaming engines
+      matches = [
+        { app-id = "^vlc$"; } 
+        { app-id = "^mpv$"; }
+        { app-id = "^steam$"; }
+        { app-id = "^heroic$"; }
+        { app-id = "^lutris$"; }
+        { app-id = "^bottles$"; }
+      ];
       
-      blur = {
-        enable = true;
-        radius = 12;      # Higher = softer blur
-        simulate-alpha = false; # Set to true if you want solid windows to look transparent/blurred
-    };
-    }    
+      background-effect = {
+        blur = false;
+      };
+    }
+
   ];
 }
