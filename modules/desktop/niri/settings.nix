@@ -95,14 +95,6 @@
     ];
   };
 
-  # ✨ GLOBAL BLUR TUNING (Strength, Quality, Noise)
-  blur = {
-    passes = 3;         # Higher = smoother, heavier blur
-    offset = 3.0;       # Sample spacing multiplier
-    noise = 0.02;       # Grain overlay to stop color banding
-    saturation = 1.2;   # Color pop boost for blurred elements
-  };
-
   # ==========================================
   # 🌐 OVERVIEW & WORKSPACE SWITCHER CONFIG
   # ==========================================
