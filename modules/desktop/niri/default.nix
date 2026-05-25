@@ -57,6 +57,9 @@
       # ensuring your native KDL string below generates seamlessly.
       programs.niri.settings = {};
 
+      # Ensure the Home Manager validator uses the correct up-to-date Niri version from nixpkgs
+      programs.niri.package = pkgs.niri;
+
       # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
@@ -98,7 +101,6 @@
                    track-layout "global"
                }
                touchpad {
-                   natural-scroll false
                    click-method "clickfinger"
                }
                mouse {
@@ -117,11 +119,9 @@
            }
 
            // Define your fixed workspaces
-           workspaces {
-               name "1"
-               name "2"
-               name "3"
-           }
+           workspace "1"
+           workspace "2"
+           workspace "3"
 
            // 📐 LAYOUT STYLE & WINDOW GAPS
            layout {
@@ -129,7 +129,6 @@
                center-focused-column "never"
                background-color "transparent"
                border {
-                   enable
                    width 2
                    active-color "#ca9ee6"
                    inactive-color "#b4befe"
@@ -238,7 +237,6 @@
                background-effect {
                    blur true
                    xray false
-                   radius 10
                    noise 0.03
                    saturation 1.25
                } 
@@ -249,7 +247,6 @@
                    background-effect {
                        blur true
                        xray false
-                       radius 10
                        noise 0.03
                        saturation 1.25
                    }
