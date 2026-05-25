@@ -149,14 +149,6 @@
           backdrop-color = "#390f19ec";
         };
 
-        # Global fine-grained blur rendering parameters
-        blur = {
-          passes = 3;
-          offset = 3.0;
-          noise = 0.02;
-          saturation = 1.2;
-        };
-
         binds = {
           "Mod+Return".action.spawn = [ "ghostty" ];
           "Mod+T".action.spawn = [ "kitty" ];
