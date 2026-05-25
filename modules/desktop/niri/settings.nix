@@ -383,7 +383,7 @@
   # This section injects custom layer/window rules using raw KDL structural blocks,
   # perfectly bypassing Home Manager's unmapped background-effect option errors.
 
-  extraConfig = ''
+  programs.niri.extraConfig = ''
     layer-rule {
         match layer="top"
         match layer="overlay"

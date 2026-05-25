@@ -70,7 +70,6 @@
 
       # Automatically map the clean options from settings.nix into Home Manager's Niri module
       programs.niri.settings = import ./settings.nix { inherit pkgs config; };
-      programs.niri.config = lib.mkAfter config.programs.niri.settings.extraConfig;
 
       xdg.portal = {
         enable = true;
