@@ -37,8 +37,7 @@
     substituters = [ "https://niri-nix.cachix.org" ];
     trusted-public-keys = [ "niri-nix.cachix.org-1:SvFtqpDcf7Sm1SMJdby1/+Y+6f3Yt3/3PMcSTKPJNJ0=" ];
   };
-
-  nixpkgs.overlays = [ inputs.niri-nix.overlays.niri-nix ];
+  
 
   # Set Niri as the default session for your Display Manager
   services.displayManager.defaultSession = "niri";
@@ -46,23 +45,23 @@
   # Core Flake deployment hooks
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = pkgs.niri;
   };
 
   home-manager.sharedModules = [
     (_: {
       imports = [
-        inputs.niri-nix.homeModules.niri-nix
+        inputs.niri.homeModules.niri
       ];
       
       # This empty set satisfies the module validator to prevent the null-error,
       # ensuring your native KDL string below generates seamlessly.
-      wayland.windowManager.niri.settings = {};
+      programs.niri.settings = {};
 
       # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
-      wayland.windowManager.niri.config = ''
+      programs.niri.config = ''
            // 🌍 ENVIRONMENT VARIABLES & SYSTEM SETTINGS
            prefer-no-csd
            hotkey-overlay {
