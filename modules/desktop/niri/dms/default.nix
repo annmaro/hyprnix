@@ -8,11 +8,7 @@
         inputs.dms.homeModules.niri # ◄ 1. Enforce native Niri features & auto-spawning
       ];
       
-      lib.niri = {
-        actions = {
-          spawn = a: b: {}; 
-        };
-      };
+      
 
       programs.dank-material-shell = {
         enable = true;
