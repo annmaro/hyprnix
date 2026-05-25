@@ -147,7 +147,7 @@
                // This acts as a fallback/tint behind your blurred backdrop surface
                backdrop-color "#390f19ec"
                // Performance optimization: disables heavy window shadows during overview animations
-               workspace-shadow { off; }
+               workspace-shadow off
            }
 
           // BACKDROP LAYER RULE (Instructs Niri to pin the pre-blurred surface)
