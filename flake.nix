@@ -93,6 +93,11 @@
           inherit system;
           modules = [
             ./hosts/${host}/configuration.nix
+            {
+              nixpkgs.overlays = hostOverlays ++ [ 
+                inputs.niri-nix.overlays.niri-nix 
+              ];
+            }
           ];
           specialArgs = {
             inherit

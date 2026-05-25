@@ -12,7 +12,7 @@ in
       };
   # https://wiki.nixos.org/wiki/Overlays
   modifications = final: prev: {
-    nur = inputs.nur.overlays.default;
+    nur = inputs.nur.overlay.default;
     stable = import inputs.nixpkgs-stable {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
