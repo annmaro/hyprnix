@@ -82,8 +82,7 @@
     }@inputs:
     let
       inherit (self) outputs;
-      systems = "x86_64-linux";
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      system = "x86_64-linux";
       mkHost =
         host:
         let
@@ -111,7 +110,7 @@
         };
     in
     {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
       nixosConfigurations = {
         default = mkHost "default";
       };
