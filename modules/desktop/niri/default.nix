@@ -168,13 +168,6 @@
 
            window-rule {
                match app-id="^(kitty|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm|nvim-wrapper|VSCodium|code)$"
-               match app-id="^com.mitchellh.ghostty$"
-               match app-id="^Alacritty$"
-               match app-id="^org.wezfurlong.wezterm$"
-               match app-id="^nvim-wrapper$"
-               match app-id="^VSCodium$"
-               match app-id="^code$"
-               opacity 0.94
                draw-border-with-background false
            }
 
@@ -185,13 +178,13 @@
            }
 
            window-rule {
-               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop)$
+               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop)$"
                opacity 0.90
                draw-border-with-background false
            }
 
            window-rule {
-               match app-id="^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$
+               match app-id="^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$"
                open-floating true
            }
 
