@@ -402,28 +402,6 @@
       matches = [ { title = "^Picture-in-Picture$"; } ];
       open-floating = true;
     }
-    {
-      # Note: background-effect removed as it is not valid in window-rules
-      matches = [ { app-id = "^rofi$"; } ];
-      open-floating = true;
-      geometry-corner-radius = {
-        top-left = 12.0;
-        top-right = 12.0;
-        bottom-left = 12.0;
-        bottom-right = 12.0;
-      };
-    }
-    {
-      matches = [ { is-popup = true; } ];
-      excludes = [
-        { app-id = "^vlc$"; }
-        { app-id = "^mpv$"; }
-        { app-id = "^steam$"; }
-        { app-id = "^heroic$"; }
-        { app-id = "^lutris$"; }
-        { app-id = "^bottles$"; }
-      ];
-      # geometry-corner-radius = 8.0;
-    }
+
   ];
 }
