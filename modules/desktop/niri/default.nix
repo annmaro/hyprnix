@@ -404,7 +404,7 @@
       # =====================================================================
       # 🛠️ RAW KDL INJECTION
       # =====================================================================
-      programs.niri.extraConfig = ''
+      programs.niri.config = ''
         layer-rule {
             match layer="top"
             match layer="overlay"
