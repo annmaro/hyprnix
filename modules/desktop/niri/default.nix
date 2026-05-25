@@ -58,7 +58,7 @@
       # ensuring your native KDL string below generates seamlessly.
       programs.niri.settings = {};
 
-      # =====================================================================
+     # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
       programs.niri.config = ''
@@ -123,8 +123,6 @@
                name "2"
                name "3"
            }
-          
-
 
            // 📐 LAYOUT STYLE & WINDOW GAPS
            layout {
@@ -154,13 +152,12 @@
            }
 
           // BACKDROP LAYER RULE (Instructs Niri to pin the pre-blurred surface)
-            layer-rule {
+          layer-rule {
               // Matches the backdrop surface spawned by DMS
               match namespace=r#"^dms:.*backdrop.*"# 
               // Pins this layer surface strictly behind the overview grid workspace
               place-within-backdrop true
            }
-
 
            // 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
            binds {
@@ -239,26 +236,26 @@
                match namespace=r#"^rofi$"#
                geometry-corner-radius 12
 
-             background-effect {
+               background-effect {
                    blur true
                    xray false
                    radius 10
                    noise 0.03
                    saturation 1.25
                } 
-             // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
-             popups {
-               geometry-corner-radius 10
-               opacity 0.90
-               background-effect {
-               blur true
-               xray false
-               radius 10
-               noise 0.03
-               saturation 1.25
+               // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
+               popups {
+                   geometry-corner-radius 10
+                   opacity 0.90
+                   background-effect {
+                       blur true
+                       xray false
+                       radius 10
+                       noise 0.03
+                       saturation 1.25
+                   }
+               }
            }
-         }
-        }
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
@@ -332,39 +329,42 @@
                open-floating true
            }
 
-           // Exclude your specific applications from getting the window blur
-           
-            window-rule {
-               exclude app-id="^vlc$"
-               exclude app-id="^mpv$"
-               exclude app-id="^steam$"
-               exclude app-id="^heroic$"
-               exclude app-id="^lutris$"
-               exclude app-id="^bottles$"
-               exclude app-id="^firefox$"
-               exclude app-id="^vivaldi$"
-               exclude app-id="^brave$"
-               exclude app-id="^zen-beta"
+           // Exclude specific applications from getting the window blur
+           window-rule {
+               exclude app-id=r#"^vlc$"#
+               exclude app-id=r#"^mpv$"#
+               exclude app-id=r#"^steam$"#
+               exclude app-id=r#"^heroic$"#
+               exclude app-id=r#"^lutris$"#
+               exclude app-id=r#"^bottles$"#
+               exclude app-id=r#"^firefox$"#
+               exclude app-id=r#"^vivaldi$"#
+               exclude app-id=r#"^brave$"#
+               exclude app-id=r#"^zen-beta"#
+               
                background-effect {
                    blur true
                    xray false
                    radius 10
                    noise 0.03
                    saturation 1.25
-             }
-             // Ensures application tooltips & context menus get blurred
-             popups {
-                geometry-corner-radius 10 
-                opacity 0.90
-                background-effect {
-                    blur true
-                    xray false
-                    radius 10
-                    noise 0.03
-                    saturation 1.25
-              }
-           } 
+               }
+               
+               // Ensures application tooltips & context menus get blurred
+               popups {
+                   geometry-corner-radius 10 
+                   opacity 0.90
+                   background-effect {
+                       blur true
+                       xray false
+                       radius 10
+                       noise 0.03
+                       saturation 1.25
+                   }
+               } 
+           }
       '';
+        
 
       xdg.portal = {
         enable = true;
