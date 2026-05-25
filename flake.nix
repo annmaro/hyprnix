@@ -97,7 +97,7 @@
               nixpkgs.overlays = [
                 hostOverlays.additions
                 hostOverlays.modifications
-                inputs.niri.overlays.niri
+                niri.overlays.niri
               ];
             }
           ];
