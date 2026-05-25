@@ -188,8 +188,10 @@
         { layer = "top"; }
         { layer = "overlay"; }
       ];
-      background-effect.blur = true;
-      background-effect.xray = false;
+      background-effect = {
+        blur = true;
+        xray = false;
+      };
     }
     {
       # High-performance wallpaper blur for background layers
@@ -197,8 +199,10 @@
         { layer = "bottom"; }
         { layer = "background"; }
       ];
-      background-effect.blur = true;
-      background-effect.xray = false;
+      background-effect = {
+        blur = true;
+        xray = false;
+      };
     }
   ];
 
@@ -303,8 +307,10 @@
         bottom-left = 12.0;
         bottom-right = 12.0;
       };
-      background-effect.blur = true;
-      background-effect.xray = false;
+      background-effect = {
+        blur = true;
+        xray = false;
+      };
     }   
 
     # ==========================================
@@ -324,8 +330,10 @@
       ];
 
       geometry-corner-radius = 8;
-      background-effect.blur = true;
-      background-effect.xray = false;
+      background-effect = {
+        blur = true;
+        xray = false;
+      };
     }
     {
       # Strictly disable background effects for heavy media/gaming engines
@@ -338,8 +346,10 @@
         { app-id = "^bottles$"; }
       ];
       
-      background-effect.blur = true;
-      background-effect.xray = false;
+      background-effect = {
+        blur = false;
+        xray = false;
+      };
     }
 
   ];
