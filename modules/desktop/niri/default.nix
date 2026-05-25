@@ -71,6 +71,63 @@
       # Automatically map the clean options from settings.nix into Home Manager's Niri module
       programs.niri.settings = import ./settings.nix { inherit pkgs config; };
 
+      programs.niri.extraConfig = ''
+        layer-rule {
+            match layer="top"
+            match layer="overlay"
+            background-effect {
+                blur true
+                xray false
+            }
+        }
+
+        layer-rule {
+            match layer="bottom"
+            match layer="background"
+            background-effect {
+                blur true
+                xray true
+            }
+        }
+
+        window-rule {
+            match app-id="^rofi$"
+            open-floating true
+            geometry-corner-radius 12
+            background-effect {
+                blur true
+                xray false
+            }
+        }
+
+        window-rule {
+            match is-popup=true
+            exclude app-id="^vlc$"
+            exclude app-id="^mpv$"
+            exclude app-id="^steam$"
+            exclude app-id="^heroic$"
+            exclude app-id="^lutris$"
+            exclude app-id="^bottles$"
+            geometry-corner-radius 8
+            background-effect {
+                blur true
+                xray false
+            }
+        }
+
+        window-rule {
+            match app-id="^vlc$"
+            match app-id="^mpv$"
+            match app-id="^steam$"
+            match app-id="^heroic$"
+            match app-id="^lutris$"
+            match app-id="^bottles$"
+            background-effect {
+                blur false
+            }
+        }
+      '';
+
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
