@@ -94,8 +94,10 @@
           modules = [
             ./hosts/${host}/configuration.nix
             {
-              nixpkgs.overlays = hostOverlays ++ [ 
-                inputs.niri-nix.overlays.niri-nix 
+              nixpkgs.overlays = [
+                hostOverlays.additions
+                hostOverlays.modifications
+                inputs.niri-nix.overlays.niri-nix
               ];
             }
           ];
