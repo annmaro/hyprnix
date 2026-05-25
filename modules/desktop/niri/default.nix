@@ -141,22 +141,98 @@
                }
            }
 
-           // 🌐 OVERVIEW & WORKSPACE SWITCHER CONFIG
-           overview {
-               zoom 0.33333
-               // This acts as a fallback/tint behind your blurred backdrop surface
-               backdrop-color "#390f19ec"
-               // Performance optimization: disables heavy window shadows during overview animations
-               workspace-shadow { off; }
+           
+
+           // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
+           layer-rule {
+               match namespace=r#"^dms:.*"#
+               match namespace=r#"^rofi$"#
+               geometry-corner-radius 12
+
+               background-effect {
+                   blur true
+                   xray false
+                   radius 10
+                   noise 0.03
+                   saturation 1.25
+               } 
+            }
+
+           
+
+           // 🖼️ WINDOW RULES & TRANSPARENCY
+           window-rule {
+               match app-id="^firefox$"
+               match app-id="^zen-beta"
+               match app-id="^floorp$"
+               match app-id="^brave-"
+               match app-id="^vlc$"
+               match app-id="^easyeffects$"
+               match app-id="^gapless$"
+               opacity 1.0
+            }
+
+           window-rule {
+               match app-id="^kitty$"
+               match app-id="^com.mitchellh.ghostty$"
+               match app-id="^Alacritty$"
+               match app-id="^org.wezfurlong.wezterm$"
+               match app-id="^nvim-wrapper$"
+               match app-id="^VSCodium$"
+               match app-id="^code$"
+               opacity 0.94
+               draw-border-with-background false
            }
 
-          // BACKDROP LAYER RULE (Instructs Niri to pin the pre-blurred surface)
-          layer-rule {
-              // Matches the backdrop surface spawned by DMS
-              match namespace=r#"^dms:.*backdrop.*"# 
-              // Pins this layer surface strictly behind the overview grid workspace
-              place-within-backdrop true
+           window-rule {
+               match app-id="^gnome-disks$"
+               match app-id="^org.gnome.Nautilus$"
+               match app-id="^thunar$"
+               match app-id="^pcmanfm$"
+               match app-id="^file-roller$"
+               match app-id="^steamwebhelper$"
+               match app-id="^Spotify$"
+               match app-id="^com.github.th_ch.youtube_music$"
+               opacity 0.90
+               draw-border-with-background false
            }
+
+           window-rule {
+               match app-id="^Emacs$"
+               match app-id="^obsidian$"
+               match app-id="^proton.vpn.app.gtk$"
+               match app-id="^heroic$"
+               match app-id="^lutris$"
+               match app-id="^discord$"
+               match app-id="^webcord$"
+               match app-id="^vesktop$"
+               opacity 0.90
+               draw-border-with-background false
+           }
+
+           window-rule {
+               match app-id="^pavucontrol$"
+               match app-id="^blueman-manager$"
+               match app-id="^nm-applet$"
+               match app-id="^nm-connection-editor$"
+               match app-id="^nwg-look$"
+               match app-id="^qt5ct$"
+               match app-id="^qt6ct$"
+               match app-id="^yad$"
+               match app-id="^app.drey.Warp$"
+               match app-id="^net.davidotek.pupgui2$"
+               match app-id="^Signal$"
+               match app-id="^io.gitlab.theevilskeleton.Upscaler$"
+               match app-id="^eog$"
+               open-floating true
+           }
+
+           window-rule {
+               match title="^Picture-in-Picture$"
+               open-floating true
+           }
+
+           
 
            // 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
            binds {
@@ -228,107 +304,7 @@
                "Mod+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
                "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
            }
-
-           // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
-           layer-rule {
-               match namespace=r#"^dms:.*"#
-               match namespace=r#"^rofi$"#
-               geometry-corner-radius 12
-
-               background-effect {
-                   blur true
-                   xray false
-                   radius 10
-                   noise 0.03
-                   saturation 1.25
-               } 
-           }
-
-           // 🖼️ WINDOW RULES & TRANSPARENCY
-           window-rule {
-               match app-id="^firefox$"
-               match app-id="^zen-beta"
-               match app-id="^floorp$"
-               match app-id="^brave-"
-               match app-id="^vlc$"
-               match app-id="^easyeffects$"
-               match app-id="^gapless$"
-               opacity 1.0
-           }
-
-           window-rule {
-               match app-id="^kitty$"
-               match app-id="^com.mitchellh.ghostty$"
-               match app-id="^Alacritty$"
-               match app-id="^org.wezfurlong.wezterm$"
-               match app-id="^nvim-wrapper$"
-               match app-id="^VSCodium$"
-               match app-id="^code$"
-               opacity 0.94
-               draw-border-with-background false
-           }
-
-           window-rule {
-               match app-id="^gnome-disks$"
-               match app-id="^org.gnome.Nautilus$"
-               match app-id="^thunar$"
-               match app-id="^pcmanfm$"
-               match app-id="^file-roller$"
-               match app-id="^steamwebhelper$"
-               match app-id="^Spotify$"
-               match app-id="^com.github.th_ch.youtube_music$"
-               opacity 0.90
-               draw-border-with-background false
-           }
-
-           window-rule {
-               match app-id="^Emacs$"
-               match app-id="^obsidian$"
-               match app-id="^proton.vpn.app.gtk$"
-               match app-id="^heroic$"
-               match app-id="^lutris$"
-               match app-id="^discord$"
-               match app-id="^webcord$"
-               match app-id="^vesktop$"
-               opacity 0.90
-               draw-border-with-background false
-           }
-
-           window-rule {
-               match app-id="^pavucontrol$"
-               match app-id="^blueman-manager$"
-               match app-id="^nm-applet$"
-               match app-id="^nm-connection-editor$"
-               match app-id="^nwg-look$"
-               match app-id="^qt5ct$"
-               match app-id="^qt6ct$"
-               match app-id="^yad$"
-               match app-id="^app.drey.Warp$"
-               match app-id="^net.davidotek.pupgui2$"
-               match app-id="^Signal$"
-               match app-id="^io.gitlab.theevilskeleton.Upscaler$"
-               match app-id="^eog$"
-               open-floating true
-           }
-
-           window-rule {
-               match title="^Picture-in-Picture$"
-               open-floating true
-           }
-
-           // 🖼️ GLOBAL WINDOW BLUR & EXCLUSIONS
-           window-rule {
-               exclude app-id=r#"^(vlc|mpv|steam|heroic|lutris|bottles|firefox|vivaldi|brave|zen-beta)$"#
-               
-               background-effect {
-                   blur true
-                   xray false
-                   radius 10
-                   noise 0.03
-                   saturation 1.25
-               }
-           }
-        '';   
+      '';   
 
       xdg.portal = {
         enable = true;
