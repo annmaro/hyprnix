@@ -45,7 +45,7 @@
   # Core Flake deployment hooks
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
   };
 
   home-manager.sharedModules = [
