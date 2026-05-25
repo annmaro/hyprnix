@@ -34,9 +34,11 @@
 
   # Niri binary cache settings to prevent local compilation
   nix.settings = {
-    substituters = [ "https://niri.cachix.org" ];
-    trusted-public-keys = [ "niri.cachix.org-1:Wv0Om60u5f0m73/8w7+U267eNInK9Yubun7ZasfSgY8=" ];
+    substituters = [ "https://niri-nix.cachix.org" ];
+    trusted-public-keys = [ "niri-nix.cachix.org-1:SvFtqpDcf7Sm1SMJdby1/+Y+6f3Yt3/3PMcSTKPJNJ0=" ];
   };
+
+  nixpkgs.overlays = [ inputs.niri-nix.overlays.niri-nix ];
 
   # Set Niri as the default session for your Display Manager
   services.displayManager.defaultSession = "niri";
@@ -44,23 +46,23 @@
   # Core Flake deployment hooks
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
   };
 
   home-manager.sharedModules = [
     (_: {
       imports = [
-        inputs.niri.homeModules.niri
+        inputs.niri-nix.homeModules.niri
       ];
       
       # This empty set satisfies the module validator to prevent the null-error,
       # ensuring your native KDL string below generates seamlessly.
-      programs.niri.settings = {};
+      wayland.windowManager.niri.settings = {};
 
       # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
-      programs.niri.config = ''
+      wayland.windowManager.niri.config = ''
            // 🌍 ENVIRONMENT VARIABLES & SYSTEM SETTINGS
            prefer-no-csd
            hotkey-overlay {
