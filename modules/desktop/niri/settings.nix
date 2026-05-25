@@ -298,32 +298,6 @@
   };
 
   # ==========================================
-  # 🎛️ SYSTEM-WIDE LAYER BLUR (Panels & UI elements)
-  # ==========================================
-  layer-rules = [
-    {
-      matches = [
-        { layer = "top"; }
-        { layer = "overlay"; }
-      ];
-      background-effect = {
-        blur = true;
-        xray = false;
-      };
-    }
-    {
-      matches = [
-        { layer = "bottom"; }
-        { layer = "background"; }
-      ];
-      background-effect = {
-        blur = true;
-        xray = false;
-      };
-    }
-  ];
-
-  # ==========================================
   # 🖼️ WINDOW RULES, TRANSPARENCY & GEOMETRY
   # ==========================================
   window-rules = [
@@ -402,6 +376,67 @@
       matches = [ { title = "^Picture-in-Picture$"; } ];
       open-floating = true;
     }
-
   ];
+  # ==========================================
+  # 🛠️ MANUALLY GENERATED EXTRA KDL CONFIG
+  # ==========================================
+  # This section injects custom layer/window rules using raw KDL structural blocks,
+  # perfectly bypassing Home Manager's unmapped background-effect option errors.
+
+  extraConfig = ''
+    layer-rule {
+        match layer="top"
+        match layer="overlay"
+        background-effect {
+            blur true
+            xray false
+        }
+    }
+
+    layer-rule {
+        match layer="bottom"
+        match layer="background"
+        background-effect {
+            blur true
+            xray true
+        }
+    }
+
+    window-rule {
+        match app-id="^rofi$"
+        open-floating true
+        geometry-corner-radius 12
+        background-effect {
+            blur true
+            xray false
+        }
+    }
+
+    window-rule {
+        match is-popup=true
+        exclude app-id="^vlc$"
+        exclude app-id="^mpv$"
+        exclude app-id="^steam$"
+        exclude app-id="^heroic$"
+        exclude app-id="^lutris$"
+        exclude app-id="^bottles$"
+        geometry-corner-radius 8
+        background-effect {
+            blur true
+            xray false
+        }
+    }
+
+    window-rule {
+        match app-id="^vlc$"
+        match app-id="^mpv$"
+        match app-id="^steam$"
+        match app-id="^heroic$"
+        match app-id="^lutris$"
+        match app-id="^bottles$"
+        background-effect {
+            blur false
+        }
+    }
+  '';
 }
