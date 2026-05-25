@@ -259,7 +259,7 @@
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
                match app-id="^firefox$"
-               match app-id="^zen-"
+               match app-id="^zen-beta"
                match app-id="^floorp$"
                match app-id="^brave-"
                match app-id="^vlc$"
@@ -349,26 +349,7 @@
                    saturation 1.25
                }
            }
-
-           // 🛠️ GLOBAL APPLICATION POPUPS BLUR
-           window-rule {
-               // The empty match rule matches all applications, fixing the syntax constraint drop
-               match {}
-               
-               popups {
-                   geometry-corner-radius 10
-                   opacity 0.90
-                   
-                   background-effect {
-                       blur true
-                       xray false
-                       radius 10
-                       noise 0.03
-                       saturation 1.25
-                   }
-               }
-           } 
-      '';
+    '';
 
       xdg.portal = {
         enable = true;
