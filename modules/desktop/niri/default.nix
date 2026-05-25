@@ -242,8 +242,12 @@
                    noise 0.03
                    saturation 1.25
                } 
+              }
                // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
-               popups {
+               layer-rule {
+                match namespace=r#"^dms:.*"#
+                match namespace=r#"^rofi$"#
+                popups {
                    geometry-corner-radius 10
                    opacity 0.90
                    background-effect {
@@ -253,8 +257,8 @@
                        noise 0.03
                        saturation 1.25
                    }
+                 }
                }
-           }
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
