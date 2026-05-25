@@ -30,6 +30,20 @@
     thunar-volman # Necessary if you use Thunar for drive popups
     gnome-disk-utility # Gives you a clean GUI to verify physical blocks
     wlsunset # Day/night gamma adjustments for Wayland
+
+    (pkgs.writeShellScriptBin "wlsunset-toggle" ''
+      WLSUNSET="${lib.getExe pkgs.wlsunset}"
+
+      if pgrep -f "$WLSUNSET -T 3001" > /dev/null; then
+        pkill -f "$WLSUNSET"
+        $WLSUNSET -l 23.3 -L 85.3 -T 6500 -t 3000 &
+        ${pkgs.libnotify}/bin/notify-send -i weather-clear "Display" "Auto color temperature enabled"
+      else
+        pkill -f "$WLSUNSET"
+        $WLSUNSET -T 3001 -t 3000 &
+        ${pkgs.libnotify}/bin/notify-send -i weather-clear-night "Display" "Night mode forced (3000K)"
+      fi
+    '')
   ];
 
   # Niri binary cache settings to prevent local compilation
@@ -54,403 +68,311 @@
       ];
 
       # =====================================================================
-      # 🎛️ NIRI CONFIGURATION SETTINGS
-      # =====================================================================
-      programs.niri.settings = {
-        prefer-no-csd = true;
-        hotkey-overlay.skip-at-startup = true;
-
-        environment = {
-          "XDG_CURRENT_DESKTOP" = "niri";
-          "XDG_SESSION_DESKTOP" = "niri";
-          "XDG_SESSION_TYPE" = "wayland";
-          "GDK_BACKEND" = "wayland,x11,*";
-          "NIXOS_OZONE_WL" = "1";
-          "ELECTRON_OZONE_PLATFORM_HINT" = "wayland";
-          "MOZ_ENABLE_WAYLAND" = "1";
-          "OZONE_PLATFORM" = "wayland";
-          "EGL_PLATFORM" = "wayland";
-          "CLUTTER_BACKEND" = "wayland";
-          "SDL_VIDEODRIVER" = "wayland";
-          "WLR_RENDERER_ALLOW_SOFTWARE" = "1";
-          "NIXPKGS_ALLOW_UNFREE" = "1";
-          "DMS_DISABLE_MATUGEN" = "1";
-        };
-
-        spawn-at-startup = [
-          {
-            command = [
-              "wlsunset"
-              "-T"
-              "4200"
-              "-t"
-              "4200"
-            ];
-          }
-        ];
-
-        input = {
-          keyboard = {
-            xkb.layout = "us,in";
-            repeat-delay = 275;
-            repeat-rate = 35;
-            track-layout = "global";
-          };
-          touchpad = {
-            natural-scroll = false;
-            click-method = "clickfinger";
-          };
-          mouse = {
-            accel-profile = "flat";
-            accel-speed = 0.0;
-          };
-          warp-mouse-to-focus.enable = true;
-          focus-follows-mouse.enable = true;
-        };
-
-        outputs."desc:BOE 0x0690" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-          };
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-
-        workspaces = {
-          "1".open-on-output = "desc:BOE 0x0690";
-          "2".open-on-output = "desc:BOE 0x0690";
-          "3".open-on-output = "desc:BOE 0x0690";
-          "4".open-on-output = "desc:BOE 0x0690";
-          "5".open-on-output = "desc:BOE 0x0690";
-        };
-
-        layout = {
-          gaps = 9;
-          center-focused-column = "never";
-          border = {
-            enable = true;
-            width = 2;
-            active.color = "#ca9ee6";
-            inactive.color = "#b4befe";
-          };
-          preset-column-widths = [
-            { proportion = 1.0 / 3.0; }
-            { proportion = 1.0 / 2.0; }
-            { proportion = 2.0 / 3.0; }
-          ];
-        };
-
-        overview = {
-          zoom = 1.0 / 3.0;
-          backdrop-color = "#390f19ec";
-        };
-
-        binds = {
-          "Mod+Return".action.spawn = [ "ghostty" ];
-          "Mod+T".action.spawn = [ "kitty" ];
-          "Mod+C".action.spawn = [ "editor" ];
-          "Mod+F".action.spawn = [ "firefox" ];
-          "Mod+A".action.spawn = [ "antigravity" ];
-          "Mod+Space".action.spawn = [
-            "rofi"
-            "-show"
-            "drun"
-          ];
-          "Mod+V".action.spawn = [
-            "rofi"
-            "-show"
-            "clipboard"
-          ];
-          "Mod+Z".action.spawn = [
-            "rofi"
-            "-show"
-            "emoji"
-          ];
-          "Mod+G".action.spawn = [
-            "launcher"
-            "games"
-          ];
-          "Mod+Alt+G".action.spawn = [ "gamemode" ];
-          "Mod+Q".action.close-window = [ ];
-          "Mod+Delete".action.quit = [ ];
-          "Mod+Alt+L".action.spawn = [
-            "dms"
-            "session"
-            "lock"
-          ];
-          "Mod+N".action.spawn = [
-            "dms"
-            "ipc"
-            "call"
-            "notifications"
-            "toggle"
-          ];
-          "Mod+Shift+E".action.spawn = [
-            "dms"
-            "ipc"
-            "call"
-            "session"
-            "toggle"
-          ];
-          "Mod+Backspace".action.spawn = [
-            "sh"
-            "-c"
-            "pkill -x wlogout || wlogout -b 4"
-          ];
-          "Mod+Shift+S".action.spawn = [ "spotify" ];
-          "Mod+Shift+Y".action.spawn = [ "youtube-music" ];
-          "Ctrl+Alt+Delete".action.spawn = [
-            "ghostty"
-            "-e"
-            "btop"
-          ];
-          "Mod+Ctrl+C".action.spawn = [
-            "hyprpicker"
-            "--autocopy"
-            "--format=hex"
-          ];
-          "Mod+F9".action.spawn = [ "wlsunset-toggle" ];
-          "Mod+F10".action.spawn = [
-            "sh"
-            "-c"
-            "pkill wlsunset"
-          ];
-
-          "Mod+Left".action.focus-column-left = [ ];
-          "Mod+Right".action.focus-column-right = [ ];
-          "Mod+H".action.focus-column-left = [ ];
-          "Mod+L".action.focus-column-right = [ ];
-          "Mod+S".action.toggle-overview = [ ];
-          "Mod+Ctrl+Left".action.move-column-left = [ ];
-          "Mod+Ctrl+Right".action.move-column-right = [ ];
-
-          "Mod+K".action.focus-window-up = [ ];
-          "Mod+J".action.focus-window-down = [ ];
-          "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
-          "Mod+Ctrl+J".action.move-column-to-workspace-down = [ ];
-          "Mod+WheelScrollDown".action.focus-workspace-down = [ ];
-          "Mod+WheelScrollUp".action.focus-workspace-up = [ ];
-
-          "Mod+R".action.switch-preset-column-width = [ ];
-          "Alt+Return".action.fullscreen-window = [ ];
-          "Mod+W".action.toggle-window-floating = [ ];
-          "Mod+1".action.focus-workspace = [ 1 ];
-          "Mod+2".action.focus-workspace = [ 2 ];
-          "Mod+3".action.focus-workspace = [ 3 ];
-          "Mod+4".action.focus-workspace = [ 4 ];
-          "Mod+5".action.focus-workspace = [ 5 ];
-          "Mod+Shift+1".action.move-column-to-workspace = [ 1 ];
-          "Mod+Shift+2".action.move-column-to-workspace = [ 2 ];
-          "Mod+Shift+3".action.move-column-to-workspace = [ 3 ];
-          "Mod+Shift+4".action.move-column-to-workspace = [ 4 ];
-          "Mod+Shift+5".action.move-column-to-workspace = [ 5 ];
-
-          "XF86AudioRaiseVolume".action.spawn = [
-            "pamixer"
-            "-i"
-            "2"
-          ];
-          "XF86AudioLowerVolume".action.spawn = [
-            "pamixer"
-            "-d"
-            "2"
-          ];
-          "XF86AudioMute".action.spawn = [
-            "pamixer"
-            "-t"
-          ];
-          "XF86AudioMicMute".action.spawn = [
-            "pamixer"
-            "--default-source"
-            "-t"
-          ];
-          "XF86MonBrightnessUp".action.spawn = [
-            "brightnessctl"
-            "set"
-            "+2%"
-          ];
-          "XF86MonBrightnessDown".action.spawn = [
-            "brightnessctl"
-            "set"
-            "2%-"
-          ];
-          "XF86AudioPlay".action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
-          "XF86AudioPause".action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
-          "XF86AudioNext".action.spawn = [
-            "playerctl"
-            "next"
-          ];
-          "XF86AudioPrev".action.spawn = [
-            "playerctl"
-            "previous"
-          ];
-          "XF86Sleep".action.spawn = [
-            "systemctl"
-            "suspend"
-          ];
-          "Mod+Up".action.focus-window-or-workspace-up = [ ];
-          "Mod+Down".action.focus-window-or-workspace-down = [ ];
-          "Mod+Ctrl+Up".action.move-workspace-up = [ ];
-          "Mod+Ctrl+Down".action.move-workspace-down = [ ];
-          "Mod+P".action.spawn = [
-            "sh"
-            "-c"
-            "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
-          ];
-          "Mod+Ctrl+P".action.spawn = [
-            "sh"
-            "-c"
-            "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
-          ];
-        };
-
-        window-rules = [
-          {
-            matches = [
-              { app-id = "^firefox$"; }
-              { app-id = "^zen-"; }
-              { app-id = "^floorp$"; }
-              { app-id = "^brave-"; }
-              { app-id = "^vlc$"; }
-              { app-id = "^easyeffects$"; }
-              { app-id = "^gapless$"; }
-            ];
-            opacity = 1.0;
-          }
-          {
-            matches = [
-              { app-id = "^kitty$"; }
-              { app-id = "^com.mitchellh.ghostty$"; }
-              { app-id = "^Alacritty$"; }
-              { app-id = "^org.wezfurlong.wezterm$"; }
-              { app-id = "^nvim-wrapper$"; }
-              { app-id = "^VSCodium$"; }
-              { app-id = "^code$"; }
-            ];
-            opacity = 0.94;
-            draw-border-with-background = false;
-          }
-          {
-            matches = [
-              { app-id = "^gnome-disks$"; }
-              { app-id = "^org.gnome.Nautilus$"; }
-              { app-id = "^thunar$"; }
-              { app-id = "^pcmanfm$"; }
-              { app-id = "^file-roller$"; }
-              { app-id = "^steamwebhelper$"; }
-              { app-id = "^Spotify$"; }
-              { app-id = "^com.github.th_ch.youtube_music$"; }
-            ];
-            opacity = 0.90;
-            draw-border-with-background = false;
-          }
-          {
-            matches = [
-              { app-id = "^Emacs$"; }
-              { app-id = "^obsidian$"; }
-              { app-id = "^proton.vpn.app.gtk$"; }
-              { app-id = "^heroic$"; }
-              { app-id = "^lutris$"; }
-              { app-id = "^discord$"; }
-              { app-id = "^webcord$"; }
-              { app-id = "^vesktop$"; }
-            ];
-            opacity = 0.90;
-            draw-border-with-background = false;
-          }
-          {
-            matches = [
-              { app-id = "^pavucontrol$"; }
-              { app-id = "^blueman-manager$"; }
-              { app-id = "^nm-applet$"; }
-              { app-id = "^nm-connection-editor$"; }
-              { app-id = "^nwg-look$"; }
-              { app-id = "^qt5ct$"; }
-              { app-id = "^qt6ct$"; }
-              { app-id = "^yad$"; }
-              { app-id = "^app.drey.Warp$"; }
-              { app-id = "^net.davidotek.pupgui2$"; }
-              { app-id = "^Signal$"; }
-              { app-id = "^io.gitlab.theevilskeleton.Upscaler$"; }
-              { app-id = "^eog$"; }
-            ];
-            open-floating = true;
-          }
-          {
-            matches = [ { title = "^Picture-in-Picture$"; } ];
-            open-floating = true;
-          }
-        ];
-      };
-
-      # =====================================================================
-      # 🛠️ RAW KDL INJECTION
+      # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
       programs.niri.config = ''
-        layer-rule {
-            match layer="top"
-            match layer="overlay"
-            background-effect {
-                blur true
-                xray false
-            }
+           // 🌍 ENVIRONMENT VARIABLES & SYSTEM SETTINGS
+           prefer-no-csd
+           hotkey-overlay {
+               skip-at-startup
+           }
+
+           environment {
+               XDG_CURRENT_DESKTOP "niri"
+               XDG_SESSION_DESKTOP "niri"
+               XDG_SESSION_TYPE "wayland"
+               GDK_BACKEND "wayland,x11,*"
+               NIXOS_OZONE_WL "1"
+               ELECTRON_OZONE_PLATFORM_HINT "wayland"
+               MOZ_ENABLE_WAYLAND "1"
+               OZONE_PLATFORM "wayland"
+               EGL_PLATFORM "wayland"
+               CLUTTER_BACKEND "wayland"
+               SDL_VIDEODRIVER "wayland"
+               WLR_RENDERER_ALLOW_SOFTWARE "1"
+               NIXPKGS_ALLOW_UNFREE "1"
+               DMS_DISABLE_MATUGEN "1"
+           }
+
+           // 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
+           spawn-at-startup "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000"
+
+           // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
+           input {
+               keyboard {
+                   xkb {
+                       layout "us,in"
+                   }
+                   repeat-delay 275
+                   repeat-rate 35
+                   track-layout "global"
+               }
+               touchpad {
+                   natural-scroll false
+                   click-method "clickfinger"
+               }
+               mouse {
+                   accel-profile "flat"
+                   accel-speed 0.0
+               }
+               warp-mouse-to-focus
+               focus-follows-mouse
+           }
+
+           // 🖥️ DISPLAY OUTPUTS & PERSISTENT LAYOUT
+           output "desc:BOE 0x0690" {
+               mode width=1920 height=1080
+               scale 1.0
+               position x=0 y=0
+           }
+
+           workspace "1" { open-on-output "desc:BOE 0x0690"; }
+           workspace "2" { open-on-output "desc:BOE 0x0690"; }
+           workspace "3" { open-on-output "desc:BOE 0x0690"; }
+           workspace "4" { open-on-output "desc:BOE 0x0690"; }
+
+
+           // 📐 LAYOUT STYLE & WINDOW GAPS
+           layout {
+               gaps 9
+               center-focused-column "never"
+               background-color "transparent"
+               border {
+                   enable
+                   width 2
+                   active-color "#ca9ee6"
+                   inactive-color "#b4befe"
+               }
+               preset-column-widths {
+                   proportion 0.33333
+                   proportion 0.5
+                   proportion 0.66667
+               }
+           }
+
+           // 🌐 OVERVIEW & WORKSPACE SWITCHER CONFIG
+           overview {
+               zoom 0.33333
+               // This acts as a fallback/tint behind your blurred backdrop surface
+               backdrop-color "#390f19ec"
+               // Performance optimization: disables heavy window shadows during overview animations
+               workspace-shadow { off; }
+           }
+
+          // BACKDROP LAYER RULE (Instructs Niri to pin the pre-blurred surface)
+            layer-rule {
+              // Matches the backdrop surface spawned by DMS
+              match namespace=r#"^dms:.*backdrop.*"# 
+              // Pins this layer surface strictly behind the overview grid workspace
+              place-within-backdrop true
+           }
+
+
+           // 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
+           binds {
+               "Mod+Return" { spawn "ghostty"; }
+               "Mod+T" { spawn "kitty"; }
+               "Mod+C" { spawn "editor"; }
+               "Mod+F" { spawn "firefox"; }
+               "Mod+A" { spawn "antigravity"; }
+               "Mod+Space" { spawn "rofi" "-show" "drun"; }
+               "Mod+V" { spawn "rofi" "-show" "clipboard"; }
+               "Mod+Z" { spawn "rofi" "-show" "emoji"; }
+               "Mod+G" { spawn "launcher" "games"; }
+               "Mod+Alt+G" { spawn "gamemode"; }
+               "Mod+Q" { close-window; }
+               "Mod+Delete" { quit; }
+               "Mod+Alt+L" { spawn "dms" "session" "lock"; }
+               "Mod+N" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+               "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
+               "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
+               "Mod+Shift+S" { spawn "spotify"; }
+               "Mod+Shift+Y" { spawn "youtube-music"; }
+               "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
+               "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
+               "Mod+F9" { spawn "wlsunset-toggle"; }
+               "Mod+F10" { spawn "sh" "-c" "pkill wlsunset"; }
+               
+               "Mod+Left" { focus-column-left; }
+               "Mod+Right" { focus-column-right; }
+               "Mod+H" { focus-column-left; }
+               "Mod+L" { focus-column-right; }
+               "Mod+S" { toggle-overview; }
+               "Mod+Ctrl+Left" { move-column-left; }
+               "Mod+Ctrl+Right" { move-column-right; }
+               
+               "Mod+K" { focus-window-up; }
+               "Mod+J" { focus-window-down; }
+               "Mod+Ctrl+K" { move-column-to-workspace-up; }
+               "Mod+Ctrl+J" { move-column-to-workspace-down; }
+               "Mod+WheelScrollDown" { focus-workspace-down; }
+               "Mod+WheelScrollUp" { focus-workspace-up; }
+
+               "Mod+R" { switch-preset-column-width; }
+               "Alt+Return" { fullscreen-window; }
+               "Mod+W" { toggle-window-floating; }
+               "Mod+1" { focus-workspace 1; }
+               "Mod+2" { focus-workspace 2; }
+               "Mod+3" { focus-workspace 3; }
+               "Mod+4" { focus-workspace 4; }
+               "Mod+5" { focus-workspace 5; }
+               "Mod+Shift+1" { move-column-to-workspace 1; }
+               "Mod+Shift+2" { move-column-to-workspace 2; }
+               "Mod+Shift+3" { move-column-to-workspace 3; }
+               "Mod+Shift+4" { move-column-to-workspace 4; }
+               "Mod+Shift+5" { move-column-to-workspace 5; }
+
+               "XF86AudioRaiseVolume" { spawn "pamixer" "-i" "2"; }
+               "XF86AudioLowerVolume" { spawn "pamixer" "-d" "2"; }
+               "XF86AudioMute" { spawn "pamixer" "-t"; }
+               "XF86AudioMicMute" { spawn "pamixer" "--default-source" "-t"; }
+               "XF86MonBrightnessUp" { spawn "brightnessctl" "set" "+2%"; }
+               "XF86MonBrightnessDown" { spawn "brightnessctl" "set" "2%-"; }
+               "XF86AudioPlay" { spawn "playerctl" "play-pause"; }
+               "XF86AudioPause" { spawn "playerctl" "play-pause"; }
+               "XF86AudioNext" { spawn "playerctl" "next"; }
+               "XF86AudioPrev" { spawn "playerctl" "previous"; }
+               "XF86Sleep" { spawn "systemctl" "suspend"; }
+               "Mod+Up" { focus-window-or-workspace-up; }
+               "Mod+Down" { focus-window-or-workspace-down; }
+               "Mod+Ctrl+Up" { move-workspace-up; }
+               "Mod+Ctrl+Down" { move-workspace-down; }
+               "Mod+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
+               "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
+           }
+
+           // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
+           layer-rule {
+               match namespace=r#"^dms:.*"#
+               match namespace=r#"^rofi$"#
+               geometry-corner-radius 12
+
+             background-effect {
+                   blur true
+                   xray false
+                   radius 10
+                   noise 0.03
+                   saturation 1.25
+               } 
+             // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
+             popups {
+               geometry-corner-radius 10
+               opacity 0.90
+               background-effect {
+               blur true
+               xray false
+               radius 10
+               noise 0.03
+               saturation 1.25
+           }
+         }
         }
 
-        layer-rule {
-            match layer="bottom"
-            match layer="background"
-            background-effect {
-                blur true
-                xray true
-            }
-        }
+           // 🖼️ WINDOW RULES & TRANSPARENCY
+           window-rule {
+               match app-id="^firefox$"
+               match app-id="^zen-"
+               match app-id="^floorp$"
+               match app-id="^brave-"
+               match app-id="^vlc$"
+               match app-id="^easyeffects$"
+               match app-id="^gapless$"
+               opacity 1.0
+           }
 
-        window-rule {
-            match app-id="^rofi$"
-            open-floating true
-            geometry-corner-radius 12
-            background-effect {
-                blur true
-                xray false
-            }
-        }
+           window-rule {
+               match app-id="^kitty$"
+               match app-id="^com.mitchellh.ghostty$"
+               match app-id="^Alacritty$"
+               match app-id="^org.wezfurlong.wezterm$"
+               match app-id="^nvim-wrapper$"
+               match app-id="^VSCodium$"
+               match app-id="^code$"
+               opacity 0.94
+               draw-border-with-background false
+           }
 
-        window-rule {
-            match is-popup=true
-            exclude app-id="^vlc$"
-            exclude app-id="^mpv$"
-            exclude app-id="^steam$"
-            exclude app-id="^heroic$"
-            exclude app-id="^lutris$"
-            exclude app-id="^bottles$"
-            geometry-corner-radius 8
-            background-effect {
-                blur true
-                xray false
-            }
-        }
+           window-rule {
+               match app-id="^gnome-disks$"
+               match app-id="^org.gnome.Nautilus$"
+               match app-id="^thunar$"
+               match app-id="^pcmanfm$"
+               match app-id="^file-roller$"
+               match app-id="^steamwebhelper$"
+               match app-id="^Spotify$"
+               match app-id="^com.github.th_ch.youtube_music$"
+               opacity 0.90
+               draw-border-with-background false
+           }
 
-        window-rule {
-            match app-id="^vlc$"
-            match app-id="^mpv$"
-            match app-id="^steam$"
-            match app-id="^heroic$"
-            match app-id="^lutris$"
-            match app-id="^bottles$"
-            background-effect {
-                blur false
-            }
-        }
+           window-rule {
+               match app-id="^Emacs$"
+               match app-id="^obsidian$"
+               match app-id="^proton.vpn.app.gtk$"
+               match app-id="^heroic$"
+               match app-id="^lutris$"
+               match app-id="^discord$"
+               match app-id="^webcord$"
+               match app-id="^vesktop$"
+               opacity 0.90
+               draw-border-with-background false
+           }
+
+           window-rule {
+               match app-id="^pavucontrol$"
+               match app-id="^blueman-manager$"
+               match app-id="^nm-applet$"
+               match app-id="^nm-connection-editor$"
+               match app-id="^nwg-look$"
+               match app-id="^qt5ct$"
+               match app-id="^qt6ct$"
+               match app-id="^yad$"
+               match app-id="^app.drey.Warp$"
+               match app-id="^net.davidotek.pupgui2$"
+               match app-id="^Signal$"
+               match app-id="^io.gitlab.theevilskeleton.Upscaler$"
+               match app-id="^eog$"
+               open-floating true
+           }
+
+           window-rule {
+               match title="^Picture-in-Picture$"
+               open-floating true
+           }
+
+           // Exclude your specific applications from getting the window blur
+           
+            window-rule {
+               exclude app-id="^vlc$"
+               exclude app-id="^mpv$"
+               exclude app-id="^steam$"
+               exclude app-id="^heroic$"
+               exclude app-id="^lutris$"
+               exclude app-id="^bottles$"
+               exclude app-id="^firefox$"
+               exclude app-id="^vivaldi$"
+               exclude app-id="^brave$"
+               exclude app-id="^zen-beta"
+               background-effect {
+                   blur true
+                   xray false
+                   radius 10
+                   noise 0.03
+                   saturation 1.25
+             }
+             // Ensures application tooltips & context menus get blurred
+             popups {
+                geometry-corner-radius 10 
+                opacity 0.90
+                background-effect {
+                    blur true
+                    xray false
+                    radius 10
+                    noise 0.03
+                    saturation 1.25
+              }
+           }
+          }  
       '';
 
       xdg.portal = {
