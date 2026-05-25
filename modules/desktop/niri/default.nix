@@ -52,7 +52,7 @@
   home-manager.sharedModules = [
     (_: {
       imports = [
-        inputs.niri-nix.homeModules.niri
+        inputs.niri-nix.homeModules.niri-nix
       ];
       
       # This empty set satisfies the module validator to prevent the null-error,
