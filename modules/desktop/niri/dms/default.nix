@@ -96,6 +96,13 @@
             ];
           }
         ];
+        # The exact config to hide workspace labels across Dank Material Shell
+        widgets = {
+          workspace_switcher = {
+            show_labels = false;
+            indicator_style = "pill";
+          };
+        };
       };
     })
   ];

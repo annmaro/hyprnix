@@ -112,15 +112,18 @@
 
            // 🖥️ DISPLAY OUTPUTS & PERSISTENT LAYOUT
            output "desc:BOE 0x0690" {
-               mode width=1920 height=1080
+               mode "1920x1080@60.014"
                scale 1.0
                position x=0 y=0
            }
 
-           workspace "1" { open-on-output "desc:BOE 0x0690"; }
-           workspace "2" { open-on-output "desc:BOE 0x0690"; }
-           workspace "3" { open-on-output "desc:BOE 0x0690"; }
-           workspace "4" { open-on-output "desc:BOE 0x0690"; }
+           // Define your fixed workspaces
+           workspaces {
+               name "1"
+               name "2"
+               name "3"
+           }
+          
 
 
            // 📐 LAYOUT STYLE & WINDOW GAPS
@@ -205,8 +208,6 @@
                "Mod+1" { focus-workspace 1; }
                "Mod+2" { focus-workspace 2; }
                "Mod+3" { focus-workspace 3; }
-               "Mod+4" { focus-workspace 4; }
-               "Mod+5" { focus-workspace 5; }
                "Mod+Shift+1" { move-column-to-workspace 1; }
                "Mod+Shift+2" { move-column-to-workspace 2; }
                "Mod+Shift+3" { move-column-to-workspace 3; }
