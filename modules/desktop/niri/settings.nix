@@ -188,10 +188,8 @@
         { layer = "top"; }
         { layer = "overlay"; }
       ];
-      background-effect = {
-        blur = true;
-        xray = false; # Premium look where windows blur behind the bar/launcher
-      };
+      background-effect.blur = true;
+      background-effect.xray = false;
     }
     {
       # High-performance wallpaper blur for background layers
@@ -199,10 +197,8 @@
         { layer = "bottom"; }
         { layer = "background"; }
       ];
-      background-effect = {
-        blur = true;
-        xray = true;  # Highly efficient cached-wallpaper blur method
-      };
+      background-effect.blur = true;
+      background-effect.xray = false;
     }
   ];
 
@@ -307,10 +303,8 @@
         bottom-left = 12.0;
         bottom-right = 12.0;
       };
-      background-effect = {
-        blur = true;
-        xray = false;
-      };
+      background-effect.blur = true;
+      background-effect.xray = false;
     }   
 
     # ==========================================
@@ -330,10 +324,8 @@
       ];
 
       geometry-corner-radius = 8;
-      background-effect = {
-        blur = true;
-        xray = false; 
-      };
+      background-effect.blur = true;
+      background-effect.xray = false;
     }
     {
       # Strictly disable background effects for heavy media/gaming engines
@@ -346,9 +338,8 @@
         { app-id = "^bottles$"; }
       ];
       
-      background-effect = {
-        blur = false;
-      };
+      background-effect.blur = true;
+      background-effect.xray = false;
     }
 
   ];
