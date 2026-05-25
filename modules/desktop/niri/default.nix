@@ -317,23 +317,7 @@
                open-floating true
            }
 
-           // 🛠️ GLOBAL APPLICATION POPUPS BLUR & STRUCTURE
-           window-rule {
-               // A window-rule without a 'match' applies to all windows.
-               // The 'popups' block here targets all right-click menus and tooltips.
-               popups {
-                   geometry-corner-radius 10
-                   opacity 0.95
-                   
-                   background-effect {
-                       blur true
-                       xray false
-                       radius 10
-                       noise 0.02
-                       saturation 1.2
-                   }
-               }
-           }
+           
 '';
 
       xdg.portal = {
