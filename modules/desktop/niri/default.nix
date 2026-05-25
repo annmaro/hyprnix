@@ -147,9 +147,7 @@
                // This acts as a fallback/tint behind your blurred backdrop surface
                backdrop-color "#390f19ec"
                // Performance optimization: disables heavy window shadows during overview animations
-               workspace-shadow {
-                  off
-               }
+               workspace-shadow { off; }
            }
 
           // BACKDROP LAYER RULE (Instructs Niri to pin the pre-blurred surface)
@@ -332,16 +330,8 @@
 
            // 🖼️ GLOBAL WINDOW BLUR & EXCLUSIONS
            window-rule {
-               exclude app-id=r#"^vlc$"#
-               exclude app-id=r#"^mpv$"#
-               exclude app-id=r#"^steam$"#
-               exclude app-id=r#"^heroic$"#
-               exclude app-id=r#"^lutris$"#
-               exclude app-id=r#"^bottles$"#
-               exclude app-id=r#"^firefox$"#
-               exclude app-id=r#"^vivaldi$"#
-               exclude app-id=r#"^brave$"#
-               exclude app-id=r#"^zen-beta"#
+               // Clean, pipeline pipe alternation grouping for media, browser, and game layers
+               exclude app-id=r#"^(vlc|mpv|steam|heroic|lutris|bottles|firefox|vivaldi|brave|zen-beta)$"#
                
                background-effect {
                    blur true
@@ -350,6 +340,9 @@
                    noise 0.03
                    saturation 1.25
                }
+               
+               // Captures app menus & tooltips safely to apply the master blur parameters above
+               popups {}
            }
     '';
 
