@@ -31,19 +31,6 @@
     gnome-disk-utility # Gives you a clean GUI to verify physical blocks
     wlsunset # Day/night gamma adjustments for Wayland
 
-    (pkgs.writeShellScriptBin "wlsunset-toggle" ''
-      WLSUNSET="${lib.getExe pkgs.wlsunset}"
-
-      if pgrep -f "$WLSUNSET -T 3001" > /dev/null; then
-        pkill -f "$WLSUNSET"
-        $WLSUNSET -l 23.3 -L 85.3 -T 6500 -t 3000 &
-        ${pkgs.libnotify}/bin/notify-send -i weather-clear "Display" "Auto color temperature enabled"
-      else
-        pkill -f "$WLSUNSET"
-        $WLSUNSET -T 3001 -t 3000 &
-        ${pkgs.libnotify}/bin/notify-send -i weather-clear-night "Display" "Night mode forced (3000K)"
-      fi
-    '')
   ];
 
   # Niri binary cache settings to prevent local compilation
@@ -66,6 +53,10 @@
       imports = [
         inputs.niri.homeModules.niri
       ];
+      
+      # This empty set satisfies the module validator to prevent the null-error,
+      # ensuring your native KDL string below generates seamlessly.
+      programs.niri.settings = {};
 
       # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
@@ -95,7 +86,7 @@
            }
 
            // 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
-           spawn-at-startup "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000"
+           spawn-at-startup "wlsunset" "-T" "4200" "-t" "4200"
 
            // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
            input {
