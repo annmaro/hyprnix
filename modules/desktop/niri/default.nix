@@ -146,8 +146,7 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-               match namespace=r#"^dms:.*"#
-               match namespace=r#"^rofi$"#
+               match namespace=r#"^(dms:.*|rofi)$"#
                geometry-corner-radius 12
 
                background-effect {
@@ -163,18 +162,12 @@
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
-               match app-id="^firefox$"
-               match app-id="^zen-beta"
-               match app-id="^floorp$"
-               match app-id="^brave-"
-               match app-id="^vlc$"
-               match app-id="^easyeffects$"
-               match app-id="^gapless$"
+               match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
                opacity 1.0
             }
 
            window-rule {
-               match app-id="^kitty$"
+               match app-id="^(kitty|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm|nvim-wrapper|VSCodium|code)$"
                match app-id="^com.mitchellh.ghostty$"
                match app-id="^Alacritty$"
                match app-id="^org.wezfurlong.wezterm$"
@@ -186,45 +179,19 @@
            }
 
            window-rule {
-               match app-id="^gnome-disks$"
-               match app-id="^org.gnome.Nautilus$"
-               match app-id="^thunar$"
-               match app-id="^pcmanfm$"
-               match app-id="^file-roller$"
-               match app-id="^steamwebhelper$"
-               match app-id="^Spotify$"
-               match app-id="^com.github.th_ch.youtube_music$"
+               match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|Spotify|com.github.th_ch.youtube_music)$"
                opacity 0.90
                draw-border-with-background false
            }
 
            window-rule {
-               match app-id="^Emacs$"
-               match app-id="^obsidian$"
-               match app-id="^proton.vpn.app.gtk$"
-               match app-id="^heroic$"
-               match app-id="^lutris$"
-               match app-id="^discord$"
-               match app-id="^webcord$"
-               match app-id="^vesktop$"
+               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop)$
                opacity 0.90
                draw-border-with-background false
            }
 
            window-rule {
-               match app-id="^pavucontrol$"
-               match app-id="^blueman-manager$"
-               match app-id="^nm-applet$"
-               match app-id="^nm-connection-editor$"
-               match app-id="^nwg-look$"
-               match app-id="^qt5ct$"
-               match app-id="^qt6ct$"
-               match app-id="^yad$"
-               match app-id="^app.drey.Warp$"
-               match app-id="^net.davidotek.pupgui2$"
-               match app-id="^Signal$"
-               match app-id="^io.gitlab.theevilskeleton.Upscaler$"
-               match app-id="^eog$"
+               match app-id="^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$
                open-floating true
            }
 
