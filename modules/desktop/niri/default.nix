@@ -341,9 +341,7 @@
                    saturation 1.25
                }
                
-               // Captures app menus & tooltips safely to apply the master blur parameters above
-               popups {}
-           }
+        }
     '';
 
       xdg.portal = {
