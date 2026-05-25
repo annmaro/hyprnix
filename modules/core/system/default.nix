@@ -4,7 +4,6 @@
   outputs,
   host,
   pkgs,
-  overlays,
   ...
 }:
 let
