@@ -423,7 +423,7 @@
         { app-id = "^lutris$"; }
         { app-id = "^bottles$"; }
       ];
-      geometry-corner-radius = 8.0;
+      # geometry-corner-radius = 8.0;
     }
   ];
 }
