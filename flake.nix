@@ -82,21 +82,25 @@
     }@inputs:
     let
       inherit (self) outputs;
-      systems = [
-        "x86_64-linux"
-      ];
+      systems = "x86_64-linux";
       forAllSystems = nixpkgs.lib.genAttrs systems;
       mkHost =
         host:
+        let
+          # 1. Import your list of overlays for this specific host
+          hostOverlays = import ./overlays { inherit inputs host; };
+        in
         nixpkgs.lib.nixosSystem {
-          # inherit system;
-          system = forAllSystems (system: system);
+          inherit system;
           modules = [
             ./hosts/${host}/configuration.nix
+            {
+              nixpkgs.overlays = hostOverlays ++ [ 
+                inputs.niri-nix.overlays.niri-nix 
+              ];
+            }
           ];
           specialArgs = {
-            # inherit self inputs outputs;
-            overlays = import ./overlays { inherit inputs host; };
             inherit
               self
               inputs
