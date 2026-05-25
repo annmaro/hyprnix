@@ -243,23 +243,7 @@
                    saturation 1.25
                } 
               }
-               // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
-               layer-rule {
-                match namespace=r#"^rofi$"#
-                match namespace=r#"^dms:.*"#
-                
-                popups {
-                   geometry-corner-radius 10
-                   opacity 0.90
-                   background-effect {
-                       blur true
-                       xray false
-                       radius 10
-                       noise 0.03
-                       saturation 1.25
-                   }
-                 }
-               }
+              
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
@@ -331,6 +315,23 @@
            window-rule {
                match title="^Picture-in-Picture$"
                open-floating true
+           }
+
+           // 🛠️ GLOBAL APPLICATION POPUPS BLUR & STRUCTURE
+           window-rule {
+               // Targets all right-click menus, dropdown menus, and application tooltips cleanly
+               match is-popup=true
+               
+               geometry-corner-radius 10
+               opacity 0.90
+               
+               background-effect {
+                   blur true
+                   xray false
+                   radius 10
+                   noise 0.03
+                   saturation 1.25
+               }
            }
 '';
 
