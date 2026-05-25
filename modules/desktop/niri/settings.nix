@@ -1,5 +1,4 @@
-# settings.nix
-{ pkgs, config, ... }: 
+{ pkgs, config, ... }:
 
 {
   # ==========================================
@@ -15,7 +14,7 @@
     "XDG_SESSION_DESKTOP" = "niri";
     "XDG_SESSION_TYPE" = "wayland";
     "GDK_BACKEND" = "wayland,x11,*";
-    "NIXOS_OZONE_WL" = "1"; 
+    "NIXOS_OZONE_WL" = "1";
     "ELECTRON_OZONE_PLATFORM_HINT" = "wayland";
     "MOZ_ENABLE_WAYLAND" = "1";
     "OZONE_PLATFORM" = "wayland";
@@ -31,7 +30,19 @@
   # 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
   # ==========================================
   spawn-at-startup = [
-    { command = [ "wlsunset" "-l" "23.3" "-L" "85.3" "-T" "6500" "-t" "3000" ]; }
+    {
+      command = [
+        "wlsunset"
+        "-l"
+        "23.3"
+        "-L"
+        "85.3"
+        "-T"
+        "6500"
+        "-t"
+        "3000"
+      ];
+    }
   ];
 
   # ==========================================
@@ -44,7 +55,7 @@
       };
       repeat-delay = 275;
       repeat-rate = 35;
-      track-layout = "global"; 
+      track-layout = "global";
     };
     touchpad = {
       natural-scroll = false;
@@ -62,18 +73,33 @@
   # 🖥️ DISPLAY OUTPUTS & PERSISTENT LAYOUT
   # ==========================================
   outputs."desc:BOE 0x0690" = {
-    mode.width = 1920;
-    mode.height = 1080;
+    mode = {
+      width = 1920;
+      height = 1080;
+    };
     scale = 1.0;
-    position.x = 0; 
-    position.y = 0; 
+    position = {
+      x = 0;
+      y = 0;
+    };
   };
+
   workspaces = {
-    "1" = { open-on-output = "desc:BOE 0x0690"; };
-    "2" = { open-on-output = "desc:BOE 0x0690"; };
-    "3" = { open-on-output = "desc:BOE 0x0690"; };
-    "4" = { open-on-output = "desc:BOE 0x0690"; };
-    "5" = { open-on-output = "desc:BOE 0x0690"; }; 
+    "1" = {
+      open-on-output = "desc:BOE 0x0690";
+    };
+    "2" = {
+      open-on-output = "desc:BOE 0x0690";
+    };
+    "3" = {
+      open-on-output = "desc:BOE 0x0690";
+    };
+    "4" = {
+      open-on-output = "desc:BOE 0x0690";
+    };
+    "5" = {
+      open-on-output = "desc:BOE 0x0690";
+    };
   };
 
   # ==========================================
@@ -86,7 +112,7 @@
       enable = true;
       width = 2;
       active.color = "#ca9ee6";
-      inactive.color = "#b4befe"; 
+      inactive.color = "#b4befe";
     };
     preset-column-widths = [
       { proportion = 1.0 / 3.0; }
@@ -100,7 +126,7 @@
   # ==========================================
   overview = {
     zoom = 1.0 / 3.0;
-    backdrop-color = "#390f19ec"; 
+    backdrop-color = "#390f19ec";
   };
 
   # ==========================================
@@ -112,24 +138,71 @@
     "Mod+C".action.spawn = [ "editor" ];
     "Mod+F".action.spawn = [ "firefox" ];
     "Mod+A".action.spawn = [ "antigravity" ];
-    "Mod+Space".action.spawn = [ "rofi" "-show" "drun" ];
-    "Mod+V".action.spawn = [ "rofi" "-show" "clipboard" ];
-    "Mod+Z".action.spawn = [ "rofi" "-show" "emoji" ];
-    "Mod+G".action.spawn = [ "launcher" "games" ];
+    "Mod+Space".action.spawn = [
+      "rofi"
+      "-show"
+      "drun"
+    ];
+    "Mod+V".action.spawn = [
+      "rofi"
+      "-show"
+      "clipboard"
+    ];
+    "Mod+Z".action.spawn = [
+      "rofi"
+      "-show"
+      "emoji"
+    ];
+    "Mod+G".action.spawn = [
+      "launcher"
+      "games"
+    ];
     "Mod+Alt+G".action.spawn = [ "gamemode" ];
     "Mod+Q".action.close-window = [ ];
     "Mod+Delete".action.quit = [ ];
-    "Mod+Alt+L".action.spawn = [ "dms" "session" "lock" ];
-    "Mod+N".action.spawn = [ "dms" "ipc" "call" "notifications" "toggle" ];
-    "Mod+Shift+E".action.spawn = [ "dms" "ipc" "call" "session" "toggle" ];
-    "Mod+Backspace".action.spawn = [ "sh" "-c" "pkill -x wlogout || wlogout -b 4" ];
+    "Mod+Alt+L".action.spawn = [
+      "dms"
+      "session"
+      "lock"
+    ];
+    "Mod+N".action.spawn = [
+      "dms"
+      "ipc"
+      "call"
+      "notifications"
+      "toggle"
+    ];
+    "Mod+Shift+E".action.spawn = [
+      "dms"
+      "ipc"
+      "call"
+      "session"
+      "toggle"
+    ];
+    "Mod+Backspace".action.spawn = [
+      "sh"
+      "-c"
+      "pkill -x wlogout || wlogout -b 4"
+    ];
     "Mod+Shift+S".action.spawn = [ "spotify" ];
     "Mod+Shift+Y".action.spawn = [ "youtube-music" ];
-    "Ctrl+Alt+Delete".action.spawn = [ "ghostty" "-e" "btop" ];
-    "Mod+Ctrl+C".action.spawn = [ "hyprpicker" "--autocopy" "--format=hex" ];
+    "Ctrl+Alt+Delete".action.spawn = [
+      "ghostty"
+      "-e"
+      "btop"
+    ];
+    "Mod+Ctrl+C".action.spawn = [
+      "hyprpicker"
+      "--autocopy"
+      "--format=hex"
+    ];
     "Mod+F9".action.spawn = [ "wlsunset-toggle" ];
-    "Mod+F10".action.spawn = [ "sh" "-c" "pkill wlsunset" ];
-    
+    "Mod+F10".action.spawn = [
+      "sh"
+      "-c"
+      "pkill wlsunset"
+    ];
+
     "Mod+Left".action.focus-column-left = [ ];
     "Mod+Right".action.focus-column-right = [ ];
     "Mod+H".action.focus-column-left = [ ];
@@ -137,7 +210,7 @@
     "Mod+S".action.toggle-overview = [ ];
     "Mod+Ctrl+Left".action.move-column-left = [ ];
     "Mod+Ctrl+Right".action.move-column-right = [ ];
-    
+
     "Mod+K".action.focus-window-up = [ ];
     "Mod+J".action.focus-window-down = [ ];
     "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
@@ -159,23 +232,69 @@
     "Mod+Shift+4".action.move-column-to-workspace = [ 4 ];
     "Mod+Shift+5".action.move-column-to-workspace = [ 5 ];
 
-    "XF86AudioRaiseVolume".action.spawn = [ "pamixer" "-i" "2" ];
-    "XF86AudioLowerVolume".action.spawn = [ "pamixer" "-d" "2" ];
-    "XF86AudioMute".action.spawn = [ "pamixer" "-t" ];
-    "XF86AudioMicMute".action.spawn = [ "pamixer" "--default-source" "-t" ];
-    "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+2%" ];
-    "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "2%-" ];
-    "XF86AudioPlay".action.spawn = [ "playerctl" "play-pause" ];
-    "XF86AudioPause".action.spawn = [ "playerctl" "play-pause" ];
-    "XF86AudioNext".action.spawn = [ "playerctl" "next" ];
-    "XF86AudioPrev".action.spawn = [ "playerctl" "previous" ];
-    "XF86Sleep".action.spawn = [ "systemctl" "suspend" ];
+    "XF86AudioRaiseVolume".action.spawn = [
+      "pamixer"
+      "-i"
+      "2"
+    ];
+    "XF86AudioLowerVolume".action.spawn = [
+      "pamixer"
+      "-d"
+      "2"
+    ];
+    "XF86AudioMute".action.spawn = [
+      "pamixer"
+      "-t"
+    ];
+    "XF86AudioMicMute".action.spawn = [
+      "pamixer"
+      "--default-source"
+      "-t"
+    ];
+    "XF86MonBrightnessUp".action.spawn = [
+      "brightnessctl"
+      "set"
+      "+2%"
+    ];
+    "XF86MonBrightnessDown".action.spawn = [
+      "brightnessctl"
+      "set"
+      "2%-"
+    ];
+    "XF86AudioPlay".action.spawn = [
+      "playerctl"
+      "play-pause"
+    ];
+    "XF86AudioPause".action.spawn = [
+      "playerctl"
+      "play-pause"
+    ];
+    "XF86AudioNext".action.spawn = [
+      "playerctl"
+      "next"
+    ];
+    "XF86AudioPrev".action.spawn = [
+      "playerctl"
+      "previous"
+    ];
+    "XF86Sleep".action.spawn = [
+      "systemctl"
+      "suspend"
+    ];
     "Mod+Up".action.focus-window-or-workspace-up = [ ];
     "Mod+Down".action.focus-window-or-workspace-down = [ ];
     "Mod+Ctrl+Up".action.move-workspace-up = [ ];
     "Mod+Ctrl+Down".action.move-workspace-down = [ ];
-    "Mod+P".action.spawn = [ "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -" ];
-    "Mod+Ctrl+P".action.spawn = [ "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -" ];
+    "Mod+P".action.spawn = [
+      "sh"
+      "-c"
+      "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
+    ];
+    "Mod+Ctrl+P".action.spawn = [
+      "sh"
+      "-c"
+      "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
+    ];
   };
 
   # ==========================================
@@ -183,7 +302,6 @@
   # ==========================================
   layer-rules = [
     {
-      # True backdrop blur for top-level interactive overlays (Launchers, Bars)
       matches = [
         { layer = "top"; }
         { layer = "overlay"; }
@@ -194,7 +312,6 @@
       };
     }
     {
-      # High-performance wallpaper blur for background layers
       matches = [
         { layer = "bottom"; }
         { layer = "background"; }
@@ -207,11 +324,10 @@
   ];
 
   # ==========================================
-  # 🖼️ WINDOW RULES, TRANSPARENCY & BLUR FILTERS
+  # 🖼️ WINDOW RULES, TRANSPARENCY & GEOMETRY
   # ==========================================
   window-rules = [
     {
-      # Clean browsers and video targets (No Canvas Clipping needed)
       matches = [
         { app-id = "^firefox$"; }
         { app-id = "^zen-"; }
@@ -224,7 +340,6 @@
       opacity = 1.0;
     }
     {
-      # Terminal & Editor Block (0.94 Opacity)
       matches = [
         { app-id = "^kitty$"; }
         { app-id = "^com.mitchellh.ghostty$"; }
@@ -235,12 +350,9 @@
         { app-id = "^code$"; }
       ];
       opacity = 0.94;
-      
-      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
     }
     {
-      # File Managers & Media Players Block (0.90 Opacity)
       matches = [
         { app-id = "^gnome-disks$"; }
         { app-id = "^org.gnome.Nautilus$"; }
@@ -252,12 +364,9 @@
         { app-id = "^com.github.th_ch.youtube_music$"; }
       ];
       opacity = 0.90;
-
-      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
     }
     {
-      # Notes, Launchers, & Social Block (0.90 Opacity)
       matches = [
         { app-id = "^Emacs$"; }
         { app-id = "^obsidian$"; }
@@ -269,8 +378,6 @@
         { app-id = "^vesktop$"; }
       ];
       opacity = 0.90;
-
-      # FIX FOR ELECTRON BORDERS
       draw-border-with-background = false;
     }
     {
@@ -295,11 +402,9 @@
       matches = [ { title = "^Picture-in-Picture$"; } ];
       open-floating = true;
     }
-    # 🌟 Target block for Rofi window blurring and floating behaviour
     {
-      matches = [
-        { app-id = "^rofi$"; }
-      ];
+      # Note: background-effect removed as it is not valid in window-rules
+      matches = [ { app-id = "^rofi$"; } ];
       open-floating = true;
       geometry-corner-radius = {
         top-left = 12.0;
@@ -307,50 +412,18 @@
         bottom-left = 12.0;
         bottom-right = 12.0;
       };
-      background-effect = {
-        blur = true;
-        xray = false;
-      };
-    }   
-
-    # ==========================================
-    # 🎛️ POPUPS & PERFORMANCE EXCLUSIONS
-    # ==========================================
+    }
     {
-      # Match application popups and right-click menus globally
-      matches = [ { is-popup = true; } ]; 
-      
+      matches = [ { is-popup = true; } ];
       excludes = [
-        { app-id = "^vlc$"; } 
+        { app-id = "^vlc$"; }
         { app-id = "^mpv$"; }
         { app-id = "^steam$"; }
         { app-id = "^heroic$"; }
         { app-id = "^lutris$"; }
         { app-id = "^bottles$"; }
       ];
-
-      geometry-corner-radius = 8;
-      background-effect = {
-        blur = true;
-        xray = false;
-      };
+      geometry-corner-radius = 8.0;
     }
-    {
-      # Strictly disable background effects for heavy media/gaming engines
-      matches = [
-        { app-id = "^vlc$"; } 
-        { app-id = "^mpv$"; }
-        { app-id = "^steam$"; }
-        { app-id = "^heroic$"; }
-        { app-id = "^lutris$"; }
-        { app-id = "^bottles$"; }
-      ];
-      
-      background-effect = {
-        blur = false;
-        xray = false;
-      };
-    }
-
   ];
 }
