@@ -30,7 +30,6 @@
     thunar-volman # Necessary if you use Thunar for drive popups
     gnome-disk-utility # Gives you a clean GUI to verify physical blocks
     wlsunset # Day/night gamma adjustments for Wayland
-
   ];
 
   # Niri binary cache settings to prevent local compilation
@@ -58,7 +57,7 @@
       # ensuring your native KDL string below generates seamlessly.
       programs.niri.settings = {};
 
-     # =====================================================================
+      # =====================================================================
       # 🎛️ NIRI NATIVE KDL CONFIGURATION (All settings managed here)
       # =====================================================================
       programs.niri.config = ''
@@ -265,7 +264,108 @@
                match app-id="^brave-"
                match app-id="^vlc$"
                match app-id="^easyeffects$"
-        
+               match app-id="^gapless$"
+               opacity 1.0
+           }
+
+           window-rule {
+               match app-id="^kitty$"
+               match app-id="^com.mitchellh.ghostty$"
+               match app-id="^Alacritty$"
+               match app-id="^org.wezfurlong.wezterm$"
+               match app-id="^nvim-wrapper$"
+               match app-id="^VSCodium$"
+               match app-id="^code$"
+               opacity 0.94
+               draw-border-with-background false
+           }
+
+           window-rule {
+               match app-id="^gnome-disks$"
+               match app-id="^org.gnome.Nautilus$"
+               match app-id="^thunar$"
+               match app-id="^pcmanfm$"
+               match app-id="^file-roller$"
+               match app-id="^steamwebhelper$"
+               match app-id="^Spotify$"
+               match app-id="^com.github.th_ch.youtube_music$"
+               opacity 0.90
+               draw-border-with-background false
+           }
+
+           window-rule {
+               match app-id="^Emacs$"
+               match app-id="^obsidian$"
+               match app-id="^proton.vpn.app.gtk$"
+               match app-id="^heroic$"
+               match app-id="^lutris$"
+               match app-id="^discord$"
+               match app-id="^webcord$"
+               match app-id="^vesktop$"
+               opacity 0.90
+               draw-border-with-background false
+           }
+
+           window-rule {
+               match app-id="^pavucontrol$"
+               match app-id="^blueman-manager$"
+               match app-id="^nm-applet$"
+               match app-id="^nm-connection-editor$"
+               match app-id="^nwg-look$"
+               match app-id="^qt5ct$"
+               match app-id="^qt6ct$"
+               match app-id="^yad$"
+               match app-id="^app.drey.Warp$"
+               match app-id="^net.davidotek.pupgui2$"
+               match app-id="^Signal$"
+               match app-id="^io.gitlab.theevilskeleton.Upscaler$"
+               match app-id="^eog$"
+               open-floating true
+           }
+
+           window-rule {
+               match title="^Picture-in-Picture$"
+               open-floating true
+           }
+
+           // 🖼️ GLOBAL WINDOW BLUR & EXCLUSIONS
+           window-rule {
+               exclude app-id=r#"^vlc$"#
+               exclude app-id=r#"^mpv$"#
+               exclude app-id=r#"^steam$"#
+               exclude app-id=r#"^heroic$"#
+               exclude app-id=r#"^lutris$"#
+               exclude app-id=r#"^bottles$"#
+               exclude app-id=r#"^firefox$"#
+               exclude app-id=r#"^vivaldi$"#
+               exclude app-id=r#"^brave$"#
+               exclude app-id=r#"^zen-beta"#
+               
+               background-effect {
+                   blur true
+                   xray false
+                   radius 10
+                   noise 0.03
+                   saturation 1.25
+               }
+           }
+
+           // 🛠️ GLOBAL APPLICATION POPUPS BLUR
+           window-rule {
+               popups {
+                   geometry-corner-radius 10
+                   opacity 0.90
+                   
+                   background-effect {
+                       blur true
+                       xray false
+                       radius 10
+                       noise 0.03
+                       saturation 1.25
+                   }
+               }
+           } 
+      '';
 
       xdg.portal = {
         enable = true;
