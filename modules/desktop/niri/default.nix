@@ -245,8 +245,9 @@
               }
                // Explicitly handles dropdowns/menus spawned inside DMS/Rofi
                layer-rule {
-                match namespace=r#"^dms:.*"#
                 match namespace=r#"^rofi$"#
+                match namespace=r#"^dms:.*"#
+                
                 popups {
                    geometry-corner-radius 10
                    opacity 0.90
