@@ -363,8 +363,7 @@
                     noise 0.03
                     saturation 1.25
               }
-           }
-          }  
+           } 
       '';
 
       xdg.portal = {
