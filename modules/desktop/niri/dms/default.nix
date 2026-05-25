@@ -9,7 +9,9 @@
       ];
       
       lib.niri = {
-        actions = {};
+        actions = {
+          spawn = a: b: {}; 
+        };
       };
 
       programs.dank-material-shell = {
