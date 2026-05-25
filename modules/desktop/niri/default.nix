@@ -327,22 +327,7 @@
                match title="^Picture-in-Picture$"
                open-floating true
            }
-
-           // 🖼️ GLOBAL WINDOW BLUR & EXCLUSIONS
-           window-rule {
-               // Clean, pipeline pipe alternation grouping for media, browser, and game layers
-               exclude app-id=r#"^(vlc|mpv|steam|heroic|lutris|bottles|firefox|vivaldi|brave|zen-beta)$"#
-               
-               background-effect {
-                   blur true
-                   xray false
-                   radius 10
-                   noise 0.03
-                   saturation 1.25
-               }
-               
-        }
-    '';
+'';
 
       xdg.portal = {
         enable = true;
