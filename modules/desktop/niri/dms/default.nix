@@ -77,7 +77,9 @@
             margin = 8;            
             height = 76;           
             borderRadius = 6;
-            opacity = 0.70;
+            transparency = 0.70;
+            widgetTransparency = 1;
+            
 
             network_click_action = "applet";
             audio_click_action = "applet";
