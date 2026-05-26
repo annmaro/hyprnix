@@ -152,6 +152,13 @@
                  }
              }
            
+           overview {
+                 background-color "transparent"
+                 workspace-shadow { 
+                 off
+                }
+            }           
+
            layer-rule {
                match namespace="^(rofi|dms:)"
                exclude namespace="overview"
@@ -164,13 +171,7 @@
                     saturation 1.25
                 } 
             }
-
-              overview {
-                 background-color "transparent"
-                 workspace-shadow { 
-                 off
-                }
-            }           
+           
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
