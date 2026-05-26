@@ -83,6 +83,8 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+      installerPkg = import ./installer.nix { inherit pkgs; }; # this is so that we can use installer.nix as a module
       mkHost =
         host:
         let
@@ -113,6 +115,16 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+
+      # 2. Expose the installer binary layout package matching flake targets
+      packages.${system}.installer = installerPkg;
+
+      # 3. Expose the interactive executable target application block
+      apps.${system}.installer = {
+        type = "app";
+        program = "${installerPkg}/bin/installer";
+      };
+
       nixosConfigurations = {
         default = mkHost "default";
       };
