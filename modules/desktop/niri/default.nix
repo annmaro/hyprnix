@@ -150,7 +150,14 @@
            
 
            // 🎛️ LAYER RULES (Overview background)
-           layer-rule {
+           // Step A: Catch the specific blurred wallpaper asset DMS sends out
+            layer-rule {
+                match namespace="dms:blurwallpaper"
+                place-within-backdrop true
+            } 
+            
+            // Step B: Direct the main quickshell framework, but let Niri apply the blur effect to it
+            layer-rule {
                 match namespace="^quickshell$"
                 place-within-backdrop true
                 background-effect {
