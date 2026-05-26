@@ -158,8 +158,7 @@
             }           
 
            layer-rule {
-               match namespace="^(rofi|dms:bar)$"
-               exclude namespace="overview"
+               match namespace="^rofi$"
                geometry-corner-radius 12
 
                 background-effect {
