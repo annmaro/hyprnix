@@ -58,7 +58,7 @@
 
         styling = {
           layers = {
-            background = "#180F39CC";
+            background = "#190f3ecc";
           };
         };
 

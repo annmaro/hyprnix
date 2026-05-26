@@ -136,7 +136,7 @@
                center-focused-column "never"
                background-color "transparent"
                 border {
-                    width 2
+                    width 1
                    active-color "#ca9ee6"
                    inactive-color "#b4befe"
                }
@@ -150,13 +150,7 @@
            
 
            // 🎛️ LAYER RULES (Overview background)
-           // Step A: Catch the specific blurred wallpaper asset DMS sends out
-            layer-rule {
-                match namespace="dms:blurwallpaper"
-                place-within-backdrop true
-            } 
-            
-            // Step B: Direct the main quickshell framework, but let Niri apply the blur effect to it
+           
             layer-rule {
                 match namespace="^quickshell$"
                 place-within-backdrop true
