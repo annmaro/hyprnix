@@ -142,7 +142,7 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-                match namespace="^dms:workspace-overview$"
+                match namespace="^dms:overview"
                 place-within-backdrop true
                 background-effect {
                      blur true
@@ -229,7 +229,7 @@
                "Mod+Shift+Y" { spawn "youtube-music"; }
                "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
                "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
-               "Mod+F9" { spawn-sh-at-startup "wlsunset -T 3800 -t 3799"; }
+               "Mod+F9" { spawn-sh "wlsunset -T 3800 -t 3799"; }
                "Mod+F10" { spawn "pkill wlsunset"; }
                
                "Mod+Left" { focus-column-left; }
