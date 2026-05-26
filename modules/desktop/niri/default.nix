@@ -143,7 +143,7 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-               match namespace=r#"^(dms:.*|rofi)$"#
+               match namespace=r#"^(rofi|dms:(?!.*overview).*)$"#
                geometry-corner-radius 12
 
                 background-effect {
