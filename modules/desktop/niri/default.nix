@@ -154,7 +154,20 @@
                 } 
             }
 
-           
+            layer-rule {
+                   match namespace="^dms-overview*"
+                  place-within-backdrop true
+            }
+
+            layout {
+                  background-color "transparent"
+            }
+
+            overview {
+                 workspace-shadow { 
+                 off
+                }
+            }           
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
