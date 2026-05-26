@@ -228,7 +228,7 @@
                "Mod+Shift+Y" { spawn "youtube-music"; }
                "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
                "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
-               "Mod+F9" { spawn-sh "-c" "wlsunset -T 3800 -t 3799"; }
+               "Mod+F9" { spawn "sh" "-c" "wlsunset -T 3800 -t 3799"; }
                "Mod+F10" { spawn "pkill wlsunset"; }
                
                "Mod+Left" { focus-column-left; }
