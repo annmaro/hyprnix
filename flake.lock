@@ -58,6 +58,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779699611,
+        "narHash": "sha256-EcCaSTKnmg2o4wLKaN1aqQFomwyhO7ik0bX9COdyCas=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "5ba0c9555c28685e57fa54c7a25e42c7efdbfc8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "dms": {
       "inputs": {
         "nixpkgs": [
@@ -552,6 +572,7 @@
         "antigravity-nix": "antigravity-nix",
         "betterfox": "betterfox",
         "cursor": "cursor",
+        "disko": "disko",
         "dms": "dms",
         "home-manager": "home-manager",
         "niri": "niri",
