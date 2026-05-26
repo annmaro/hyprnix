@@ -159,10 +159,6 @@
                   place-within-backdrop true
             }
 
-            layout {
-                  background-color "transparent"
-            }
-
             overview {
                  workspace-shadow { 
                  off
