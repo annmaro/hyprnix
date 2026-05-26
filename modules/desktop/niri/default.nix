@@ -121,6 +121,15 @@
             workspace "1"
             workspace "2"
 
+             // 🌫️ GLOBAL COMPOSITOR CONFIGURATION (Top Level)
+             // (This controls how Niri places windows relative to the bar)
+            blur {
+                passes 2       
+                offset 2.0     
+                noise 0.02     
+                saturation 1.1 
+            }
+
            // 📐 LAYOUT STYLE & WINDOW GAPS
            layout {
                gaps 9
