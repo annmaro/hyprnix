@@ -142,7 +142,7 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-                match namespace="^dms:overview"
+                match namespace="^quickshell$"
                 place-within-backdrop true
                 background-effect {
                      blur true
@@ -152,7 +152,7 @@
              }
            
            overview {
-                 backdrop-color "transparent"
+                 background-color "transparent"
                  workspace-shadow { 
                  off
                 }
