@@ -42,7 +42,7 @@ in
     ../../modules/programs/terminal/${vars.terminal} # Set terminal defined in variables.nix
     ../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix
     ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
-   # ../../modules/programs/editor/vscode
+    ../../modules/programs/editor/vscode
     ../../modules/programs/editor/antigravity
     #../../modules/programs/editor/cursor
     ../../modules/programs/browser/zen
