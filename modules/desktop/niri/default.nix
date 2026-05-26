@@ -158,7 +158,7 @@
             }           
 
            layer-rule {
-               match namespace="^(rofi|dms:)"
+               match namespace="^(rofi|dms:bar)"
                exclude namespace="overview"
                geometry-corner-radius 12
 
@@ -170,6 +170,14 @@
                 } 
             }
            
+           layer-rule {
+                   // Matches your top bar
+                   match namespace="^dms:bar$"
+    
+                   // Completely hides the bar from showing inside the 
+                   // overview and workspace-switching backdrop
+                   exclude-from-backdrop true
+           }
 
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
