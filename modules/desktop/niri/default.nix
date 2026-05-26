@@ -124,8 +124,8 @@
              // 🌫️ GLOBAL COMPOSITOR CONFIGURATION (Top Level)
              // (This controls how Niri places windows relative to the bar)
             blur {
-                passes 2       
-                offset 2.0     
+                passes 3       
+                offset 3.0     
                 noise 0.02     
                 saturation 1.1 
             }
