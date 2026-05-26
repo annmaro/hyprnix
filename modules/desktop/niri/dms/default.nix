@@ -24,7 +24,7 @@
         systemd.user.services.dms = {
           Service = {
             Environment = [
-            "QT_SCALE_FACTOR=1.2" # 1.2 = 120% size. Adjust this up or down as needed!
+            "QT_SCALE_FACTOR=1.3" # 1.3 = 130% size. Adjust this up or down as needed!
           ];
         };
       };
@@ -38,7 +38,7 @@
 
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
         configVersion = 2;
-        disableWallpaper = true; # Handled perfectly by your separate awww + waypaper setup!
+        disableWallpaper = false; # Set true if you want to handle wallpaper through swaybg/awww
         
         modules = {
           bar = true;
@@ -66,6 +66,7 @@
         weatherLocation = "Ramgarh, Jharkhand, India";
         weatherCoordinates = "23.5987759,85.5369156";
         useFahrenheit = false;
+        useLocation = false;
 
         barConfigs = [
           {
@@ -73,12 +74,12 @@
             name = "Main Bar";
             enabled = true;
             position = "top";
-            floating = true;       
-            margin = 8;            
+            floating = false;       
+            margin = 0;            
             height = 76;           
             borderRadius = 6;
             transparency = 0.70;
-            widgetTransparency = 1;
+            widgetTransparency = 0.90;
             
 
             network_click_action = "applet";

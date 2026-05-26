@@ -156,6 +156,7 @@
                 place-within-backdrop true
                 background-effect {
                      blur true
+                     xray false
                      noise 0.03
                      saturation 1.25
                  }
@@ -197,7 +198,7 @@
            }
 
            window-rule {
-               match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|Spotify|com.github.th_ch.youtube_music)$"
+               match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|spotify|com.github.th_ch.youtube_music)$"
                opacity 0.80
                draw-border-with-background false
                background-effect {

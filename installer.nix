@@ -10,13 +10,13 @@ pkgs.writeShellScriptBin "installer" ''
   BLUE='\033[0;34m'
   NC='\033[0m'
 
-  info() { echo -e "\n\''${GREEN}$1\''${NC}"; }
-  warn() { echo -e "\''${YELLOW}$1\''${NC}"; }
-  error() { echo -e "\''${RED}Error: $1\''${NC}" >&2; }
+  info() { echo -e "\n\${GREEN}$1\${NC}"; }
+  warn() { echo -e "\${YELLOW}$1\${NC}"; }
+  error() { echo -e "\${RED}Error: $1\${NC}" >&2; }
 
-  echo -e "\''${BLUE}=====================================================\''${NC}"
-  echo -e "\''${BLUE}    Welcome to the Unified NixOS Flake Installer     \''${NC}"
-  echo -e "\''${BLUE}=====================================================\''${NC}"
+  echo -e "\${BLUE}=====================================================\${NC}"
+  echo -e "\${BLUE}    Welcome to the Unified NixOS Flake Installer     \${NC}"
+  echo -e "\${BLUE}=====================================================\${NC}"
 
   # 1. Determine Environment
   IS_LIVE_ISO=false
@@ -31,7 +31,7 @@ pkgs.writeShellScriptBin "installer" ''
   if $IS_LIVE_ISO && [ -z "$NIX_FLAGS_ENFORCED" ]; then
       info "Enabling Flake features and preparing environment tools..."
       export NIX_FLAGS_ENFORCED=1
-      exec nix shell nixpkgs#git nixpkgs#pciutils nixpkgs#parted nixpkgs#cryptsetup --extra-experimental-features "nix-command flakes" -c sudo -E "$0" "$@"
+      exec nix shell nixpkgs#git nixpkgs#pciutils github:nix-community/disko --extra-experimental-features "nix-command flakes" -c sudo -E "$0" "$@"
       exit $?
   fi
 
@@ -61,19 +61,21 @@ pkgs.writeShellScriptBin "installer" ''
   # Username prompt
   while true; do
       read -rp "Enter desired username [default: $currentUser]: " username
-      username=''${username:-$currentUser}
+      username=\${username:-$currentUser}
       if [[ "$username" =~ ^[a-z_][a-z0-9_-]*$ ]]; then break; fi
       error "Invalid username format. Use lowercase letters, numbers, underscores, or hyphens."
   done
 
   # Hostname prompt
   read -rp "Enter desired system hostname [default: nixos]: " hostname
-  hostname=''${hostname:-nixos}
+  hostname=\${hostname:-nixos}
 
   # Password prompt
   while true; do
-      read -rsp "Enter password for $username: " password; echo ""
-      read -rsp "Confirm password: " password_confirm; echo ""
+      read -rsp "Enter password for $username: " password;
+      echo ""
+      read -rsp "Confirm password: " password_confirm;
+      echo ""
       if [ "$password" = "$password_confirm" ]; then
           if [ -z "$password" ]; then error "Password cannot be empty."; else break; fi
       else
@@ -99,111 +101,134 @@ pkgs.writeShellScriptBin "installer" ''
   # 4. Environment Branch Execution
   if $IS_LIVE_ISO; then
       # --- LIVE ISO ROUTINE ---
-      info "Beginning Drive Partitioning Configuration..."
-      
-      echo "Available disks:"
-      lsblk -d -o NAME,SIZE,MODEL | grep -v loop
+      info "Select Installation Partitioning Method:"
+      echo "1) Automated Wipe (Wipe an ENTIRE drive automatically using Disko)"
+      echo "2) Custom Partitions (Select already existing partitions manually)"
+      echo "3) Your Personal Default (Format existing /dev/sda1 and /dev/sda2 safely)"
       while true; do
-          read -rp "Enter disk name to completely wipe & format (e.g., sda, nvme0n1): " disk
-          if [ -b "/dev/$disk" ]; then break; fi
-          error "Invalid disk target chosen."
-      done
-
-      info "Encryption Options:"
-      echo "1) Yes, encrypt the root partition using LUKS"
-      echo "2) No, leave the system unencrypted"
-      while true; do
-          read -rp "Enable full disk encryption? (1 or 2): " luks_choice
-          case $luks_choice in
-              1) encrypt_system=true; break ;;
-              2) encrypt_system=false; break ;;
-              *) error "Invalid choice. Enter 1 or 2." ;;
+          read -rp "Enter choice (1, 2 or 3): " install_mode
+          case $install_mode in
+              1|2|3) break ;;
+              *) error "Invalid choice. Choose 1, 2, or 3." ;;
           esac
       done
 
-      if $encrypt_system; then
-          info "Set LUKS encryption password for your storage root:"
+      if [ "$install_mode" = "1" ]; then
+          # --- OPTION 1: AUTOMATED DISKO WIPE ---
+          echo "Available disks on your system:"
+          lsblk -d -o NAME,SIZE,MODEL,TYPE | grep -v loop
+          echo ""
+
           while true; do
-              read -rsp "Enter LUKS password: " luks_password; echo ""
-              read -rsp "Confirm LUKS password: " luks_password_confirm; echo ""
-              if [ "$luks_password" = "$luks_password_confirm" ]; then
-                  if [ -z "$luks_password" ]; then error "LUKS password cannot be empty."; else break; fi
-              else
-                  error "Passwords do not match. Try again."
-              fi
+              read -rp "Enter the exact disk name to WIPE (e.g., sda, nvme0n1): " disk
+              disk=\${disk#/dev/}
+              if [ -b "/dev/$disk" ]; then break; fi
+              error "Invalid block device. Please choose a valid disk."
           done
+
+          echo -e "\n\${RED}!!! CRITICAL WARNING !!!\${NC}"
+          warn "EVERYTHING on /dev/$disk will be PERMANENTLY DESTROYED."
+          read -rp "To confirm, type 'READY' (case-sensitive): " critical_confirm
+          if [ "$critical_confirm" != "READY" ]; then error "Aborting."; exit 1; fi
+
+          info "Running Disko to completely re-partition and format /dev/$disk..."
+          disko --mode destroy,format,mount --argstr disk "/dev/$disk" ./disko-config.nix
+
+      elif [ "$install_mode" = "2" ]; then
+          # --- OPTION 2: SELECT EXISTING PARTITIONS MANUALLY ---
+          echo "Available partitions on your system:"
+          lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
+          echo ""
+
+          while true; do
+              read -rp "Enter your existing EFI/Boot partition path (e.g., /dev/sdb1): " custom_efi
+              if [ -b "$custom_efi" ]; then break; fi
+              error "Invalid partition device."
+          done
+
+          while true; do
+              read -rp "Enter your existing Root partition path (e.g., /dev/sdb2): " custom_root
+              if [ -b "$custom_root" ]; then break; fi
+              error "Invalid partition device."
+          done
+
+          echo -e "\n\${YELLOW}Formatting selected partitions...\${NC}"
+          # Format Boot as VFAT
+          mkfs.vfat -F 32 -n "BOOT" "$custom_efi"
+          # Format Root as Btrfs
+          mkfs.btrfs -f -L "root" "$custom_root"
+
+          info "Mounting subvolumes manually..."
+          mount "$custom_root" /mnt
+          btrfs subvolume create /mnt/@
+          btrfs subvolume create /mnt/@home
+          btrfs subvolume create /mnt/@nix
+          umount /mnt
+
+          # Remount mapping layout precisely matching Disko standards
+          mount -o compress=zstd,noatime,subvol=@ "$custom_root" /mnt
+          mkdir -p /mnt/{boot,home,nix}
+          mount -o compress=zstd,noatime,subvol=@home "$custom_root" /mnt/home
+          mount -o compress=zstd,noatime,subvol=@nix "$custom_root" /mnt/nix
+          mount -o umask=0077 "$custom_efi" /mnt/boot
+
+      elif [ "$install_mode" = "3" ]; then
+          # --- OPTION 3: YOUR PERSONAL QUICK-DEFAULT ---
+          echo -e "\n\${YELLOW}Running safe re-installation on default partitions (/dev/sda1 & /dev/sda2)...\${NC}"
+          echo -e "--------------------------------------------------------"
+          lsblk "/dev/sda"
+          echo -e "--------------------------------------------------------"
+          warn "EVERYTHING on /dev/sda1 (boot) and /dev/sda2 (root) will be WIPED."
+          echo ""
+
+          read -rp "To confirm this is correct, type 'READY' (case-sensitive): " critical_confirm
+          if [ "$critical_confirm" != "READY" ]; then error "Aborting."; exit 1; fi
+
+          info "Running Disko to handle mounting and formatting existing partitions..."
+          disko --mode format,mount --argstr disk "/dev/sda" ./disko-config.nix
       fi
 
-      warn "WARNING: This will destroy all data on /dev/$disk."
-      read -rp "Proceed with formatting and full install? (Y/n): " confirm
-      if [[ "$confirm" =~ ^[nN]$ ]]; then error "Aborted."; exit 1; fi
-
-      if [[ "/dev/$disk" =~ nvme ]]; then
-          part_boot="''${disk}p1"; part_root="''${disk}p2"
-      else
-          part_boot="''${disk}1"; part_root="''${disk}2"
-      fi
-
-      wipefs -af "/dev/$disk"
-      ${pkgs.parted}/bin/parted -s "/dev/$disk" \
-          mklabel gpt \
-          mkpart primary fat32 1MiB 1025MiB \
-          set 1 esp on \
-          mkpart primary 1025MiB 100%
-
-      mkfs.fat -F32 "/dev/$part_boot"
-
-      if $encrypt_system; then
-          info "Setting up Root LUKS Encryption Wrapper Container..."
-          echo -n "$luks_password" | ${pkgs.cryptsetup}/bin/cryptsetup luksFormat "/dev/$part_root" -
-          echo -n "$luks_password" | ${pkgs.cryptsetup}/bin/cryptsetup luksOpen "/dev/$part_root" luks-root -
-          root_device="/dev/mapper/luks-root"
-      else
-          info "Proceeding with standard unencrypted partition arrangement..."
-          root_device="/dev/$part_root"
-      fi
-
-      info "Formatting and creating Btrfs subvolumes..."
-      ${pkgs.btrfs-progs}/bin/mkfs.btrfs -f "$root_device"
-      
-      mkdir -p /mnt
-      mount "$root_device" /mnt
-      ${pkgs.btrfs-progs}/bin/btrfs subvolume create /mnt/root
-      ${pkgs.btrfs-progs}/bin/btrfs subvolume create /mnt/home
-      ${pkgs.btrfs-progs}/bin/btrfs subvolume create /mnt/nix
-      umount /mnt
-
-      info "Mounting subvolumes with zstd compression..."
-      mount -o compress=zstd,subvol=root "$root_device" /mnt
-      mkdir -p /mnt/{home,nix}
-      mount -o compress=zstd,subvol=home "$root_device" /mnt/home
-      mount -o compress=zstd,noatime,subvol=nix "$root_device" /mnt/nix
-
-      mkdir -p /mnt/boot
-      mount "/dev/$part_boot" /mnt/boot
-
+      # --- SHARED INSTALL ENGINE ---
+      # Stage configurations inside targeted file system tree
       mkdir -p /mnt/etc/nixos
       cp -r ./ /mnt/etc/nixos
 
+      # Inject Disko config import dynamically if Option 1 or Option 3 was chosen
+      if [ "$install_mode" = "1" ] || [ "$install_mode" = "3" ]; then
+          info "Injecting Disko configuration into host imports..."
+          host=\${host:-default}
+          if [ -f "/mnt/etc/nixos/hosts/\$host/configuration.nix" ]; then
+              sed -i '/imports = \[/a \    ../../disko-config.nix' "/mnt/etc/nixos/hosts/\$host/configuration.nix"
+          elif [ -f "/mnt/etc/nixos/hosts/default/configuration.nix" ]; then
+              sed -i '/imports = \[/a \    ../../disko-config.nix' "/mnt/etc/nixos/hosts/default/configuration.nix"
+          fi
+      fi
+
+      # Generate explicit hardware configuration out to file, filtering targeted exclusions
       info "Generating and filtering Hardware Profiles..."
       nixos-generate-config --root /mnt --show-hardware-config | grep -v -E "secrets|rclone" > /mnt/etc/nixos/hosts/default/hardware-configuration.nix
 
+      # Dynamic Values Injections (Handled safely on the target filesystem)
       if [ -f "/mnt/etc/nixos/hosts/default/variables.nix" ]; then
           sed -i -e "s/username = \".*\"/username = \"$username\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
           sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
       fi
 
+      # Trigger deployment target evaluation with explicit experimental flags
       info "Executing main system installation bootstrap..."
       nixos-install --flake /mnt/etc/nixos#default --no-root-passwd --extra-experimental-features "nix-command flakes"
 
+      # Set user runtime credentials safely inside target generation
       nixos-enter --root /mnt -c "echo '$password' | passwd --stdin $username"
 
+      # Seed localized profile directories
       mkdir -p "/mnt/home/$username"/{Downloads,Documents,Pictures,Videos,NixOS}
       cp -r /mnt/etc/nixos "/mnt/home/$username/NixOS/"
       
+      # Resolve safe POSIX namespace permissions targeting user account profile context
       uid=$(awk -F: -v user="$username" '$1 == user {print $3}' /mnt/etc/passwd)
       gid=$(awk -F: -v user="$username" '$1 == user {print $4}' /mnt/etc/passwd)
-      chown -R "''${uid:-$username}''${gid:-:users}" "/mnt/home/$username"
+      chown -R "\${uid:-$username}\${gid:-:users}" "/mnt/home/$username"
 
       info "Installation complete! Please unmount or reboot safely to explore your system."
 
@@ -222,12 +247,13 @@ pkgs.writeShellScriptBin "installer" ''
           ~/.config/gtk-*
           ~/.config/cava
       )
-      for file in "''${paths[@]}"; do
+      for file in "\${paths[@]}"; do
           for expanded in $file; do
               if [ -e "$expanded" ] && [ ! -L "$expanded" ]; then sudo rm -rf "$expanded"; fi
           done
       done
 
+      # Synchronize native system hardware settings safely while discarding sensitive paths
       target_hardware="./hosts/default/hardware-configuration.nix"
       if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
           grep -v -E "secrets|rclone" "/etc/nixos/hardware-configuration.nix" | sudo tee "$target_hardware" >/dev/null
@@ -246,10 +272,11 @@ pkgs.writeShellScriptBin "installer" ''
       fi
   fi
 
-  echo -e "\n\''${YELLOW}======================================================\''${NC}"
-  echo -e "\''${YELLOW}IMPORTANT POST-INSTALL NOTICE:\''${NC}"
+  # 5. Shared Informational Output for Post-Installation Configuration Tasks
+  echo -e "\n\${YELLOW}======================================================\${NC}"
+  echo -e "\${YELLOW}IMPORTANT POST-INSTALL NOTICE:\${NC}"
   echo -e "The installation script has completed successfully."
   echo -e "Private sops configs, Git sign keys, and rclone connections were skipped."
   echo -e "You can configure your custom secrets setup manually at your leisure."
-  echo -e "\''${YELLOW}======================================================\''${NC}\n"
+  echo -e "\${YELLOW}======================================================\${NC}\n"
 ''

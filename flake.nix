@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dms = {
     url = "github:AvengeMedia/DankMaterialShell/stable";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -94,6 +99,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            inputs.disko.nixosModules.disko
             ./hosts/${host}/configuration.nix
             {
               nixpkgs.overlays = [
