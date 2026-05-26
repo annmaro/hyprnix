@@ -152,7 +152,7 @@
            // 🎛️ LAYER RULES (Overview background)
            
             layer-rule {
-                match namespace="^quickshell$"
+                match namespace="^quickshell$|^dms:blurwallpaper$"
                 place-within-backdrop true
                 background-effect {
                      blur true
