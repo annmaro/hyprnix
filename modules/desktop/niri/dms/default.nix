@@ -58,7 +58,7 @@
 
         styling = {
           layers = {
-            background = "#190f3ecc";
+            background = "#180F39B3";
           };
         };
 
@@ -77,7 +77,7 @@
             margin = 8;            
             height = 76;           
             borderRadius = 6;
-            opacity = 0.85;
+            opacity = 0.70;
 
             network_click_action = "applet";
             audio_click_action = "applet";
