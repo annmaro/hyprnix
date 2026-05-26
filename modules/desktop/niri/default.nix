@@ -152,8 +152,7 @@
              }
            
            overview {
-                 background-color "transparent"
-                 workspace-shadow { 
+                workspace-shadow { 
                  off
                 }
             }           
