@@ -58,13 +58,13 @@
 
         styling = {
           layers = {
-            background = "#180F39D9";
+            background = "#180F39CC";
           };
         };
 
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
-        weatherCoordinates = "23.6303,85.5216";
+        weatherCoordinates = "23.5987759,85.5369156";
         useFahrenheit = false;
 
         barConfigs = [
@@ -77,7 +77,7 @@
             margin = 8;            
             height = 76;           
             borderRadius = 6;
-            opacity = 0.92;
+            opacity = 0.85;
 
             network_click_action = "applet";
             audio_click_action = "applet";
