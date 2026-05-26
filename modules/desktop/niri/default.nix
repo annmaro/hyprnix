@@ -120,7 +120,6 @@
             // Define your fixed workspaces
             workspace "1"
             workspace "2"
-            workspace "3"
 
            // 📐 LAYOUT STYLE & WINDOW GAPS
            layout {
@@ -143,7 +142,7 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-                match namespace="^dms-overview*"
+                match namespace="^dms:workspace-overview$"
                 place-within-backdrop true
                 background-effect {
                      blur true
@@ -153,7 +152,7 @@
              }
            
            overview {
-                 background-color "transparent"
+                 backdrop-color "transparent"
                  workspace-shadow { 
                  off
                 }
