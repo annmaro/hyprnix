@@ -140,7 +140,7 @@
 
            
 
-           // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
+           // 🎛️ LAYER RULES (Overview background)
            layer-rule {
                 match namespace="^quickshell$"
                 place-within-backdrop true
@@ -158,7 +158,7 @@
             }           
 
            layer-rule {
-               match namespace="^(rofi|dms:bar)"
+               match namespace="^(rofi|dms:bar)$"
                exclude namespace="overview"
                geometry-corner-radius 12
 
@@ -170,15 +170,7 @@
                 } 
             }
            
-           layer-rule {
-                   // Matches your top bar
-                   match namespace="^dms:bar$"
-    
-                   // Completely hides the bar from showing inside the 
-                   // overview and workspace-switching backdrop
-                   exclude-from-backdrop true
-           }
-
+           
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
                match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
@@ -237,13 +229,13 @@
                "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
                "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
                "Mod+F9" { spawn "sh" "-c" "wlsunset -T 3800 -t 3799"; }
-               "Mod+F10" { spawn "pkill wlsunset"; }
+               "Mod+F10" { spawn-sh "pkill -9 wlsunset || killall -9 wlsunset"; }
                
                "Mod+Left" { focus-column-left; }
                "Mod+Right" { focus-column-right; }
                "Mod+H" { focus-column-left; }
                "Mod+L" { focus-column-right; }
-               "Mod+S" { toggle-overview; }
+               "Mod+S" { toggle-overview; spawn "dms" "ipc" "call" "overview" "toggle"; }
                "Mod+Ctrl+Left" { move-column-left; }
                "Mod+Ctrl+Right" { move-column-right; }
                
