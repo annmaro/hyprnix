@@ -67,7 +67,7 @@ in
   "privacy.clearOnShutdown.formdata" = lock-true;
   "privacy.clearOnShutdown.history" = lock-true;
   "privacy.clearOnShutdown.offlineApps" = lock-true;
-  "privacy.clearOnShutdown.sessions" = lock-true;
+  "privacy.clearOnShutdown.sessions" = lock-false;
   "privacy.clearOnShutdown.siteSettings" = lock-true;
 
   # Block telemetry

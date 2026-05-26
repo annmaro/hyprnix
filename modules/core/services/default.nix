@@ -30,7 +30,10 @@
     };
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
-    gnome.gnome-keyring.enable = true;
+    services.gnome-keyring = {
+      enable = true;
+      components = [ "pkcs11" "secrets" "ssh" ];
+};
 
     pulseaudio.enable = false;
     pipewire = {

@@ -188,7 +188,7 @@
             }
 
            window-rule {
-               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm|nvim-wrapper|VSCodium|code)$"
+               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm|nvim-wrapper|antigravity|VSCodium|code)$"
                opacity 0.80
                draw-border-with-background false
                background-effect {
