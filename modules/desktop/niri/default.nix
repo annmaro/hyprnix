@@ -87,7 +87,7 @@
            }
 
            // 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
-           spawn-at-startup "wlsunset" "-T" "6200" "-t" "6200"
+           spawn-at-startup "wlsunset" "-T" "3500" "-t" "3500"
 
            // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
            input {
@@ -229,8 +229,8 @@
                "Mod+Shift+Y" { spawn "youtube-music"; }
                "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
                "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
-               "Mod+F9" { spawn "wlsunset-toggle"; }
-               "Mod+F10" { spawn "sh" "-c" "pkill wlsunset"; }
+               "Mod+F9" { spawn "wlsunset" "-T" "3500" "-t" "3500"; }
+               "Mod+F10" { spawn "pkill wlsunset"; }
                
                "Mod+Left" { focus-column-left; }
                "Mod+Right" { focus-column-right; }
@@ -248,6 +248,7 @@
                "Mod+WheelScrollUp" { focus-workspace-up; }
 
                "Mod+R" { switch-preset-column-width; }
+               "Mod+M" { maximize-column; }
                "Alt+Return" { fullscreen-window; }
                "Mod+W" { toggle-window-floating; }
                "Mod+1" { focus-workspace 1; }
