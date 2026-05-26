@@ -87,7 +87,7 @@
            }
 
            // 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
-           spawn-at-startup "wlsunset" "-T" "4200" "-t" "4200"
+           spawn-at-startup "wlsunset" "-T" "6200" "-t" "6200"
 
            // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
            input {
@@ -143,7 +143,18 @@
 
            // 🎛️ LAYER RULES (Desktop Shell: DMS & Rofi)
            layer-rule {
-               match namespace=r#"^(rofi|dms:(?!.*overview).*)$"#
+                match namespace="^dms-overview*"
+                place-within-backdrop true
+                background-effect {
+                     blur true
+                     noise 0.03
+                     saturation 1.25
+                 }
+             }
+           
+           layer-rule {
+               match namespace="^(rofi|dms:)"
+               exclude namespace="overview"
                geometry-corner-radius 12
 
                 background-effect {
@@ -154,12 +165,8 @@
                 } 
             }
 
-            layer-rule {
-                   match namespace="^dms-overview*"
-                  place-within-backdrop true
-            }
-
-            overview {
+              overview {
+                 background-color "transparent"
                  workspace-shadow { 
                  off
                 }
