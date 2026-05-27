@@ -188,7 +188,7 @@
             }
 
            window-rule {
-               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm|nvim-wrapper|antigravity|VSCodium|code)$"
+               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
                opacity 0.80
                draw-border-with-background false
                background-effect {
@@ -208,8 +208,8 @@
            }
 
            window-rule {
-               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop)$"
-               opacity 0.80
+               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
+               opacity 0.85
                draw-border-with-background false
                background-effect {
                     blur true
