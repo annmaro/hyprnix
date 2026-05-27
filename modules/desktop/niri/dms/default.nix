@@ -107,7 +107,7 @@
       # =====================================================================
       # 🎨 CUSTOM QML WIDGET OVERRIDES (Borders & Corner Radii)
       # =====================================================================
-      xdg.configFile."quickshell/dms/quickshell/Widgets/BasePill.qml".text = ''
+      xdg.configFile."/quickshell/Widgets/BasePill.qml".text = ''
         import QtQuick
         import Quickshell
         import qs.Common
