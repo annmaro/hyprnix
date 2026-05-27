@@ -77,7 +77,7 @@
             floating = false;       
             margin = 0;            
             height = 76;           
-            borderRadius = 6;
+            borderRadius = 0;
             transparency = 0.70;
             widgetTransparency = 0.90;
             
