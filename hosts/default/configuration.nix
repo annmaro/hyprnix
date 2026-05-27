@@ -25,7 +25,7 @@ in
     ../../modules/core/sddm
     ../../modules/core/security
     ../../modules/core/services
-    ../../modules/core/secrets
+    ../../modules/core/git-sops
     ../../modules/core/syncthing
     ../../modules/core/system
     ../../modules/core/users
