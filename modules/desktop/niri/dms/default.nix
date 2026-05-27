@@ -18,14 +18,6 @@
         };
       };
 
-      # Set interface scaling cleanly
-      systemd.user.services.dms = {
-        Service = {
-          Environment = [
-            "QT_SCALE_FACTOR=1.3" # 1.3 = 130% size. Adjust this up or down as needed!
-          ];
-        };
-      };
 
       home.packages = with pkgs; [
         dgop # Required for DMS system tracking features
@@ -51,12 +43,18 @@
           dock = false;         
         };
 
-        theme = "catppuccin-macchiato"; 
+        currentThemeNametheme = "catppuccin-mocha";  # Set your desired DMS theme here (must be installed in DMS's themes directory)
+        widgetBackgroundColor = "surface";  # Use DMS's color tokens for consistent theming
+        widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
+        controlCenterTileColorMode = "primary";  # Use primary color for control center tiles
+        buttonColorMode = "primary";  # Use primary color for buttons
         cornerRadius = 16;
         popupTransparency = 0.80; 
         barElevationEnabled = false;
+        blurEnabled = true; # Enable blur for overview and other popups
         blurWallpaperOnOverview = true;
+        blurForegroundLayers = false; # Only blur the background for a cleaner look
         blurAmount = 20;
         blurSaturation = 1.2;
         blurContrast = 1.1;
