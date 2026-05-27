@@ -18,7 +18,7 @@
        programs.vscode = {
         enable = true;
         mutableExtensionsDir = true;
-        package = pkgs.vscode
+        package = pkgs.vscode;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             catppuccin.catppuccin-vsc
