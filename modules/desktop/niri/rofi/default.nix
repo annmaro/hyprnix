@@ -141,8 +141,8 @@
           "mode-switcher" = {
             enabled = true;
             expand = false;
-            spacing = mkLiteral "0px";
-            margin = mkLiteral "0px 200px";
+            spacing = mkLiteral "10px";
+            margin = mkLiteral "0px 100px"; # Expanded from 200px to allow text space
             padding = mkLiteral "12px";
             border-radius = mkLiteral "100%";
             background-color = mkLiteral "#363A4F";

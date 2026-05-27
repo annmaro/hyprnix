@@ -2,7 +2,7 @@
 
 {
   home-manager.sharedModules = [
-    (_: { 
+    ({ ... }: { 
       imports = [
         inputs.dms.homeModules.dank-material-shell
         inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
@@ -106,7 +106,7 @@
           };
         };
       };
-    })
+    )
   ];
 }  
 
