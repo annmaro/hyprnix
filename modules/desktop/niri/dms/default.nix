@@ -18,12 +18,11 @@
         };
       };
 
-      # Inject the custom QML import lookup path directly into the DMS runner
+      # Sets your interface scaling up evenly
       systemd.user.services.dms = {
         Service = {
           Environment = [
-            "QT_SCALE_FACTOR=1.3"
-            "QML2_IMPORT_PATH=%h/.config/quickshell/imports" # Forces Quickshell to read local directory overrides first
+            "QT_SCALE_FACTOR=1.3" # 1.3 = 130% size. Adjust this up or down as needed!
           ];
         };
       };
@@ -52,7 +51,9 @@
           dock = false;         
         };
 
-        theme = "catppuccin-macchiato"; 
+        # Switch to custom theme mapping to supply custom outline configurations directly
+        theme = "custom"; 
+        customThemeFile = "%h/.config/DankMaterialShell/themes/custom-border.json";
         dynamicTheming = false;      
 
         weatherEnabled = true;
@@ -72,10 +73,10 @@
             height = 48;           
             borderRadius = 12;
             
-            # Setting bar transparency to 0 hides the background bar, 
+            # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
             transparency = 0.01;    
-            widgetTransparency = 0.90; 
+            widgetTransparency = 1.0; # Ensure widget surfaces render clearly with borders
             
             network_click_action = "applet";
             audio_click_action = "applet";
@@ -104,43 +105,36 @@
           };
         };
       };
-        
+
       # =====================================================================
-      # 🎨 CUSTOM QML WIDGET OVERRIDES (Borders & Corner Radii)
+      # 🎨 THEME CUSTOMIZATION FILE (Injects borders and colors cleanly)
       # =====================================================================
-      # Placing this inside 'imports/qs/Widgets' structures it perfectly for QML lookup rules
-      xdg.configFile."quickshell/imports/qs/Widgets/BasePill.qml".text = ''
-        import QtQuick
-        import Quickshell
-        import qs.Common
-        import qs.Modules.Plugins
-
-        ClickableRegion {
-            id: root
-
-            property alias content: contentLoader.sourceComponent
-            property bool isVerticalOrientation: barConfig ? barConfig.position === "left" || barConfig.position === "right" : false
-            property real widgetThickness: barConfig ? barConfig.height : 48
-            property real horizontalPadding: 12
-
-            Rectangle {
-                id: widgetBackground
-                anchors.fill: parent
-                color: dmsTheme.colors.surfaceContainer
-                radius: gothCornersEnabled ? gothCornerRadius : 12
-                border.width: 2
-                border.color: "#5895dc"
-                z: -1
-            }
-
-            Loader {
-                id: contentLoader
-                anchors.fill: parent
-                anchors.leftMargin: root.horizontalPadding
-                anchors.rightMargin: root.horizontalPadding
-            }
-        }
-      '';  
+      # By passing the style configuration explicitly through DMS's Matugen outline configuration 
+      # schema, your widgets will naturally adapt the blue borders across the entire layout natively.
+      xdg.configFile."DankMaterialShell/themes/custom-border.json".text = builtins.toJSON {
+        name = "custom-border";
+        dark = {
+          primary = "#5895dc";
+          primaryText = "#ffffff";
+          primaryContainer = "#223344";
+          secondary = "#5895dc";
+          
+          # This controls the surface backgrounds behind your widgets
+          surfaceContainer = "#1e2030"; 
+          surfaceContainerHigh = "#25273a";
+          surfaceContainerHighest = "#2f3147";
+          background = "#181926";
+          backgroundText = "#cad3f5";
+          
+          # This hooks directly into the native widget borders across Dank Material Shell!
+          outline = "#5895dc"; 
+          outlineVariant = "#5895dc";
+          
+          error = "#ed8796";
+          warning = "#eed49f";
+          info = "#8bd5ca";
+        };
+      };
     })
   ];
 }
