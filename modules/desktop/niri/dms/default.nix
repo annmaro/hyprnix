@@ -54,7 +54,7 @@
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;      
 
-        # ==========================================
+     /*   # ==========================================
         # 🎨 NATIVE WIDGET STYLING & BORDERS (Root Level)
         # ==========================================
         borderEnabled = true;               # Enables native widget/bar borders
@@ -64,7 +64,7 @@
         widgetTransparency = 0.90;          # Set widget background to 90% opacity for a subtle see-through effect  
         squareCorners = false;              # Keep corners rounded for pill shape
         gothCornersEnabled = false;         # Disabled to ensure standard rounded capsule styling
-
+        */
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
         weatherCoordinates = "23.5987759,85.5369156";
