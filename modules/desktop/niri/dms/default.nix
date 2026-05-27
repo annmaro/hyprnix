@@ -58,7 +58,7 @@
         # 🎨 NATIVE WIDGET STYLING & BORDERS (Root Level)
         # ==========================================
         borderEnabled = true;               # Enables native widget/bar borders
-        borderColor = "#5895dc";          # Custom blue outline
+        borderColor = "outline";          # Custom blue outline
         borderThickness = 2;                # Set to 2px
         borderOpacity = 1.0;                # Fully opaque outline
         widgetTransparency = 0.90;          # Set widget background to 90% opacity for a subtle see-through effect  
