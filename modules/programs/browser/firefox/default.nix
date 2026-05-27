@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  theme = import ./usertheme.nix { };
+in
 {
   home-manager.sharedModules = [
     (_: {
@@ -23,8 +26,8 @@
             settings = import ./settings.nix { inherit lib; };
             bookmarks = import ../bookmarks.nix;
             search = import ./search.nix { inherit pkgs; };
-            # userChrome = builtins.readFile ./userChrome.css;
-            # userContent = builtins.readFile ./userContent.css;
+            userChrome = theme.userChrome;
+            userContent = theme.userContent;
             extraConfig = ''
               ${builtins.readFile "${inputs.betterfox}/Fastfox.js"}
               ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
