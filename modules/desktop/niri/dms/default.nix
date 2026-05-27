@@ -54,7 +54,7 @@
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;  
         popupTransparency = 0.80; 
-        blurredWallpaperLayer = true;
+        blurWallpaperOnOverview = true;
         blurAmount = 20;
         blurSaturation = 1.2;
         blurContrast = 1.1;
