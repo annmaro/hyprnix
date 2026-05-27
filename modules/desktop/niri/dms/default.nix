@@ -18,11 +18,12 @@
         };
       };
 
-      # Forces DMS to scale up fonts and icons nicely together
+      # Inject the custom QML import lookup path directly into the DMS runner
       systemd.user.services.dms = {
         Service = {
           Environment = [
-            "QT_SCALE_FACTOR=1.3" # 1.3 = 130% size. Adjust this up or down as needed!
+            "QT_SCALE_FACTOR=1.3"
+            "QML2_IMPORT_PATH=%h/.config/quickshell/imports" # Forces Quickshell to read local directory overrides first
           ];
         };
       };
@@ -107,7 +108,8 @@
       # =====================================================================
       # 🎨 CUSTOM QML WIDGET OVERRIDES (Borders & Corner Radii)
       # =====================================================================
-      xdg.configFile."/quickshell/Widgets/BasePill.qml".text = ''
+      # Placing this inside 'imports/qs/Widgets' structures it perfectly for QML lookup rules
+      xdg.configFile."quickshell/imports/qs/Widgets/BasePill.qml".text = ''
         import QtQuick
         import Quickshell
         import qs.Common
