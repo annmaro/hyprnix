@@ -2,7 +2,7 @@
 
 {
   home-manager.sharedModules = [
-    ({ pkgs, ... }: { 
+    (_: { 
       imports = [
         inputs.dms.homeModules.dank-material-shell
         inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
@@ -12,10 +12,7 @@
         enable = true;
         systemd.enable = true; 
 
-      # FORCE the module to use our patched version from the nixpkgs overlay
-        package = pkgs.dank-material-shell;  
- 
-        niri = {
+      niri = {
           enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
           enableSpawn = false;   # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
         };
@@ -55,13 +52,19 @@
         };
 
         theme = "catppuccin-macchiato"; 
-        dynamicTheming = false;      
+        dynamicTheming = false;  
+        popupTransparency = 0.80; 
+        blurredWallpaperLayer = true;
+        blurAmount = 20;
+        blurSaturation = 1.2;
+        blurContrast = 1.1;
+        blurBrightness = 1.0;   
 
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
         weatherCoordinates = "23.5987759,85.5369156";
         useFahrenheit = false;
-        useLocation = false;
+        useAutoLocation = false;
 
         barConfigs = [
           {
@@ -76,8 +79,14 @@
             
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
-            transparency = 0.01;    
-            widgetTransparency = 0.90; 
+            transparency = 0.80;    
+            widgetTransparency = 0.60; 
+            widgetOutlineEnabled = "true";
+            widgetOutlineColor = "primary";
+            widgetOutlineOpacity = 1.0;
+            widgetOutlineThickness = 1;
+            fontScale = 1.2;
+            iconScale = 1.2;
             
             network_click_action = "applet";
             audio_click_action = "applet";

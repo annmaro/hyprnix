@@ -246,7 +246,7 @@
                "Mod+Alt+L" { spawn "dms" "session" "lock"; }
                "Mod+N" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
                "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
-               "Mod+Shift+C" { spawn "vscode"; }
+               "Mod+Shift+C" { spawn "code"; }
                "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
                "Mod+Shift+S" { spawn "spotify"; }
                "Mod+Shift+Y" { spawn "youtube-music"; }
