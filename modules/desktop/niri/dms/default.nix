@@ -34,23 +34,85 @@
         material-design-icons
       ];
 
+      # =====================================================================
+      # 🎨 SETTINGS.JSON CONFIGURATION
+      # =====================================================================
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
         configVersion = 2;
         disableWallpaper = false; # Set true if you want to handle wallpaper through swaybg/awww
+        
+        modules = {
+          bar = true;
+          notifications = true;
+          idle = true;          
+          lockscreen = true;    
+          wallpaper = true; # false to keep it managed by your separate awww/swaybg
+          launcher = false;  # Handled by your native rofi setup
+          dock = false;         
+        };
+
+        theme = "catppuccin-macchiato"; 
+        dynamicTheming = false;      
+
+        weatherEnabled = true;
+        weatherLocation = "Ramgarh, Jharkhand, India";
+        weatherCoordinates = "23.5987759,85.5369156";
+        useFahrenheit = false;
+        useLocation = false;
+
+        barConfigs = [
+          {
+            id = "default";
+            name = "Main Bar";
+            enabled = true;
+            position = "top";
+            floating = true; # Enable floating to allow for custom margins and independent styling  
+            margin = 8;            
+            height = 48;           
+            borderRadius = 12;
+            
+            # Setting bar transparency to 0 hides the background bar, 
+            # allowing only the styled widgets to display as floating pill capsules.
+            transparency = 0.01;    
+            widgetTransparency = 0.90; 
+            
+            network_click_action = "applet";
+            audio_click_action = "applet";
+
+            leftWidgets = [
+              "workspaceSwitcher"  
+              "focusedWindow"      
+            ];
+            centerWidgets = [
+              "clock"              
+            ];
+            rightWidgets = [
+              "weather"
+              "systemTray"         
+              "cpuUsage"           
+              "memUsage"
+              "controlCenterButton" 
+            ];
+          }
+        ];
+
+        widgets = {
+          workspace_switcher = {
+            show_labels = false;
+            indicator_style = "pill";
+          };
+        };
       };
         
       # =====================================================================
       # 🎨 CUSTOM QML WIDGET OVERRIDES (Borders & Corner Radii)
       # =====================================================================
-       
-      # Global BasePill Override (Catches Weather, CPU, Control Center, etc.)
       xdg.configFile."quickshell/dms/quickshell/Widgets/BasePill.qml".text = ''
         import QtQuick
         import Quickshell
         import qs.Common
         import qs.Modules.Plugins
 
-        // We extend the native mouse-interactive surface base item 
         ClickableRegion {
             id: root
 
@@ -59,7 +121,6 @@
             property real widgetThickness: barConfig ? barConfig.height : 48
             property real horizontalPadding: 12
 
-            // Styled border container acting as the background template for all modules
             Rectangle {
                 id: widgetBackground
                 anchors.fill: parent
@@ -78,72 +139,6 @@
             }
         }
       '';  
-
-      programs.dank-material-shell.modules = {
-        bar = true;
-        notifications = true;
-        idle = true;          
-        lockscreen = true;    
-        wallpaper = true; # false to keep it managed by your separate awww/swaybg
-        launcher = false;  # Handled by your native rofi setup
-        dock = false;         
-      };
-
-      # ==========================================
-      # 📊 BAR INTERFACE & SIZING CONFIGURATION
-      # ==========================================
-      programs.dank-material-shell.theme = "catppuccin-macchiato"; 
-      programs.dank-material-shell.dynamicTheming = false;      
-
-      programs.dank-material-shell.weatherEnabled = true;
-      programs.dank-material-shell.weatherLocation = "Ramgarh, Jharkhand, India";
-      programs.dank-material-shell.weatherCoordinates = "23.5987759,85.5369156";
-      programs.dank-material-shell.useFahrenheit = false;
-      programs.dank-material-shell.useLocation = false;
-
-      programs.dank-material-shell.barConfigs = [
-        {
-          id = "default";
-          name = "Main Bar";
-          enabled = true;
-          position = "top";
-          floating = true; # Enable floating to allow for custom margins and independent styling  
-          margin = 8;            
-          height = 48;           
-          borderRadius = 12;
-          
-          # Setting bar transparency to 0 hides the background bar, 
-          # allowing only the styled widgets to display as floating pill capsules.
-          transparency = 0.01;    
-          widgetTransparency = 0.90; 
-          
-          network_click_action = "applet";
-          audio_click_action = "applet";
-
-          leftWidgets = [
-            "workspaceSwitcher"  
-            "focusedWindow"      
-          ];
-          centerWidgets = [
-            "clock"              
-          ];
-          rightWidgets = [
-            "weather"
-            "systemTray"         
-            "cpuUsage"           
-            "memUsage"
-            "controlCenterButton" 
-          ];
-        }
-      ];
-
-      # The exact config to hide workspace labels across Dank Material Shell
-      programs.dank-material-shell.widgets = {
-        workspace_switcher = {
-          show_labels = false;
-          indicator_style = "pill";
-        };
-      };
     })
   ];
 }
