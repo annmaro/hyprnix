@@ -12,6 +12,7 @@
        home.file.".config/Code/argv.json".text = ''
          {
            "disable-hardware-acceleration": true
+           "password-store": "gnome-libsecret"
          }
        '';
 
