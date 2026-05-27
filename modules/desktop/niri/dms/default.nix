@@ -53,7 +53,9 @@
 
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;  
+        cornerRadius = 16;
         popupTransparency = 0.80; 
+        barElevationEnabled = false;
         blurWallpaperOnOverview = true;
         blurAmount = 20;
         blurSaturation = 1.2;
@@ -75,7 +77,7 @@
             floating = true; # Enable floating to allow for custom margins and independent styling  
             margin = 8;            
             height = 48;           
-            borderRadius = 12;
+            #borderRadius = 12;
             
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
