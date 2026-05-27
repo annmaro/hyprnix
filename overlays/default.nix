@@ -30,28 +30,5 @@ in
         "--set" "QT_QPA_PLATFORM" "xcb"
       ];
     });
-
-    # =====================================================================
-    # 🛠️ DANK MATERIAL SHELL QML PATCH OVERRIDE
-    # =====================================================================
-    dank-material-shell = inputs.dms.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
-      postPatch = (oldAttrs.postPatch or "") + ''
-        # Use find and sed to locate and inject border properties safely.
-        
-        # 1. Patch the Clock widget background
-        if [ -f quickshell/Modules/DankBar/Widgets/Clock.qml ]; then
-          substituteInPlace quickshell/Modules/DankBar/Widgets/Clock.qml \
-            --replace "radius: gothCornersEnabled ? gothCornerRadius : 12" \
-                      "radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: \"#5895dc\""
-        fi
-
-        # 2. Patch the Workspace Switcher background
-        if [ -f quickshell/Modules/DankBar/Widgets/WorkspaceSwitcher.qml ]; then
-          substituteInPlace quickshell/Modules/DankBar/Widgets/WorkspaceSwitcher.qml \
-            --replace "radius: gothCornersEnabled ? gothCornerRadius : 12" \
-                      "radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: \"#5895dc\""
-        fi
-      '';
-    });
   };
 }
