@@ -3,7 +3,7 @@
 **Dank Material Shell (DMS)** is a modern, premium, and Material 3-inspired desktop shell built specifically for Wayland compositors using **Quickshell** and **Go**. 
 
 In this system configuration, DMS is declared as a flake input from:
-> **Source Repository**: `github:AvengeMedia/DankMaterialShell/stable` (see [flake.nix](file:///home/annmaro/hyprnix/flake.nix#L20-L23))
+> **Source Repository**: `github:AvengeMedia/DankMaterialShell/stable` (see [flake.nix](file:///home/annmaro/nixri/flake.nix#L20-L23))
 
 Rather than serving as a basic bar, DMS functions as an all-in-one system dashboard, notification hub, lock screen, and session management suite.
 
@@ -11,7 +11,7 @@ Rather than serving as a basic bar, DMS functions as an all-in-one system dashbo
 
 ## Enabled Features & Configuration
 
-All active features of the Dank Material Shell are configured within the modular Nix block under [modules/desktop/niri/dms/default.nix](file:///home/annmaro/hyprnix/modules/desktop/niri/dms/default.nix). By declaring `programs.dank-material-shell.enable = true`, the following selected features have been customized and enabled in this profile:
+All active features of the Dank Material Shell are configured within the modular Nix block under [modules/desktop/niri/dms/default.nix](file:///home/annmaro/nixri/modules/desktop/niri/dms/default.nix). By declaring `programs.dank-material-shell.enable = true`, the following selected features have been customized and enabled in this profile:
 
 ### 1. Unified Status Bar (`modules.bar = true`)
 The shell renders a premium top bar, custom-tailored with the following layout and design variables:
@@ -43,7 +43,7 @@ The shell renders a premium top bar, custom-tailored with the following layout a
 - Leverages the systemd user service environment by exporting `QT_SCALE_FACTOR=1.3`. This forces all DMS Qt-based panel elements to scale to 130% size, keeping widgets readable and perfectly proportioned on Hi-DPI displays.
 
 ### 7. Custom Styling & Package Overlay
-- **BasePill.qml Patch**: Configured via the Nixpkgs modification overlay in [overlays/default.nix](file:///home/annmaro/hyprnix/overlays/default.nix#L22-L27). During the compilation/patch phase of the package, the `BasePill.qml` layout file is modified to insert a gorgeous custom border design:
+- **BasePill.qml Patch**: Configured via the Nixpkgs modification overlay in [overlays/default.nix](file:///home/annmaro/nixri/overlays/default.nix#L22-L27). During the compilation/patch phase of the package, the `BasePill.qml` layout file is modified to insert a gorgeous custom border design:
   ```qml
   Rectangle {
       anchors.fill: parent;

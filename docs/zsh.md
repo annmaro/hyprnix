@@ -1,6 +1,6 @@
 # ZSH Configuration (`modules/core/zsh/default.nix`)
 
-The `default.nix` file located at `modules/core/zsh/default.nix` manages your shell environment, utilizing Home Manager to configure Zsh with a comprehensive set of plugins, themes, and aliases tailored for the Hyprnix setup.
+The `default.nix` file located at `modules/core/zsh/default.nix` manages your shell environment, utilizing Home Manager to configure Zsh with a comprehensive set of plugins, themes, and aliases tailored for the nixri setup.
 
 ## Structure
 
@@ -69,7 +69,7 @@ A dedicated block of shortcuts for managing the system without typing long comma
 
 Quick jumps to frequently used locations:
 
-- `dots`: Navigate to the `hyprnix` repository.
+- `dots`: Navigate to the `nixri` repository.
 - `work`, `projects`, `dev`, `games`, `media`: Fast navigation to specific mounted drives or folders.
 
 ## How to Apply Changes

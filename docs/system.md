@@ -1,6 +1,6 @@
 # System Configuration (`modules/core/system/default.nix`)
 
-The `default.nix` file located at `modules/core/system/default.nix` serves as the core system configuration for your Hyprnix setup. It manages Nix settings, localization, package manager defaults, and essential environment variables.
+The `default.nix` file located at `modules/core/system/default.nix` serves as the core system configuration for your nixri setup. It manages Nix settings, localization, package manager defaults, and essential environment variables.
 
 ## Structure
 
@@ -12,7 +12,7 @@ This section enables essential programs and background services.
 
 - **`nix-index-database.comma`**: Enabled to allow running programs without installing them using the `,` (comma) command.
 - **`gnupg.agent`**: Enables the GnuPG agent, including SSH support, for managing keys securely.
-- **`services.xserver`**: While Hyprnix is Wayland-based (Hyprland), basic xserver configuration is provided to ensure tools like `localectl` work correctly by exporting the XKB configuration (keyboard layout and variant).
+- **`services.xserver`**: While nixri is Wayland-based (Hyprland), basic xserver configuration is provided to ensure tools like `localectl` work correctly by exporting the XKB configuration (keyboard layout and variant).
 
 ### 2. Nix Package Manager Settings
 

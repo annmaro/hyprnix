@@ -1,6 +1,6 @@
 # NixOS Configuration Structure Overview
 
-The NixOS setup in this repository (`hyprnix`) is built around Nix Flakes and is heavily modularized to provide a clean, maintainable, and easily customizable environment.
+The NixOS setup in this repository (`nixri`) is built around Nix Flakes and is heavily modularized to provide a clean, maintainable, and easily customizable environment.
 
 ## High-Level Directory Structure
 

@@ -1,6 +1,6 @@
 # Services Configuration (`modules/core/services/default.nix`)
 
-The `default.nix` file located at `modules/core/services/default.nix` manages the background services (daemons) necessary for a functional and responsive desktop experience on Hyprnix.
+The `default.nix` file located at `modules/core/services/default.nix` manages the background services (daemons) necessary for a functional and responsive desktop experience on nixri.
 
 ## Structure
 
@@ -36,7 +36,7 @@ These services provide essential quality-of-life features for the desktop enviro
 
 ### 4. Audio (PipeWire)
 
-Hyprnix uses PipeWire as its modern audio server, explicitly disabling the legacy PulseAudio daemon.
+nixri uses PipeWire as its modern audio server, explicitly disabling the legacy PulseAudio daemon.
 
 - **`pulseaudio.enable = false`**: Disables the old PulseAudio server.
 - **`pipewire`**:

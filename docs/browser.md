@@ -1,6 +1,6 @@
 # Browser Configuration (`modules/programs/browser`)
 
-The `modules/programs/browser` directory manages the configuration for web browsers in the Hyprnix system. Hyprnix takes a highly modular approach, allowing you to choose between different Firefox-based browsers (Firefox, Floorp, or Zen) by modifying your `variables.nix` file, while sharing essential components like extensions and bookmarks across them.
+The `modules/programs/browser` directory manages the configuration for web browsers in the nixri system. nixri takes a highly modular approach, allowing you to choose between different Firefox-based browsers (Firefox, Floorp, or Zen) by modifying your `variables.nix` file, while sharing essential components like extensions and bookmarks across them.
 
 ## Directory Structure
 
@@ -42,7 +42,7 @@ Floorp is a privacy-oriented, feature-rich Japanese fork of Firefox.
 Zen Browser is another modern Firefox fork focusing on an optimized and unique user interface.
 
 - Includes the standard modular files (`default.nix`, `policies.nix`, `search.nix`, `settings.nix`).
-- **`userChrome.css` & `userContent.css`**: Features custom CSS to drastically alter the browser's UI (hiding tabs, altering the nav bar, custom styling for websites), matching the overall Hyprnix desktop aesthetic.
+- **`userChrome.css` & `userContent.css`**: Features custom CSS to drastically alter the browser's UI (hiding tabs, altering the nav bar, custom styling for websites), matching the overall nixri desktop aesthetic.
 
 ## How it Works
 

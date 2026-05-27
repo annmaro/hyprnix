@@ -8,16 +8,16 @@
    <br>
    <br>
    <p>
-      <a href="https://github.com/annmaro/hyprnix/stargazers">
-         <img src="https://img.shields.io/github/stars/annmaro/hyprnix?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6" alt="GitHub Stars">
+      <a href="https://github.com/annmaro/nixri/stargazers">
+         <img src="https://img.shields.io/github/stars/annmaro/nixri?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6" alt="GitHub Stars">
       </a>
-      <a href="https://github.com/annmaro/hyprnix/network/members">
-         <img src="https://img.shields.io/github/forks/annmaro/hyprnix?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
+      <a href="https://github.com/annmaro/nixri/network/members">
+         <img src="https://img.shields.io/github/forks/annmaro/nixri?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
       </a>
       <a href="https://nixos.org">
          <img src="https://img.shields.io/badge/NixOS-Unstable-blue?style=for-the-badge&logo=NixOS&logoColor=91D7E3&label=NixOS&labelColor=303446&color=91D7E3" alt="NixOS Unstable">
       </a>
-      <a href="https://github.com/annmaro/hyprnix/blob/main/LICENSE">
+      <a href="https://github.com/annmaro/nixri/blob/main/LICENSE">
          <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=313244&colorB=F5A97F&logo=unlicense&logoColor=F5A97F&" alt="MIT License"/>
       </a>
    </p>
@@ -71,7 +71,7 @@
 > - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
 > - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
 
-You can also check the [Production Docs](https://annmaro.github.io/hyprnix) for a better understanding of the entire NixOS setup.
+You can also check the [Production Docs](https://annmaro.github.io/nixri) for a better understanding of the entire NixOS setup.
 
 Install on a running system or from the NixOS live installer. Get the minimal ISO from the [NixOS website](https://nixos.org/download/#nixos-iso).
 
@@ -80,13 +80,13 @@ Install on a running system or from the NixOS live installer. Get the minimal IS
 1. Clone the Repository:
 
 ```bash
-git clone https://github.com/annmaro/hyprnix.git ~/hyprnix
+git clone https://github.com/annmaro/nixri.git ~/nixri
 ```
 
 2. Change Directory:
 
 ```bash
-cd ~/hyprnix
+cd ~/nixri
 ```
 
 3. Run the Installer:
@@ -121,7 +121,7 @@ Apply configuration changes:
 
 - **Keyboard shortcut:** `Super + U`
 - **rebuild script:** `rebuild`
-- **nixos-rebuild:** `sudo nixos-rebuild switch --flake ~/hyprnix#<HOST>`
+- **nixos-rebuild:** `sudo nixos-rebuild switch --flake ~/nixri#<HOST>`
 - **nh:** `nh os switch --hostname <HOST>`
 
 Replace `<HOST>` with the name of your host (e.g., `Laptop`).

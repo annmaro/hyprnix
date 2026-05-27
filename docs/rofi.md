@@ -1,6 +1,6 @@
 # Rofi Configuration & Theming
 
-This document explains how Rofi is configured in the Hyprnix setup and how you can declaratively change its theme and color schemes.
+This document explains how Rofi is configured in the nixri setup and how you can declaratively change its theme and color schemes.
 
 ## Overview
 
@@ -11,7 +11,7 @@ Rofi's base configuration is managed by Nix via Home Manager. The main files are
 
 ## Where are the Themes Stored?
 
-Hyprnix uses a collection of Rofi themes curated by Aditya Shakya (@adi1090x). These assets are copied into your system's `~/.config/rofi/` directory on build.
+nixri uses a collection of Rofi themes curated by Aditya Shakya (@adi1090x). These assets are copied into your system's `~/.config/rofi/` directory on build.
 
 Inside `modules/desktop/hyprland/programs/rofi/`:
 
@@ -21,7 +21,7 @@ Inside `modules/desktop/hyprland/programs/rofi/`:
 
 ## How to Change the Theme Declaratively
 
-Unlike editing a global config file, the theme in Hyprnix is set explicitly in the scripts that launch Rofi. This allows you to use different themes for different Rofi modes (e.g., one theme for the application launcher, and another for the window switcher).
+Unlike editing a global config file, the theme in nixri is set explicitly in the scripts that launch Rofi. This allows you to use different themes for different Rofi modes (e.g., one theme for the application launcher, and another for the window switcher).
 
 To change the theme declaratively, modify the **Launcher Script**:
 
@@ -88,7 +88,7 @@ Run this command in your terminal (make sure to replace `telescope.png` with you
 
 ```bash
 # This creates a much smaller, compressed version of the image
-nix run nixpkgs#imagemagick -- convert ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/telescope.png -resize 800x ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/telescope-fast.jpg
+nix run nixpkgs#imagemagick -- convert ~/nixri/modules/desktop/hyprland/programs/rofi/images/telescope.png -resize 800x ~/nixri/modules/desktop/hyprland/programs/rofi/images/telescope-fast.jpg
 ```
 
 ### 2. If ImageMagick is already installed
@@ -98,7 +98,7 @@ If you already have ImageMagick installed on your system, you can run the comman
 **For a single file:**
 
 ```bash
-magick ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image.png -resize 800x ~/hyprnix/modules/desktop/hyprland/programs/rofi/images/your-image-fast.png
+magick ~/nixri/modules/desktop/hyprland/programs/rofi/images/your-image.png -resize 800x ~/nixri/modules/desktop/hyprland/programs/rofi/images/your-image-fast.png
 ```
 
 ### 3. Update your Theme File

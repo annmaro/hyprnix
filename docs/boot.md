@@ -1,6 +1,6 @@
 # Boot Configuration (`modules/core/boot/default.nix`)
 
-The `default.nix` file located at `modules/core/boot/default.nix` manages the foundational boot settings for your Hyprnix system. This file handles everything from kernel parameters and filesystems to the bootloader setup and AppImage support.
+The `default.nix` file located at `modules/core/boot/default.nix` manages the foundational boot settings for your nixri system. This file handles everything from kernel parameters and filesystems to the bootloader setup and AppImage support.
 
 ## Structure
 

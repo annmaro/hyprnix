@@ -10,12 +10,12 @@ This documentation explains how the Niri ecosystem is organized, how its compone
 
 The `modules/desktop/niri` configuration is divided into highly-specialized components to ensure clean modularity and easy styling overrides:
 
-- **[default.nix](file:///home/annmaro/hyprnix/modules/desktop/niri/default.nix)**: The main entry point. It sets system-wide variables, enables binary caches, sets the default session, installs system-wide packages, defines GNOME/GTK portal overrides, and hosts the native KDL configurations via Home Manager.
-- **[dms/](file:///home/annmaro/hyprnix/modules/desktop/niri/dms/default.nix)**: Orchestrates the **Dank Material Shell (DMS)** framework. See the dedicated [dms.md](file:///home/annmaro/hyprnix/docs/dms.md) documentation for full details on enabled features, integration settings, and styling patches.
-- **[rofi/](file:///home/annmaro/hyprnix/modules/desktop/niri/rofi/default.nix)**: Installs and customizes **Rofi** to serve as the application launcher, clipboard history UI, and emoji menu. It features a custom Catppuccin Macchiato design.
-- **[themes/](file:///home/annmaro/hyprnix/modules/desktop/niri/themes/default.nix)**: Manages look-and-feel across all toolkit contexts.
-  - **[gtk.nix](file:///home/annmaro/hyprnix/modules/desktop/niri/themes/gtk.nix)**: Enforces GTK2/3/4 themes (Catppuccin Mocha-Mauve compact), cursor styling (Bibata Modern Classic size 24), dark mode databases, and Libadwaita overrides.
-  - **[qt.nix](file:///home/annmaro/hyprnix/modules/desktop/niri/themes/qt.nix)**: Configures Qt integration using **Kvantum** with a Catppuccin theme and the `qt5ct`/`qt6ct` tools.
+- **[default.nix](file:///home/annmaro/nixri/modules/desktop/niri/default.nix)**: The main entry point. It sets system-wide variables, enables binary caches, sets the default session, installs system-wide packages, defines GNOME/GTK portal overrides, and hosts the native KDL configurations via Home Manager.
+- **[dms/](file:///home/annmaro/nixri/modules/desktop/niri/dms/default.nix)**: Orchestrates the **Dank Material Shell (DMS)** framework. See the dedicated [dms.md](file:///home/annmaro/nixri/docs/dms.md) documentation for full details on enabled features, integration settings, and styling patches.
+- **[rofi/](file:///home/annmaro/nixri/modules/desktop/niri/rofi/default.nix)**: Installs and customizes **Rofi** to serve as the application launcher, clipboard history UI, and emoji menu. It features a custom Catppuccin Macchiato design.
+- **[themes/](file:///home/annmaro/nixri/modules/desktop/niri/themes/default.nix)**: Manages look-and-feel across all toolkit contexts.
+  - **[gtk.nix](file:///home/annmaro/nixri/modules/desktop/niri/themes/gtk.nix)**: Enforces GTK2/3/4 themes (Catppuccin Mocha-Mauve compact), cursor styling (Bibata Modern Classic size 24), dark mode databases, and Libadwaita overrides.
+  - **[qt.nix](file:///home/annmaro/nixri/modules/desktop/niri/themes/qt.nix)**: Configures Qt integration using **Kvantum** with a Catppuccin theme and the `qt5ct`/`qt6ct` tools.
 
 ---
 
