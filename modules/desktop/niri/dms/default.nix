@@ -84,7 +84,7 @@
             
             # Setting bar transparency to 0 hides the background bar, 
             # allowing only the styled widgets to display as floating pill capsules.
-            transparency = 0.70;    
+            transparency = 0.0;    
             widgetTransparency = 0.90; 
             
             network_click_action = "applet";
