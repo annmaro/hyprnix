@@ -77,14 +77,14 @@
             name = "Main Bar";
             enabled = true;
             position = "top";
-            floating = false;       
-            margin = 0;            
-            height = 76;           
-            borderRadius = 0;
+            floating = true; # Enable floating to allow for custom margins and independent styling  
+            margin = 8;            
+            height = 48;           
+            borderRadius = 12;
             
             # Setting bar transparency to 0 hides the background bar, 
             # allowing only the styled widgets to display as floating pill capsules.
-            transparency = 0.0;    
+            transparency = 0.01;    
             widgetTransparency = 0.90; 
             
             network_click_action = "applet";
