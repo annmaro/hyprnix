@@ -13,7 +13,7 @@
           mkLiteral = value: { _type = "literal"; inherit value; };
         in {
           "*" = {
-            font = "JetBrains Mono Nerd Font 10";
+            font = "JetBrains Mono Nerd Font 12";
           };
 
           "window" = {
@@ -29,7 +29,7 @@
             padding = mkLiteral "0px";
             border-radius = mkLiteral "20px";
             cursor = "default";
-            background-color = mkLiteral "#22272C";
+            background-color = mkLiteral "#24273A";
           };
 
           "mainbox" = {
@@ -47,7 +47,7 @@
             padding = mkLiteral "5px";
             border = mkLiteral "1px solid";
             border-radius = mkLiteral "100%";
-            border-color = mkLiteral "gray / 25%";
+            border-color = mkLiteral "#494D64";
             background-color = mkLiteral "transparent";
             children = map mkLiteral [ "textbox-prompt-colon" "entry" ];
           };
@@ -57,8 +57,8 @@
             expand = false;
             padding = mkLiteral "8px 11px";
             border-radius = mkLiteral "100%";
-            background-color = mkLiteral "white";
-            text-color = mkLiteral "black";
+            background-color = mkLiteral "#CAD3F5";
+            text-color = mkLiteral "#24273A";
             str = "";
           };
 
@@ -67,7 +67,7 @@
             padding = mkLiteral "8px 12px";
             border = mkLiteral "0px solid";
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "white";
+            text-color = mkLiteral "#CAD3F5";
             cursor = mkLiteral "text";
             placeholder = "Search...";
             placeholder-color = mkLiteral "inherit";
@@ -98,30 +98,30 @@
             padding = mkLiteral "5px";
             border = mkLiteral "0px solid";
             border-radius = mkLiteral "100%";
-            border-color = mkLiteral "gray / 15%";
+            border-color = mkLiteral "transparent";
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "gray";
+            text-color = mkLiteral "#939AB7";
             cursor = mkLiteral "pointer";
           };
 
           "element normal.normal" = {
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "gray";
+            text-color = mkLiteral "#939AB7";
           };
 
           "element normal.active" = {
-            background-image = mkLiteral "linear-gradient(to right, #4C4F52, #2E343B)";
-            text-color = mkLiteral "#19B466";
+            background-image = mkLiteral "linear-gradient(to right, #494D64, #363A4F)";
+            text-color = mkLiteral "#A6DA95";
           };
 
           "element selected.normal" = {
-            background-image = mkLiteral "linear-gradient(to right, #4C4F52, #2E343B)";
-            text-color = mkLiteral "#FF9030";
+            background-image = mkLiteral "linear-gradient(to right, #494D64, #363A4F)";
+            text-color = mkLiteral "#F5A97F";
           };
 
           "element selected.active" = {
-            background-image = mkLiteral "linear-gradient(to right, #4C4F52, #2E343B)";
-            text-color = mkLiteral "#EA5553";
+            background-image = mkLiteral "linear-gradient(to right, #494D64, #363A4F)";
+            text-color = mkLiteral "#ED8796";
           };
 
           "element-icon" = {
@@ -145,30 +145,30 @@
             margin = mkLiteral "0px 200px";
             padding = mkLiteral "12px";
             border-radius = mkLiteral "100%";
-            background-color = mkLiteral "#2E343B";
+            background-color = mkLiteral "#363A4F";
           };
 
           "button" = {
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "white";
+            text-color = mkLiteral "#CAD3F5";
             cursor = mkLiteral "pointer";
           };
 
           "button selected" = {
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "#FF9030";
+            text-color = mkLiteral "#F5A97F";
           };
 
           "error-message" = {
             padding = mkLiteral "20px";
-            background-color = mkLiteral "#22272C";
-            text-color = mkLiteral "white";
+            background-color = mkLiteral "#24273A";
+            text-color = mkLiteral "#CAD3F5";
           };
 
           "message" = {
             padding = mkLiteral "0px";
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "#FF9030";
+            text-color = mkLiteral "#F5A97F";
           };
 
           "textbox" = {
