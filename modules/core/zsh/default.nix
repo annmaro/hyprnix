@@ -147,7 +147,7 @@
             vault-edit = "SOPS_AGE_KEY_FILE=\$HOME/.config/sops/age/keys.txt ${pkgs.sops}/bin/sops \$HOME/my-nixos-flake/secrets/secrets.yaml";
 
             # Directory Shortcuts.
-            dots = "cd ~/hyprnix/";
+            dots = "cd ~/nixri/";
             games = "cd /mnt/games/";
             work = "cd /mnt/work/";
             media = "cd /mnt/work/media/";
