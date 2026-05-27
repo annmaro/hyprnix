@@ -60,6 +60,20 @@
           layers = {
             background = "#180F39B3";
           };
+          # 🛠️ ADD THIS CUSTOM CSS BLOCK for WIDGET BORDERS IN BAR
+          customCss = ''
+            /* Target all individual widget pill containers */
+            .widget-container, 
+            .workspace-switcher, 
+            .clock-container, 
+            .status-tiles-container {
+              border: 2px solid #5895dc; /* Change this hex code to match your preferred border color */
+              border-radius: 12px;       /* Gives it that smooth, rounded capsule look */
+              padding: 4px 12px;         /* Adds breathing room inside the border */
+              margin: 0 4px;             /* Adds spacing between the separate widget pills */
+              background-color: rgba(24, 15, 57, 0.4); /* Subtle transparent background inside the pill */
+            }
+          '';
         };
 
         weatherEnabled = true;
