@@ -5,10 +5,8 @@
     (_: { 
       imports = [
         inputs.dms.homeModules.dank-material-shell
-        inputs.dms.homeModules.niri # ◄ 1. Enforce native Niri features & auto-spawning
+        inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
       ];
-      
-      
 
       programs.dank-material-shell = {
         enable = true;
@@ -20,10 +18,10 @@
         };
       };
 
-        # 🛠️ ADD THIS BLOCK: Forces DMS to scale up fonts and icons nicely together
-        systemd.user.services.dms = {
-          Service = {
-            Environment = [
+      # Forces DMS to scale up fonts and icons nicely together
+      systemd.user.services.dms = {
+        Service = {
+          Environment = [
             "QT_SCALE_FACTOR=1.3" # 1.3 = 130% size. Adjust this up or down as needed!
           ];
         };
@@ -56,25 +54,16 @@
         theme = "catppuccin-macchiato"; 
         dynamicTheming = false;      
 
-        styling = {
-          layers = {
-            background = "#180F39B3";
-          };
-          # 🛠️ ADD THIS CUSTOM CSS BLOCK for WIDGET BORDERS IN BAR
-          customCss = ''
-            /* Target all individual widget pill containers */
-            .widget-container, 
-            .workspace-switcher, 
-            .clock-container, 
-            .status-tiles-container {
-              border: 2px solid #5895dc; /* Change this hex code to match your preferred border color */
-              border-radius: 12px;       /* Gives it that smooth, rounded capsule look */
-              padding: 4px 12px;         /* Adds breathing room inside the border */
-              margin: 0 4px;             /* Adds spacing between the separate widget pills */
-              background-color: rgba(24, 15, 57, 0.4); /* Subtle transparent background inside the pill */
-            }
-          '';
-        };
+        # ==========================================
+        # 🎨 NATIVE WIDGET STYLING & BORDERS (Root Level)
+        # ==========================================
+        borderEnabled = true;               # Enables native widget/bar borders
+        borderColor = "#5895dc";          # Custom blue outline
+        borderThickness = 2;                # Set to 2px
+        borderOpacity = 1.0;                # Fully opaque outline
+        widgetTransparency = 0.90;          # Set widget background to 90% opacity for a subtle see-through effect  
+        squareCorners = false;              # Keep corners rounded for pill shape
+        gothCornersEnabled = false;         # Disabled to ensure standard rounded capsule styling
 
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
@@ -92,10 +81,12 @@
             margin = 0;            
             height = 76;           
             borderRadius = 0;
-            transparency = 0.70;
-            widgetTransparency = 0.90;
             
-
+            # Setting bar transparency to 0 hides the background bar, 
+            # allowing only the styled widgets to display as floating pill capsules.
+            transparency = 0.70;    
+            widgetTransparency = 0.90; 
+            
             network_click_action = "applet";
             audio_click_action = "applet";
 
@@ -115,6 +106,7 @@
             ];
           }
         ];
+
         # The exact config to hide workspace labels across Dank Material Shell
         widgets = {
           workspace_switcher = {

@@ -17,13 +17,10 @@ in
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
-    # Force VS Code to run natively on Wayland for Hyprland + Intel GPU
+    # Override vscode for that annoying keyring warning in niri/hyprland 
     vscode = prev.vscode.override {
-      commandLineArgs = [
-        "--ozone-platform-hint=auto"
-        "--enable-features=WaylandWindowDecorations"
-      ];
-    };
+          commandLineArgs = "--password-store=\"gnome-libsecret\"";
+        };
     # Override nomacs with our custom XWayland wrapper
     nomacs = prev.nomacs.overrideAttrs (old: {
       qtWrapperArgs = (old.qtWrapperArgs or []) ++ [

@@ -18,9 +18,7 @@
        programs.vscode = {
         enable = true;
         mutableExtensionsDir = true;
-        package = pkgs.vscode.override {
-          commandLineArgs = "--password-store=\"gnome-libsecret\"";
-        };
+        package = pkgs.vscode
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             catppuccin.catppuccin-vsc
