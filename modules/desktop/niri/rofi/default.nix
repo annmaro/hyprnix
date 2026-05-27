@@ -57,7 +57,7 @@
             expand = false;
             padding = mkLiteral "8px 11px";
             border-radius = mkLiteral "100%";
-            background-color = mkLiteral "#CAD3F5";
+            background-color = mkLiteral "#8AADF4";
             text-color = mkLiteral "#24273A";
             str = "";
           };
@@ -70,7 +70,7 @@
             text-color = mkLiteral "#CAD3F5";
             cursor = mkLiteral "text";
             placeholder = "Search...";
-            placeholder-color = mkLiteral "inherit";
+            placeholder-color = mkLiteral "#939AB7";
             vertical-align = mkLiteral "0.5";
             horizontal-align = mkLiteral "0.0";
           };
@@ -100,13 +100,13 @@
             border-radius = mkLiteral "100%";
             border-color = mkLiteral "transparent";
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "#939AB7";
+            text-color = mkLiteral "#CAD3F5";
             cursor = mkLiteral "pointer";
           };
 
           "element normal.normal" = {
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "#939AB7";
+            text-color = mkLiteral "#CAD3F5";
           };
 
           "element normal.active" = {
@@ -150,7 +150,7 @@
 
           "button" = {
             background-color = mkLiteral "transparent";
-            text-color = mkLiteral "#CAD3F5";
+            text-color = mkLiteral "#939AB7";
             cursor = mkLiteral "pointer";
           };
 
@@ -162,7 +162,7 @@
           "error-message" = {
             padding = mkLiteral "20px";
             background-color = mkLiteral "#24273A";
-            text-color = mkLiteral "#CAD3F5";
+            text-color = mkLiteral "#ED8796";
           };
 
           "message" = {
