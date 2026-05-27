@@ -103,67 +103,8 @@
           };
         };
       };
-
-      # =====================================================================
-      # 🔮 QUICKSHELL DESKTOP ENGINE INTERCEPT ROUTINE
-      # =====================================================================
-      # This completely bypasses file-path replacement issues by intercepting Quickshell's 
-      # global entrypoint window. It runs the stock DMS bar, but forces an absolute border 
-      # overlay over the widget layer layout containers dynamically.
-      xdg.configFile."quickshell/root.qml".text = ''
-        import QtQuick
-        import Quickshell
-        import "./dms/quickshell" as DMSEntry
-
-        Scope {
-            id: rootScope
-
-            // Instantiate the complete DankMaterialShell stock environment
-            DMSEntry.root {
-                id: dmsInstance
-            }
-
-            // Global Style Interceptor Look-up Timer
-            Timer {
-                interval: 500
-                running: true
-                repeat: true
-                onTriggered: {
-                    applyBordersRecursively(dmsInstance);
-                }
-            }
-
-            function applyBordersRecursively(rootItem) {
-                if (!rootItem) return;
-                
-                // If it's a panel capsule or widget background container, force paint our custom border properties
-                if (rootItem.toString().includes("BasePill") || rootItem.hasOwnProperty("widgetThickness")) {
-                    if (!rootItem.__hasCustomBorder) {
-                        var borderWrapper = borderComponent.createObject(rootItem);
-                        rootItem.__hasCustomBorder = true;
-                    }
-                }
-
-                if (rootItem.children) {
-                    for (var i = 0; i < rootItem.children.length; i++) {
-                        applyBordersRecursively(rootItem.children[i]);
-                    }
-                }
-            }
-
-            Component {
-                id: borderComponent
-                Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
-                    border.width: 2
-                    border.color: "#5895dc"
-                    radius: parent.hasOwnProperty("radius") ? parent.radius : 12
-                    z: 99 // Positions borders above background surfaces smoothly
-                }
-            }
-        }
-      '';
     })
   ];
-}
+}  
+
+     
