@@ -49,17 +49,12 @@
         dynamicTheming = false;  
         controlCenterTileColorMode = "primary";  # Use primary color for control center tiles
         buttonColorMode = "primary";  # Use primary color for buttons
-        cornerRadius = 16;
+        cornerRadius = 16; # Apply a consistent border radius to all widgets for a cohesive look
         popupTransparency = 0.80; 
         barElevationEnabled = false;
         blurEnabled = true; # Enable blur for overview and other popups
         blurWallpaperOnOverview = true;
         blurForegroundLayers = false; # Only blur the background for a cleaner look
-        blurAmount = 20;
-        blurSaturation = 1.2;
-        blurContrast = 1.1;
-        blurBrightness = 1.0;   
-
         weatherEnabled = true;
         weatherLocation = "Ramgarh, Jharkhand, India";
         weatherCoordinates = "23.5987759,85.5369156";
@@ -79,14 +74,14 @@
             
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
-            transparency = 0.80;    
+            transparency = 0.80; #   
             widgetTransparency = 0.60; 
-            widgetOutlineEnabled = "true";
-            widgetOutlineColor = "primary";
-            widgetOutlineOpacity = 1.0;
-            widgetOutlineThickness = 1;
-            fontScale = 1.2;
-            iconScale = 1.2;
+            widgetOutlineEnabled = "true"; # Enable widget outlines to create a distinct separation from the background
+            widgetOutlineColor = "primary"; # Use the primary color from the theme for widget outlines to maintain a cohesive look
+            widgetOutlineOpacity = 1.0; # Fully opaque outlines for maximum contrast against the transparent background
+            widgetOutlineThickness = 1;# Thickness of the outline in pixels, adjust as needed for visibility
+            fontScale = 1.2; # Scale up the font size for better readability on a high-resolution display, 1.2 = 120% of the default size
+            iconScale = 1.2; # Scale up icons to match the increased font size and maintain visual balance, 1.2 = 120% of the default size
             
             network_click_action = "applet";
             audio_click_action = "applet";
