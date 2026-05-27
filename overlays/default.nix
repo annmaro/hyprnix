@@ -3,7 +3,6 @@ let
   inherit (import ../hosts/${host}/variables.nix) sddmTheme;
 in
 {
-  # Overlay custom derivations into nixpkgs so you can use pkgs.<name>
   additions =
     final: _prev:
     import ../pkgs {
@@ -19,20 +18,18 @@ in
       config.allowUnfree = true;
     };
 
-    # Override the dank-material-shell package directly during compilation
+    # Override the package derivation globally in nixpkgs
     dank-material-shell = inputs.dms.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
       postPatch = (oldAttrs.postPatch or "") + ''
-        # Locate BasePill.qml across the source layout and inject the blue border background style directly
-        find . -name "BasePill.qml" -exec sed -i '/id: root/a \ \ \ \ \ \ \ \ Rectangle { anchors.fill: parent; color: dmsTheme.colors.surfaceContainer; radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: "#5895dc"; z: -1 }' {} +
+        # Find BasePill.qml and insert the Rectangle style right below the ClickableRegion opening line
+        find . -name "BasePill.qml" -exec sed -i '/ClickableRegion {/a \ \ \ \ Rectangle { anchors.fill: parent; color: dmsTheme.colors.surfaceContainer; radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: "#5895dc"; z: -1 }' {} +
       '';
     });
 
-    # Override vscode for that annoying keyring warning in niri/hyprland 
     vscode = prev.vscode.override {
       commandLineArgs = "--password-store=\"gnome-libsecret\"";
     };
 
-    # Override nomacs with our custom XWayland wrapper
     nomacs = prev.nomacs.overrideAttrs (old: {
       qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
         "--set" "QT_QPA_PLATFORM" "xcb"

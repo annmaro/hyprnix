@@ -11,6 +11,9 @@
       programs.dank-material-shell = {
         enable = true;
         systemd.enable = true; 
+
+      # FORCE the module to use our patched version from the nixpkgs overlay
+        package = pkgs.dank-material-shell;  
  
         niri = {
           enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
