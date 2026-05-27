@@ -12,14 +12,15 @@
        home.file.".config/Code/argv.json".text = ''
          {
            "disable-hardware-acceleration": true
-           "password-store": "gnome-libsecret"
          }
        '';
 
        programs.vscode = {
         enable = true;
         mutableExtensionsDir = true;
-        package = pkgs.vscode;
+        package = pkgs.vscode.override {
+          commandLineArgs = "--password-store=\"gnome-libsecret\"";
+        };
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             catppuccin.catppuccin-vsc

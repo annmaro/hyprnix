@@ -1,4 +1,0 @@
-# Ignore sops configurations and encrypted/unencrypted secrets
-git-sops/
-secrets/
-.sops.yaml
