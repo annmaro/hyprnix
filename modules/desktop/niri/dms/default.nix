@@ -44,6 +44,7 @@
         };
 
         currentThemeNametheme = "catppuccin-mocha";  # Set your desired DMS theme here (must be installed in DMS's themes directory)
+        customThemeFile = "~/.config/DankMaterialShell/themes/catppuccin/theme.json"; # Optional: Path to a custom theme file if you're using one not included in DMS's default themes
         widgetBackgroundColor = "surface";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
@@ -67,9 +68,9 @@
             name = "Main Bar";
             enabled = true;
             position = "top";
-            floating = true; # Enable floating to allow for custom margins and independent styling  
+            floating = false;   
             margin = 8;            
-            height = 48;           
+            height = 48;            
             #borderRadius = 12;
             
             # Setting bar transparency to 0 hides the background bar background, 
@@ -80,8 +81,8 @@
             widgetOutlineColor = "primary"; # Use the primary color from the theme for widget outlines to maintain a cohesive look
             widgetOutlineOpacity = 1.0; # Fully opaque outlines for maximum contrast against the transparent background
             widgetOutlineThickness = 1;# Thickness of the outline in pixels, adjust as needed for visibility
-            fontScale = 1.2; # Scale up the font size for better readability on a high-resolution display, 1.2 = 120% of the default size
-            iconScale = 1.2; # Scale up icons to match the increased font size and maintain visual balance, 1.2 = 120% of the default size
+            fontScale = 1.5; # Scale up the font size for better readability on a high-resolution display, 1.2 = 120% of the default size
+            iconScale = 1.4; # Scale up icons to match the increased font size and maintain visual balance, 1.2 = 120% of the default size
             
             network_click_action = "applet";
             audio_click_action = "applet";
