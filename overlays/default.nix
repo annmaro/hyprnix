@@ -21,8 +21,13 @@ in
     # Override the package derivation globally in nixpkgs
     dank-material-shell = inputs.dms.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
       postPatch = (oldAttrs.postPatch or "") + ''
-        # Find BasePill.qml and insert the Rectangle style right below the ClickableRegion opening line
-        find . -name "BasePill.qml" -exec sed -i '/ClickableRegion {/a \ \ \ \ Rectangle { anchors.fill: parent; color: dmsTheme.colors.surfaceContainer; radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: "#5895dc"; z: -1 }' {} +
+        # We explicitly search everywhere for BasePill.qml and swap out its layout structure
+        # If the file path moves or changes, substituteInPlace will safely throw a hard build error.
+        target_file=$(find . -type f -name "BasePill.qml" | head -n 1)
+        if [ -n "$target_file" ]; then
+          substituteInPlace "$target_file" \
+            --replace "ClickableRegion {" "ClickableRegion {\n    Rectangle { anchors.fill: parent; color: dmsTheme.colors.surfaceContainer; radius: gothCornersEnabled ? gothCornerRadius : 12; border.width: 2; border.color: \"#5895dc\"; z: -1 }"
+        fi
       '';
     });
 
