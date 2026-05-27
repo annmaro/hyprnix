@@ -45,7 +45,7 @@
 
         currentThemeNametheme = "catppuccin";  # Set your desired DMS theme here (must be installed in DMS's themes directory)
         customThemeFile = "~/.config/DankMaterialShell/themes/catppuccin/theme.json"; # Optional: Path to a custom theme file if you're using one not included in DMS's default themes
-        widgetBackgroundColor = "surface";  # Use DMS's color tokens for consistent theming
+        widgetBackgroundColor = "primary";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
         controlCenterTileColorMode = "primary";  # Use primary color for control center tiles
