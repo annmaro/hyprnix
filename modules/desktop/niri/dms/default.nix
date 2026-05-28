@@ -44,7 +44,7 @@
         };
 
         ThemeName = "catppuccin-mocha";  # Set your desired DMS theme here (must be installed in DMS's themes directory)
-        customThemeFile = "~/.config/DankMaterialShell/themes/catppuccin/theme.json"; # Optional: Path to a custom theme file if you're using one not included in DMS's default themes
+        customThemeFile = "catpuccin.json"; # If using a custom theme file, specify it here (must be placed in DMS's themes directory)
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
