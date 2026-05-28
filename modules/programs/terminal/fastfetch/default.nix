@@ -23,7 +23,7 @@ in
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
         
           logo = {
-            source = "./nixos.png".;
+            source = "./nixos.png";
             padding = {
               top = 2;
               right = 4;
