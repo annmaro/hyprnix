@@ -20,10 +20,20 @@
         mutableExtensionsDir = true;
         package = pkgs.vscode;
         profiles.default = {
-          extensions = with pkgs.vscode-extensions; [
-            jdinhlife.gruvbox
-            jonathanharty.gruvbox-material-icon-theme
-            ];
+          extensions = [
+            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+              name = "gruvbox-material-icon-theme";
+              publisher = "jonathanharty";
+              version = "1.1.5";
+              sha256 = "sha256-0000000000000000000000000000000000000000000=";
+            })
+            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+              name = "aldrico-s-gruvbox";
+              publisher = "heavenaldrico";
+              version = "0.2.3";
+              sha256 = "sha256-0000000000000000000000000000000000000000000=";
+            })
+          ];
           keybindings = [
             {
               key = "ctrl+q";
