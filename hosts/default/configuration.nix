@@ -22,7 +22,7 @@ in
     ../../modules/core/nh
     ../../modules/core/packages
     ../../modules/core/printing
-    ../../modules/core/lightdm
+    ../../modules/core/regreet
     ../../modules/core/security
     ../../modules/core/services
     ../../modules/core/git-sops
