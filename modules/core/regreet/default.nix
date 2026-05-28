@@ -32,11 +32,7 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-    };
-
+    
     # ReGreet's TOML structural blocks configuration
     settings = {
       # Sets up standard system preferences

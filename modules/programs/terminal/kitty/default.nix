@@ -2,15 +2,7 @@
 {
   home-manager.sharedModules = [
     (_: {
-      /* Optional Pointer Theme Override if you want your cursor to match the Gruvbox yellow accents */
-      home.pointerCursor = {
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic"; 
-        size = 24;
-        gtk.enable = true;
-        x11.enable = true;
-      };
-
+     
       programs.kitty = {
         enable = true;
         font = {
