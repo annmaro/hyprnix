@@ -71,7 +71,7 @@
             floating = false;   
             margin = 0; # Remove default margin to allow the bar to span the full width of the screen, creating a more integrated look with the desktop environment           
             height = 48;            
-            #borderRadius = 12;
+            borderRadius = 16; # Apply the same border radius to the bar itself to match the widgets, creating a unified design language across all elements of the interface
             
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
