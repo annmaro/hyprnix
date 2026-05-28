@@ -1,17 +1,15 @@
 { pkgs, ... }:
 
 let
-  variant = "mocha";
-  accent = "mauve";
-  # Appending the '-oled' suffix matches the output folder structure created by the package override
-  catppuccin-theme-name = "catppuccin-${variant}-${accent}-oled";
+  # Target name constructed by the package when using the black tweak override
+  gruvbox-theme-name = "Gruvbox-Dark-BL";
 in
 {
   # Install the theme packages globally at the system level
   environment.systemPackages = with pkgs; [
-    papirus-icon-theme
-    bibata-cursors
-    catppuccin-gtk
+    gruvbox-plus-icons
+    bibata-cursors-translucent
+    gruvbox-gtk-theme
   ];
 
   # Force native Wayland applications to recognize the cursor size and style
@@ -38,17 +36,15 @@ in
         enable = true;
         gtk2.force = true;
         theme = {
-          name = "${catppuccin-theme-name}-compact";
-          package = pkgs.catppuccin-gtk.override {
-            inherit variant;
-            accents = [ accent ];
-            size = "compact";
-            tweaks = [ "oled" ]; # <-- CRUCIAL: Modifies background hexes from dark gray to pure #000000
+          name = "${gruvbox-theme-name}";
+          package = pkgs.gruvbox-gtk-theme.override {
+            # CRUCIAL: Converts the background values into true OLED #000000 black
+            tweaks = [ "black" ]; 
           };
         };
         iconTheme = {
-          package = pkgs.papirus-icon-theme;
-          name = "Papirus-Dark";
+          package = pkgs.gruvbox-plus-icons;
+          name = "Gruvbox-Plus-Dark";
         };
         gtk3.extraConfig = {
           "gtk-application-prefer-dark-theme" = "1";
@@ -71,19 +67,19 @@ in
         };
       };
 
-      # Direct injection for modern GTK4 themes to read Catppuccin OLED assets
+      # Direct injection for modern GTK4 themes to read Gruvbox OLED assets
       xdg.configFile = {
         "gtk-4.0/assets" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/assets";
+          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
         };
         "gtk-4.0/gtk.css" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk.css";
+          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
         };
         "gtk-4.0/gtk-dark.css" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk-dark.css";
+          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css";
         };
       };
     })

@@ -1,17 +1,15 @@
 { pkgs, ... }:
 
 let
-  variant = "mocha";
-  accent = "mauve";
-  catppuccin-kvantum-pkg = pkgs.catppuccin-kvantum.override { inherit variant accent; };
-  catppuccin-theme-name = "catppuccin-${variant}-${accent}";
+  # Using the standardized Gruvbox theme definition
+  gruvbox-theme-name = "Gruvbox-Dark";
 in
 {
   # Install the core Qt style sheet engines globally
   environment.systemPackages = with pkgs; [
     qt6Packages.qt6ct
     libsForQt5.qt5ct
-    catppuccin-kvantum-pkg
+    gruvbox-kvantum
   ];
 
   # Universal Wayland engine properties
@@ -35,19 +33,18 @@ in
         "qt5ct/qt5ct.conf".text = ''
           [Appearance]
           style=kvantum
-          icon_theme=Papirus-Dark
+          icon_theme=Gruvbox-Plus-Dark
         '';
         "qt6ct/qt6ct.conf".text = ''
           [Appearance]
           style=kvantum
-          icon_theme=Papirus-Dark
+          icon_theme=Gruvbox-Plus-Dark
         '';
-        "Kvantum/${catppuccin-theme-name}".source = "${catppuccin-kvantum-pkg}/share/Kvantum/${catppuccin-theme-name}";
+        "Kvantum/${gruvbox-theme-name}".source = "${pkgs.gruvbox-kvantum}/share/Kvantum/${gruvbox-theme-name}";
         
-        # Modified to enforce pure black windows and composites inside Kvantum
+        # Enforce high-contrast pure black window bases inside Kvantum
         "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = catppuccin-theme-name;
-          # Forces Kvantum to drop dark grays for true pitch-black window backgrounds
+          General.theme = gruvbox-theme-name;
           OpaqueEffects.reduce_opacity = false;
           UserStyles.blend_colors = false;
         };
