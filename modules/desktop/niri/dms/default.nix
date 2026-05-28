@@ -69,7 +69,7 @@
             enabled = true;
             position = "top";
             floating = false;   
-            margin = 8;            
+            margin = 0; # Remove default margin to allow the bar to span the full width of the screen, creating a more integrated look with the desktop environment           
             height = 48;            
             #borderRadius = 12;
             
