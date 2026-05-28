@@ -23,8 +23,8 @@
         # configure spicetify :)
         programs.spicetify = {
           enable = true;
-          theme = spicePkgs.themes.gruvbox;
-          colorScheme = "amoled";
+          theme = spicePkgs.themes.onepunch;
+          colorScheme = "dark";
           # windowManagerPatch = config.programs.hyprland.enable;
           enabledExtensions = with spicePkgs.extensions; [
             adblock
