@@ -193,6 +193,7 @@
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
                match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
+               open-maximized-to-edges true
                opacity 1.0
             }
 
