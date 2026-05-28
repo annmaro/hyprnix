@@ -35,7 +35,7 @@
                 publisher = "heavenaldrico";
                 version = "0.2.3";
               };
-              sha256 = "sha256-JV2FFyLbPYB5fvWYlx/wG/3vAUMG9ovqK5tLuwU7SKA=";
+              sha256 = "sha256-JV2FFyLbPYB5fvWYlx/wG/3vAUMG9ovqK5tLuwU7SKA=s";
             })
           ];
           keybindings = [
