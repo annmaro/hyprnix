@@ -21,22 +21,7 @@
         package = pkgs.vscode;
         profiles.default = {
           extensions = [
-            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-              mktplcRef = {
-                name = "gruvbox-material-icon-theme";
-                publisher = "jonathanharty";
-                version = "1.1.5";
-              };
-              sha256 = "sha256-86UWUuWKT6adx4hw4OJw3cSZxWZKLH4uLTO+Ssg75gY=";
-            })
-            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-              mktplcRef = {
-                name = "aldrico-s-gruvbox";
-                publisher = "heavenaldrico";
-                version = "0.2.3";
-              };
-              sha256 = "sha256-JV2FFyLbPYB5fvWYlx/wG/3vAUMG9ovqK5tLuwU7SKA=";
-            })
+            
           ];
           keybindings = [
             {
