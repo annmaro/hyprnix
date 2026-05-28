@@ -218,7 +218,7 @@
 
            window-rule {
                match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
-               opacity 0.85
+               opacity 0.90
                draw-border-with-background false
                background-effect {
                     blur true
