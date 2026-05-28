@@ -5,7 +5,7 @@
 
 {
   
-  services.displayManager = {
+  services.xserver.displayManager = {
     defaultSession = "niri";
     
     lightdm = {
