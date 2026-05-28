@@ -180,6 +180,15 @@
                 } 
             }
            
+           // Force normal, realistic blur for DankMaterialShell popups and panels
+           layer-rule {
+                match namespace=r#"^dms:.*"#
+                background-effect {
+                    blur true
+                    xray false
+                }
+            } 
+
            
            // 🖼️ WINDOW RULES & TRANSPARENCY
            window-rule {
