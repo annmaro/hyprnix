@@ -22,15 +22,19 @@
         profiles.default = {
           extensions = [
             (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-              name = "gruvbox-material-icon-theme";
-              publisher = "jonathanharty";
-              version = "1.1.5";
+              mktplcRef = {
+                name = "gruvbox-material-icon-theme";
+                publisher = "jonathanharty";
+                version = "1.1.5";
+              };
               sha256 = "sha256-0000000000000000000000000000000000000000000=";
             })
             (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-              name = "gruvbox-draken-lords";
-              publisher = "drakenlords";
-              version = "0.2.3";
+              mktplcRef = {
+                name = "aldrico-s-gruvbox";
+                publisher = "heavenaldrico";
+                version = "0.2.3";
+              };
               sha256 = "sha256-0000000000000000000000000000000000000000000=";
             })
           ];
