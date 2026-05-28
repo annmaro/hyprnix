@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
 let
-  # Target name constructed by the package when using the black tweak override
-  gruvbox-theme-name = "Gruvbox-Dark-BL";
+  # Fallback to the standard variant generated natively by the package
+  gruvbox-theme-name = "Gruvbox-Dark";
 in
 {
   # Install the theme packages globally at the system level
   environment.systemPackages = with pkgs; [
     gruvbox-plus-icons
-    bibata-cursors-translucent
+    bibata-cursors
     gruvbox-gtk-theme
   ];
 
@@ -37,10 +37,7 @@ in
         gtk2.force = true;
         theme = {
           name = "${gruvbox-theme-name}";
-          package = pkgs.gruvbox-gtk-theme.override {
-            # CRUCIAL: Converts the background values into true OLED #000000 black
-            tweaks = [ "black" ]; 
-          };
+          package = pkgs.gruvbox-gtk-theme; # Removed .override block to clear compilation crashes
         };
         iconTheme = {
           package = pkgs.gruvbox-plus-icons;
@@ -67,20 +64,32 @@ in
         };
       };
 
-      # Direct injection for modern GTK4 themes to read Gruvbox OLED assets
+      # Hard injection for GTK4 configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
         "gtk-4.0/assets" = {
           force = true;
-          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
+          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
         };
         "gtk-4.0/gtk.css" = {
           force = true;
-          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
+          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
         };
-        "gtk-4.0/gtk-dark.css" = {
-          force = true;
-          source = "${pkgs.gruvbox-gtk-theme.override { tweaks = [ "black" ]; }}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css";
-        };
+        
+        # We write custom overrides directly over the default dark definitions to create an OLED layout
+        "gtk-4.0/gtk-dark.css".text = ''
+          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
+          
+          /* Brute force window elements and client side headers into #000000 */
+          window, .background, messagebox, dialog {
+              background-color: #000000 !important;
+          }
+          
+          /* Darken header bars and internal content layout dividers */
+          headerbar, .titlebar {
+              background-color: #050505 !important;
+              box-shadow: none !important;
+          }
+        '';
       };
     })
   ];
