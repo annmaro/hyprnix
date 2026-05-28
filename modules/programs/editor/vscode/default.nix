@@ -20,8 +20,8 @@
         mutableExtensionsDir = true;
         package = pkgs.vscode;
         profiles.default = {
-          extensions = [
-            gruvbox
+          extensions = with pkgs.vscode-extensions; [
+            jdinhlife.gruvbox
           ];
           keybindings = [
             {
