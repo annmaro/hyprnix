@@ -5,7 +5,7 @@
       /* Optional Pointer Theme Override if you want your cursor to match the Gruvbox yellow accents */
       home.pointerCursor = {
         package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Amber"; /* Change to "Bibata-Modern-Classic" if you want to keep the black/white look */
+        name = "Bibata-Modern-Classic"; 
         size = 24;
         gtk.enable = true;
         x11.enable = true;
