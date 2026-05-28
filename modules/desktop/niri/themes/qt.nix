@@ -43,8 +43,13 @@ in
           icon_theme=Papirus-Dark
         '';
         "Kvantum/${catppuccin-theme-name}".source = "${catppuccin-kvantum-pkg}/share/Kvantum/${catppuccin-theme-name}";
+        
+        # Modified to enforce pure black windows and composites inside Kvantum
         "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
           General.theme = catppuccin-theme-name;
+          # Forces Kvantum to drop dark grays for true pitch-black window backgrounds
+          OpaqueEffects.reduce_opacity = false;
+          UserStyles.blend_colors = false;
         };
       };
     })

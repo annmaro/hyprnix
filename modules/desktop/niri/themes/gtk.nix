@@ -3,7 +3,8 @@
 let
   variant = "mocha";
   accent = "mauve";
-  catppuccin-theme-name = "catppuccin-${variant}-${accent}";
+  # Appending the '-oled' suffix matches the output folder structure created by the package override
+  catppuccin-theme-name = "catppuccin-${variant}-${accent}-oled";
 in
 {
   # Install the theme packages globally at the system level
@@ -42,6 +43,7 @@ in
             inherit variant;
             accents = [ accent ];
             size = "compact";
+            tweaks = [ "oled" ]; # <-- CRUCIAL: Modifies background hexes from dark gray to pure #000000
           };
         };
         iconTheme = {
@@ -69,19 +71,19 @@ in
         };
       };
 
-      # Direct injection for modern GTK4 themes to read Catppuccin assets
+      # Direct injection for modern GTK4 themes to read Catppuccin OLED assets
       xdg.configFile = {
         "gtk-4.0/assets" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/assets";
+          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/assets";
         };
         "gtk-4.0/gtk.css" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk.css";
+          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk.css";
         };
         "gtk-4.0/gtk-dark.css" = {
           force = true;
-          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk-dark.css";
+          source = "${pkgs.catppuccin-gtk.override { inherit variant; accents = [ accent ]; size = "compact"; tweaks = [ "oled" ]; }}/share/themes/${catppuccin-theme-name}-compact/gtk-4.0/gtk-dark.css";
         };
       };
     })
