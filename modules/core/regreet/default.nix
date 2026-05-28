@@ -11,7 +11,7 @@
     settings = {
       default_session = {
         # This tells greetd to boot the user 'greeter' directly into the ReGreet binary
-        command = "${pkgs.greetd.regreet}/bin/regreet";
+        command = "${pkgs.regreet}/bin/regreet";
         user = "greeter";
       };
     };
