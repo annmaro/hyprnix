@@ -21,8 +21,8 @@
         package = pkgs.vscode;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
-            HeavenAldrico.aldrico-s-gruvbox
-            JonathanHarty.gruvbox-material-icon-theme
+            aldrico-s-gruvbox
+            gruvbox-material-icon-theme
             ];
           keybindings = [
             {
