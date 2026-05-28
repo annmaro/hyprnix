@@ -88,17 +88,17 @@
             audio_click_action = "applet";
 
             leftWidgets = [
-              "workspaceSwitcher"  
+              "cpuUsage"           
+              "memUsage" 
               "focusedWindow"      
             ];
             centerWidgets = [
-              "clock"              
+              "workspaceSwitcher"             
             ];
             rightWidgets = [
               "weather"
-              "systemTray"         
-              "cpuUsage"           
-              "memUsage"
+              "clock"
+              "systemTray"          
               "controlCenterButton" 
             ];
           }
