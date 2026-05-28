@@ -21,7 +21,7 @@
         package = pkgs.vscode;
         profiles.default = {
           extensions = [
-            mandeepsran.gruvbox-black
+            jdinhlife.gruvbox
           ];
           keybindings = [
             {
