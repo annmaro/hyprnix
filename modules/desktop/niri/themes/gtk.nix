@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  # Fallback to the standard variant generated natively by the package
   gruvbox-theme-name = "Gruvbox-Dark";
 in
 {
@@ -37,7 +36,7 @@ in
         gtk2.force = true;
         theme = {
           name = "${gruvbox-theme-name}";
-          package = pkgs.gruvbox-gtk-theme; # Removed .override block to clear compilation crashes
+          package = pkgs.gruvbox-gtk-theme;
         };
         iconTheme = {
           package = pkgs.gruvbox-plus-icons;
@@ -64,7 +63,7 @@ in
         };
       };
 
-      # Hard injection for GTK4 configurations to re-tint the base workspace container elements to black
+      # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
         "gtk-4.0/assets" = {
           force = true;
@@ -75,7 +74,7 @@ in
           source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
         };
         
-        # We write custom overrides directly over the default dark definitions to create an OLED layout
+        # Custom overrides directly over the default dark definitions to create an OLED layout
         "gtk-4.0/gtk-dark.css".text = ''
           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
           
@@ -85,6 +84,20 @@ in
           }
           
           /* Darken header bars and internal content layout dividers */
+          headerbar, .titlebar {
+              background-color: #050505 !important;
+              box-shadow: none !important;
+          }
+        '';
+
+        # Hard injection added for GTK3 to force flat black on legacy window interfaces
+        "gtk-3.0/gtk.css".text = ''
+          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+
+          window, .background, messagebox, dialog {
+              background-color: #000000 !important;
+          }
+
           headerbar, .titlebar {
               background-color: #050505 !important;
               box-shadow: none !important;

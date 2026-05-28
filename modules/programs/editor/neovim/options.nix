@@ -32,9 +32,9 @@
     };
     theme = {
       enable = true;
-      name = "catppuccin";
-      style = "mocha";
-     # transparent = lib.mkForce true;
+      name = "gruvbox";
+      style = "dark";
+      transparent = lib.mkForce true;
     };
   };
 }

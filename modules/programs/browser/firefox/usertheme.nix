@@ -1,46 +1,46 @@
 { ... }:
 {
   userChrome = ''
-    /* Catppuccin Mocha Mauve - Native Firefox Cascade Theme */
+    /* Gruvbox Dark AMOLED - Native Firefox Cascade Theme */
 
     @media (prefers-color-scheme: dark) {
       :root {
         /* Cascade Main Colour Scheme Core */
-        --uc-base-colour: #1e1e2e;
-        --uc-highlight-colour: #181825;
-        --uc-inverted-colour: #cdd6f4;
-        --uc-muted-colour: #6c7086;
-        --uc-accent-colour: #cba6f7; /* Mauve */
+        --uc-base-colour: #000000;          /* True OLED Black */
+        --uc-highlight-colour: #1d2021;     /* Gruvbox Dark Material */
+        --uc-inverted-colour: #fbf1c7;      /* Gruvbox Cream Text */
+        --uc-muted-colour: #7c6f64;         /* Gruvbox Muted Gray */
+        --uc-accent-colour: #fabd2f;        /* Gruvbox Gold/Yellow */
 
         /* Container Tabs Palette mapping */
-        --uc-identity-colour-blue: #89b4fa;
-        --uc-identity-colour-turquoise: #94e2d5;
-        --uc-identity-colour-green: #a6e3a1;
-        --uc-identity-colour-yellow: #f9e2af;
-        --uc-identity-colour-orange: #fab387;
-        --uc-identity-colour-red: #f38ba8;
-        --uc-identity-colour-pink: #f5c2e7;
-        --uc-identity-colour-purple: #cba6f7;
+        --uc-identity-colour-blue: #83a598;
+        --uc-identity-colour-turquoise: #8ec07c;
+        --uc-identity-colour-green: #b8bb26;
+        --uc-identity-colour-yellow: #fabd2f;
+        --uc-identity-colour-orange: #fe8019;
+        --uc-identity-colour-red: #fb4934;
+        --uc-identity-colour-pink: #d3869b;
+        --uc-identity-colour-purple: #d3869b;
       }
     }
 
     @media (prefers-color-scheme: light) {
       :root {
-        /* Cascade Light Scheme Fallbacks */
-        --uc-base-colour: #eff1f5;
-        --uc-highlight-colour: #dce0e8;
-        --uc-inverted-colour: #4c4f69;
-        --uc-muted-colour: #9ca0b0;
-        --uc-accent-colour: #8839ef;
+        /* Cascade Light Scheme Fallbacks (Kept clean and fallback intact) */
+        --uc-base-colour: #fbf1c7;
+        --uc-highlight-colour: #ebdbb2;
+        --uc-inverted-colour: #282828;
+        --uc-muted-colour: #928374;
+        --uc-accent-colour: #b57614;
 
-        --uc-identity-colour-blue: #1e66f5;
-        --uc-identity-colour-turquoise: #179299;
-        --uc-identity-colour-green: #40a02b;
-        --uc-identity-colour-yellow: #df8e1d;
-        --uc-identity-colour-orange: #fe640b;
-        --uc-identity-colour-red: #d20f39;
-        --uc-identity-colour-pink: #d20f39;
-        --uc-identity-colour-purple: #8839ef;
+        --uc-identity-colour-blue: #076678;
+        --uc-identity-colour-turquoise: #427b58;
+        --uc-identity-colour-green: #79740e;
+        --uc-identity-colour-yellow: #b57614;
+        --uc-identity-colour-orange: #af3a03;
+        --uc-identity-colour-red: #9d0006;
+        --uc-identity-colour-pink: #8f3f71;
+        --uc-identity-colour-purple: #8f3f71;
       }
     }
 
@@ -115,57 +115,57 @@
   '';
 
   userContent = ''
-    /* Catppuccin Mocha Mauve - Core Firefox Internal Pages */
+    /* Gruvbox Dark AMOLED - Core Firefox Internal Pages */
 
     @media (prefers-color-scheme: dark) {
       /* Native Firefox global settings backdrop setup */
       @-moz-document url-prefix("about:") {
         :root {
-          --in-content-page-color: #cdd6f4 !important;
-          --color-accent-primary: #cba6f7 !important;
-          --color-accent-primary-hover: rgb(217, 191, 249) !important;
-          --color-accent-primary-active: rgb(223, 167, 247) !important;
-          background-color: #1e1e2e !important;
-          --in-content-page-background: #1e1e2e !important;
+          --in-content-page-color: #fbf1c7 !important;
+          --color-accent-primary: #fabd2f !important;
+          --color-accent-primary-hover: rgb(251, 211, 107) !important;
+          --color-accent-primary-active: rgb(253, 222, 139) !important;
+          background-color: #000000 !important;
+          --in-content-page-background: #000000 !important;
         }
       }
 
       /* Firefox Homepage and New Tab Custom Styling */
       @-moz-document url("about:newtab"), url("about:home") {
         :root {
-          --newtab-background-color: #1e1e2e !important;
-          --newtab-background-color-secondary: #313244 !important;
-          --newtab-element-hover-color: #313244 !important;
-          --newtab-text-primary-color: #cdd6f4 !important;
-          --newtab-wordmark-color: #cdd6f4 !important;
-          --newtab-primary-action-background: #cba6f7 !important;
+          --newtab-background-color: #000000 !important;
+          --newtab-background-color-secondary: #1d2021 !important;
+          --newtab-element-hover-color: #1d2021 !important;
+          --newtab-text-primary-color: #fbf1c7 !important;
+          --newtab-wordmark-color: #fbf1c7 !important;
+          --newtab-primary-action-background: #fabd2f !important;
         }
-        .icon { color: #cba6f7 !important; }
-        .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #cba6f7 !important; }
-        .top-site-outer .search-topsite { background-color: #89b4fa !important; }
-        .compact-cards .card-outer .card-context .card-context-icon.icon-download { fill: #a6e3a1 !important; }
+        .icon { color: #fabd2f !important; }
+        .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #fabd2f !important; }
+        .top-site-outer .search-topsite { background-color: #83a598 !important; }
+        .compact-cards .card-outer .card-context .card-context-icon.icon-download { fill: #b8bb26 !important; }
       }
 
       /* Native Preferences Panels Overrides */
       @-moz-document url-prefix("about:preferences") {
         :root {
-          --in-content-text-color: #cdd6f4 !important;
-          --link-color: #cba6f7 !important;
-          --link-color-hover: rgb(217, 191, 249) !important;
-          --in-content-box-background: #313244 !important;
+          --in-content-text-color: #fbf1c7 !important;
+          --link-color: #fabd2f !important;
+          --link-color-hover: rgb(251, 211, 107) !important;
+          --in-content-box-background: #1d2021 !important;
         }
 
         button, menulist {
-          background: #313244 !important;
-          color: #cdd6f4 !important;
+          background: #1d2021 !important;
+          color: #fbf1c7 !important;
         }
-        .main-content { background-color: #11111b !important; }
+        .main-content { background-color: #000000 !important; }
       }
 
       /* Firefox Add-ons and Extension Manager Layout */
       @-moz-document url-prefix("about:addons") {
         :root {
-          --background-color-box: #1e1e2e !important;
+          --background-color-box: #000000 !important;
         }
       }
     }

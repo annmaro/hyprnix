@@ -136,9 +136,9 @@
                center-focused-column "never"
                background-color "transparent"
                 border {
-                    width 1
-                   active-color "#ca9ee6"
-                   inactive-color "#b4befe"
+                   width 1
+                   active-color "#fabd2f"   // Gruvbox Yellow (Bright)
+                   inactive-color "#665c54" // Gruvbox Dark Gray / Gruvbox 4
                }
                preset-column-widths {
                    proportion 0.33333

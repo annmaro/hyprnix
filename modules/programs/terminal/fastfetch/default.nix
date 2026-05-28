@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 let
-  # Brand New Color Palette (Catppuccin Mocha)
-  labels     = "#89b4fa"; # Blue
-  kernelCol  = "#cba6f7"; # Mauve
-  uptimeCol  = "#a6e3a1"; # Green
-  pkgsCol    = "#eba0ac"; # Maroon
-  shellCol   = "#f9e2af"; # Yellow
-  cpuCol     = "#94e2d5"; # Teal
-  gpuCol     = "#89dceb"; # Sky
-  memCol     = "#f5c2e7"; # Pink
-  wmCol      = "#fab387"; # Peach
-  termCol    = "#89b4fa"; # Blue
+  # Re-mapped to standard ANSI naming aliases matching our new Gruvbox values
+  labels     = "blue";    # Gruvbox Blue (83a598)
+  kernelCol  = "magenta"; # Gruvbox Purple (d3869b)
+  uptimeCol  = "green";   # Gruvbox Green (b8bb26)
+  pkgsCol    = "red";     # Gruvbox Red (fb4934)
+  shellCol   = "yellow";  # Gruvbox Yellow/Gold (fabd2f)
+  cpuCol     = "cyan";    # Gruvbox Aqua/Cyan (8ec07c)
+  gpuCol     = "cyan";    # Gruvbox Aqua/Cyan (8ec07c)
+  memCol     = "magenta"; # Gruvbox Purple (d3869b)
+  wmCol      = "yellow";  # Gruvbox Orange/Yellow (fe8019 / fabd2f)
+  termCol    = "blue";    # Gruvbox Blue (83a598)
 in
 {
   home-manager.sharedModules = [
@@ -23,7 +23,7 @@ in
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
         
           logo = {
-            source = "nixos"; # Uses fastfetch's beautiful built-in sleek NixOS logo
+            source = "./nixos.png".;
             padding = {
               top = 2;
               right = 4;
@@ -33,7 +33,7 @@ in
           display = {
             separator = " ── ";
             color = {
-              keys = "magenta";
+              keys = "yellow"; /* Swapped separator color to Gruvbox Gold */
               title = "blue";
             };
           };
@@ -43,7 +43,7 @@ in
               type = "title";
               color = {
                 user = "blue";
-                host = kernelCol;
+                host = "magenta";
               };
             }
             "break"
@@ -101,7 +101,7 @@ in
             "break"
             {
               type = "colors";
-              symbol = "block";
+              symbol = "circle"; /* Swapped from block to circular dots */
               paddingLeft = 2;
             }
           ];

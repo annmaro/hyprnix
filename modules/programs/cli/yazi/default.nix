@@ -8,7 +8,7 @@
         enableZshIntegration = true;
         theme = {
         flavor = {
-          use = "catppuccin-mocha";
+          use = "gruvbox-dark";
         };
       };
         shellWrapperName = "y";

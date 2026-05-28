@@ -3,8 +3,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.hyprland.enableGnomeKeyring = true;
-    pam.services.sddm.enableGnomeKeyring = true;
+    pam.services.lightdm.enableGnomeKeyring = true;
     sudo.extraConfig =
     "Defaults pwfeedback"; # Show asterisks when typing sudo password
     apparmor = {
