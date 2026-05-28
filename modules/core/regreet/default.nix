@@ -1,17 +1,11 @@
-{
-  pkgs,
-  ...
-}:
-
-{
-  
+{pkgs, ...}: {
   # 1. Enable greetd (the modern backend manager daemon)
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
         # This tells greetd to boot the user 'greeter' directly into the ReGreet binary
-        command = "${pkgs.regreet}/bin/regreet";
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
         user = "greeter";
       };
     };
@@ -32,16 +26,15 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
-    
     # ReGreet's TOML structural blocks configuration
     settings = {
       # Sets up standard system preferences
       background = {
         # Fits a solid flat black wall space behind the container layout
-        path = ""; 
+        path = "";
         fit = "Contain";
       };
-      
+
       GTK = {
         # Enforces your global application preference variables
         application_prefer_dark_theme = true;
@@ -87,3 +80,4 @@
     defaultSession = "niri";
   };
 }
+
