@@ -4,10 +4,7 @@
 }:
 
 {
-  imports = [
-    ./icon.nix
-  ];
-
+  
   # 1. Install web-greeter so it's available globally on the system
   environment.systemPackages = [
     pkgs.web-greeter
