@@ -28,8 +28,8 @@
               sha256 = "sha256-0000000000000000000000000000000000000000000=";
             })
             (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-              name = "aldrico-s-gruvbox";
-              publisher = "heavenaldrico";
+              name = "gruvbox-draken-lords";
+              publisher = "drakenlords";
               version = "0.2.3";
               sha256 = "sha256-0000000000000000000000000000000000000000000=";
             })
