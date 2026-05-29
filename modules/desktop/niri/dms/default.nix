@@ -44,8 +44,8 @@
           dock = false;         
         };
 
-        theme = "amoledBlack-black"; 
-        dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.     
+        dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
+        currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
         customThemeFile = "/home/annmaro/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
 
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
