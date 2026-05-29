@@ -1,20 +1,19 @@
 { pkgs, ... }:
 
 {
-  # 1. Enable greetd (the modern backend manager daemon)
+  # 1. FIX: Setup the local cache path and tell greetd to explicitly read the Nix-generated config file
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
+        # -c tells regreet exactly where NixOS puts its configuration file!
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet -c /etc/greetd/regreet.toml";
         user = "greeter";
       };
     };
   };
 
-  # 2. Fix the "Remember Me" permission constraint
-  # Greetd runs as the isolated 'greeter' user. It needs explicit write access to its 
-  # home cache folder to store your last session choice and username.
+  # 2. FIX: Persist cache so "Remember User & Session" works perfectly across reboots
   systemd.tmpfiles.rules = [
     "d /var/cache/regreet 0755 greeter greeter -"
   ];
@@ -33,38 +32,41 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
-    # ReGreet's TOML structural blocks configuration
     settings = {
       greeter = {
         remember_user = true;
         default_session = "niri";
       };
-
       background = {
         path = "/etc/greetd/nix.png";
         fit = "Cover";
       };
-
       GTK = {
         application_prefer_dark_theme = true;
       };
-    }; # <--- settings ENDS HERE CLEANLY NOW
+    };
 
-    # 4. FIXED: extraCss is now a first-class native attribute of programs.regreet!
+    # 4. FIX: Correct the container naming selectors for GTK4 window management layouts
     extraCss = ''
-      /* FORCE THE MAIN BACKGROUND LAYOUT TO PITCH BLACK */
-      window, box, stack, grid {
+      /* Force display canvas to pure black */
+      window {
           background-color: #000000 !important;
       }
 
-      /* SHRINK & MOVE THE MAIN LOGIN BOX CONTAINER */
-      /* ReGreet wraps its login panel elements inside a generic container classed as .main-box */
-      .main-box, window > box, grid > box {
-          max-width: 360px !important;
-          min-width: 360px !important;
+      /* TARGET THE MAIN WINDOW WRAPPER LAYER */
+      /* ReGreet aligns its login card elements inside a primary widget container named 'mainwindow' */
+      #mainwindow {
+          background-color: transparent !important;
+          max-width: 380px !important;
+          min-width: 380px !important;
           
-          /* Force centering vertically, but anchor hard to the left side with 100px padding */
-          margin: auto auto auto 100px !important; 
+          /* Pull to the left side with 100px padding, center vertically */
+          margin: auto auto auto 100px !important;
+      }
+
+      /* Ensure inner layers don't overwrite centering constraints */
+      #mainwindow > box, grid, stack {
+          background-color: transparent !important;
       }
 
       /* CREDENTIAL FIELD STYLING */
@@ -93,7 +95,6 @@
     '';
   };
 
-  # 5. Set your default target session workspace environment variables globally
   services.displayManager = {
     defaultSession = "niri";
   };
