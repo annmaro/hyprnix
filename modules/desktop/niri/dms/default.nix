@@ -43,16 +43,15 @@
           dock = false;         
         };
 
-        currentThemeName = "gruvboxDark";
-        customThemeFile = "gruvboxDark";
+        
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
         controlCenterTileColorMode = "primary";  # Use primary color for control center tiles
         buttonColorMode = "primary";  # Use primary color for buttons
         cornerRadius = 16; # Apply a consistent border radius to all widgets for a cohesive look
-        popupTransparency = 0.80; 
-        barElevationEnabled = false; 
+        popupTransparency = 0.10; # Set a low transparency for popups to create a subtle frosted glass effect that
+        barElevationEnabled = false; # Disable bar elevation to maintain a flat design aesthetic, especially when using transparency
         blurEnabled = true; # Enable blur for overview and other popups
         blurWallpaperOnOverview = true;
         blurForegroundLayers = false; # Only blur the background for a cleaner look
@@ -70,7 +69,7 @@
             position = "top";
             floating = false;   
             margin = 0; # Remove default margin to allow the bar to span the full width of the screen, creating a more integrated look with the desktop environment           
-            height = 60; # Increase the bar height to accommodate larger widgets and create a more substantial presence on the screen, especially on high-resolution displays            
+            height = 76; # Increase the bar height to accommodate larger widgets and create a more substantial presence on the screen, especially on high-resolution displays            
             borderRadius = 16; # Apply the same border radius to the bar itself to match the widgets, creating a unified design language across all elements of the interface
             
             # Setting bar transparency to 0 hides the background bar background, 
