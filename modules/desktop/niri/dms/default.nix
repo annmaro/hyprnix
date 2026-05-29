@@ -67,6 +67,7 @@
           error = "#fb4934";         # Gruvbox Red
           onError = "#282828";
         };
+       };  
         
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
