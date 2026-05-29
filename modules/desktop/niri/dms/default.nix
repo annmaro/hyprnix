@@ -1,8 +1,14 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   home-manager.sharedModules = [
-    (_: { 
+    (_: {
       imports = [
         inputs.dms.homeModules.dank-material-shell
         inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
@@ -10,15 +16,13 @@
 
       programs.dank-material-shell = {
         enable = true;
-        systemd.enable = true; 
- 
+        systemd.enable = true;
+
         niri = {
           enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
-          enableSpawn = false;   # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
+          enableSpawn = false; # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
         };
       };
-
-      
 
       home.packages = with pkgs; [
         dgop # Required for DMS system tracking features
@@ -33,28 +37,33 @@
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
         configVersion = 2;
         disableWallpaper = false; # Set true if you want to handle wallpaper through swaybg/awww
-        
+
         modules = {
           bar = true;
           notifications = true;
-          idle = true;          
-          lockscreen = true;    
+          idle = true;
+          lockscreen = true;
           wallpaper = true; # false to keep it managed by your separate awww/swaybg
-          launcher = false;  # Handled by your native rofi setup
-          dock = false;         
+          launcher = false; # Handled by your native rofi setup
+          dock = false;
         };
 
         dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
         currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
         customThemeFile = "/home/annmaro/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
 
-        widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
-        widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
-        buttonColorMode = "primary";  # Use primary color for buttons
-        
-        popupTransparency = 0.40; # Set popup transparency to create a frosted glass effect for notifications and other popups, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics. 
+        widgetBackgroundColor = "s"; # Use DMS's color tokens for consistent theming
+        widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
+        buttonColorMode = "primary"; # Use primary color for buttons
+
+        widgetOutlineEnabled = true; # Enable outlines for widgets to enhance visibility and separation from the background
+        widgetOutlineColor = "primary"; # Use primary color for widget outlines to create a cohesive look with the rest of the theme. Adjust as needed based on your custom theme's color palette for optimal contrast and aesthetics.
+        widgetOutlineOpacity = 1.0; # Set widget outline opacity to fully opaque for maximum visibility and contrast against the background. Adjust as needed for a more subtle effect while maintaining clear separation of widgets from the wallpaper.
+        widgetOutlineThickness = 1; # Set widget outline thickness to 1px for a clean and defined border that enhances visibility without overwhelming the design. Adjust as needed based on your personal preference and the overall aesthetics of your theme.
+
+        popupTransparency = 0.40; # Set popup transparency to create a frosted glass effect for notifications and other popups, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics.
         cornerRadius = 16; # Apply a consistent border radius to all widgets for a cohesive look
-   
+
         blurEnabled = true; # Enable blur for overview and other popups
         blurWallpaperOnOverview = true; # Blur the wallpaper when opening the overview for better focus on windows
         blurForegroundLayers = false; # Only blur the background for a cleaner look
@@ -72,12 +81,12 @@
             enabled = true;
             position = "top";
             spacing = 0; # Space between the bar and screen edges
-            
-            # Setting bar transparency to 0 hides the background bar background, 
+
+            # Setting bar transparency to 0 hides the background bar background,
             # allowing only the styled widgets to display as floating pill capsules.
-            transparency = 0.70; # Adjust bar transparency to your liking (0 = fully transparent, 1 = fully opaque). A value around 0.7 can create a nice frosted glass effect while still allowing the wallpaper to subtly show through behind the widgets.    
-            widgetTransparency = 1; # Set widget transparency to 1 for fully opaque widgets that stand out against the transparent bar background 
-            
+            transparency = 0.70; # Adjust bar transparency to your liking (0 = fully transparent, 1 = fully opaque). A value around 0.7 can create a nice frosted glass effect while still allowing the wallpaper to subtly show through behind the widgets.
+            widgetTransparency = 1; # Set widget transparency to 1 for fully opaque widgets that stand out against the transparent bar background
+
             squareCorners = true; # Set to true to make all corners square, overriding gothCornersEnabled for a more classic look
 
             fontScale = 1.5; # Increase font scale for better readability and a more impactful visual presence on the bar. Adjust as needed based on your screen resolution and personal preference.
@@ -87,18 +96,18 @@
             audio_click_action = "applet";
 
             leftWidgets = [
-              "workspaceSwitcher"  
-              "focusedWindow"      
+              "workspaceSwitcher"
+              "focusedWindow"
             ];
             centerWidgets = [
-              "clock"              
+              "clock"
             ];
             rightWidgets = [
               "weather"
-              "systemTray"         
-              "cpuUsage"           
+              "systemTray"
+              "cpuUsage"
               "memUsage"
-              "controlCenterButton" 
+              "controlCenterButton"
             ];
           }
         ];
@@ -111,7 +120,6 @@
         };
       };
 
-      
     })
   ];
 }
