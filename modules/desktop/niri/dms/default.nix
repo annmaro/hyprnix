@@ -11,159 +11,159 @@
       # Inline eww.yuck configuration
       xdg.configFile."eww/eww.yuck".text = ''
         ;; =====================================================================
-        ;; 🎛️ EWW WIDGETS CONFIGURATION (YUCK)
-        ;; =====================================================================
+;; 🎛️ EWW WIDGETS CONFIGURATION (YUCK)
+;; =====================================================================
 
-        ;; --- WINDOW DEFINITIONS ---
+;; --- WINDOW DEFINITIONS ---
 
-        (defwindow top-bar
-          :monitor 0
-          :geometry (geometry :x "0px"
-                              :y "0px"
-                              :width "100%"
-                              :height "48px"
-                              :anchor "top center")
-          :stacking "fg"
-          :exclusive true
-          :namespace "eww-bar"
-          (bar-layout))
+(defwindow top-bar
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "48px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :namespace "eww-bar"
+  (bar-layout))
 
-        (defwindow dashboard
-          :monitor 0
-          :geometry (geometry :x "16px"
-                              :y "64px" ;; Shifted down slightly to clear the top bar
-                              :anchor "top right"
-                              :width "380px"
-                              :height "900px")
-          :stacking "fg"
-          :focusable "false"
-          :namespace "eww-dashboard"
-          (dashboard-layout))
+(defwindow dashboard
+  :monitor 0
+  :geometry (geometry :x "16px"
+                      :y "64px" ;; Shifted down slightly to clear the top bar
+                      :anchor "top right"
+                      :width "380px"
+                      :height "900px")
+  :stacking "fg"
+  :focusable "false"
+  :namespace "eww-dashboard"
+  (dashboard-layout))
 
-        ;; --- TOP BAR LAYOUT & WIDGETS ---
+;; --- TOP BAR LAYOUT & WIDGETS ---
 
-        (defwidget bar-layout []
-          (centerbox :class "bar-container"
-            (box :class "bar-left" :orientation "horizontal" :space-evenly false :halign "start" :spacing 12
-              (button :class "bar-pill launcher-btn" "")
-              (box :class "bar-pill tags" :spacing 8
-                (label :text "" :class "tag-active")
-                (label :text "" :class "tag-inactive")
-                (label :text "" :class "tag-inactive")))
-            
-            (box :class "bar-center" :orientation "horizontal" :space-evenly false :halign "center"
-              (box :class "bar-pill clock-pill"
-                (label :text "󰸗 ''${uptime}")))
-            
-            (box :class "bar-right" :orientation "horizontal" :space-evenly false :halign "end" :spacing 12
-              (box :class "bar-pill stats-pill" :spacing 14
-                (label :text "󰍛 $${round(EWW_CPU.avg, 0)}%")
-                (label :text "󰘚 $${round(EWW_RAM.use_mem_perc, 0)}%"))
-              
-              (box :class "bar-pill sys-tray" :spacing 14
-                (label :text "''${wifi_status == "enabled" ? "󰤨" : "󰤭"}")
-                (label :text "''${volume}% 󰕾"))
-              
-              ;; DMS INSPIRED CONTROL CENTER TOGGLE BUTTON
-              (button :class "bar-pill cc-toggle-btn" :onclick "eww open --toggle dashboard" "󰕮"))))
+(defwidget bar-layout []
+  (centerbox :class "bar-container"
+    (box :class "bar-left" :orientation "horizontal" :space-evenly false :halign "start" :spacing 12
+      (button :class "bar-pill launcher-btn" "")
+      (box :class "bar-pill tags" :spacing 8
+        (label :text "" :class "tag-active")
+        (label :text "" :class "tag-inactive")
+        (label :text "" :class "tag-inactive")))
+    
+    (box :class "bar-center" :orientation "horizontal" :space-evenly false :halign "center"
+      (box :class "bar-pill clock-pill"
+        (label :text "󰸗 ''${uptime}"))) ;; Placeholder using your uptime poll, can map to a date command later
+    
+    (box :class "bar-right" :orientation "horizontal" :space-evenly false :halign "end" :spacing 12
+      (box :class "bar-pill stats-pill" :spacing 14
+        (label :text "󰍛 ''${round(EWW_CPU.avg, 0)}%")
+        (label :text "󰘚 ''${round(EWW_RAM.use_mem_perc, 0)}%"))
+      
+      (box :class "bar-pill sys-tray" :spacing 14
+        (label :text "''${wifi_status == 'enabled' ? '󰤨' : '󰤭'}")
+        (label :text "''${volume}% 󰕾"))
+      
+      ;; DMS INSPIRED CONTROL CENTER TOGGLE BUTTON
+      (button :class "bar-pill cc-toggle-btn" :onclick "eww open --toggle dashboard" "󰕮"))))
 
-        ;; --- DASHBOARD LAYOUT (CONTROL CENTER) ---
+;; --- DASHBOARD LAYOUT (CONTROL CENTER) ---
 
-        (defwidget dashboard-layout []
-          (box :class "dashboard-container" :orientation "vertical" :space-evenly false :spacing 16
-            (profile-widget)
-            (quick-settings)
-            (sliders-widget)
-            (system-stats)
-            (media-widget)))
+(defwidget dashboard-layout []
+  (box :class "dashboard-container" :orientation "vertical" :space-evenly false :spacing 16
+    (profile-widget)
+    (quick-settings)
+    (sliders-widget)
+    (system-stats)
+    (media-widget)))
 
-        ;; Profile Widget
-        (defwidget profile-widget []
-          (box :class "card profile-card" :orientation "horizontal" :space-evenly false :spacing 16
-            (box :class "profile-avatar" :valign "center" :halign "center"
-              (label :text "" :class "avatar-icon"))
-            (box :class "profile-info" :orientation "vertical" :valign "center" :space-evenly false :spacing 4
-              (label :text "annmaro" :class "profile-name" :halign "start")
-              (label :text "@nixri-desktop" :class "profile-host" :halign "start")
-              (label :text "uptime: ''${uptime}" :class "profile-uptime" :halign "start"))))
+;; Profile Widget
+(defwidget profile-widget []
+  (box :class "card profile-card" :orientation "horizontal" :space-evenly false :spacing 16
+    (box :class "profile-avatar" :valign "center" :halign "center"
+      (label :text "" :class "avatar-icon"))
+    (box :class "profile-info" :orientation "vertical" :valign "center" :space-evenly false :spacing 4
+      (label :text "annmaro" :class "profile-name" :halign "start")
+      (label :text "@nixri-desktop" :class "profile-host" :halign "start")
+      (label :text "uptime: ''${uptime}" :class "profile-uptime" :halign "start"))))
 
-        ;; Quick Settings Widget
-        (defwidget quick-settings []
-          (box :class "card quick-settings-card" :orientation "vertical" :space-evenly false :spacing 12
-            (box :orientation "horizontal" :space-evenly true :spacing 12
-              ;; WiFi Toggle
-              (button :class "qs-button ''${wifi_status == "enabled" ? "active" : ""}" 
-                      :onclick "nmcli radio wifi | grep -q enabled && nmcli radio wifi off || nmcli radio wifi on"
-                (box :orientation "vertical" :space-evenly false :spacing 4
-                  (label :text "''${wifi_status == "enabled" ? "󰤨" : "󰤭"}" :class "qs-icon")
-                  (label :text "Wi-Fi" :class "qs-label")))
-              
-              ;; Bluetooth Toggle
-              (button :class "qs-button ''${bluetooth_status == "on" ? "active" : ""}"
-                      :onclick "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on"
-                (box :orientation "vertical" :space-evenly false :spacing 4
-                  (label :text "''${bluetooth_status == "on" ? "󰂯" : "󰂲"}" :class "qs-icon")
-                  (label :text "Bluetooth" :class "qs-label"))))
-                  
-            (box :orientation "horizontal" :space-evenly true :spacing 12
-              ;; Do Not Disturb
-              (button :class "qs-button ''${dnd_status == "true" ? "active" : ""}"
-                      :onclick "dms ipc call notifications toggle"
-                (box :orientation "vertical" :space-evenly false :spacing 4
-                  (label :text "''${dnd_status == "true" ? "󰂛" : "󰂚"}" :class "qs-icon")
-                  (label :text "DND" :class "qs-label")))
-                  
-              ;; Night Light
-              (button :class "qs-button ''${nightlight_status == "on" ? "active" : ""}"
-                      :onclick "pkill -f wlsunset && echo 'off' || (wlsunset -T 3800 -t 3799 & echo 'on')"
-                (box :orientation "vertical" :space-evenly false :spacing 4
-                  (label :text "''${nightlight_status == "on" ? "󰖔" : "󰖙"}" :class "qs-icon")
-                  (label :text "Night Light" :class "qs-label"))))))
+;; Quick Settings Widget
+(defwidget quick-settings []
+  (box :class "card quick-settings-card" :orientation "vertical" :space-evenly false :spacing 12
+    (box :orientation "horizontal" :space-evenly true :spacing 12
+      ;; WiFi Toggle
+      (button :class "qs-button ''${wifi_status == 'enabled' ? 'active' : ''}" 
+              :onclick "nmcli radio wifi | grep -q enabled && nmcli radio wifi off || nmcli radio wifi on"
+        (box :orientation "vertical" :space-evenly false :spacing 4
+          (label :text "''${wifi_status == 'enabled' ? '󰤨' : '󰤭'}" :class "qs-icon")
+          (label :text "Wi-Fi" :class "qs-label")))
+      
+      ;; Bluetooth Toggle
+      (button :class "qs-button ''${bluetooth_status == 'on' ? 'active' : ''}"
+              :onclick "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on"
+        (box :orientation "vertical" :space-evenly false :spacing 4
+          (label :text "''${bluetooth_status == 'on' ? '󰂯' : '󰂲'}" :class "qs-icon")
+          (label :text "Bluetooth" :class "qs-label"))))
+          
+    (box :orientation "horizontal" :space-evenly true :spacing 12
+      ;; Do Not Disturb
+      (button :class "qs-button ''${dnd_status == 'true' ? 'active' : ''}"
+              :onclick "dms ipc call notifications toggle"
+        (box :orientation "vertical" :space-evenly false :spacing 4
+          (label :text "''${dnd_status == 'true' ? '󰂛' : '󰂚'}" :class "qs-icon")
+          (label :text "DND" :class "qs-label")))
+          
+      ;; Night Light
+      (button :class "qs-button ''${nightlight_status == 'on' ? 'active' : ''}"
+              :onclick "pkill -f wlsunset && echo 'off' || (wlsunset -T 3800 -t 3799 & echo 'on')"
+        (box :orientation "vertical" :space-evenly false :spacing 4
+          (label :text "''${nightlight_status == 'on' ? '󰖔' : '󰖙'}" :class "qs-icon")
+          (label :text "Night Light" :class "qs-label"))))))
 
-        ;; Sliders Widget
-        (defwidget sliders-widget []
-          (box :class "card sliders-card" :orientation "vertical" :space-evenly false :spacing 16
-            ;; Volume Slider
-            (box :orientation "horizontal" :space-evenly false :spacing 12
-              (label :text "󰕾" :class "slider-icon")
-              (scale :class "volume-scale"
-                     :min 0
-                     :max 101
-                     :value volume
-                     :active true
-                     :onchange "pamixer --set-volume {}")
-              (label :text "''${volume}%" :class "slider-value"))
-              
-            ;; Brightness Slider
-            (box :orientation "horizontal" :space-evenly false :spacing 12
-              (label :text "󰖨" :class "slider-icon")
-              (scale :class "brightness-scale"
-                     :min 1
-                     :max 101
-                     :value brightness
-                     :active true
-                     :onchange "brightnessctl set {}%")
-              (label :text "''${brightness}%" :class "slider-value"))))
+;; Sliders Widget
+(defwidget sliders-widget []
+  (box :class "card sliders-card" :orientation "vertical" :space-evenly false :spacing 16
+    ;; Volume Slider
+    (box :orientation "horizontal" :space-evenly false :spacing 12
+      (label :text "󰕾" :class "slider-icon")
+      (scale :class "volume-scale"
+             :min 0
+             :max 101
+             :value volume
+             :active true
+             :onchange "pamixer --set-volume {}")
+      (label :text "''${volume}%" :class "slider-value"))
+      
+    ;; Brightness Slider
+    (box :orientation "horizontal" :space-evenly false :spacing 12
+      (label :text "󰖨" :class "slider-icon")
+      (scale :class "brightness-scale"
+             :min 1
+             :max 101
+             :value brightness
+             :active true
+             :onchange "brightnessctl set {}%")
+      (label :text "''${brightness}%" :class "slider-value"))))
 
-        ;; System Stats Widget
-        (defwidget system-stats []
-          (box :class "card system-stats-card" :orientation "horizontal" :space-evenly true :spacing 8
-            ;; CPU
-            (box :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
-              (circular-progress :value {EWW_CPU.avg}
-                                 :thickness 8
-                                 :start-angle 0
-                                 :class "stat-circle cpu-circle"
-                (label :text "󰍛" :class "stat-icon"))
-              (label :text "CPU" :class "stat-label")
-              (label :text "''${round(EWW_CPU.avg, 0)}%" :class "stat-value-percent"))
-              
-            ;; RAM
-            (box :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
-              (circular-progress :value {EWW_RAM.use_mem_perc}
-                                 :thickness 8
-                                 :start-angle 0
-                                 :class "stat-circle ram-circle"
+;; System Stats Widget
+(defwidget system-stats []
+  (box :class "card system-stats-card" :orientation "horizontal" :space-evenly true :spacing 8
+    ;; CPU
+    (box :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+      (circular-progress :value {EWW_CPU.avg}
+                         :thickness 8
+                         :start-angle 0
+                         :class "stat-circle cpu-circle"
+        (label :text "󰍛" :class "stat-icon"))
+      (label :text "CPU" :class "stat-label")
+      (label :text "''${round(EWW_CPU.avg, 0)}%" :class "stat-value-percent"))
+      
+    ;; RAM
+    (box :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+      (circular-progress :value {EWW_RAM.use_mem_perc}
+                         :thickness 8
+                         :start-angle 0
+                         :class "stat-circle ram-circle"
                 (label :text "󰘚" :class "stat-icon"))
               (label :text "RAM" :class "stat-label")
               (label :text "''${round(EWW_RAM.use_mem_perc, 0)}%" :class "stat-value-percent"))
@@ -191,7 +191,7 @@
             (box :class "media-controls" :orientation "horizontal" :space-evenly true
               (button :class "media-btn" :onclick "playerctl previous" "󰒮")
               (button :class "media-btn play-pause" :onclick "playerctl play-pause" 
-                "''${song_status == "Playing" ? "󰏤" : "󰐊"}")
+                "''${song_status == 'Playing' ? '󰏤' : '󰐊'}")
               (button :class "media-btn" :onclick "playerctl next" "󰒭"))))
 
         ;; =====================================================================
@@ -238,51 +238,51 @@
 
         // --- BAR LEVEL STYLING ---
 
-        .bar-container {
-          background-color: transparent; /* Makes the main strip invisible */
-          padding: 4px 12px;
-        }
+.bar-container {
+  background-color: transparent; /* Makes the main strip invisible */
+  padding: 4px 12px;
+}
 
-        /* DMS Styled Individual Floating Pill Modules */
-        .bar-pill {
-          background-color: $card-bg;
-          border: 1px solid $border-muted;
-          border-radius: 30px; /* Gives it the clean pill form factor */
-          padding: 4px 16px;
-          color: $fg-primary;
-          font-size: 14px;
-        }
+/* DMS Styled Individual Floating Pill Modules */
+.bar-pill {
+  background-color: $card-bg;
+  border: 1px solid $border-muted;
+  border-radius: 30px; /* Gives it the clean pill form factor */
+  padding: 4px 16px;
+  color: $fg-primary;
+  font-size: 14px;
+}
 
-        .launcher-btn {
-          color: #f35c25;
-          font-size: 18px;
-          font-weight: bold;
-          
-          &:hover {
-            background: rgba(255, 255, 255, 0.05);
-          }
-        }
+.launcher-btn {
+  color: #f35c25;
+  font-size: 18px;
+  font-weight: bold;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
 
-        .cc-toggle-btn {
-          background: $active-bg;
-          color: #000000;
-          border: 1px solid transparent;
-          font-weight: bold;
-          cursor: pointer;
+.cc-toggle-btn {
+  background: $active-bg;
+  color: #000000;
+  border: 1px solid transparent;
+  font-weight: bold;
+  cursor: pointer;
 
-          &:hover {
-            box-shadow: 0 0 12px rgba(243, 92, 37, 0.6);
-          }
-        }
+  &:hover {
+    box-shadow: 0 0 12px rgba(243, 92, 37, 0.6);
+  }
+}
 
-        .tag-active {
-          color: #f35c25;
-          margin: 0 2px;
-        }
-        .tag-inactive {
-          color: rgba(255, 255, 255, 0.2);
-          margin: 0 2px;
-        }
+.tag-active {
+  color: #f35c25;
+  margin: 0 2px;
+}
+.tag-inactive {
+  color: rgba(255, 255, 255, 0.2);
+  margin: 0 2px;
+}
 
         // Typography & Globals
         * {
@@ -335,6 +335,7 @@
           font-size: 18px;
           font-weight: 700;
           color: $fg-primary;
+          margin-top: 0px;
         }
 
         .profile-host {
