@@ -10,6 +10,7 @@
 {
   imports = [
     ./dms
+    ./eww
     ./rofi
     ./themes
   ];
@@ -168,9 +169,22 @@
                 }
             }           
 
-           layer-rule {
-               match namespace="^rofi$"
-               geometry-corner-radius 12
+            // Force precise blur and amoled rounded corners for Eww Control Center/Widgets
+            layer-rule {
+                match namespace="^eww-.*$"
+                geometry-corner-radius 16
+                place-within-backdrop true
+                background-effect {
+                    blur true
+                    xray false
+                    noise 0.03
+                    saturation 1.25
+                }
+            }
+
+            layer-rule {
+                match namespace="^rofi$"
+                geometry-corner-radius 12
 
                 background-effect {
                     blur true
@@ -256,6 +270,7 @@
                "Mod+Delete" { quit; }
                "Mod+Alt+L" { spawn "dms" "session" "lock"; }
                "Mod+N" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+               "Mod+D" { spawn "eww" "open" "--toggle" "dashboard"; }
                "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
                "Mod+Shift+C" { spawn "code"; }
                "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
