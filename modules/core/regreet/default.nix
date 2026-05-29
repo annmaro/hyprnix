@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # 1. Create a minimal, dedicated Niri configuration layer for greetd
   niriGreeterConfig = pkgs.writeText "niri-greeter-config.kdl" ''
     // Fire ReGreet automatically upon Niri initialization
@@ -9,7 +11,7 @@ let
     // Target the window layer namespace that ReGreet renders onto
     layer-rule {
         match namespace="regreet"
-        
+
         // Render 20px hardware-accelerated Gaussian Blur behind transparency
         blur radius=20 optimize-for-asymmetrical-blur=true
     }
@@ -18,8 +20,7 @@ let
         geometry-corner-radius 12
     }
   '';
-in
-{
+in {
   # Ensure Niri is natively compiled and system architectures are ready
   programs.niri.enable = true;
 
@@ -38,14 +39,14 @@ in
   # 3. Configure and style the ReGreet interface
   programs.regreet = {
     enable = true;
-    
+
     settings = {
       background = {
         path = "/etc/nix.png"; # Ensure your physical image file is at this path
         fit = "Cover";
       };
       GTK = {
-        theme_name = "Adwaita-dark";
+        theme_name = "Gruvbox-Dark";
       };
     };
 
@@ -65,17 +66,17 @@ in
       /* Style and position the shifted login card */
       #container, .card, .login-box, box.vertical {
           /* Semi-transparent slate theme */
-          background-color: rgba(20, 20, 20, 0.45) !important; 
+          background-color: rgba(20, 20, 20, 0.45) !important;
           border: 1px solid rgba(255, 255, 255, 0.15) !important;
           border-radius: 16px !important;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
-          
+
           /* Generous padding inside the card */
           padding: 35px !important;
-          
+
           /* Push it away from the extreme left monitor edge for aesthetic balance */
           margin-left: 100px !important;
-          
+
           /* Fix a reliable width constraint for the login card layout */
           min-width: 360px !important;
       }
@@ -88,7 +89,7 @@ in
           border-radius: 8px !important;
           padding: 10px !important;
       }
-      
+
       entry:focus {
           border-color: rgba(255, 255, 255, 0.45) !important;
           background-color: rgba(255, 255, 255, 0.12) !important;
