@@ -5,7 +5,7 @@
     ({ ... }: {
       programs.eww = {
         enable = true;
-        package = pkgs.eww;
+       # package = pkgs.eww;
       };
 
       # Safely link external files directly into XDG home configuration
