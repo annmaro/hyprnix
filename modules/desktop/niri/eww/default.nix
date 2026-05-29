@@ -5,7 +5,7 @@
     ({ ... }: {
       programs.eww = {
         enable = true;
-        package = pkgs.eww-wayland;
+        package = pkgs.eww;
       };
 
       # Inline eww.yuck configuration
