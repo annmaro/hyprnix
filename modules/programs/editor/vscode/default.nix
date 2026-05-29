@@ -22,6 +22,13 @@
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             jdinhlife.gruvbox
+            pkief.material-icon-theme
+            bbenoist.nix
+            arrterian.nix-env-selector
+            eamodio.gitlens
+            github.vscode-github-actions
+            yzhang.markdown-all-in-one
+            jnoortheen.nix-ide
           ];
           keybindings = [
             {
@@ -41,9 +48,9 @@
             "window.menuBarVisibility" = "classic";
             # "window.zoomLevel" = 0.5;
             "editor.fontSize" = 16;
-            "workbench.colorTheme" = "Catppuccin Mocha";
-            "workbench.iconTheme" = "catppuccin-mocha";
-            "catppuccin.accentColor" = "mauve";
+            "workbench.colorTheme" = "Gruvbox Dark Hard";
+            "workbench.iconTheme" = "material-icon-theme";
+           # "catppuccin.accentColor" = "mauve";
             "vsicons.dontShowNewVersionMessage" = true;
             "explorer.confirmDragAndDrop" = false;
             "editor.fontLigatures" = true;
@@ -214,7 +221,7 @@
               }
               {
                 "before" = [
-                  "];"
+                  "]"
                   "d"
                 ];
                 "commands" = [ "editor.action.marker.next" ];
