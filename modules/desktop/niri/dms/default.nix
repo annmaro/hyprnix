@@ -50,12 +50,10 @@
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         buttonColorMode = "primary";  # Use primary color for buttons
-        popupTransparency = 1; # 1 = fully opaque, 0 = fully transparent. Adjust for more or less see-through popups. 
         
+        popupTransparency = 0.40; # Set popup transparency to create a frosted glass effect for notifications and other popups, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics. 
         cornerRadius = 16; # Apply a consistent border radius to all widgets for a cohesive look
-        gothCornersEnabled = true; # Enable goth corners for a more modern and edgy aesthetic
-        squareCorners = true; # Set to true to make all corners square, overriding gothCornersEnabled for a more classic look
-
+   
         blurEnabled = true; # Enable blur for overview and other popups
         blurWallpaperOnOverview = true; # Blur the wallpaper when opening the overview for better focus on windows
         blurForegroundLayers = false; # Only blur the background for a cleaner look
@@ -72,16 +70,18 @@
             name = "Main Bar";
             enabled = true;
             position = "top";
-            floating = true; # Enable floating to allow for custom margins and independent styling  
-            margin = 8;            
-            height = 48;           
-            borderRadius = 12;
+            spacing = 0; # Space between the bar and screen edges
             
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
             transparency = 0.70; # Adjust bar transparency to your liking (0 = fully transparent, 1 = fully opaque). A value around 0.7 can create a nice frosted glass effect while still allowing the wallpaper to subtly show through behind the widgets.    
             widgetTransparency = 1; # Set widget transparency to 1 for fully opaque widgets that stand out against the transparent bar background 
             
+            squareCorners = true; # Set to true to make all corners square, overriding gothCornersEnabled for a more classic look
+
+            fontScale = 1.5; # Increase font scale for better readability and a more impactful visual presence on the bar. Adjust as needed based on your screen resolution and personal preference.
+            iconScale = 1.5; # Increase icon scale to match the larger font size and create a more cohesive look on the bar. Adjust as needed based on your widget sizes and personal preference.
+
             network_click_action = "applet";
             audio_click_action = "applet";
 
