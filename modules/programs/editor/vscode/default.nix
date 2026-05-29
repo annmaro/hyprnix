@@ -9,13 +9,13 @@
     (_: {
 
       # This handles the Electron-level GPU flag instantly without rebuilding the package
-       home.file.".config/Code/argv.json".text = ''
-         {
-           "disable-hardware-acceleration": true
-         }
-       '';
+      home.file.".config/Code/argv.json".text = ''
+        {
+          "disable-hardware-acceleration": true
+        }
+      '';
 
-       programs.vscode = {
+      programs.vscode = {
         enable = true;
         mutableExtensionsDir = true;
         package = pkgs.vscode;
@@ -50,7 +50,7 @@
             "editor.fontSize" = 16;
             "workbench.colorTheme" = "Gruvbox Dark Hard";
             "workbench.iconTheme" = "material-icon-theme";
-           # "catppuccin.accentColor" = "mauve";
+            # "catppuccin.accentColor" = "mauve";
             "vsicons.dontShowNewVersionMessage" = true;
             "explorer.confirmDragAndDrop" = false;
             "editor.fontLigatures" = true;
@@ -59,6 +59,10 @@
             "telemetry.enableTelemetry" = false;
 
             "security.workspace.trust.untrustedFiles" = "open";
+
+            "workbench.settings.useSplitJSON" = true;
+            "files.autoSave" = "off";
+            "task.saveBeforeRun" = "always";
 
             "git.enableSmartCommit" = true;
             "git.autofetch" = true;
@@ -116,7 +120,7 @@
             "C_Cpp.intelliSenseCacheSize" = 2048;
             "C_Cpp.intelliSenseMemoryLimit" = 2048;
             "C_Cpp.default.browse.path" = [
-              ''''${workspaceFolder}/**''
+              "\${workspaceFolder}/**"
             ];
             "C_Cpp.default.cStandard" = "gnu11";
             "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores" = false;
