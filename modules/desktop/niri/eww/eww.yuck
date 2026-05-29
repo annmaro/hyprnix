@@ -2,6 +2,11 @@
 ;; 🎛️ EWW WIDGETS CONFIGURATION (YUCK)
 ;; =====================================================================
 
+;; --- DYNAMIC WORKSPACES FROM NIRI ---
+;; This listens to Niri workspace changes continuously
+(deflisten niri_workspaces :initial "[]"
+  `niri msg -j workspaces | jq -c '.'`)
+
 ;; --- WINDOW DEFINITIONS ---
 
 (defwindow top-bar
@@ -19,7 +24,7 @@
 (defwindow dashboard
   :monitor 0
   :geometry (geometry :x "16px"
-                      :y "64px" ;; Shifted down slightly to clear the top bar
+                      :y "64px"
                       :anchor "top right"
                       :width "380px"
                       :height "900px")
@@ -34,10 +39,13 @@
   (centerbox :class "bar-container"
     (box :class "bar-left" :orientation "horizontal" :space-evenly false :halign "start" :spacing 12
       (button :class "bar-pill launcher-btn" "")
-      (box :class "bar-pill tags" :spacing 8
-        (label :text "" :class "tag-active")
-        (label :text "" :class "tag-inactive")
-        (label :text "" :class "tag-inactive")))
+      
+      ;; REACTIVE NIRI WORKSPACES
+      (box :class "bar-pill tags" :spacing 8 :space-evenly false
+        (for workspace in niri_workspaces
+          (button :onclick "niri msg action focus-workspace ${workspace.id}"
+                  :class "tag-btn ${workspace.is_active ? 'tag-active' : 'tag-inactive'}"
+            "${workspace.is_active ? '' : ''}"))))
     
     (box :class "bar-center" :orientation "horizontal" :space-evenly false :halign "center"
       (box :class "bar-pill clock-pill"
@@ -52,7 +60,6 @@
         (label :text "${wifi_status == 'enabled' ? '󰤨' : '󰤭'}")
         (label :text "${volume}% 󰕾"))
       
-      ;; DMS INSPIRED CONTROL CENTER TOGGLE BUTTON
       (button :class "bar-pill cc-toggle-btn" :onclick "eww open --toggle dashboard" "󰕮"))))
 
 ;; --- DASHBOARD LAYOUT (CONTROL CENTER) ---

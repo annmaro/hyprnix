@@ -31,10 +31,28 @@ $disk-color: #03fcc6;
     background-color: $card-bg;
     border: 1px solid $border-muted;
     border-radius: 30px;
-    /* Gives it the clean pill form factor */
     padding: 4px 16px;
     color: $fg-primary;
     font-size: 14px;
+}
+
+/* Fix workspace buttons styling */
+.tag-btn {
+    background: transparent;
+    padding: 0 2px;
+    cursor: pointer;
+
+    &:hover {
+        color: #f35c25;
+    }
+}
+
+.tag-active {
+    color: #f35c25;
+}
+
+.tag-inactive {
+    color: rgba(255, 255, 255, 0.2);
 }
 
 .launcher-btn {
