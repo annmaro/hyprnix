@@ -22,10 +22,12 @@ in
       commandLineArgs = "--password-store=\"gnome-libsecret\"";
     };
 
-    nomacs = prev.nomacs.overrideAttrs (old: {
-      qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
-        "--set" "QT_QPA_PLATFORM" "xcb"
-      ];
-    });
+    /*
+      nomacs = prev.nomacs.overrideAttrs (old: {
+        qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
+          "--set" "QT_QPA_PLATFORM" "xcb"
+        ];
+      });
+    */
   };
 }
