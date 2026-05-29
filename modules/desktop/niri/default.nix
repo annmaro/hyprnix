@@ -10,7 +10,6 @@
 {
   imports = [
     ./dms
-    ./eww
     ./rofi
     ./themes
   ];
@@ -169,18 +168,7 @@
                 }
             }           
 
-            // Force precise blur and amoled rounded corners for Eww Control Center/Widgets
-            layer-rule {
-                match namespace="^eww-.*$"
-                geometry-corner-radius 16
-                place-within-backdrop true
-                background-effect {
-                    blur true
-                    xray false
-                    noise 0.03
-                    saturation 1.25
-                }
-            }
+            
 
             layer-rule {
                 match namespace="^rofi$"
