@@ -1,4 +1,4 @@
-{pkgs, ...}: 
+{ pkgs, ... }:
 
 {
   # 1. Enable greetd (the modern backend manager daemon)
@@ -6,18 +6,23 @@
     enable = true;
     settings = {
       default_session = {
-        # This tells greetd to boot the user 'greeter' directly into the ReGreet binary
         command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
         user = "greeter";
       };
     };
   };
 
-  # 2. Enable and configure the Rust-based ReGreet UI interface
+  # 2. Fix the "Remember Me" permission constraint
+  # Greetd runs as the isolated 'greeter' user. It needs explicit write access to its 
+  # home cache folder to store your last session choice and username.
+  systemd.tmpfiles.rules = [
+    "d /var/cache/regreet 0755 greeter greeter -"
+  ];
+
+  # 3. Enable and configure the Rust-based ReGreet UI interface
   programs.regreet = {
     enable = true;
 
-    # Explicitly map your custom global OLED styling assets
     theme = {
       name = "Gruvbox-Dark";
       package = pkgs.gruvbox-gtk-theme;
@@ -34,52 +39,47 @@
         remember_user = true;
         default_session = "niri";
       };
-      # Sets up standard system preferences
+
       background = {
-        # Fits a solid flat black wall space behind the container layout
         path = "/etc/greetd/nix.png";
-        fit = "Cover"; # Options: "Cover", "Contain", "Fill", "Tile", "ScaleDown"
+        fit = "Cover";
       };
 
       GTK = {
-        # Enforces your global application preference variables
         application_prefer_dark_theme = true;
       };
-      extraCss = ''
-      /* 1. FORCE THE MAIN BACKGROUND LAYOUT TO PITCH BLACK */
+    }; # <--- settings ENDS HERE CLEANLY NOW
+
+    # 4. FIXED: extraCss is now a first-class native attribute of programs.regreet!
+    extraCss = ''
+      /* FORCE THE MAIN BACKGROUND LAYOUT TO PITCH BLACK */
       window, box, stack, grid {
           background-color: #000000 !important;
       }
 
-      /* 2. SHRINK & MOVE THE MAIN LOGIN BOX CONTAINER */
-      /* By default, this is a GTK stack or grid centered on your screen */
-      window > box {
-          /* Decrease the maximum width of the central UI column */
+      /* SHRINK & MOVE THE MAIN LOGIN BOX CONTAINER */
+      /* ReGreet wraps its login panel elements inside a generic container classed as .main-box */
+      .main-box, window > box, grid > box {
           max-width: 360px !important;
-
-          /* --- CONTROLLING POSITION --- */
-          /* Default centered: margin: auto !important; */
+          min-width: 360px !important;
           
-          /* OPTION A: To move it to the LEFT side of the screen */
+          /* Force centering vertically, but anchor hard to the left side with 100px padding */
           margin: auto auto auto 100px !important; 
-          
-          /* OPTION B: To move it to the RIGHT side of the screen */
-          /* margin: auto 100px auto auto !important; */
       }
 
-      /* 3. CREDENTIAL FIELD STYLING */
+      /* CREDENTIAL FIELD STYLING */
       entry {
           background-color: #050505 !important;
           border: 1px solid #282828 !important;
           color: #ebdbb2 !important;
           border-radius: 4px;
-          padding: 8px !important; /* Makes the box look sharper when shrunk */
+          padding: 8px !important;
       }
       entry:focus {
           border-color: #fabd2f !important;
       }
 
-      /* 4. BUTTON STYLING */
+      /* BUTTON STYLING */
       button {
           background-color: #141615 !important;
           color: #ebdbb2 !important;
@@ -91,12 +91,10 @@
           color: #282828 !important;
       }
     '';
-    };
   };
 
-  # 4. Set your default target session workspace environment variables globally
+  # 5. Set your default target session workspace environment variables globally
   services.displayManager = {
     defaultSession = "niri";
   };
 }
-
