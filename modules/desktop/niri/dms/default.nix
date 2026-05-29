@@ -34,7 +34,7 @@
         disableWallpaper = false; # Set true if you want to handle wallpaper through swaybg/awww
         
         modules = {
-          bar = true;
+          bar = false;
           notifications = true;
           idle = true;          
           lockscreen = true;    
