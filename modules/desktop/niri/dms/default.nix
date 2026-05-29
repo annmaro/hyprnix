@@ -44,8 +44,9 @@
         };
 
         
-        currentThemeName = "amoled-black";
-        customThemeFile = "~/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, ensure it matches the name specified in currentThemeName
+        currentThemeName = "amoledBlack-black";
+        currentThemeCategory = "custom";
+        customThemeFile = "home/annmaro/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, ensure it matches the name specified in currentThemeName
         launcherLogoMode = "os logo"; # Use the OS logo for the launcher button to maintain a consistent visual identity with your overall desktop theme
         showLauncherButton = true; # Enable the launcher button to provide quick access to your applications, especially important if you're using a custom rofi setup for app launching
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
