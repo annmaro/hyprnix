@@ -45,6 +45,52 @@
         # Enforces your global application preference variables
         application_prefer_dark_theme = true;
       };
+      extraCss = ''
+      /* 1. FORCE THE MAIN BACKGROUND LAYOUT TO PITCH BLACK */
+      window, box, stack, grid {
+          background-color: #000000 !important;
+      }
+
+      /* 2. SHRINK & MOVE THE MAIN LOGIN BOX CONTAINER */
+      /* By default, this is a GTK stack or grid centered on your screen */
+      window > box {
+          /* Decrease the maximum width of the central UI column */
+          max-width: 360px !important;
+
+          /* --- CONTROLLING POSITION --- */
+          /* Default centered: margin: auto !important; */
+          
+          /* OPTION A: To move it to the LEFT side of the screen */
+          margin: auto auto auto 100px !important; 
+          
+          /* OPTION B: To move it to the RIGHT side of the screen */
+          /* margin: auto 100px auto auto !important; */
+      }
+
+      /* 3. CREDENTIAL FIELD STYLING */
+      entry {
+          background-color: #050505 !important;
+          border: 1px solid #282828 !important;
+          color: #ebdbb2 !important;
+          border-radius: 4px;
+          padding: 8px !important; /* Makes the box look sharper when shrunk */
+      }
+      entry:focus {
+          border-color: #fabd2f !important;
+      }
+
+      /* 4. BUTTON STYLING */
+      button {
+          background-color: #141615 !important;
+          color: #ebdbb2 !important;
+          border-radius: 4px;
+          padding: 6px 12px !important;
+      }
+      button:hover {
+          background-color: #b8bb26 !important;
+          color: #282828 !important;
+      }
+    '';
     };
   };
 
