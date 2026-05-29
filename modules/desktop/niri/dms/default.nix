@@ -61,7 +61,7 @@
         (label :text "󰘚 ''${round(EWW_RAM.use_mem_perc, 0)}%"))
       
       (box :class "bar-pill sys-tray" :spacing 14
-        (label :text "''${wifi_status == 'enabled' ? '󰤨' : '󰤭'}")
+        (label :text "''${wifi_status == "enabled" ? "󰤨" : "󰤭"}")
         (label :text "''${volume}% 󰕾"))
       
       ;; DMS INSPIRED CONTROL CENTER TOGGLE BUTTON
@@ -191,7 +191,7 @@
             (box :class "media-controls" :orientation "horizontal" :space-evenly true
               (button :class "media-btn" :onclick "playerctl previous" "󰒮")
               (button :class "media-btn play-pause" :onclick "playerctl play-pause" 
-                "''${song_status == 'Playing' ? '󰏤' : '󰐊'}")
+                "''${song_status == "Playing" ? "󰏤" : "󰐊"}")
               (button :class "media-btn" :onclick "playerctl next" "󰒭"))))
 
         ;; =====================================================================
@@ -335,7 +335,6 @@
           font-size: 18px;
           font-weight: 700;
           color: $fg-primary;
-          margin-top: 0px;
         }
 
         .profile-host {
