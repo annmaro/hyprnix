@@ -1,24 +1,25 @@
 { pkgs, ... }:
 
 {
-  # 1. FIX: Setup the local cache path and tell greetd to explicitly read the Nix-generated config file
+  # 1. FIXED: Overriding greetd to use a dedicated DBus-wrapped Wayland session
+  # This points directly to the persistent custom /etc/greetd/niri.kdl layout file
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        # -c tells regreet exactly where NixOS puts its configuration file!
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet -c /etc/greetd/regreet.toml";
+        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri -c /etc/greetd/niri.kdl";
         user = "greeter";
       };
     };
   };
 
-  # 2. FIX: Persist cache so "Remember User & Session" works perfectly across reboots
+  # 2. ReGreet's persistent history paths
   systemd.tmpfiles.rules = [
-    "d /var/cache/regreet 0755 greeter greeter -"
+    "d /var/log/regreet 0755 greeter greeter - -"
+    "d /var/lib/regreet 0755 greeter greeter - -"
   ];
 
-  # 3. Enable and configure the Rust-based ReGreet UI interface
+  # 3. Configure the ReGreet interface values natively
   programs.regreet = {
     enable = true;
 
@@ -32,41 +33,43 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+    };
+
     settings = {
       greeter = {
         remember_user = true;
         default_session = "niri";
       };
+
       background = {
         path = "/etc/greetd/nix.png";
         fit = "Cover";
       };
+
       GTK = {
         application_prefer_dark_theme = true;
       };
     };
 
-    # 4. FIX: Correct the container naming selectors for GTK4 window management layouts
+    # 4. FIXED PITCH-BLACK BOX LAYOUT:
     extraCss = ''
-      /* Force display canvas to pure black */
-      window {
+      /* Force display container canvas layer to solid pitch black */
+      window, .background {
           background-color: #000000 !important;
       }
 
-      /* TARGET THE MAIN WINDOW WRAPPER LAYER */
-      /* ReGreet aligns its login card elements inside a primary widget container named 'mainwindow' */
-      #mainwindow {
-          background-color: transparent !important;
+      /* SHRINK & LEFT-ALIGN LOGIN CONTENT BOX */
+      grid {
           max-width: 380px !important;
           min-width: 380px !important;
-          
-          /* Pull to the left side with 100px padding, center vertically */
-          margin: auto auto auto 100px !important;
-      }
 
-      /* Ensure inner layers don't overwrite centering constraints */
-      #mainwindow > box, grid, stack {
-          background-color: transparent !important;
+          position: absolute !important;
+          top: 50% !important;
+          left: 100px !important;
+          transform: translateY(-50%) !important;
       }
 
       /* CREDENTIAL FIELD STYLING */
@@ -95,6 +98,7 @@
     '';
   };
 
+  # 5. Global session target fallback definition
   services.displayManager = {
     defaultSession = "niri";
   };
