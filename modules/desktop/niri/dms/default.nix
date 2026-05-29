@@ -57,8 +57,8 @@
             
             (box :class "bar-right" :orientation "horizontal" :space-evenly false :halign "end" :spacing 12
               (box :class "bar-pill stats-pill" :spacing 14
-                (label :text "󰍛 ''${round(EWW_CPU.avg, 0)}%")
-                (label :text "󰘚 ''${round(EWW_RAM.use_mem_perc, 0)}%"))
+                (label :text "󰍛 $${round(EWW_CPU.avg, 0)}%")
+                (label :text "󰘚 $${round(EWW_RAM.use_mem_perc, 0)}%"))
               
               (box :class "bar-pill sys-tray" :spacing 14
                 (label :text "''${wifi_status == "enabled" ? "󰤨" : "󰤭"}")
