@@ -22,7 +22,7 @@ in  {
         sleep 1
       '';
       defaultSession = "niri";
-      sddm = {
+      sddm = { 
       enable = true;
       wayland.enable = true;
       package = pkgs.kdePackages.sddm; # use qt6 version of sddm
@@ -35,7 +35,7 @@ in  {
         General = {
           GreeterEnvironment = "QML2_IMPORT_PATH=${sddm-theme}/share/sddm/themes/${sddm-theme.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
           InputMethod = "qtvirtualkeyboard";
-          background = ./nixos.png;
+          background = "${./nixos.png}";
         };
       };
    };
