@@ -92,32 +92,32 @@
   (box :class "card quick-settings-card" :orientation "vertical" :space-evenly false :spacing 12
     (box :orientation "horizontal" :space-evenly true :spacing 12
       ;; WiFi Toggle
-      (button :class "qs-button ''${wifi_status == 'enabled' ? 'active' : ''}" 
+      (button :class "qs-button ''${wifi_status == "enabled" ? "active" : ""}" 
               :onclick "nmcli radio wifi | grep -q enabled && nmcli radio wifi off || nmcli radio wifi on"
         (box :orientation "vertical" :space-evenly false :spacing 4
-          (label :text "''${wifi_status == 'enabled' ? '󰤨' : '󰤭'}" :class "qs-icon")
+          (label :text "''${wifi_status == "enabled" ? "󰤨" : "󰤭"}" :class "qs-icon")
           (label :text "Wi-Fi" :class "qs-label")))
       
       ;; Bluetooth Toggle
-      (button :class "qs-button ''${bluetooth_status == 'on' ? 'active' : ''}"
+      (button :class "qs-button ''${bluetooth_status == "on" ? "active" : ""}"
               :onclick "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on"
         (box :orientation "vertical" :space-evenly false :spacing 4
-          (label :text "''${bluetooth_status == 'on' ? '󰂯' : '󰂲'}" :class "qs-icon")
+          (label :text "''${bluetooth_status == "on" ? "󰂯" : "󰂲"}" :class "qs-icon")
           (label :text "Bluetooth" :class "qs-label"))))
           
     (box :orientation "horizontal" :space-evenly true :spacing 12
       ;; Do Not Disturb
-      (button :class "qs-button ''${dnd_status == 'true' ? 'active' : ''}"
+      (button :class "qs-button ''${dnd_status == "true" ? "active" : ""}"
               :onclick "dms ipc call notifications toggle"
         (box :orientation "vertical" :space-evenly false :spacing 4
-          (label :text "''${dnd_status == 'true' ? '󰂛' : '󰂚'}" :class "qs-icon")
+          (label :text "''${dnd_status == "true" ? "󰂛" : "󰂚"}" :class "qs-icon")
           (label :text "DND" :class "qs-label")))
           
       ;; Night Light
-      (button :class "qs-button ''${nightlight_status == 'on' ? 'active' : ''}"
+      (button :class "qs-button ''${nightlight_status == "on" ? "active" : ""}"
               :onclick "pkill -f wlsunset && echo 'off' || (wlsunset -T 3800 -t 3799 & echo 'on')"
         (box :orientation "vertical" :space-evenly false :spacing 4
-          (label :text "''${nightlight_status == 'on' ? '󰖔' : '󰖙'}" :class "qs-icon")
+          (label :text "''${nightlight_status == "on" ? "󰖔" : "󰖙"}" :class "qs-icon")
           (label :text "Night Light" :class "qs-label"))))))
 
 ;; Sliders Widget
