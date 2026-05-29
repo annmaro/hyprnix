@@ -43,32 +43,8 @@
           dock = false;         
         };
 
-        currentThemeName = "custom";
-        currentThemeCategory = "custom";
-        customThemeFile = "gruvbox-dark";
-
-      # ThemeName = "gruvbox-dark";  # Set your desired DMS theme here (must be installed in DMS's themes directory)
-      # =====================================================================
-      # 🧱 GENERATE STANDALONE GRUVBOX THEME FILE FOR DMS
-      # =====================================================================
-       xdg.configFile."DankMaterialShell/themes/gruvbox-dark.json".text = builtins.toJSON {
-        theme_name = "gruvbox-dark";
-        theme_category = "custom";
-        dark = true;
-        colors = {
-          primary = "#fabd2f";       # Gruvbox Bright Yellow
-          onPrimary = "#282828";     # Dark text on yellow components
-          secondary = "#8ec07c";     # Gruvbox Aqua
-          onSecondary = "#282828";
-          surface = "#3c3836";       # Gruvbox Dark Gray Component Surface
-          onSurface = "#ebdbb2";     # Light Cream text
-          background = "#000000";    # Main panel color (use #000000 for pure OLED black)
-          onBackground = "#ebdbb2";
-          error = "#fb4934";         # Gruvbox Red
-          onError = "#282828";
-        };
-       };  
-        
+        currentThemeName = "gruvboxDark";
+        customThemeFile = "gruvboxDark";
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
         dynamicTheming = false;  
