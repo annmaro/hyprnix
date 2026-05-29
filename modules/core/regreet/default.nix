@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: 
+
+{
   # 1. Enable greetd (the modern backend manager daemon)
   services.greetd = {
     enable = true;
@@ -28,11 +30,15 @@
 
     # ReGreet's TOML structural blocks configuration
     settings = {
+      greeter = {
+        remember_user = true;
+        default_session = "niri";
+      };
       # Sets up standard system preferences
       background = {
         # Fits a solid flat black wall space behind the container layout
-        path = "";
-        fit = "Contain";
+        path = "/etc/greetd/nix.png";
+        fit = "Cover"; # Options: "Cover", "Contain", "Fill", "Tile", "ScaleDown"
       };
 
       GTK = {
@@ -40,39 +46,6 @@
         application_prefer_dark_theme = true;
       };
     };
-
-    # 3. Inject custom CSS properties to force the OLED layout
-    # ReGreet is written with pure GTK4 widgets, so we can target them natively!
-    extraCss = ''
-      /* Force the main login container layout to pitch black */
-      window, box, stack, grid {
-          background-color: #000000 !important;
-      }
-
-      /* Style the central login credential fields */
-      entry {
-          background-color: #050505 !important;
-          border: 1px solid #282828 !important;
-          color: #ebdbb2 !important;
-          border-radius: 4px;
-      }
-
-      /* Accent input box highlight on active focus click */
-      entry:focus {
-          border-color: #fabd2f !important;
-      }
-
-      /* Clean styling adjustments for button interactive states */
-      button {
-          background-color: #141615 !important;
-          color: #ebdbb2 !important;
-          border-radius: 4px;
-      }
-      button:hover {
-          background-color: #b8bb26 !important;
-          color: #282828 !important;
-      }
-    '';
   };
 
   # 4. Set your default target session workspace environment variables globally
