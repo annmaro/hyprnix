@@ -1,105 +1,122 @@
+{ pkgs, ... }:
+
 {
-  config,
-  pkgs,
-  ...
-}: let
-  # 1. Create a minimal, dedicated Niri configuration layer for greetd
-  niriGreeterConfig = pkgs.writeText "niri-greeter-config.kdl" ''
-    // Fire ReGreet automatically upon Niri initialization
-    spawn-at-startup "${pkgs.regreet}/bin/regreet"
-
-    // Target the window layer namespace that ReGreet renders onto
-    layer-rule {
-        match namespace="regreet"
-
-        // Render 20px hardware-accelerated Gaussian Blur behind transparency
-        blur radius=20 optimize-for-asymmetrical-blur=true
-    }
+  # 1. FIXED: Creating a localized, inline configuration file for Greetd's Niri session
+  # This writes the .kdl file automatically with the proper cleanup command!
+  environment.etc."greetd/niri.kdl".text = ''
+    // Spawn regreet using shell execution and cleanly quit niri on exit
+    spawn-sh-at-startup "regreet; niri msg action quit --skip-confirmation"
 
     window-rule {
-        geometry-corner-radius 12
+        geometry-max-width "100%"
+        geometry-max-height "100%"
+        border-max-width 0
+        box-shadow-max-width 0
+    }
+
+    layout {
+        background-color "#000000"
     }
   '';
-in {
-  # Ensure Niri is natively compiled and system architectures are ready
-  programs.niri.enable = true;
 
-  # 2. Configure the greetd display daemon
+  # 2. FIXED: Point greetd directly to our generated etc path
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        # Hook Niri to handle the hardware layer canvas with our explicit config
-        command = "${pkgs.niri}/bin/niri --config ${niriGreeterConfig}";
+        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri -c /etc/greetd/niri.kdl";
         user = "greeter";
       };
     };
   };
 
-  # 3. Configure and style the ReGreet interface
+  # 3. ReGreet persistent tracking paths
+  systemd.tmpfiles.rules = [
+    "d /var/log/regreet 0755 greeter greeter - -"
+    "d /var/lib/regreet 0755 greeter greeter - -"
+  ];
+
+  # 4. Configure ReGreet natively
   programs.regreet = {
     enable = true;
 
+    theme = {
+      name = "Gruvbox-Dark";
+      package = pkgs.gruvbox-gtk-theme;
+    };
+
+    iconTheme = {
+      name = "Gruvbox-Plus-Dark";
+      package = pkgs.gruvbox-plus-icons;
+    };
+
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+    };
+
     settings = {
+      greeter = {
+        remember_user = true;
+        default_session = "niri";
+      };
+
       background = {
-        path = "/etc/nix.png"; # Ensure your physical image file is at this path
+        path = "/etc/greetd/nix.png";
         fit = "Cover";
       };
+
       GTK = {
-        theme_name = "Gruvbox-Dark";
+        application_prefer_dark_theme = true;
       };
     };
 
-    # Custom GTK4 CSS Injection Layer
+    # 5. FIXED GTK4 CSS POSITIONAL SYSTEM
     extraCss = ''
-      /* Make the top-level main application container transparent */
-      window, .main-window {
-          background-color: transparent !important;
+      /* Force display container canvas layer to solid pitch black */
+      window, .background {
+          background-color: #000000 !important;
       }
 
-      /* Force GTK's top layout wrapper to align everything to the left side */
-      main > box {
-          halign: start !important;
-          valign: center !important;
+      /* SHRINK & LEFT-ALIGN LOGIN CONTENT BOX */
+      grid {
+          max-width: 380px !important;
+          min-width: 380px !important;
+
+          position: absolute !important;
+          top: 50% !important;
+          left: 100px !important;
+          transform: translateY(-50%) !important;
       }
 
-      /* Style and position the shifted login card */
-      #container, .card, .login-box, box.vertical {
-          /* Semi-transparent slate theme */
-          background-color: rgba(20, 20, 20, 0.45) !important;
-          border: 1px solid rgba(255, 255, 255, 0.15) !important;
-          border-radius: 16px !important;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
-
-          /* Generous padding inside the card */
-          padding: 35px !important;
-
-          /* Push it away from the extreme left monitor edge for aesthetic balance */
-          margin-left: 100px !important;
-
-          /* Fix a reliable width constraint for the login card layout */
-          min-width: 360px !important;
-      }
-
-      /* Stylize input boxes inside the card frame */
+      /* CREDENTIAL FIELD STYLING */
       entry {
-          background-color: rgba(255, 255, 255, 0.07) !important;
-          color: #ffffff !important;
-          border: 1px solid rgba(255, 255, 255, 0.1) !important;
-          border-radius: 8px !important;
-          padding: 10px !important;
+          background-color: #050505 !important;
+          border: 1px solid #282828 !important;
+          color: #ebdbb2 !important;
+          border-radius: 4px;
+          padding: 8px !important;
       }
-
       entry:focus {
-          border-color: rgba(255, 255, 255, 0.45) !important;
-          background-color: rgba(255, 255, 255, 0.12) !important;
+          border-color: #fabd2f !important;
       }
 
-      /* Fix text contrast labels for the dark theme */
-      label {
-          color: #e5e5e5 !important;
-          font-weight: 500;
+      /* BUTTON STYLING */
+      button {
+          background-color: #141615 !important;
+          color: #ebdbb2 !important;
+          border-radius: 4px;
+          padding: 6px 12px !important;
+      }
+      button:hover {
+          background-color: #b8bb26 !important;
+          color: #282828 !important;
       }
     '';
+  };
+
+  # 6. Global session fallback definition
+  services.displayManager = {
+    defaultSession = "niri";
   };
 }
