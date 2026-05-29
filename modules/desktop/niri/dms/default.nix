@@ -45,7 +45,7 @@
 
         
         currentThemeName = "amoled-black";
-        launcherLogoMode = 'os logo"; # Use the OS logo for the launcher button to maintain a consistent visual identity with your overall desktop theme
+        launcherLogoMode = "os logo"; # Use the OS logo for the launcher button to maintain a consistent visual identity with your overall desktop theme
         showLauncherButton = true; # Enable the launcher button to provide quick access to your applications, especially important if you're using a custom rofi setup for app launching
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful";  # "colorful" to use theme colors, "default" for a more neutral look
