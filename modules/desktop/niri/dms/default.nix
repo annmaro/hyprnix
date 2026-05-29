@@ -56,11 +56,6 @@
         widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
         buttonColorMode = "primary"; # Use primary color for buttons
 
-        widgetOutlineEnabled = true; # Enable outlines for widgets to enhance visibility and separation from the background
-        widgetOutlineColor = "primary"; # Use primary color for widget outlines to create a cohesive look with the rest of the theme. Adjust as needed based on your custom theme's color palette for optimal contrast and aesthetics.
-        widgetOutlineOpacity = 1.0; # Set widget outline opacity to fully opaque for maximum visibility and contrast against the background. Adjust as needed for a more subtle effect while maintaining clear separation of widgets from the wallpaper.
-        widgetOutlineThickness = 1; # Set widget outline thickness to 1px for a clean and defined border that enhances visibility without overwhelming the design. Adjust as needed based on your personal preference and the overall aesthetics of your theme.
-
         popupTransparency = 0.40; # Set popup transparency to create a frosted glass effect for notifications and other popups, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics.
         cornerRadius = 16; # Apply a consistent border radius to all widgets for a cohesive look
 
@@ -87,6 +82,10 @@
             transparency = 0.70; # Adjust bar transparency to your liking (0 = fully transparent, 1 = fully opaque). A value around 0.7 can create a nice frosted glass effect while still allowing the wallpaper to subtly show through behind the widgets.
             widgetTransparency = 1; # Set widget transparency to 1 for fully opaque widgets that stand out against the transparent bar background
 
+            widgetOutlineEnabled = true; # Enable outlines for widgets to enhance visibility and separation from the background
+            widgetOutlineColor = "primary"; # Use primary color for widget outlines to create a cohesive look with the rest of the theme. Adjust as needed based on your custom theme's color palette for optimal contrast and aesthetics.
+            widgetOutlineOpacity = 1.0; # Set widget outline opacity to fully opaque for maximum visibility and contrast against the background. Adjust as needed for a more subtle effect while maintaining clear separation of widgets from the wallpaper.
+            widgetOutlineThickness = 1; # Set widget outline thickness to 1px for a clean and defined border that enhances visibility without overwhelming the design. Adjust as needed based on your personal preference and the overall aesthetics of your theme.
             squareCorners = true; # Set to true to make all corners square, overriding gothCornersEnabled for a more classic look
 
             fontScale = 1.5; # Increase font scale for better readability and a more impactful visual presence on the bar. Adjust as needed based on your screen resolution and personal preference.
