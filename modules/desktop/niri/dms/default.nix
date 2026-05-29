@@ -45,6 +45,7 @@
 
         
         currentThemeName = "amoled-black";
+        customThemeFile = "/home/annmaro/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, ensure it matches the name specified in currentThemeName
         launcherLogoMode = "os logo"; # Use the OS logo for the launcher button to maintain a consistent visual identity with your overall desktop theme
         showLauncherButton = true; # Enable the launcher button to provide quick access to your applications, especially important if you're using a custom rofi setup for app launching
         widgetBackgroundColor = "s";  # Use DMS's color tokens for consistent theming
@@ -78,7 +79,7 @@
             # Setting bar transparency to 0 hides the background bar background, 
             # allowing only the styled widgets to display as floating pill capsules.
             transparency = 0.80; #   
-            widgetTransparency = 0.60; 
+            widgetTransparency = 1.0; # Keep widgets fully opaque to ensure readability and visual impact against the transparent bar background
             widgetOutlineEnabled = "true"; # Enable widget outlines to create a distinct separation from the background
             widgetOutlineColor = "primary"; # Use the primary color from the theme for widget outlines to maintain a cohesive look
             widgetOutlineOpacity = 1.0; # Fully opaque outlines for maximum contrast against the transparent background
