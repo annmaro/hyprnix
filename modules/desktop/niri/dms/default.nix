@@ -61,9 +61,9 @@ in
 
         dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
         currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
-        customThemeFile = "${config.xdg.configHome}/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
+        customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
 
-        profileImage = "${config.xdg.configHome}/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
+        profileImage = "${config.home.homeDirectory}/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
 
         widgetBackgroundColor = "s"; # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
