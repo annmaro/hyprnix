@@ -44,6 +44,7 @@ in
         # This handles writing out your theme.json using the file we imported above
         xdg.configFile."DankMaterialShell/themes/amoledBlack/theme.json".text =
           builtins.toJSON amoledBlackTheme;
+        xdg.configFile."DankMaterialShell/nix.png".source = ./nix.png; # Symlink the local nix.png into the expected path in the home directory for DMS to use as the profile image
 
         # =====================================================================
         # 🎨 SETTINGS.JSON CONFIGURATION
@@ -68,7 +69,6 @@ in
 
           profileImage = "${config.home.homeDirectory}/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
           # Symlinks the local nix.png into your home directory under the expected path
-          xdg.configFile."DankMaterialShell/nix.png".source = ./nix.png;
 
           widgetBackgroundColor = "s"; # Use DMS's color tokens for consistent theming
           widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
