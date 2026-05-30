@@ -32,6 +32,24 @@
       ];
 
       # =====================================================================
+      # 🧩 CUSTOM SYSTEM LOGO WIDGET PLUGIN
+      # =====================================================================
+
+      # 1. Inject the custom QML logic file
+      home.file.".config/DankMaterialShell/plugins/custom-system-logo/CustomSystemLogo.qml".source =
+        ./CustomSystemLogo.qml;
+
+      # 2. Inject the plugin definition JSON inline
+      home.file.".config/DankMaterialShell/plugins/custom-system-logo/customplugin.json".text =
+        builtins.toJSON
+          {
+            id = "custom-system-logo";
+            name = "Custom System Logo";
+            type = "widget";
+            component = "./CustomSystemLogo.qml";
+          };
+
+      # =====================================================================
       # 🎨 SETTINGS.JSON CONFIGURATION
       # =====================================================================
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
@@ -97,7 +115,7 @@
             audio_click_action = "applet";
 
             leftWidgets = [
-              "systemLogo"
+              "custom-system-logo" # Your custom system logo widget
               "workspaceSwitcher"
               "focusedWindow"
             ];
