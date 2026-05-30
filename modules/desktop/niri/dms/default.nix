@@ -97,6 +97,7 @@
             audio_click_action = "applet";
 
             leftWidgets = [
+              "systemLogo"
               "workspaceSwitcher"
               "focusedWindow"
             ];
