@@ -5,7 +5,10 @@
   inputs,
   ...
 }:
-
+let
+  # Import the custom theme module directly into a Nix variable
+  amoledBlackTheme = import ./dms_theme.nix { inherit pkgs lib; };
+in
 {
   home-manager.sharedModules = [
     (_: {
@@ -33,6 +36,13 @@
       ];
 
       # =====================================================================
+      # 🎨 AUTOMATIC THEME GENERATION
+      # =====================================================================
+      # This handles writing out your theme.json using the file we imported above
+      xdg.configFile."DankMaterialShell/themes/amoledBlack/theme.json".text =
+        builtins.toJSON amoledBlackTheme;
+
+      # =====================================================================
       # 🎨 SETTINGS.JSON CONFIGURATION
       # =====================================================================
       xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
@@ -51,9 +61,9 @@
 
         dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
         currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
-        customThemeFile = "/home/annmaro/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
+        customThemeFile = "${config.xdg.configHome}/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
 
-        profileImage = "/home/annmaro/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
+        profileImage = "${config.xdg.configHome}/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
 
         widgetBackgroundColor = "s"; # Use DMS's color tokens for consistent theming
         widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
