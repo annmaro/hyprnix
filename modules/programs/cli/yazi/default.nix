@@ -80,8 +80,12 @@
           # This overrides the folder colors from the base flavor
           filetype = [
             {
-              name = "*/";
-              fg = "#fabd2f";
+              rules = [
+                {
+                  name = "*/";
+                  fg = "#fabd2f"; # Gruvbox Yellow Accent
+                }
+              ];
             } # Targets directory names/icons
           ];
         };

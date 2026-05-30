@@ -133,7 +133,7 @@
 
               "element selected.normal" = {
                 background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
-                text-color = mkLiteral "#fe8019"; # Gruvbox Orange Focus
+                text-color = mkLiteral "#fabd2f"; # Gruvbox Yellow Focus
               };
 
               "element selected.active" = {
