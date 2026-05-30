@@ -13,7 +13,7 @@
     type = "multi";
     defaults = {
       dark = {
-        accent = "orange";
+        accent = "yellow";
         flavor = "black";
       };
       light = {
