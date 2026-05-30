@@ -132,24 +132,26 @@
               };
 
               "element selected.normal" = {
-                background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)"; # High-contrast OLED list cards
-                text-color = mkLiteral "#fabd2f"; # Gruvbox Yellow Focus
+                background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
+                text-color = mkLiteral "#fe8019"; # Gruvbox Orange Focus
               };
 
               "element selected.active" = {
                 background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
-                text-color = mkLiteral "#fb4934"; # Gruvbox Red Accent
+                text-color = mkLiteral "#fb4934";
               };
 
               "element-icon" = {
                 background-color = mkLiteral "transparent";
                 size = mkLiteral "24px";
                 cursor = mkLiteral "inherit";
+                # Forces the icon to inherit colors or dim down when not selected
+                text-color = mkLiteral "inherit";
               };
 
               "element-text" = {
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit"; # Dynamically matches element state text-color
                 cursor = mkLiteral "inherit";
                 vertical-align = mkLiteral "0.5";
                 horizontal-align = mkLiteral "0.0";
