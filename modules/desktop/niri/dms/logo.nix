@@ -2,7 +2,7 @@
 
 {
   # Directly overwrite DMS's core system logo component
-  xdg.configFile."DankMaterialShell/widgets/SystemLogo.qml".text = ''
+  xdg.configFile."DankMaterialShell/Widgets/SystemLogo.qml".text = ''
     import QtQuick
     import QtQuick.Layouts
     import QtQuick.Effects

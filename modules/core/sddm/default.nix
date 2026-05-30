@@ -16,6 +16,7 @@ in  {
    environment.systemPackages = [sddm-theme sddm-theme.test];
    qt.enable = true;
    services = {
+    accounts-daemon.enable = true;
     displayManager = {
       generic.preStart = ''
         echo "Sleeping to wait for session registration..."
