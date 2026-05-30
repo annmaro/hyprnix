@@ -8,7 +8,7 @@
         id = "custom-system-logo";
         name = "Custom System Logo";
         type = "widget";
-        component = "./CustomSystemLogo.qml";
+        component = "CustomSystemLogo.qml";
       };
 
   # 🎨 Inline QML code with explicit lifetime persistence bindings
