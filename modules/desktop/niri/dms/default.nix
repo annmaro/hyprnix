@@ -68,7 +68,7 @@ in
           customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
 
           profileImage = "${config.home.homeDirectory}/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
-          # Symlinks the local nix.png into your home directory under the expected path
+          launcherLogoMode = "os"; # Set to "os" to display your custom NixOS system logo (SystemLogo.qml) inside the launcher button
 
           widgetBackgroundColor = "s"; # Use DMS's color tokens for consistent theming
           widgetColorMode = "colorful"; # "colorful" to use theme colors, "default" for a more neutral look
@@ -113,7 +113,7 @@ in
               audio_click_action = "applet";
 
               leftWidgets = [
-                "systemLogo"
+                "launcherButton"
                 "workspaceSwitcher"
                 "focusedWindow"
               ];
