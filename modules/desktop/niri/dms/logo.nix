@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Force Home Manager to write the entire custom-system-logo directory directly
   xdg.configFile."DankMaterialShell/plugins/custom-system-logo/customplugin.json".text =
     builtins.toJSON
       {
@@ -20,13 +19,17 @@
     import qs.Common
     import qs.Widgets
 
-    Item {
+    # Changing the root to a Layout item hooks directly into the bar layout pipeline,
+    # preventing Quickshell from garbage collecting it as an orphan object.
+    RowLayout {
         id: root
+        
+        spacing: 0
+        Layout.fillWidth: false
+        Layout.fillHeight: true
         
         implicitWidth: Theme.barHeight || 32
         implicitHeight: Theme.barHeight || 32
-        
-        property var permanentRef: [iconImage, nfIcon]
 
         property string colorOverride: ""
         property real brightnessOverride: 0.5
@@ -36,29 +39,39 @@
         property bool useNerdFont: true
         property string nerdFontIcon: "nixos"
 
-        IconImage {
-            id: iconImage
-            anchors.fill: parent
-            visible: !root.useNerdFont
-            smooth: true
-            asynchronous: false
-            layer.enabled: hasColorOverride
+        # Explicit container wrapper to hold object allocation in memory scope
+        Item {
+            id: container
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            
+            implicitWidth: root.implicitWidth
+            implicitHeight: root.implicitHeight
 
-            layer.effect: MultiEffect {
-                colorization: 1
-                colorizationColor: colorOverride
-                brightness: brightnessOverride
-                contrast: contrastOverride
+            IconImage {
+                id: iconImage
+                anchors.fill: parent
+                visible: !root.useNerdFont
+                smooth: true
+                asynchronous: false
+                layer.enabled: hasColorOverride
+
+                layer.effect: MultiEffect {
+                    colorization: 1
+                    colorizationColor: colorOverride
+                    brightness: brightnessOverride
+                    contrast: contrastOverride
+                }
             }
-        }
 
-        DankNFIcon {
-            id: nfIcon
-            anchors.centerIn: parent
-            visible: root.useNerdFont
-            name: root.nerdFontIcon
-            size: Math.min(root.width, root.height) * 0.8
-            color: hasColorOverride ? colorOverride : Theme.surfaceText
+            DankNFIcon {
+                id: nfIcon
+                anchors.centerIn: parent
+                visible: root.useNerdFont
+                name: root.nerdFontIcon
+                size: Math.min(parent.width, parent.height) * 0.8
+                color: hasColorOverride ? colorOverride : Theme.surfaceText
+            }
         }
     }
   '';
