@@ -6,11 +6,6 @@
         enable = true;
         enableBashIntegration = true;
         enableZshIntegration = true;
-        theme = {
-        flavor = {
-          use = "gruvbox-dark";
-        };
-      };
         shellWrapperName = "y";
 
         # 1. DECLARE THE GVFS PLUGIN HERE
@@ -49,22 +44,32 @@
               on = [ "d" ];
               run = "remove --force";
             }
-            
+
             # 2. ADD THE GVFS MOUNTING AND JUMP KEYBINDS HERE
             {
-              on = [ "M" "m" ];
+              on = [
+                "M"
+                "m"
+              ];
               run = "plugin gvfs -- select-then-mount --jump";
               desc = "Select device to mount and jump to its path";
             }
             {
-              on = [ "M" "u" ];
+              on = [
+                "M"
+                "u"
+              ];
               run = "plugin gvfs -- unmount-current-cwd-device";
               desc = "Unmount current device";
             }
           ];
         };
 
+        # MERGED AND UPDATED THEME BLOCK
         theme = {
+          flavor = {
+            use = "gruvbox-dark";
+          };
           manager = {
             border_symbol = " ";
           };
@@ -72,6 +77,13 @@
             separator_open = "";
             separator_close = "";
           };
+          # This overrides the folder colors from the base flavor
+          filetype = [
+            {
+              name = "*/";
+              fg = "#fabd2f";
+            } # Targets directory names/icons
+          ];
         };
       };
     })

@@ -74,7 +74,7 @@
                 padding = mkLiteral "8px 11px";
                 border-radius = mkLiteral "100%";
                 # CHANGED: Swapped Gruvbox Gold (#fabd2f) to Gruvbox Orange Focus (#fe8019)
-                background-color = mkLiteral "#fe8019";
+                background-color = mkLiteral "#fabd2f";
                 text-color = mkLiteral "#000000"; # Dark Text on Accent
                 str = "";
               };
@@ -133,7 +133,7 @@
 
               "element selected.normal" = {
                 background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)"; # High-contrast OLED list cards
-                text-color = mkLiteral "#fe8019"; # Gruvbox Orange Focus
+                text-color = mkLiteral "#fabd2f"; # Gruvbox Yellow Focus
               };
 
               "element selected.active" = {
@@ -173,7 +173,7 @@
 
               "button selected" = {
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fe8019";
+                text-color = mkLiteral "#fabd2f";
               };
 
               "error-message" = {
@@ -185,7 +185,7 @@
               "message" = {
                 padding = mkLiteral "0px";
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fe8019";
+                text-color = mkLiteral "#fabd2f";
               };
 
               "textbox" = {
