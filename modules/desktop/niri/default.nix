@@ -10,7 +10,7 @@
 {
   imports = [
     ./dms
-    ./rofi
+    #./rofi
     ./themes
   ];
 
