@@ -18,7 +18,7 @@ in
         imports = [
           inputs.dms.homeModules.dank-material-shell
           inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
-          #./logo.nix # Custom system logo plugin with inline QML for better performance and easier management
+          ./logo.nix # Custom system logo plugin with inline QML for better performance and easier management
         ];
 
         programs.dank-material-shell = {
