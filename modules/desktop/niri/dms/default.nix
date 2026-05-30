@@ -12,6 +12,7 @@
       imports = [
         inputs.dms.homeModules.dank-material-shell
         inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
+        ./logo.nix # Custom system logo plugin with inline QML for better performance and easier management
       ];
 
       programs.dank-material-shell = {
@@ -30,24 +31,6 @@
         material-symbols
         material-design-icons
       ];
-
-      # =====================================================================
-      # 🧩 CUSTOM SYSTEM LOGO WIDGET PLUGIN
-      # =====================================================================
-
-      # 1. Inject the custom QML logic file
-      home.file.".config/DankMaterialShell/plugins/custom-system-logo/CustomSystemLogo.qml".source =
-        ./CustomSystemLogo.qml;
-
-      # 2. Inject the plugin definition JSON inline
-      home.file.".config/DankMaterialShell/plugins/custom-system-logo/customplugin.json".text =
-        builtins.toJSON
-          {
-            id = "custom-system-logo";
-            name = "Custom System Logo";
-            type = "widget";
-            component = "./CustomSystemLogo.qml";
-          };
 
       # =====================================================================
       # 🎨 SETTINGS.JSON CONFIGURATION
@@ -115,7 +98,7 @@
             audio_click_action = "applet";
 
             leftWidgets = [
-              "custom-system-logo" # Your custom system logo widget
+              "custom-system-logo"
               "workspaceSwitcher"
               "focusedWindow"
             ];
