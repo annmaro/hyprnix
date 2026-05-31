@@ -11,10 +11,10 @@ let
   amoledTheme = import ./dms/dms_theme.nix { inherit pkgs; }; 
   
   # Extracts the specific accent index for Yellow from accents 
-  activeAccent = amoledTheme.variants.accents.[11].black.primary; 
+  activeAccent = (builtins.elemAt amoledTheme.variants.accents 11).black.primary; 
   
   # Extracts the gray outline hex code from your black flavor 
-  inactiveAccent = amoledTheme.variants.flavors.[0].dark.outline; 
+  inactiveAccent = (builtins.elemAt amoledTheme.variants.flavors 0).dark.outline; 
 in
 {
   imports = [

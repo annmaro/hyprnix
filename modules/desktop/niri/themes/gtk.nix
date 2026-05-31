@@ -4,9 +4,9 @@ let
   # Import your theme token values directly into this file
   amoledTheme = import ../dms/dms_theme.nix { inherit pkgs; };
   # Extract the specific background/surface/accent tokens from your flavor
-  bg = amoledTheme.variants.flavors.[0].dark.background;       # "#000000"
-  accent = amoledTheme.variants.accents.[11].black.primary;    # "#fabd2f" (Yellow)
-  text = amoledTheme.variants.flavors.[0].dark.backgroundText; # "#FFFFFF"
+  bg = (builtins.elemAt amoledTheme.variants.flavors 0).dark.background; # "#000000"
+  accent = (builtins.elemAt amoledTheme.variants.accents 11).black.primary; # "#fabd2f" (Yellow)
+  text = (builtins.elemAt amoledTheme.variants.flavors 0).dark.backgroundText; # "#FFFFFF"
 in
 {
   # Install the theme packages globally at the system level
