@@ -84,7 +84,7 @@ in
             MaxSize=512
           '';
         };
-        # Custom folder icons to override the default ones in the places/scalable directory of the icon theme
+       /* # Custom folder icons to override the default ones in the places/scalable directory of the icon theme
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder.svg".source =
           ./custom-icons/places/scalable/folder.svg;
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-documents.svg".source =
@@ -126,6 +126,7 @@ in
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-icons.svg".source =
           ./custom-icons/places/scalable/folder-icons.svg;
       };
+      */
 
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
