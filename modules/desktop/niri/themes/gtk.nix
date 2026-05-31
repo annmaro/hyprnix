@@ -120,6 +120,18 @@ in
               background-image: none;
               box-shadow: none;
           }
+          /* Force Thunar's standard file area folders/icons to match your Gruvbox yellow (#fabd2f) */
+          .thunar .standard-view .view image,
+          .thunar ExoIconView,
+          .thunar GtkTreeView .image {
+              filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.95);
+          }
+
+          /* Force Sidebar folder icons to match the same color tone */
+          .thunar .sidebar row image,
+          .thunar .sidebar treeview image {
+              filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.95);
+          }
         '';
       };
     })
