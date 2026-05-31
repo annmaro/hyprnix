@@ -80,13 +80,13 @@ in
 
           /* Brute force window elements and client side headers into #000000 */
           window, .background, messagebox, dialog {
-              background-color: #000000!important;
+              background-color: #000000;
           }
 
           /* Darken header bars and internal content layout dividers */
           headerbar, .titlebar {
-              background-color: #050505!important;
-              box-shadow: none!important;
+              background-color: #050505;
+              box-shadow: none;
           }
         '';
 
@@ -100,7 +100,7 @@ in
            #thunar-window, 
            .thunar-window,
            ThunarWindow {
-               background-color: #000000!important;
+               background-color: #000000;
            }
 
            /* Target Thunar's side pane and main grid view */
@@ -109,13 +109,13 @@ in
            #thunar-window GtkTreeView,
            #thunar-window ExoIconView,
            #thunar-window .view {
-               background-color: #000000!important;
+               background-color: #000000;
            }
 
            /* Ensure headers and path bars match your styling */
            headerbar, .titlebar, ThunarWindow .toolbar {
-               background-color: #050505!important;
-               box-shadow: none!important;
+               background-color: #050505;
+               box-shadow: none;
            }
         '';
       };
