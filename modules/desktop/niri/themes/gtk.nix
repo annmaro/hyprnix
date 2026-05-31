@@ -95,28 +95,31 @@ in
            @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
 
            /* Brute force window elements and client side headers into #000000 */
-          /* Remove spaces before !important for GTK parser compliance */
-           window, .background, messagebox, dialog, 
-           #thunar-window, 
-           .thunar-window,
-           ThunarWindow {
-               background-color: #000000;
-           }
+          /* Force Thunar's framework wrapper elements into flat black */
+          .thunar, 
+          .thunar window, 
+          .thunar .background, 
+          ThunarWindow {
+              background-color: #000000;
+              background-image: none;
+          }
 
-           /* Target Thunar's side pane and main grid view */
-           #thunar-window GtkPaned,
-           #thunar-window GtkScrolledWindow,
-           #thunar-window GtkTreeView,
-           #thunar-window ExoIconView,
-           #thunar-window .view {
-               background-color: #000000;
-           }
+          /* Strip color layers off the sidebar panel and standard view grids */
+          .thunar .sidebar,
+          .thunar .sidebar treeview,
+          .thunar .standard-view,
+          .thunar .standard-view .view,
+          .thunar scrolledwindow {
+              background-color: #000000;
+              background-image: none;
+          }
 
-           /* Ensure headers and path bars match your styling */
-           headerbar, .titlebar, ThunarWindow .toolbar {
-               background-color: #050505;
-               box-shadow: none;
-           }
+          /* Match the top location and navigation toolbars */
+          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar {
+              background-color: #050505;
+              background-image: none;
+              box-shadow: none;
+          }
         '';
       };
     })
