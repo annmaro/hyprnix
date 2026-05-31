@@ -92,30 +92,31 @@ in
 
         # Hard injection added for GTK3 to force flat black on legacy window interfaces
         "gtk-3.0/gtk.css".text = ''
-          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
 
-          /* Brute force window elements and client side headers into #000000 */
-          window, .background, messagebox, dialog, 
-          #thunar-window, 
-          .thunar-window,
-          ThunarWindow {
-              background-color: #000000 !important;
-          }
+           /* Brute force window elements and client side headers into #000000 */
+          /* Remove spaces before !important for GTK parser compliance */
+           window, .background, messagebox, dialog, 
+           #thunar-window, 
+           .thunar-window,
+           ThunarWindow {
+               background-color: #000000!important;
+           }
 
-          /* Target Thunar's side pane (tree view) and main main icon grid view */
-          #thunar-window GtkPaned,
-          #thunar-window GtkScrolledWindow,
-          #thunar-window GtkTreeView,
-          #thunar-window ExoIconView,
-          #thunar-window .view {
-              background-color: #000000 !important;
-          }
+           /* Target Thunar's side pane and main grid view */
+           #thunar-window GtkPaned,
+           #thunar-window GtkScrolledWindow,
+           #thunar-window GtkTreeView,
+           #thunar-window ExoIconView,
+           #thunar-window .view {
+               background-color: #000000!important;
+           }
 
-          /* Ensure headers and path bars match your styling */
-          headerbar, .titlebar, ThunarWindow .toolbar {
-              background-color: #050505 !important;
-              box-shadow: none !important;
-          }
+           /* Ensure headers and path bars match your styling */
+           headerbar, .titlebar, ThunarWindow .toolbar {
+               background-color: #050505!important;
+               box-shadow: none!important;
+           }
         '';
       };
     })
