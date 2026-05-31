@@ -78,10 +78,51 @@ in
             Comment=Gruvbox Plus Dark Icon Theme with Custom Yellow Folders
             Inherits=Gruvbox Plus Dark
 
-
-            Directories=places/scalable
+            Directories=places/scalable,places/16,places/22,places/24,places/32,places/48,places/64
 
             [places/scalable]
+            Size=64
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/16]
+            Size=16
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/22]
+            Size=22
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/24]
+            Size=24
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/32]
+            Size=32
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/48]
+            Size=48
+            Context=Places
+            Type=Scalable
+            MinSize=16
+            MaxSize=512
+
+            [places/64]
             Size=64
             Context=Places
             Type=Scalable
@@ -91,8 +132,13 @@ in
         };
 
         # Dynamically write out GTK 4 colors using your theme file values
-        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/".source =
-          ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/16".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/22".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/24".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/32".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/48".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/64".source = ./custom-icons/places/scalable;
       };
 
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
