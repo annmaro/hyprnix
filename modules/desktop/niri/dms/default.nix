@@ -97,8 +97,8 @@ in
 
               # Setting bar transparency to 0 hides the background bar background,
               # allowing only the styled widgets to display as floating pill capsules.
-              transparency = 0.70; # Adjust bar transparency to your liking (0 = fully transparent, 1 = fully opaque). A value around 0.7 can create a nice frosted glass effect while still allowing the wallpaper to subtly show through behind the widgets.
-              widgetTransparency = 1; # Set widget transparency to 1 for fully opaque widgets that stand out against the transparent bar background
+              transparency = 0.50; # Set bar transparency to create a floating effect for the widgets. A value around 0.5 can create a nice balance where the bar background is subtle but still provides some separation from the wallpaper. Adjust as needed for your preferred look, keeping in mind that lower values will make the bar more transparent and higher values will make it more opaque.
+              widgetTransparency = 0.70; # Set widget transparency to create a layered look with the bar. A value around 0.7 can create a nice frosted glass effect for the widgets, allowing the bar background to subtly show through while keeping the widget content readable. Adjust as needed for your preferred balance of visibility and aesthetics.
 
               widgetOutlineEnabled = true; # Enable outlines for widgets to enhance visibility and separation from the background
               widgetOutlineColor = "primary"; # Use primary color for widget outlines to create a cohesive look with the rest of the theme. Adjust as needed based on your custom theme's color palette for optimal contrast and aesthetics.

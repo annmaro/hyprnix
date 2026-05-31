@@ -94,8 +94,6 @@ in
           ./custom-icons/places/scalable/folder-downloads.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-downloads-open.svg".source =
           ./custom-icons/places/scalable/folder-downloads-open.svg;
-        ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-desktop.svg".source =
-          ./custom-icons/places/scalable/folder-desktop.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-home.svg".source =
           ./custom-icons/places/scalable/folder-home.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-home-open.svg".source =
