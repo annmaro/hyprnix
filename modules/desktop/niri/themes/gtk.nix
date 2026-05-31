@@ -71,7 +71,7 @@ in
             [Icon Theme]
             Name=Gruvbox-Plus-Dark-Yellow
             Comment=Gruvbox Plus Dark Icon Theme with Custom Yellow Folders
-            Inherits=Gruvbox-Plus-Dark,breeze,hicolor
+            Inherits=breeze,hicolor
 
             Directories=places/scalable
 
