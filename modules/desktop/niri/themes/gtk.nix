@@ -90,44 +90,32 @@ in
             [places/16]
             Size=16
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
 
             [places/22]
             Size=22
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
 
             [places/24]
             Size=24
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
 
             [places/32]
             Size=32
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
 
             [places/48]
             Size=48
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
 
             [places/64]
             Size=64
             Context=Places
-            Type=Scalable
-            MinSize=16
-            MaxSize=512
+            Type=Fixed
           '';
         };
 
