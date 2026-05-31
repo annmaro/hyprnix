@@ -81,6 +81,10 @@ in
           blurWallpaperOnOverview = true; # Blur the wallpaper when opening the overview for better focus on windows
           blurForegroundLayers = false; # Only blur the background for a cleaner look
 
+          systemTrayIconTintMode = "primary"; # Tint system tray icons with the primary color for a more cohesive look. Adjust as needed based on your custom theme's color palette for optimal aesthetics.
+          systemTrayIconTintSaturation = 40; # Increase saturation of tinted system tray icons to make them pop against the background. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
+          systemTrayIconTintStrength = 150; # Increase tint strength for system tray icons to create a more pronounced effect and better integration with the overall theme. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
+
           weatherEnabled = true;
           weatherLocation = "Ramgarh, Jharkhand, India";
           weatherCoordinates = "23.5987759,85.5369156";

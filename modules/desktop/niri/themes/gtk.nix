@@ -120,7 +120,8 @@ in
         };
 
         # Dynamically write out GTK 4 colors using your theme file values
-        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable".source = ./custom-icons/places/scalable;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable".source =
+          ./custom-icons/places/scalable;
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/16".source = ./custom-icons/places/scalable;
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/22".source = ./custom-icons/places/scalable;
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/24".source = ./custom-icons/places/scalable;
@@ -147,8 +148,35 @@ in
           @define-color theme_base_color ${bg};
           @define-color theme_selected_bg_color ${accent};
 
-          .thunar window, .thunar .background {
-              background-color: ${bg};
+          /* Global window targets */
+          window, .background, messagebox, dialog {
+              background-color: #000000;
+          }
+
+          /* Force Thunar's framework wrapper elements into flat black */
+          .thunar, 
+          .thunar window, 
+          .thunar .background, 
+          ThunarWindow {
+              background-color: #000000;
+              background-image: none;
+          }
+
+          /* Strip color layers off the sidebar panel and standard view grids */
+          .thunar .sidebar,
+          .thunar .sidebar treeview,
+          .thunar .standard-view,
+          .thunar .standard-view .view,
+          .thunar scrolledwindow {
+              background-color: #000000;
+              background-image: none;
+          }
+
+          /* Match the top location and navigation toolbars */
+          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar {
+              background-color: #050505;
+              background-image: none;
+              box-shadow: none;
           }
         '';
       };
