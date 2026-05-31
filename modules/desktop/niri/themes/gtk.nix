@@ -84,49 +84,10 @@ in
             MaxSize=512
           '';
         };
-        /*
-          # Custom folder icons to override the default ones in the places/scalable directory of the icon theme
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder.svg".source =
-            ./custom-icons/places/scalable/folder.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-documents.svg".source =
-            ./custom-icons/places/scalable/folder-documents.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-documents-open.svg".source =
-            ./custom-icons/places/scalable/folder-documents-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-downloads.svg".source =
-            ./custom-icons/places/scalable/folder-download.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-downloads-open.svg".source =
-            ./custom-icons/places/scalable/folder-download-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-home.svg".source =
-            ./custom-icons/places/scalable/folder-home.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-home-open.svg".source =
-            ./custom-icons/places/scalable/folder-home-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-music.svg".source =
-            ./custom-icons/places/scalable/folder-music.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-music-open.svg".source =
-            ./custom-icons/places/scalable/folder-music-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-pictures.svg".source =
-            ./custom-icons/places/scalable/folder-pictures.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-pictures-open.svg".source =
-            ./custom-icons/places/scalable/folder-pictures-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-video.svg".source =
-            ./custom-icons/places/scalable/folder-video.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-videos-open.svg".source =
-            ./custom-icons/places/scalable/folder-videos-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-publicshare.svg".source =
-            ./custom-icons/places/scalable/folder-publicshare.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-publicshare-open.svg".source =
-            ./custom-icons/places/scalable/folder-publicshare-open.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-hdd.svg".source =
-            ./custom-icons/places/scalable/folder-hdd.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-network.svg".source =
-            ./custom-icons/places/scalable/folder-network.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-favorites.svg".source =
-            ./custom-icons/places/scalable/folder-favorites.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-search.svg".source =
-            ./custom-icons/places/scalable/folder-search.svg;
-          ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder-icons.svg".source =
-            ./custom-icons/places/scalable/folder-icons.svg;
-        */
+
+        # Custom folder icons to override the default ones in the places/scalable directory of the icon theme
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder.svg".source =
+          ./custom-icons/places/scalable/folder.svg;
       };
 
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
