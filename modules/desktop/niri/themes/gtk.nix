@@ -4,26 +4,20 @@ let
   gruvbox-theme-name = "Gruvbox-Dark";
 in
 {
-  # Install the theme packages globally at the system level
+  # 1. Keep the packages global and clean
   environment.systemPackages = with pkgs; [
-    (colloid-icon-theme.override {
-      schemeVariants = [ "gruvbox" ];
-      colorVariants = [ "yellow" ];
-    })
+    gruvbox-plus-icons
     bibata-cursors
     gruvbox-gtk-theme
   ];
 
-  # Force native Wayland applications to recognize the cursor size and style
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
 
-  # Configure User-Level Theme Engines via Home Manager
   home-manager.sharedModules = [
     (_: {
-      # Sets the cursor style for both native GTK and legacy XWayland windows
       home.pointerCursor = {
         enable = true;
         gtk.enable = true;
@@ -33,7 +27,6 @@ in
         size = 24;
       };
 
-      # Sets up standard GTK theme variables across environments
       gtk = {
         enable = true;
         gtk2.force = true;
@@ -41,14 +34,10 @@ in
           name = "${gruvbox-theme-name}";
           package = pkgs.gruvbox-gtk-theme;
         };
+        # 2. Reset the icon theme back to the standard dark layout
         iconTheme = {
-          package = (
-            pkgs.colloid-icon-theme.override {
-              schemeVariants = [ "gruvbox" ];
-              colorVariants = [ "yellow" ];
-            }
-          );
-          name = "Colloid-Yellow-Dark-Gruvbox";
+          package = pkgs.gruvbox-plus-icons;
+          name = "Gruvbox-Plus-Dark";
         };
         gtk3.extraConfig = {
           "gtk-application-prefer-dark-theme" = "1";
@@ -59,20 +48,37 @@ in
         gtk4.theme = null;
       };
 
-      # Enforce dark theme across Libadwaita applications natively
       home.sessionVariables = {
         ADW_COLOR_SCHEME = "prefer-dark";
       };
-
-      # Enforce dark theme parameters inside the system dconf database
       dconf.settings = {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
         };
       };
 
-      # Hard injection for GTK configurations to re-tint the base workspace container elements to black
-      xdg.configFile = {
+      # 3. Intercept the standard folder assets inside your user profile
+      xdg.dataFile = {
+        "icons/Gruvbox-Plus-Dark/places/16".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/16-yellow";
+        "icons/Gruvbox-Plus-Dark/places/22".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/22-yellow";
+        "icons/Gruvbox-Plus-Dark/places/24".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/24-yellow";
+        "icons/Gruvbox-Plus-Dark/places/32".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/32-yellow";
+        "icons/Gruvbox-Plus-Dark/places/48".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/48-yellow";
+        "icons/Gruvbox-Plus-Dark/places/64".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/64-yellow";
+        "icons/Gruvbox-Plus-Dark/places/96".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/96-yellow";
+        "icons/Gruvbox-Plus-Dark/places/128".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/128-yellow";
+        "icons/Gruvbox-Plus-Dark/places/256".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/256-yellow";
+
+        # Keep your custom flat-black CSS configs exactly how they were!
         "gtk-4.0/assets" = {
           force = true;
           source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
@@ -81,53 +87,122 @@ in
           force = true;
           source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
         };
-
-        # Custom overrides directly over the default dark definitions to create an OLED layout
         "gtk-4.0/gtk-dark.css".text = ''
           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
-
-          /* Brute force window elements and client side headers into #000000 */
-          window, .background, messagebox, dialog {
-              background-color: #000000;
-          }
-
-          /* Darken header bars and internal content layout dividers */
-          headerbar, .titlebar {
-              background-color: #050505;
-              box-shadow: none;
-          }
+          window, .background, messagebox, dialog { background-color: #000000; }
+          headerbar, .titlebar { background-color: #050505; box-shadow: none; }
         '';
-
-        # Hard injection added for GTK3 to force flat black on legacy window interfaces
         "gtk-3.0/gtk.css".text = ''
-           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+          window, .background, messagebox, dialog { background-color: #000000; }
+          .thunar, .thunar window, .thunar .background, ThunarWindow { background-color: #000000; background-image: none; }
+          .thunar .sidebar, .thunar .sidebar treeview, .thunar .standard-view, .thunar .standard-view .view, .thunar scrolledwindow { background-color: #000000; background-image: none; }
+          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar { background-color: #050505; background-image: none; box-shadow: none; }
+        '';
+      };
+    })
+  ];
+}
+{ pkgs, ... }:
 
-           /* Brute force window elements and client side headers into #000000 */
-          /* Force Thunar's framework wrapper elements into flat black */
-          .thunar, 
-          .thunar window, 
-          .thunar .background, 
-          ThunarWindow {
-              background-color: #000000;
-              background-image: none;
-          }
+let
+  gruvbox-theme-name = "Gruvbox-Dark";
+in
+{
+  # 1. Keep the packages global and clean
+  environment.systemPackages = with pkgs; [
+    gruvbox-plus-icons
+    bibata-cursors
+    gruvbox-gtk-theme
+  ];
 
-          /* Strip color layers off the sidebar panel and standard view grids */
-          .thunar .sidebar,
-          .thunar .sidebar treeview,
-          .thunar .standard-view,
-          .thunar .standard-view .view,
-          .thunar scrolledwindow {
-              background-color: #000000;
-              background-image: none;
-          }
+  environment.variables = {
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
+  };
 
-          /* Match the top location and navigation toolbars */
-          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar {
-              background-color: #050505;
-              background-image: none;
-              box-shadow: none;
-          }
+  home-manager.sharedModules = [
+    (_: {
+      home.pointerCursor = {
+        enable = true;
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+      };
+
+      gtk = {
+        enable = true;
+        gtk2.force = true;
+        theme = {
+          name = "${gruvbox-theme-name}";
+          package = pkgs.gruvbox-gtk-theme;
+        };
+        # 2. Reset the icon theme back to the standard dark layout
+        iconTheme = {
+          package = pkgs.gruvbox-plus-icons;
+          name = "Gruvbox-Plus-Dark";
+        };
+        gtk3.extraConfig = {
+          "gtk-application-prefer-dark-theme" = "1";
+        };
+        gtk4.extraConfig = {
+          "gtk-application-prefer-dark-theme" = "1";
+        };
+        gtk4.theme = null;
+      };
+
+      home.sessionVariables = {
+        ADW_COLOR_SCHEME = "prefer-dark";
+      };
+      dconf.settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
+
+      # 3. Intercept the standard folder assets inside your user profile
+      xdg.dataFile = {
+        "icons/Gruvbox-Plus-Dark/places/16".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/16-yellow";
+        "icons/Gruvbox-Plus-Dark/places/22".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/22-yellow";
+        "icons/Gruvbox-Plus-Dark/places/24".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/24-yellow";
+        "icons/Gruvbox-Plus-Dark/places/32".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/32-yellow";
+        "icons/Gruvbox-Plus-Dark/places/48".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/48-yellow";
+        "icons/Gruvbox-Plus-Dark/places/64".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/64-yellow";
+        "icons/Gruvbox-Plus-Dark/places/96".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/96-yellow";
+        "icons/Gruvbox-Plus-Dark/places/128".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/128-yellow";
+        "icons/Gruvbox-Plus-Dark/places/256".source =
+          "${pkgs.gruvbox-plus-icons}/share/icons/Gruvbox-Plus-Dark/places/256-yellow";
+
+        # Keep your custom flat-black CSS configs exactly how they were!
+        "gtk-4.0/assets" = {
+          force = true;
+          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
+        };
+        "gtk-4.0/gtk.css" = {
+          force = true;
+          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
+        };
+        "gtk-4.0/gtk-dark.css".text = ''
+          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
+          window, .background, messagebox, dialog { background-color: #000000; }
+          headerbar, .titlebar { background-color: #050505; box-shadow: none; }
+        '';
+        "gtk-3.0/gtk.css".text = ''
+          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+          window, .background, messagebox, dialog { background-color: #000000; }
+          .thunar, .thunar window, .thunar .background, ThunarWindow { background-color: #000000; background-image: none; }
+          .thunar .sidebar, .thunar .sidebar treeview, .thunar .standard-view, .thunar .standard-view .view, .thunar scrolledwindow { background-color: #000000; background-image: none; }
+          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar { background-color: #050505; background-image: none; box-shadow: none; }
         '';
       };
     })
