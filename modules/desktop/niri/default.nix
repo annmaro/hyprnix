@@ -8,13 +8,13 @@
 }:
 let
   # Correct relative path pointing to your theme file
-  amoledTheme = import ./dms/dms_theme.nix { inherit pkgs; }; 
-  
-  # Extracts the specific accent index for Yellow from accents 
-  activeAccent = (builtins.elemAt amoledTheme.variants.accents 11).black.primary; 
-  
-  # Extracts the gray outline hex code from your black flavor 
-  inactiveAccent = (builtins.elemAt amoledTheme.variants.flavors 0).dark.outline; 
+  amoledTheme = import ./dms/dms_theme.nix { inherit pkgs; };
+
+  # Extracts the specific accent index for Yellow from accents
+  activeAccent = (builtins.elemAt amoledTheme.variants.accents 11).black.primary;
+
+  # Extracts the gray outline hex code from your black flavor
+  inactiveAccent = (builtins.elemAt amoledTheme.variants.flavors 0).dark.outline;
 in
 {
   imports = [
@@ -55,9 +55,6 @@ in
     enable = true;
     # package = pkgs.niri-unstable;
   };
-
-
-{
 
   home-manager.sharedModules = [
     (_: {
