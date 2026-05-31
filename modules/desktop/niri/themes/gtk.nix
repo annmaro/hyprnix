@@ -91,8 +91,8 @@ in
         };
 
         # Dynamically write out GTK 4 colors using your theme file values
-        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder.svg".source =
-          ./custom-icons/places/scalable/folder.svg;
+        ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/".source =
+          ./custom-icons/places/scalable;
       };
 
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
