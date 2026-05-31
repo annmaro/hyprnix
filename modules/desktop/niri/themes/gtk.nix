@@ -6,10 +6,7 @@ in
 {
   # Install the theme packages globally at the system level
   environment.systemPackages = with pkgs; [
-    (colloid-icon-theme.override {
-      schemeVariants = [ "gruvbox" ];
-      colorVariants = [ "yellow" ];
-    })
+    gruvbox-plus-icons
     bibata-cursors
     gruvbox-gtk-theme
   ];
@@ -42,13 +39,8 @@ in
           package = pkgs.gruvbox-gtk-theme;
         };
         iconTheme = {
-          package = (
-            pkgs.colloid-icon-theme.override {
-              schemeVariants = [ "gruvbox" ];
-              colorVariants = [ "yellow" ];
-            }
-          );
-          name = "Colloid-Yellow-Dark-Gruvbox";
+          package = pkgs.gruvbox-plus-icons;
+          name = "Gruvbox-Plus-Dark";
         };
         gtk3.extraConfig = {
           "gtk-application-prefer-dark-theme" = "1";
