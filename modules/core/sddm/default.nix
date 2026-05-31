@@ -8,15 +8,15 @@ let
   sddm-theme = inputs.silentSDDM.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
     theme = "default"; # select the config of your choice
     # Pass the local image so it gets copied into the theme's background folder
-    extraBackgrounds = [ ./nixos.png ];
+    extraBackgrounds = [ ./misty_forest.jpg ];
 
     # Tell SilentSDDM to use this image
     theme-overrides = {
       "LoginScreen" = {
-        background = "nixos.png";
+        background = "misty_forest.jpg";
       };
       "LockScreen" = {
-        background = "nixos.png";
+        background = "misty_forest.jpg";
       };
     };
   };
