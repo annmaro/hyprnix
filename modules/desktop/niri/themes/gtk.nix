@@ -48,7 +48,7 @@ in
               colorVariants = [ "yellow" ];
             }
           );
-          name = "Colloid-Gruvbox-Yellow-Dark";
+          name = "Colloid-Yellow-Dark-Gruvbox";
         };
         gtk3.extraConfig = {
           "gtk-application-prefer-dark-theme" = "1";
