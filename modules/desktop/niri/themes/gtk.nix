@@ -63,6 +63,12 @@ in
         };
       };
 
+      home.file.".local/share/icons/Gruvbox-Plus-Dark/places/scalable" = {
+        # This points to your folder containing ONLY the modified yellow SVGs
+        source = ./custom-icons/places/scalable;
+        recursive = true;
+      };
+
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
         "gtk-4.0/assets" = {
@@ -119,18 +125,6 @@ in
               background-color: #050505;
               background-image: none;
               box-shadow: none;
-          }
-          /* Force Thunar's standard file area folders/icons to match your Gruvbox yellow (#fabd2f) */
-          .thunar .standard-view .view image,
-          .thunar ExoIconView,
-          .thunar GtkTreeView .image {
-              filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.95);
-          }
-
-          /* Force Sidebar folder icons to match the same color tone */
-          .thunar .sidebar row image,
-          .thunar .sidebar treeview image {
-              filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.95);
           }
         '';
       };
