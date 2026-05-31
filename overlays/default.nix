@@ -22,12 +22,18 @@ in
       commandLineArgs = "--password-store=\"gnome-libsecret\"";
     };
 
-    /*
-      nomacs = prev.nomacs.overrideAttrs (old: {
-        qtWrapperArgs = (old.qtWrapperArgs or []) ++ [
-          "--set" "QT_QPA_PLATFORM" "xcb"
-        ];
-      });
-    */
+    # Override the default theme package to run its native yellow color tint option
+    gruvbox-plus-icons = prev.gruvbox-plus-icons.overrideAttrs (oldAttrs: {
+      postInstall = ''
+        # Navigate inside the newly built share folder
+        cd $out/share/icons/Gruvbox-Plus-Dark
+
+        # Make the internal color switcher script executable
+        patchShebangs preferences.sh
+
+        # Run its native flag to swap out the default brown places assets to yellow (#fabd2f)
+        ./preferences.sh --color yellow
+      '';
+    });
   };
 }
