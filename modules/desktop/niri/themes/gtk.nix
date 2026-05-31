@@ -73,16 +73,16 @@ in
           force = true;
           source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
         };
-        
+
         # Custom overrides directly over the default dark definitions to create an OLED layout
         "gtk-4.0/gtk-dark.css".text = ''
           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
-          
+
           /* Brute force window elements and client side headers into #000000 */
           window, .background, messagebox, dialog {
               background-color: #000000 !important;
           }
-          
+
           /* Darken header bars and internal content layout dividers */
           headerbar, .titlebar {
               background-color: #050505 !important;
@@ -94,11 +94,25 @@ in
         "gtk-3.0/gtk.css".text = ''
           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
 
-          window, .background, messagebox, dialog {
+          /* Brute force window elements and client side headers into #000000 */
+          window, .background, messagebox, dialog, 
+          #thunar-window, 
+          .thunar-window,
+          ThunarWindow {
               background-color: #000000 !important;
           }
 
-          headerbar, .titlebar {
+          /* Target Thunar's side pane (tree view) and main main icon grid view */
+          #thunar-window GtkPaned,
+          #thunar-window GtkScrolledWindow,
+          #thunar-window GtkTreeView,
+          #thunar-window ExoIconView,
+          #thunar-window .view {
+              background-color: #000000 !important;
+          }
+
+          /* Ensure headers and path bars match your styling */
+          headerbar, .titlebar, ThunarWindow .toolbar {
               background-color: #050505 !important;
               box-shadow: none !important;
           }
