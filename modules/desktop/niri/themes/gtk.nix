@@ -80,13 +80,13 @@ in
 
           /* Brute force window elements and client side headers into #000000 */
           window, .background, messagebox, dialog {
-              background-color: #000000 !important;
+              background-color: #000000!important;
           }
 
           /* Darken header bars and internal content layout dividers */
           headerbar, .titlebar {
-              background-color: #050505 !important;
-              box-shadow: none !important;
+              background-color: #050505!important;
+              box-shadow: none!important;
           }
         '';
 
