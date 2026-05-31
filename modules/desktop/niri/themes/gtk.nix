@@ -45,7 +45,7 @@ in
         };
         iconTheme = {
           package = pkgs.gruvbox-plus-icons;
-          name = "Gruvbox-Plus-Dark";
+          name = "Gruvbox-Plus-Dark-Yellow";
         };
         gtk3.extraConfig = {
           "gtk-application-prefer-dark-theme" = "1";
