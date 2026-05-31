@@ -2,14 +2,15 @@
 
 let
   # Using the standardized Gruvbox theme definition
-  gruvbox-theme-name = "Gruvbox-Dark";
+  amoledTheme = import ./dms_theme.nix { inherit pkgs; };
+  bg = amoledTheme.variants.flavors.[0].dark.background;
+  accent = amoledTheme.variants.accents.[11].black.primary;
 in
 {
   # Install the core Qt style sheet engines globally
   environment.systemPackages = with pkgs; [
     qt6Packages.qt6ct
     libsForQt5.qt5ct
-    gruvbox-kvantum
   ];
 
   # Universal Wayland engine properties
@@ -24,31 +25,21 @@ in
     (_: {
       qt = {
         enable = true;
-        platformTheme.name = "qt5ct"; # Routes configuration mappings natively
-        style.name = "kvantum";
+        platformTheme.name = "qt6ct"; # Routes configuration mappings natively
+        style.name = "breeze"; # Use a standard responsive engine instead of kvantum
       };
 
-      # Declaratively construct your configurations to avoid manual mouse UI settings
-      xdg.configFile = {
-        "qt5ct/qt5ct.conf".text = ''
-          [Appearance]
-          style=kvantum
-          icon_theme=Gruvbox-Plus-Dark
-        '';
-        "qt6ct/qt6ct.conf".text = ''
-          [Appearance]
-          style=kvantum
-          icon_theme=Gruvbox-Plus-Dark
-        '';
-        "Kvantum/${gruvbox-theme-name}".source = "${pkgs.gruvbox-kvantum}/share/Kvantum/${gruvbox-theme-name}";
-        
-        # Enforce high-contrast pure black window bases inside Kvantum
-        "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = gruvbox-theme-name;
-          OpaqueEffects.reduce_opacity = false;
-          UserStyles.blend_colors = false;
-        };
-      };
+      # Generate the qt6ct color scheme file dynamically
+      xdg.configFile."qt6ct/colors/Amoled.conf".text = ''
+        [Colors]
+        Window=${bg}
+        WindowText=#ffffff
+        Base=${bg}
+        AlternateBase=#111111
+        Button=#1c1c1c
+        Highlight=${accent}
+        HighlightedText=#000000
+      '';
     })
   ];
 }

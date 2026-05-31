@@ -138,8 +138,8 @@
             background-color "transparent"
              border {
                 width 1
-                active-color "#fabd2f"   // Keep the same color as DMS for consistency
-                inactive-color "#665c54" // Gruvbox Dark Gray / Gruvbox 4
+                active-color "${activeAccent}; // Injects "#fabd2f" dynamically
+                inactive-color "${inactiveAccent}"; // Injects "#ffffff" dynamically
             }
             preset-column-widths {
                 proportion 0.33333

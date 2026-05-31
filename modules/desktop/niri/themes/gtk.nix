@@ -1,14 +1,19 @@
 { pkgs, ... }:
 
 let
-  gruvbox-theme-name = "Gruvbox-Dark";
+  # Import your theme token values directly into this file
+  amoledTheme = import ./dms_theme.nix { inherit pkgs; };
+  # Extract the specific background/surface/accent tokens from your flavor
+  bg = amoledTheme.variants.flavors.[0].dark.background;       # "#000000"
+  accent = amoledTheme.variants.accents.[11].black.primary;    # "#fabd2f" (Yellow)
+  text = amoledTheme.variants.flavors.[0].dark.backgroundText; # "#FFFFFF"
 in
 {
   # Install the theme packages globally at the system level
   environment.systemPackages = with pkgs; [
     gruvbox-plus-icons
     bibata-cursors
-    gruvbox-gtk-theme
+    adw-gtk3
   ];
 
   # Force native Wayland applications to recognize the cursor size and style
@@ -35,8 +40,8 @@ in
         enable = true;
         gtk2.force = true;
         theme = {
-          name = "${gruvbox-theme-name}";
-          package = pkgs.gruvbox-gtk-theme;
+          name = "adw-gtk3-dark";
+          package = pkgs.adw-gtk3;
         };
         iconTheme = {
           package = pkgs.gruvbox-plus-icons;
@@ -85,67 +90,31 @@ in
           '';
         };
 
-        # Custom folder icons to override the default ones in the places/scalable directory of the icon theme
+        # Dynamically write out GTK 4 colors using your theme file values
         ".local/share/icons/Gruvbox-Plus-Dark-Yellow/places/scalable/folder.svg".source =
           ./custom-icons/places/scalable/folder.svg;
       };
 
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
-        "gtk-4.0/assets" = {
-          force = true;
-          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/assets";
-        };
-        "gtk-4.0/gtk.css" = {
-          force = true;
-          source = "${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk.css";
-        };
-
-        # Custom overrides directly over the default dark definitions to create an OLED layout
+        # Dynamically write out GTK 4 colors using your theme file values
         "gtk-4.0/gtk-dark.css".text = ''
-          @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-4.0/gtk-dark.css");
-
-          /* Brute force window elements and client side headers into #000000 */
-          window, .background, messagebox, dialog {
-              background-color: #000000;
-          }
-
-          /* Darken header bars and internal content layout dividers */
-          headerbar, .titlebar {
-              background-color: #050505;
-              box-shadow: none;
-          }
+          @define-color window_bg_color ${bg};
+          @define-color view_bg_color ${bg};
+          @define-color headerbar_bg_color #050505;
+          @define-color accent_color ${accent};
+          @define-color accent_bg_color ${accent};
+          @define-color theme_fg_color ${text};
         '';
 
-        # Hard injection added for GTK3 to force flat black on legacy window interfaces
+        # Dynamically write out GTK 3 legacy overrides
         "gtk-3.0/gtk.css".text = ''
-           @import url("${pkgs.gruvbox-gtk-theme}/share/themes/${gruvbox-theme-name}/gtk-3.0/gtk.css");
+          @define-color theme_bg_color ${bg};
+          @define-color theme_base_color ${bg};
+          @define-color theme_selected_bg_color ${accent};
 
-           /* Brute force window elements and client side headers into #000000 */
-          /* Force Thunar's framework wrapper elements into flat black */
-          .thunar, 
-          .thunar window, 
-          .thunar .background, 
-          ThunarWindow {
-              background-color: #000000;
-              background-image: none;
-          }
-
-          /* Strip color layers off the sidebar panel and standard view grids */
-          .thunar .sidebar,
-          .thunar .sidebar treeview,
-          .thunar .standard-view,
-          .thunar .standard-view .view,
-          .thunar scrolledwindow {
-              background-color: #000000;
-              background-image: none;
-          }
-
-          /* Match the top location and navigation toolbars */
-          headerbar, .titlebar, .thunar .toolbar, .thunar toolbar {
-              background-color: #050505;
-              background-image: none;
-              box-shadow: none;
+          .thunar window, .thunar .background {
+              background-color: ${bg};
           }
         '';
       };
