@@ -63,6 +63,32 @@ in
         };
       };
 
+      # AUTOMATIC ACTIVATION SCRIPT: Run the theme's built-in color toggler
+      home.activation = {
+        setGruvboxYellowFolders =
+          let
+            # Locate where Nix stores the package build
+            themePkg = pkgs.gruvbox-plus-icons;
+          in
+          # Create an order entry to run right after Home Manager sets up files
+          import <home-manager/modules/lib/dag.nix>.lib.dag.entryAfter [ "writeBoundary" ] ''
+            USER_ICON_DIR="$HOME/.local/share/icons/Gruvbox-Plus-Dark"
+
+            # 1. Clean link the fresh package assets to your home directory to allow modification
+            mkdir -p "$HOME/.local/share/icons"
+            rm -rf "$USER_ICON_DIR"
+            cp -r "${themePkg}/share/icons/Gruvbox-Plus-Dark" "$USER_ICON_DIR"
+            chmod -R u+rw "$USER_ICON_DIR"
+
+            # 2. Execute the theme's built-in preference script directly on your directory copy
+            if [ -f "$USER_ICON_DIR/preferences.sh" ]; then
+                cd "$USER_ICON_DIR"
+                # This flag triggers the custom theme package helper script to switch variants
+                bash ./preferences.sh --color yellow
+            fi
+          '';
+      };
+
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
         "gtk-4.0/assets" = {
