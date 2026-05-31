@@ -108,8 +108,8 @@ in
           ./custom-icons/places/scalable/folder-pictures.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-pictures-open.svg".source =
           ./custom-icons/places/scalable/folder-pictures-open.svg;
-        ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-videos.svg".source =
-          ./custom-icons/places/scalable/folder-videos.svg;
+        ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-video.svg".source =
+          ./custom-icons/places/scalable/folder-video.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-videos-open.svg".source =
           ./custom-icons/places/scalable/folder-videos-open.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-publicshare.svg".source =
