@@ -122,8 +122,8 @@ in
           ./custom-icons/places/scalable/folder-hdd-open.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-network.svg".source =
           ./custom-icons/places/scalable/folder-network.svg;
-        ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-trash.svg".source =
-          ./custom-icons/places/scalable/folder-trash.svg;
+        ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-icons.svg".source =
+          ./custom-icons/places/scalable/folder-icons.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-favorites.svg".source =
           ./custom-icons/places/scalable/folder-favorites.svg;
         ".local/share/icons/Gruvbox-Plus-Dark/places/scalable/folder-search.svg".source =
