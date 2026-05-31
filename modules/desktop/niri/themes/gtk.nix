@@ -69,6 +69,24 @@ in
         recursive = true;
       };
 
+      # Generate the custom index.theme file for your Folder/Icon theme
+      home.file.".local/share/icons/Gruvbox-Plus-Dark/index.theme".text = ''
+        [Icon Theme]
+        Name=Gruvbox-Plus-Dark
+        Comment=Gruvbox Plus Dark Icon Theme with Custom Yellow Folders
+        Inherits=Adwaita,breeze,hicolor
+
+        # Example directories mapping (adjust based on your theme's layout)
+        Directories=places/scalable
+
+        [places/scalable]
+        Size=64
+        Context=Places
+        Type=Scalable
+        MinSize=16
+        MaxSize=512
+      '';
+
       # Hard injection for GTK configurations to re-tint the base workspace container elements to black
       xdg.configFile = {
         "gtk-4.0/assets" = {
