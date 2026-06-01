@@ -237,7 +237,7 @@ in
 
           window#waybar {
             background-color: @theme_base_color; /* True Pure Black */
-            border-bottom: 2px solid @theme_selected_bg_color; /* Gruvbox Yellow Underline across top screen edge */
+            border-bottom: 2px solid transparent; /* Clean border by default */
           }
 
           /* Modular grouping containers */
