@@ -247,6 +247,7 @@ in
               border-radius: 30px;
               margin: 4px;
               padding: 5px 5px;
+              font-size: 18px;
               font-weight: bold;            /* Forces text to be bold */
               color: @theme_text_color;
             }
@@ -263,9 +264,10 @@ in
 
             /* Active / Highlight states target Stylix Selection Colors */
             #workspaces button.active {
-              color: @theme_selected_bg_color;
+              color: transparent;
+              background-color: @theme_selected_bg_color;
               border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
-              min-width: 24px;              /* Reduced from 50px to let it shrink to a natural size */
+              min-width: 45px;              /* Increased to make it a wide pill */
               padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
               margin: 4px 2px;              /* Subtle spacing between pills */
               transition: all 0.3s ease-in-out;
@@ -296,7 +298,7 @@ in
             }
             #custom-window-name {
               border-radius: 30px;
-              padding: 0px 0px 0px 5px;;
+              padding: 0px 0px 0px 5px;
               min-width: 80px;
               background: transparent;
             }
@@ -313,6 +315,31 @@ in
               padding-left: 5px;
               padding-right: 5px;
             }
+            #custom-icon {
+            padding-left: 2px;
+            padding-right: 5px;
+          }
+          #cpu {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #memory {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #temperature {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #network {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #pulseaudio {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+
         '';
       };
     })
