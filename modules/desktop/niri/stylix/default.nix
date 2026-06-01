@@ -49,7 +49,6 @@
           };
 
           targets = {
-            waybar.enable = true;
             niri.enable = true;
             gtk = {
               enable = true;
@@ -78,6 +77,7 @@
             vscode.enable = false;
             kitty.enable = false;
             neovim.enable = false;
+            waybar.enable = false; # We want to manage Waybar's theme manually to leverage its native styling capabilities
 
             # Add any other apps here if you want to manage their themes manually:
             rofi.enable = false;
