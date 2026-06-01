@@ -53,6 +53,7 @@
             gtk.enable = true;
             qt.enable = true;
             feh.enable = true;
+            btop.enable = true;
 
             # --- DISABLE STYLIX FOR THESE SPECIFIC APPS ---
             vscode.enable = false;
@@ -61,7 +62,6 @@
 
             # Add any other apps here if you want to manage their themes manually:
             rofi.enable = false;
-            # btop.enable = false;
           };
 
           # Generate a 1x1 solid black pixel on the fly as your wallpaper engine source
