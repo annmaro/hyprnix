@@ -245,7 +245,7 @@ in
             background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
             border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
             border-radius: 30px;
-            margin: 4px;
+            margin: 2px;
             padding: 5px 5px;
             color: @theme_text_color;
           }
@@ -254,9 +254,9 @@ in
           #workspaces button.active {
             color: @theme_selected_bg_color;
             border-radius: 16px;
-            min-width: 50px;
+            min-width: 30px;
             background: @theme_selected_bg_color;
-            background-size: 300% 300%;
+            background-size: 200% 200%;
             transition: all 0.3s ease-in-out;
             font-weight: bold;
           }
@@ -268,8 +268,8 @@ in
           #workspaces button:hover {
           color: @theme_selected_bg_color;
           border-radius: 16px;
-          min-width: 50px;
-          background-size: 300% 300%;
+          min-width: 20px;
+          background-size: 200% 200%;
           }
 
           #battery.critical:not(.charging) {
