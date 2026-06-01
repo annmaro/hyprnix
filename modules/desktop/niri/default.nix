@@ -256,6 +256,11 @@ in
 
           // 🖼️ WINDOW RULES & TRANSPARENCY
           window-rule {
+              geometry-corner-radius 12
+              clip-to-geometry true
+          }
+
+          window-rule {
               match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
               open-maximized-to-edges true
               draw-border-with-background false
@@ -264,7 +269,7 @@ in
 
           window-rule {
               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
-              opacity 0.60
+              opacity 0.70
               draw-border-with-background false
               background-effect {
                    blur true
@@ -274,7 +279,7 @@ in
 
           window-rule {
               match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|spotify|com.github.th_ch.youtube_music)$"
-              opacity 0.60
+              opacity 0.70
               draw-border-with-background false
               background-effect {
                    blur true
@@ -284,7 +289,7 @@ in
 
           window-rule {
               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
-              opacity 0.70
+              opacity 0.80
               draw-border-with-background false
               background-effect {
                    blur true

@@ -51,7 +51,17 @@
           targets = {
             waybar.enable = true;
             niri.enable = true;
-            gtk.enable = true;
+            gtk = {
+              enable = true;
+              extraCss = ''
+                window.csd > decoration {
+                  border: 1px solid #${config.lib.stylix.colors.base0A};
+                }
+                decoration {
+                  border: 1px solid #${config.lib.stylix.colors.base0A};
+                }
+              '';
+            };
             qt.enable = true;
             feh.enable = true;
             btop.enable = true;
