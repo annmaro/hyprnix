@@ -69,8 +69,9 @@ in
   };
 
   systemd.user.services.lxqt-policykit-agent = {
-    Description = "LXQt Polkit Authentication Agent";
-    Wants = [ "graphical-session.target" ];
+    description = "LXQt Polkit Authentication Agent";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
