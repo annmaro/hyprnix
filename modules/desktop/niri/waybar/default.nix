@@ -242,7 +242,7 @@ in
 
             /* Modular grouping containers */
             #gleft1, #gright1, #gright2, #custom-window-name, #custom-weather, #clock, #mpris, #workspaces {
-              background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
+              background-color: @theme_base_color;
               border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
               border-radius: 30px;
               margin: 4px;
@@ -267,7 +267,7 @@ in
               color: transparent;
               background-color: @theme_selected_bg_color;
               border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
-              min-width: 20px;              /* Reduced to make the pill slightly thinner */
+              min-width: 32px;              /* Reduced to make the pill slightly thinner */
               padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
               margin: 4px 2px;              /* Subtle spacing between pills */
               transition: all 0.3s ease-in-out;
