@@ -6,13 +6,12 @@
   config,
   ...
 }: # Sourced config into root scope
-let
-  theme = import ./usertheme.nix { inherit config; }; # Passed config context forward
-in
-{
   home-manager.sharedModules = [
     (
       { config, ... }:
+      let
+        theme = import ./usertheme.nix { inherit config; };
+      in
       {
         imports = [ inputs.zen-browser.homeModules.beta ];
 

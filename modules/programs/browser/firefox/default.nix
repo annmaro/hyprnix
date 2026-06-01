@@ -6,13 +6,12 @@
   config,
   ...
 }: # Sourced config into root scope
-let
-  theme = import ./usertheme.nix { inherit config; }; # Passed config directly to user styles
-in
-{
   home-manager.sharedModules = [
     (
       { config, ... }:
+      let
+        theme = import ./usertheme.nix { inherit config; };
+      in
       {
         programs.firefox = {
           enable = true;
