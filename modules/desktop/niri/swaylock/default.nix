@@ -32,9 +32,7 @@
 
           # Updated syntax: events is now an attrset keyed by the event name
           events = {
-            before-sleep = {
-              command = "${pkgs.swaylock-effects}/bin/swaylock -f";
-            };
+            before-sleep = "${pkgs.swaylock-effects}/bin/swaylock -f";
           };
 
           timeouts = [
