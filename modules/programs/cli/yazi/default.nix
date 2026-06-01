@@ -64,15 +64,15 @@
             }
           ];
         };
-      theme = {
-        manager = {
-          border_symbol = " ";
+        theme = {
+          manager = {
+            border_symbol = " ";
+          };
+          status = {
+            separator_open = "";
+            separator_close = "";
+          };
         };
-        status = {
-          separator_open = "";
-          separator_close = "";
-        };
-      }
       };
     })
   ];
