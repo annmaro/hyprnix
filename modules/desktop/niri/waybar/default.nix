@@ -255,7 +255,7 @@ in
             color: @theme_selected_bg_color;
             border-radius: 16px;
             min-width: 50px;
-            background: transparent;
+            background: @theme_selected_bg_color;
             background-size: 300% 300%;
             transition: all 0.3s ease-in-out;
             font-weight: bold;
@@ -284,7 +284,22 @@ in
           tooltip label {
             color: @theme_text_color;
           }
+          #custom-window-name {
+            border-radius: 30px;
+            padding: 0px 0px 0px 5px;;
+            min-width: 80px;
+            background: transparent;
+          }
           #custom-power {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #bluetooth {
+            font-size: 15px;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          #custom-notification {
             padding-left: 5px;
             padding-right: 5px;
           }
