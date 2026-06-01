@@ -94,7 +94,7 @@
         };
 
         xdg.configFile."wlogout/icons" = {
-          source = ./path/to/your/local/icons;
+          source = ./icons;
           recursive = true;
         };
       }
