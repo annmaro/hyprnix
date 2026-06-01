@@ -54,10 +54,14 @@
               enable = true;
               extraCss = ''
                 window.csd > decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0A};
+                  border: 1px solid #${config.lib.stylix.colors.base0A} !important;
+                  outline: 1px solid #${config.lib.stylix.colors.base0A} !important;
+                  box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base0A}, 0 0 0 1px #${config.lib.stylix.colors.base0A} !important;
                 }
                 decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0A};
+                  border: 1px solid #${config.lib.stylix.colors.base0A} !important;
+                  outline: 1px solid #${config.lib.stylix.colors.base0A} !important;
+                  box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base0A}, 0 0 0 1px #${config.lib.stylix.colors.base0A} !important;
                 }
               '';
             };
