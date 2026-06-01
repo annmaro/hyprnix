@@ -40,7 +40,7 @@
       transparent = lib.mkForce true;
 
       # Feeds the dynamic Stylix Base16 table straight into the nvf compiler engine
-      base16Colors = {
+      base16-colors = {
         base00 = "#${config.lib.stylix.colors.base00}";
         base01 = "#${config.lib.stylix.colors.base01}";
         base02 = "#${config.lib.stylix.colors.base02}";
