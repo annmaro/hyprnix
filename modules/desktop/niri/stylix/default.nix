@@ -52,7 +52,6 @@
             gtk.enable = true;
             qt.enable = true;
             feh.enable = true;
-            chromium.enable = true;
 
             # --- DISABLE STYLIX FOR THESE SPECIFIC APPS ---
             vscode.enable = false;
