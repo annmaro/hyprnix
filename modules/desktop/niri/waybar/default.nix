@@ -1,4 +1,9 @@
-{ self, host, pkgs, ... }:
+{
+  self,
+  host,
+  pkgs,
+  ...
+}:
 let
   inherit (import "${self}/hosts/${host}/variables.nix") clock24h;
   gpuinfo = pkgs.callPackage (self + "/modules/desktop/niri/scripts/gpuinfo.nix") { };
@@ -239,7 +244,7 @@ in
           #gleft1, #gright1, #gright2, #custom-window-name, #custom-weather, #clock, #mpris, #workspaces {
             background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
             border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
-            border-radius: 8px;
+            border-radius: 30px;
             margin: 4px;
             padding: 2px 8px;
             color: @theme_text_color;
