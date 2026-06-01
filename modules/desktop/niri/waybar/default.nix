@@ -246,7 +246,7 @@ in
             border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
             border-radius: 30px;
             margin: 4px;
-            padding: 2px 8px;
+            padding: 5px 5px;
             color: @theme_text_color;
           }
 
