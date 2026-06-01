@@ -245,9 +245,8 @@ in
             background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
             border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
             border-radius: 30px;
-            font-size: 20px;
             margin: 4px;
-            padding: 5px 5px;
+            padding: 2px 8px;
             color: @theme_text_color;
           }
 
