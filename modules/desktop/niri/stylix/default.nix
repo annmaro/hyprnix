@@ -19,6 +19,7 @@
         stylix = {
           enable = true;
           polarity = "dark";
+          enableReleaseChecks = false;
 
           # Base16 AMOLED Black & Gruvbox Yellow scheme
           base16Scheme = {

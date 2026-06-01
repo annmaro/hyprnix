@@ -52,6 +52,11 @@ let
       homeDirectory = "/home/${userName}";
       stateVersion = "26.05";
       sessionVariables = sessionVariablesFor editorArg;
+      enableNixpkgsReleaseCheck = false;
+    };
+    nixpkgs = {
+      config = lib.mkForce {};
+      overlays = lib.mkForce null;
     };
   };
 

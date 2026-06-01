@@ -43,6 +43,11 @@ in
           BROWSER = "${browser}";
           TERMINAL = "${terminal}";
         };
+        enableNixpkgsReleaseCheck = false;
+      };
+      nixpkgs = {
+        config = pkgs.lib.mkForce {};
+        overlays = pkgs.lib.mkForce null;
       };
     };
   };
