@@ -64,31 +64,15 @@
             }
           ];
         };
-
-        # MERGED AND UPDATED THEME BLOCK
-        theme = {
-          flavor = {
-            use = "gruvbox-dark";
-          };
-          manager = {
-            border_symbol = " ";
-          };
-          status = {
-            separator_open = "";
-            separator_close = "";
-          };
-          # This overrides the folder colors from the base flavor
-          filetype = [
-            {
-              rules = [
-                {
-                  name = "*/";
-                  fg = "#fabd2f"; # Gruvbox Yellow Accent
-                }
-              ];
-            } # Targets directory names/icons
-          ];
+      theme = {
+        manager = {
+          border_symbol = " ";
         };
+        status = {
+          separator_open = "";
+          separator_close = "";
+        };
+      }
       };
     })
   ];
