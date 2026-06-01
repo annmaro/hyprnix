@@ -247,18 +247,18 @@ in
             border-radius: 30px;
             margin: 4px;
             padding: 5px 5px;
+            font-weight: bold;            /* Forces text to be bold */
             color: @theme_text_color;
           }
 
           /* Active / Highlight states target Stylix Selection Colors */
           #workspaces button.active {
             color: @theme_selected_bg_color;
-            border-radius: 16px;
-            min-width: 50px;
-            background: @theme_selected_bg_color;
-            background-size: 300% 300%;
+            border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
+            min-width: 24px;              /* Reduced from 50px to let it shrink to a natural size */
+            padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
+            margin: 4px 2px;              /* Subtle spacing between pills */
             transition: all 0.3s ease-in-out;
-            font-weight: bold;
           }
 
           #workspaces button.urgent {
