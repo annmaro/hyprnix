@@ -236,7 +236,7 @@ in
           }
 
           window#waybar {
-            background-color: transparent; /* Changed from Pure Black to achieve the pill look */
+            background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint */
             border-bottom: 2px solid transparent; /* Clean border by default */
           }
 
