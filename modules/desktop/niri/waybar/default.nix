@@ -162,11 +162,13 @@ in
               format = "󰾆 {percentage}%";
             };
 
-            "custom/weather" = {
-              exec = "${../../scripts/weather.sh}";
-              restart-interval = 600;
-              return-type = "json";
-            };
+            /*
+              "custom/weather" = {
+                exec = "${../../scripts/weather.sh}";
+                restart-interval = 600;
+                return-type = "json";
+              };
+            */
 
             "backlight" = {
               format = "{icon} {percent}%";
