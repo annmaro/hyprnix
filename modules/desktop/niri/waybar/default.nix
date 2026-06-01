@@ -267,7 +267,7 @@ in
               color: transparent;
               background-color: @theme_selected_bg_color;
               border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
-              min-width: 45px;              /* Increased to make it a wide pill */
+              min-width: 32px;              /* Reduced to make the pill slightly thinner */
               padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
               margin: 4px 2px;              /* Subtle spacing between pills */
               transition: all 0.3s ease-in-out;
