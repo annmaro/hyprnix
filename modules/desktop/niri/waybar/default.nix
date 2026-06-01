@@ -255,6 +255,7 @@ in
             color: @theme_selected_bg_color;
             border-radius: 16px;
             min-width: 50px;
+            background: transparent;
             background-size: 300% 300%;
             transition: all 0.3s ease-in-out;
             font-weight: bold;
