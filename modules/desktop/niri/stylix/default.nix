@@ -73,8 +73,8 @@
 
           fonts = {
             monospace = {
-              package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-              name = "JetBrainsMono-Nerd-Fonts";
+              package = pkgs.nerd-fonts.jetbrains-mono;
+              name = "JetBrainsMono Nerd Font";
             };
             sansSerif = {
               package = pkgs.dejavu_fonts;
