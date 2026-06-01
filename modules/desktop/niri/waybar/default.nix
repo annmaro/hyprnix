@@ -229,80 +229,90 @@ in
           }
         ];
         style = ''
-          /* Base Elements inherit directly from Stylix Theme engine */
-          * {
-            font-family: "JetBrainsMono Nerd Font";
-            font-size: 16px;
+            /* Base Elements inherit directly from Stylix Theme engine */
+            * {
+              font-family: "JetBrainsMono Nerd Font";
+              font-size: 16px;
+            }
+
+            window#waybar {
+              background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint */
+              border-bottom: 2px solid transparent; /* Clean border by default */
+            }
+
+            /* Modular grouping containers */
+            #gleft1, #gright1, #gright2, #custom-window-name, #custom-weather, #clock, #mpris, #workspaces {
+              background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
+              border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
+              border-radius: 30px;
+              margin: 4px;
+              padding: 5px 5px;
+              font-weight: bold;            /* Forces text to be bold */
+              color: @theme_text_color;
+            }
+
+            #workspaces button {
+              font-weight: bold;
+              color: @theme_text_color;
+              padding: 0px 6px;           /* Control space on the left/right of the dots */
+              margin: 0px 2px;            /* Slight gap between the dots */
+              background: transparent;     /* Ensure inactive buttons stay transparent */
+              border-bottom: none;        /* Kills the weird white underline/border */
+              box-shadow: none;           /* Prevents GTK theme shadows from bleeding through */
           }
 
-          window#waybar {
-            background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint */
-            border-bottom: 2px solid transparent; /* Clean border by default */
-          }
+            /* Active / Highlight states target Stylix Selection Colors */
+            #workspaces button.active {
+              color: @theme_selected_bg_color;
+              border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
+              min-width: 24px;              /* Reduced from 50px to let it shrink to a natural size */
+              padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
+              margin: 4px 2px;              /* Subtle spacing between pills */
+              transition: all 0.3s ease-in-out;
+            }
 
-          /* Modular grouping containers */
-          #gleft1, #gright1, #gright2, #custom-window-name, #custom-weather, #clock, #mpris, #workspaces {
-            background-color: rgba(20, 20, 20, 0.5); /* Slight translucent tint for amoled depth */
-            border: 1px solid @theme_selected_bg_color; /* Border styled natively by Gruvbox Yellow */
-            border-radius: 30px;
-            margin: 4px;
-            padding: 5px 5px;
-            font-weight: bold;            /* Forces text to be bold */
-            color: @theme_text_color;
-          }
+            #workspaces button.urgent {
+              color: #ff5555;
+            }
 
-          /* Active / Highlight states target Stylix Selection Colors */
-          #workspaces button.active {
+            #workspaces button:hover {
             color: @theme_selected_bg_color;
-            border-radius: 12px;          /* Slightly tighter radius for a cleaner pill */
-            min-width: 24px;              /* Reduced from 50px to let it shrink to a natural size */
-            padding: 0px 8px;             /* Tighter padding so the pill hugs the text/icon */
-            margin: 4px 2px;              /* Subtle spacing between pills */
-            transition: all 0.3s ease-in-out;
-          }
+            border-radius: 16px;
+            min-width: 50px;
+            background-size: 300% 300%;
+            }
 
-          #workspaces button.urgent {
-            color: #ff5555;
-          }
+            #battery.critical:not(.charging) {
+              background-color: #ff5555;
+              color: @theme_base_color;
+            }
 
-          #workspaces button:hover {
-          color: @theme_selected_bg_color;
-          border-radius: 16px;
-          min-width: 50px;
-          background-size: 300% 300%;
-          }
-
-          #battery.critical:not(.charging) {
-            background-color: #ff5555;
-            color: @theme_base_color;
-          }
-
-          tooltip {
-            background-color: @theme_base_color;
-            border: 1px solid @theme_selected_bg_color;
-          }
-          tooltip label {
-            color: @theme_text_color;
-          }
-          #custom-window-name {
-            border-radius: 30px;
-            padding: 0px 0px 0px 5px;;
-            min-width: 80px;
-            background: transparent;
-          }
-          #custom-power {
-            padding-left: 5px;
-            padding-right: 5px;
-          }
-          #bluetooth {
-            font-size: 15px;
-            padding-left: 5px;
-            padding-right: 5px;
-          }
-          #custom-notification {
-            padding-left: 5px;
-            padding-right: 5px;
-          }
+            tooltip {
+              background-color: @theme_base_color;
+              border: 1px solid @theme_selected_bg_color;
+            }
+            tooltip label {
+              color: @theme_text_color;
+            }
+            #custom-window-name {
+              border-radius: 30px;
+              padding: 0px 0px 0px 5px;;
+              min-width: 80px;
+              background: transparent;
+            }
+            #custom-power {
+              padding-left: 5px;
+              padding-right: 5px;
+            }
+            #bluetooth {
+              font-size: 15px;
+              padding-left: 5px;
+              padding-right: 5px;
+            }
+            #custom-notification {
+              padding-left: 5px;
+              padding-right: 5px;
+            }
         '';
       };
     })
