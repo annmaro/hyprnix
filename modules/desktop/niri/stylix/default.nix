@@ -69,10 +69,11 @@
             convert -size 1x1 xc:#000000 $out
           '';
 
-          iconTheme = {
+          icons = {
             enable = true;
             package = pkgs.gruvbox-plus-icons;
-            name = "Gruvbox-Plus-Dark";
+            dark = "Gruvbox-Plus-Dark";
+            light = "Gruvbox-Plus-Dark"; # Or your preferred fallback light layout
           };
 
           fonts = {
