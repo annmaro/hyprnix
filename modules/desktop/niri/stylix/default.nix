@@ -13,6 +13,7 @@
       {
         imports = [
           inputs.stylix.homeManagerModules.stylix
+          inputs.niri.homeModules.stylix
         ];
 
         stylix = {
