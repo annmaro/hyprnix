@@ -2,7 +2,7 @@
   description = "My NixOS niri flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     niri.url = "github:sodiboo/niri-flake";
@@ -11,22 +11,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dms = {
-    url = "github:AvengeMedia/DankMaterialShell/stable";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +45,7 @@
     cursor = {
       url = "github:omarcresp/cursor-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
 
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
@@ -136,4 +136,3 @@
       };
     };
 }
-
