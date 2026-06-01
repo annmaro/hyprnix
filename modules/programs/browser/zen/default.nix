@@ -6,6 +6,7 @@
   config,
   ...
 }: # Sourced config into root scope
+{
   home-manager.sharedModules = [
     (
       { config, ... }:
