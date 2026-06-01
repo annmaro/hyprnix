@@ -12,7 +12,7 @@
       { config, ... }:
       {
         imports = [
-          inputs.stylix.homeManagerModules.stylix
+          inputs.stylix.homeModules.stylix
           inputs.niri.homeModules.stylix
         ];
 
