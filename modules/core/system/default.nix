@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix)
+  inherit (import "${self}/hosts/${host}/variables.nix")
     consoleKeymap
     kbdLayout
     kbdVariant

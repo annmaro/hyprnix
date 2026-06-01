@@ -1,6 +1,6 @@
-{ host, pkgs, ... }:
+{ self, host, pkgs, ... }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix) hostname;
+  inherit (import "${self}/hosts/${host}/variables.nix") hostname;
 in
 {
   networking = {

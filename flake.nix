@@ -89,12 +89,12 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-      installerPkg = import ./installer.nix { inherit pkgs; }; # this is so that we can use installer.nix as a module
+      installerPkg = import ./installer.nix { inherit self pkgs; }; # this is so that we can use installer.nix as a module
       mkHost =
         host:
         let
           # 1. Import your list of overlays for this specific host
-          hostOverlays = import ./overlays { inherit inputs host; };
+          hostOverlays = import ./overlays { inherit self inputs host; };
         in
         nixpkgs.lib.nixosSystem {
           inherit system;

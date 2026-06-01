@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ self, lib, ... }:
 let
-  extensions = import ../extensions.nix { inherit lib; };
+  extensions = import (self + "/modules/programs/browser/extensions.nix") { inherit lib; };
 in
 {
   AllowFileSelectionDialogs = true;

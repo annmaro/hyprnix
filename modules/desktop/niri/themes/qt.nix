@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 
 let
   # Using the standardized Gruvbox theme definition
-  amoledTheme = import ../dms/dms_theme.nix { inherit pkgs; };
+  amoledTheme = import (self + "/modules/desktop/niri/dms/dms_theme.nix") { inherit pkgs; };
   bg = (builtins.elemAt amoledTheme.variants.flavors 0).dark.background;
   accent = (builtins.elemAt amoledTheme.variants.accents 11).black.primary;
 in

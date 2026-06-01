@@ -1,12 +1,13 @@
 
 {
+  self,
   pkgs,
   inputs,
   host,
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix)
+  inherit (import "${self}/hosts/${host}/variables.nix")
     username
     editor
     terminal

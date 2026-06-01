@@ -1,11 +1,11 @@
-{ host, inputs, ... }:
+{ self, host, inputs, ... }:
 let
-  inherit (import ../hosts/${host}/variables.nix) sddmTheme;
+  inherit (import "${self}/hosts/${host}/variables.nix") sddmTheme;
 in
 {
   additions =
     final: _prev:
-    import ../pkgs {
+    import (self + "/pkgs") {
       pkgs = final;
       inherit host;
     };

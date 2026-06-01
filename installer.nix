@@ -1,4 +1,4 @@
-{ pkgs }:
+{ self, pkgs }:
 
 pkgs.writeShellScriptBin "installer" ''
   set -e
@@ -10,17 +10,17 @@ pkgs.writeShellScriptBin "installer" ''
   BLUE='\033[0;34m'
   NC='\033[0m'
 
-  info() { echo -e "\n\${GREEN}$1\${NC}"; }
-  warn() { echo -e "\${YELLOW}$1\${NC}"; }
-  error() { echo -e "\${RED}Error: $1\${NC}" >&2; }
+  info() { echo -e "\n''${GREEN}$1''${NC}"; }
+  warn() { echo -e "''${YELLOW}$1''${NC}"; }
+  error() { echo -e "''${RED}Error: $1''${NC}" >&2; }
 
-  echo -e "\${BLUE}=====================================================\${NC}"
-  echo -e "\${BLUE}    Welcome to the Unified NixOS Flake Installer     \${NC}"
-  echo -e "\${BLUE}=====================================================\${NC}"
+  echo -e "''${BLUE}=====================================================''${NC}"
+  echo -e "''${BLUE}    Welcome to the Unified NixOS Flake Installer     ''${NC}"
+  echo -e "''${BLUE}=====================================================''${NC}"
 
   # 1. Determine Environment
   IS_LIVE_ISO=false
-  if [ -d "/iso" ] || [ "$(${pkgs.findmnt}/bin/findmnt -o FSTYPE -n /)" = "tmpfs" ]; then
+  if [ -d "/iso" ] || [ "$(${pkgs.util-linux}/bin/findmnt -o FSTYPE -n /)" = "tmpfs" ]; then
       IS_LIVE_ISO=true
       info "Environment Detected: NixOS Live ISO Installation"
   else
@@ -61,14 +61,14 @@ pkgs.writeShellScriptBin "installer" ''
   # Username prompt
   while true; do
       read -rp "Enter desired username [default: $currentUser]: " username
-      username=\${username:-$currentUser}
+      username=''${username:-$currentUser}
       if [[ "$username" =~ ^[a-z_][a-z0-9_-]*$ ]]; then break; fi
       error "Invalid username format. Use lowercase letters, numbers, underscores, or hyphens."
   done
 
   # Hostname prompt
   read -rp "Enter desired system hostname [default: nixos]: " hostname
-  hostname=\${hostname:-nixos}
+  hostname=''${hostname:-nixos}
 
   # Password prompt
   while true; do
@@ -121,12 +121,12 @@ pkgs.writeShellScriptBin "installer" ''
 
           while true; do
               read -rp "Enter the exact disk name to WIPE (e.g., sda, nvme0n1): " disk
-              disk=\${disk#/dev/}
+              disk=''${disk#/dev/}
               if [ -b "/dev/$disk" ]; then break; fi
               error "Invalid block device. Please choose a valid disk."
           done
 
-          echo -e "\n\${RED}!!! CRITICAL WARNING !!!\${NC}"
+          echo -e "\n''${RED}!!! CRITICAL WARNING !!!''${NC}"
           warn "EVERYTHING on /dev/$disk will be PERMANENTLY DESTROYED."
           read -rp "To confirm, type 'READY' (case-sensitive): " critical_confirm
           if [ "$critical_confirm" != "READY" ]; then error "Aborting."; exit 1; fi
@@ -152,7 +152,7 @@ pkgs.writeShellScriptBin "installer" ''
               error "Invalid partition device."
           done
 
-          echo -e "\n\${YELLOW}Formatting selected partitions...\${NC}"
+          echo -e "\n''${YELLOW}Formatting selected partitions...''${NC}"
           # Format Boot as VFAT
           mkfs.vfat -F 32 -n "BOOT" "$custom_efi"
           # Format Root as Btrfs
@@ -174,7 +174,7 @@ pkgs.writeShellScriptBin "installer" ''
 
       elif [ "$install_mode" = "3" ]; then
           # --- OPTION 3: YOUR PERSONAL QUICK-DEFAULT ---
-          echo -e "\n\${YELLOW}Running safe re-installation on default partitions (/dev/sda1 & /dev/sda2)...\${NC}"
+          echo -e "\n''${YELLOW}Running safe re-installation on default partitions (/dev/sda1 & /dev/sda2)...''${NC}"
           echo -e "--------------------------------------------------------"
           lsblk "/dev/sda"
           echo -e "--------------------------------------------------------"
@@ -196,7 +196,7 @@ pkgs.writeShellScriptBin "installer" ''
       # Inject Disko config import dynamically if Option 1 or Option 3 was chosen
       if [ "$install_mode" = "1" ] || [ "$install_mode" = "3" ]; then
           info "Injecting Disko configuration into host imports..."
-          host=\${host:-default}
+          host=''${host:-default}
           if [ -f "/mnt/etc/nixos/hosts/\$host/configuration.nix" ]; then
               sed -i '/imports = \[/a \    ../../disko-config.nix' "/mnt/etc/nixos/hosts/\$host/configuration.nix"
           elif [ -f "/mnt/etc/nixos/hosts/default/configuration.nix" ]; then
@@ -228,7 +228,7 @@ pkgs.writeShellScriptBin "installer" ''
       # Resolve safe POSIX namespace permissions targeting user account profile context
       uid=$(awk -F: -v user="$username" '$1 == user {print $3}' /mnt/etc/passwd)
       gid=$(awk -F: -v user="$username" '$1 == user {print $4}' /mnt/etc/passwd)
-      chown -R "\${uid:-$username}\${gid:-:users}" "/mnt/home/$username"
+      chown -R "''${uid:-$username}''${gid:-:users}" "/mnt/home/$username"
 
       info "Installation complete! Please unmount or reboot safely to explore your system."
 
@@ -247,7 +247,7 @@ pkgs.writeShellScriptBin "installer" ''
           ~/.config/gtk-*
           ~/.config/cava
       )
-      for file in "\${paths[@]}"; do
+      for file in "''${paths[@]}"; do
           for expanded in $file; do
               if [ -e "$expanded" ] && [ ! -L "$expanded" ]; then sudo rm -rf "$expanded"; fi
           done
@@ -273,10 +273,10 @@ pkgs.writeShellScriptBin "installer" ''
   fi
 
   # 5. Shared Informational Output for Post-Installation Configuration Tasks
-  echo -e "\n\${YELLOW}======================================================\${NC}"
-  echo -e "\${YELLOW}IMPORTANT POST-INSTALL NOTICE:\${NC}"
+  echo -e "\n''${YELLOW}======================================================''${NC}"
+  echo -e "''${YELLOW}IMPORTANT POST-INSTALL NOTICE:''${NC}"
   echo -e "The installation script has completed successfully."
   echo -e "Private sops configs, Git sign keys, and rclone connections were skipped."
   echo -e "You can configure your custom secrets setup manually at your leisure."
-  echo -e "\${YELLOW}======================================================\${NC}\n"
+  echo -e "''${YELLOW}======================================================''${NC}\n"
 ''

@@ -1,13 +1,14 @@
 # This file is for those who want to add more users to their system. By default, the configuration creates a user named "anand" with sudo privileges. If you want to add more users, simply add their usernames to the `allowed-users` list and define their attributes in the `home-manager.users` and `users.users` sections.
 
 {
+  self,
   pkgs,
   inputs,
   host,
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix)
+  inherit (import "${self}/hosts/${host}/variables.nix")
     username
     editor
     terminal

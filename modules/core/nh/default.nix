@@ -1,6 +1,6 @@
-{ host, pkgs, ... }:
+{ self, host, pkgs, ... }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix) username;
+  inherit (import "${self}/hosts/${host}/variables.nix") username;
 in
 {
   programs.nh = {

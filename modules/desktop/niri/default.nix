@@ -1,4 +1,5 @@
 {
+  self,
   host,
   inputs,
   config,
@@ -8,7 +9,7 @@
 }:
 let
   inherit (lib) getExe;
-  inherit (import ../../../hosts/${host}/variables.nix)
+  inherit (import "${self}/hosts/${host}/variables.nix")
     bar
     browser
     terminal

@@ -1,5 +1,5 @@
 # My NixOS Config
-{lib, ...}: let
+{self, lib, ...}: let
   vars = import ./variables.nix;
 in {
   imports =
@@ -8,57 +8,57 @@ in {
       ./host-packages.nix
 
       # Core Modules (Don't change unless you know what you're doing)
-      ../../modules/core/boot
-      ../../modules/core/bash
-      ../../modules/core/zsh
-      ../../modules/core/games
-      ../../modules/core/starship
-      ../../modules/core/fonts
-      ../../modules/core/hardware
-      ../../modules/core/memory
-      ../../modules/core/network
-      ../../modules/core/nh
-      ../../modules/core/packages
-      ../../modules/core/printing
-      ../../modules/core/sddm
-      ../../modules/core/security
-      ../../modules/core/services
-      ../../modules/core/git-sops
-      ../../modules/core/syncthing
-      ../../modules/core/system
-      ../../modules/core/users
-      ../../modules/core/flatpak
-      ../../modules/core/xdg
-      # ../../modules/core/virtualisation.nix
-      # ../../modules/core/dlna.nix
+      "${self}/modules/core/boot"
+      "${self}/modules/core/bash"
+      "${self}/modules/core/zsh"
+      "${self}/modules/core/games"
+      "${self}/modules/core/starship"
+      "${self}/modules/core/fonts"
+      "${self}/modules/core/hardware"
+      "${self}/modules/core/memory"
+      "${self}/modules/core/network"
+      "${self}/modules/core/nh"
+      "${self}/modules/core/packages"
+      "${self}/modules/core/printing"
+      "${self}/modules/core/sddm"
+      "${self}/modules/core/security"
+      "${self}/modules/core/services"
+      "${self}/modules/core/git-sops"
+      "${self}/modules/core/syncthing"
+      "${self}/modules/core/system"
+      "${self}/modules/core/users"
+      "${self}/modules/core/flatpak"
+      "${self}/modules/core/xdg"
+      # "${self}/modules/core/virtualisation.nix"
+      # "${self}/modules/core/dlna.nix"
 
       # Optional
-      #../../modules/hardware/drives # Auto-mounts the internal/external drives
-      ../../modules/hardware/video/${vars.videoDriver}.nix # Enable gpu drivers defined in variables.nix
-      ../../modules/desktop/${vars.desktop} # Set window manager defined in variables.nix
-      ../../modules/programs/browser/${vars.browser} # Set browser defined in variables.nix
-      ../../modules/programs/terminal/${vars.terminal} # Set terminal defined in variables.nix
-      ../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix
-      ../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix
-      ../../modules/programs/editor/vscode
-      ../../modules/programs/editor/antigravity
-      #../../modules/programs/editor/cursor
-      ../../modules/programs/browser/zen
-      ../../modules/programs/cli/direnv
-      ../../modules/programs/terminal/fastfetch
-      ../../modules/programs/misc/cpufreq
-      #../../modules/programs/cli/cava
-      ../../modules/programs/cli/btop
-      # ../../modules/programs/media/discord
-      ../../modules/programs/media/spicetify
-      # ../../modules/programs/media/youtube-music
-      # ../../modules/programs/media/thunderbird
-      # ../../modules/programs/media/obs-studio
-      ../../modules/programs/media/mpv
-      ../../modules/programs/media/rclone
-      ../../modules/programs/misc/tlp
-      ../../modules/programs/misc/thunar
-      ../../modules/programs/misc/lact # GPU fan, clock and power configuration
+      #"${self}/modules/hardware/drives" # Auto-mounts the internal/external drives
+      "${self}/modules/hardware/video/${vars.videoDriver}.nix" # Enable gpu drivers defined in variables.nix
+      "${self}/modules/desktop/${vars.desktop}" # Set window manager defined in variables.nix
+      "${self}/modules/programs/browser/${vars.browser}" # Set browser defined in variables.nix
+      "${self}/modules/programs/terminal/${vars.terminal}" # Set terminal defined in variables.nix
+      "${self}/modules/programs/editor/${vars.editor}" # Set editor defined in variables.nix
+      "${self}/modules/programs/cli/${vars.tuiFileManager}" # Set file-manager defined in variables.nix
+      "${self}/modules/programs/editor/vscode"
+      "${self}/modules/programs/editor/antigravity"
+      #"${self}/modules/programs/editor/cursor"
+      "${self}/modules/programs/browser/zen"
+      "${self}/modules/programs/cli/direnv"
+      "${self}/modules/programs/terminal/fastfetch"
+      "${self}/modules/programs/misc/cpufreq"
+      #"${self}/modules/programs/cli/cava"
+      "${self}/modules/programs/cli/btop"
+      # "${self}/modules/programs/media/discord"
+      "${self}/modules/programs/media/spicetify"
+      # "${self}/modules/programs/media/youtube-music"
+      # "${self}/modules/programs/media/thunderbird"
+      # "${self}/modules/programs/media/obs-studio"
+      "${self}/modules/programs/media/mpv"
+      "${self}/modules/programs/media/rclone"
+      "${self}/modules/programs/misc/tlp"
+      "${self}/modules/programs/misc/thunar"
+      "${self}/modules/programs/misc/lact" # GPU fan, clock and power configuration
     ]
-    ++ lib.optional (vars.games == true) ../../modules/core/games;
+    ++ lib.optional (vars.games == true) "${self}/modules/core/games";
 }

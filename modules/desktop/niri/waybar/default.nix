@@ -1,9 +1,9 @@
-{ host, pkgs, ... }:
+{ self, host, pkgs, ... }:
 let
-  inherit (import ../../../../../hosts/${host}/variables.nix) clock24h;
-  gpuinfo = pkgs.callPackage ../../scripts/gpuinfo.nix { };
-  window_name = pkgs.callPackage ../../scripts/window_name.nix { };
-  keyboardswitch = pkgs.callPackage ../../scripts/keyboardswitch.nix { };
+  inherit (import "${self}/hosts/${host}/variables.nix") clock24h;
+  gpuinfo = pkgs.callPackage (self + "/modules/desktop/niri/scripts/gpuinfo.nix") { };
+  window_name = pkgs.callPackage (self + "/modules/desktop/niri/scripts/window_name.nix") { };
+  keyboardswitch = pkgs.callPackage (self + "/modules/desktop/niri/scripts/keyboardswitch.nix") { };
 in
 {
   home-manager.sharedModules = [
@@ -164,7 +164,7 @@ in
 
             /*
               "custom/weather" = {
-                exec = "${../../scripts/weather.sh}";
+                exec = "${self + "/modules/desktop/niri/scripts/weather.sh"}";
                 restart-interval = 600;
                 return-type = "json";
               };

@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   lib,
   pkgs,
@@ -12,7 +13,7 @@ in
     (_: {
       programs.firefox = {
         enable = true;
-        policies = import ./policies.nix { inherit lib; };
+        policies = import ./policies.nix { inherit self lib; };
         languagePacks = [
           "en-GB"
           "en-US"
@@ -23,9 +24,9 @@ in
             id = 0; # 0 is the default profile; see also option "isDefault"
             name = "default"; # name as listed in about:profiles
             isDefault = true; # can be omitted; true if profile ID is 0
-            settings = import ./settings.nix { inherit lib; };
-            bookmarks = import ../bookmarks.nix;
-            search = import ./search.nix { inherit pkgs; };
+            settings = import ./settings.nix { inherit self lib; };
+            bookmarks = import (self + "/modules/programs/browser/bookmarks.nix");
+            search = import ./search.nix { inherit self pkgs; };
             userChrome = theme.userChrome;
             userContent = theme.userContent;
             extraConfig = ''
