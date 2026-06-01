@@ -71,7 +71,7 @@ in
   systemd.user.services.lxqt-policykit-agent = {
     Description = "LXQt Polkit Authentication Agent";
     Wants = [ "graphical-session.target" ];
-    After = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
