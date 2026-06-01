@@ -18,7 +18,7 @@
 
         programs.zen-browser = {
           enable = true;
-          policies = import ./policies.nix { inherit self lib; };
+          policies = import ./policies.nix { inherit self lib config; };
           languagePacks = [
             "en-GB"
             "en-US"
@@ -28,7 +28,7 @@
               id = 0;
               name = "default";
               isDefault = true;
-              settings = import ./settings.nix { inherit self lib; };
+              settings = import ./settings.nix { inherit self lib config; };
               bookmarks = import (self + "/modules/programs/browser/bookmarks.nix");
               search = import ./search.nix { inherit self pkgs; };
               userChrome = theme.userChrome;

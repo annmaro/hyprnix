@@ -1,4 +1,4 @@
-{ self, lib, ... }:
+{ self, lib, config, ... }:
 let
   lock-false = {
     Value = false;
@@ -8,7 +8,7 @@ let
     Value = true;
     Status = "locked";
   };
-  extensions = import (self + "/modules/programs/browser/extensions.nix") { inherit lib; };
+  extensions = import (self + "/modules/programs/browser/extensions.nix") { inherit lib config; };
 in
 {
   # enable custom userchrome
