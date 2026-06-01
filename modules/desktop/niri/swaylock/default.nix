@@ -26,15 +26,17 @@
         };
 
         # 2. Configure Swayidle (Idling daemon for Niri)
+        # 2. Configure Swayidle (Idling daemon for Niri)
         services.swayidle = {
           enable = true;
-          events = [
-            # Lock the screen before the system goes to sleep
-            {
-              event = "before-sleep";
+
+          # Updated syntax: events is now an attrset keyed by the event name
+          events = {
+            before-sleep = {
               command = "${pkgs.swaylock-effects}/bin/swaylock -f";
-            }
-          ];
+            };
+          };
+
           timeouts = [
             # Timeout 1: Lock the screen after 5 minutes of inactivity
             {

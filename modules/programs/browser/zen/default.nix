@@ -3,13 +3,13 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
-}:
+}: # Sourced config into root scope
 let
-  theme = import ./usertheme.nix { };
+  theme = import ./usertheme.nix { inherit config; }; # Passed config context forward
 in
 {
-  # environment.systemPackages = with pkgs; [inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default];
   home-manager.sharedModules = [
     (_: {
       imports = [ inputs.zen-browser.homeModules.beta ];
@@ -23,9 +23,9 @@ in
         ];
         profiles = {
           default = {
-            id = 0; # 0 is the default profile; see also option "isDefault"
-            name = "default"; # name as listed in about:profiles
-            isDefault = true; # can be omitted; true if profile ID is 0
+            id = 0;
+            name = "default";
+            isDefault = true;
             settings = import ./settings.nix { inherit self lib; };
             bookmarks = import (self + "/modules/programs/browser/bookmarks.nix");
             search = import ./search.nix { inherit self pkgs; };
