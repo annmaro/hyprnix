@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   nav-bar = [
     "_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action"
