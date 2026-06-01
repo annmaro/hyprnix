@@ -258,14 +258,14 @@ in
           window-rule {
               match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
               open-maximized-to-edges true
-              draw-border-with-background true
+              draw-border-with-background false
               opacity 1.0
            }
 
           window-rule {
               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
               opacity 0.80
-              draw-border-with-background true
+              draw-border-with-background false
               background-effect {
                    blur true
                    xray false
@@ -275,7 +275,7 @@ in
           window-rule {
               match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|spotify|com.github.th_ch.youtube_music)$"
               opacity 0.80
-              draw-border-with-background true
+              draw-border-with-background false
               background-effect {
                    blur true
                    xray false
@@ -285,7 +285,7 @@ in
           window-rule {
               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
               opacity 0.90
-              draw-border-with-background true
+              draw-border-with-background false
               background-effect {
                    blur true
                    xray false
