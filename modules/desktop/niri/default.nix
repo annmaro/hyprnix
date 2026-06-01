@@ -59,6 +59,7 @@ in
     thunar-volman # Necessary if you use Thunar for drive popups
     gnome-disk-utility # Gives you a clean GUI to verify physical blocks
     wlsunset # Day/night gamma adjustments for Wayland
+    waypaper # Wayland background setter, used here to manage wallpaper cycles with awww
   ];
 
   # Niri binary cache settings to prevent local compilation
@@ -68,15 +69,10 @@ in
   };
 
   systemd.user.services.lxqt-policykit-agent = {
-    Unit = {
-      Description = "LXQt Polkit Authentication Agent";
-      Wants = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
+    Description = "LXQt Polkit Authentication Agent";
+    Wants = [ "graphical-session.target" ];
+    After = [ "graphical-session.target" ];
+    serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
       Restart = "on-failure";
