@@ -253,11 +253,22 @@ in
           /* Active / Highlight states target Stylix Selection Colors */
           #workspaces button.active {
             color: @theme_selected_bg_color;
+            border-radius: 16px;
+            min-width: 50px;
+            background-size: 300% 300%;
+            transition: all 0.3s ease-in-out;
             font-weight: bold;
           }
 
           #workspaces button.urgent {
             color: #ff5555;
+          }
+
+          #workspaces button:hover {
+          color: @theme_selected_bg_color;
+          border-radius: 16px;
+          min-width: 50px;
+          background-size: 300% 300%;
           }
 
           #battery.critical:not(.charging) {
@@ -271,6 +282,10 @@ in
           }
           tooltip label {
             color: @theme_text_color;
+          }
+          #custom-power {
+            padding-left: 5px;
+            padding-right: 5px;
           }
         '';
       };
