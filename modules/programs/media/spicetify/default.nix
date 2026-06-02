@@ -9,7 +9,8 @@
     (
       { pkgs, ... }:
       let
-        spicePkgs = import inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system}.path {
+        # Import spicetify-nix's pin of nixpkgs and inject the allowUnfree config
+        spicePkgs = import inputs.spicetify-nix.inputs.nixpkgs {
           inherit (pkgs) system;
           config = {
             allowUnfree = true;
@@ -23,7 +24,7 @@
         # configure spicetify :)
         programs.spicetify = {
           enable = true;
-          theme = spicePkgs.themes.onepunch;
+          theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.onepunch;
           colorScheme = "dark";
           # windowManagerPatch = config.programs.hyprland.enable;
           enabledExtensions = with spicePkgs.extensions; [
