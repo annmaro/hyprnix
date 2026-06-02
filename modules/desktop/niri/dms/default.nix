@@ -27,7 +27,7 @@
             surface = bg;
             onBackground = fg;
             onSurface = fg;
-            primary = accent; # Toggles, active sliders, primary states
+            primary = accentColor; # Toggles, active sliders, primary states
             secondary = surfaceMuted;
           };
         };
