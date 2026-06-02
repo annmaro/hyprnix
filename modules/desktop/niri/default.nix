@@ -114,6 +114,10 @@ in
           // 🖼️ Initialize your awww + waypaper background cycle right away
           spawn-at-startup "${getExe wallpaper}"
 
+          // ADD THESE LINES TO ACTUALLY LAUNCH DANK MATERIAL SHELL
+          spawn-at-startup "dms"
+
+
 
           // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
           input {
