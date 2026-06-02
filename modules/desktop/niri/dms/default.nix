@@ -95,8 +95,20 @@
         xdg.configFile."DankMaterialShell/nix.png".source = ./nix.png; # Symlink the local nix.png into the expected path in the home directory for DMS to use as the profile image
 
         # =====================================================================
-        # 🎨 SETTINGS.JSON CONFIGURATION
+        # 🎨 SETTINGS.JSON & SESSION STATE CONFIGURATION
         # =====================================================================
+        
+        home.activation.dmsWeather = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+          SESSION_FILE="$HOME/.local/state/DankMaterialShell/session.json"
+          if [ -f "$SESSION_FILE" ] && [ ! -L "$SESSION_FILE" ]; then
+            $DRY_RUN_CMD ${pkgs.jq}/bin/jq '.weatherLocation = "Ramgarh, Jharkhand, India" | .weatherCoordinates = "23.5987759,85.5369156"' "$SESSION_FILE" > "$SESSION_FILE.tmp" && \
+            $DRY_RUN_CMD mv "$SESSION_FILE.tmp" "$SESSION_FILE"
+          elif [ ! -f "$SESSION_FILE" ]; then
+            $DRY_RUN_CMD mkdir -p "$HOME/.local/state/DankMaterialShell"
+            $DRY_RUN_CMD echo '{"weatherLocation": "Ramgarh, Jharkhand, India", "weatherCoordinates": "23.5987759,85.5369156"}' > "$SESSION_FILE"
+          fi
+        '';
+
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
           configVersion = 6;
           screenPreferences = {
@@ -138,11 +150,6 @@
           systemTrayIconTintSaturation = 40; # Increase saturation of tinted system tray icons to make them pop against the background. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
           systemTrayIconTintStrength = 150; # Increase tint strength for system tray icons to create a more pronounced effect and better integration with the overall theme. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
 
-          weatherEnabled = true;
-          weatherLocation = "Ramgarh, Jharkhand, India";
-          weatherCoordinates = "23.5987759,85.5369156";
-          useFahrenheit = false;
-          useLocation = false; # Set to true to allow DMS to auto-detect location for weather. If false, it will use the specified location above.
 
           barConfigs = [
             {
