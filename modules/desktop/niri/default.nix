@@ -190,10 +190,7 @@ in
                place-within-backdrop true
               }
 
-            layer-rule {
-               match namespace="awww-daemon:blurwallpaper"   
-               place-within-backdrop true
-              }  
+             
 
           overview {
                workspace-shadow { 
