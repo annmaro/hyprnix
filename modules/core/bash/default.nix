@@ -22,7 +22,7 @@
           # bashrcExtra = ''
           #   export TERM="xterm-256color" # Get correct colour
           # '';
-         # export PATH = "~/nixos-config/modules/desktop/hyprland/scripts/weather.py:$PATH";
+          # export PATH = "~/nixos-config/modules/desktop/hyprland/scripts/weather.py:$PATH";
 
           shellOptions = [
             "autocd" # change to named directory
@@ -38,7 +38,7 @@
               --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
               --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
               --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'';
-              # Add this line to read the decrypted SOPS secret file dynamically
+            # Add this line to read the decrypted SOPS secret file dynamically
             GEMINI_API_KEY = "$(cat /run/user/1000/secrets/gemini_api_key 2>/dev/null || cat /run/secrets/gemini_api_key 2>/dev/null || echo '')";
           };
           shellAliases = {
@@ -100,7 +100,6 @@
             tpr = "${pkgs.trash-cli}/bin/trash-restore";
             grep = "grep --color=always";
             pokemon = "pokego --random 1-8 --no-title";
-           
 
             # Nixos
             list-gens = "nixos-rebuild list-generations";
@@ -111,6 +110,7 @@
             nhu = "nh os switch --hostname default";
             da = "sudo nixos-rebuild dry-activate --flake .#default";
             dr = "nixos-rebuild dry-run --flake .#default";
+            ncb = "sudo nix-collect-garbage -d";
             ncg = "sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
 
             # Directory Shortcuts.

@@ -64,7 +64,7 @@
             --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
             --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
             --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
-            
+
           '';
           shellGlobalAliases = {
             UUID = "$(uuidgen | tr -d \\n)";
@@ -129,7 +129,6 @@
             tpr = "${pkgs.trash-cli}/bin/trash-restore";
             grep = "grep --color=always";
             pokemon = "pokego --random 1-8 --no-title";
-            
 
             # Nixos
             list-gens = "nixos-rebuild list-generations";
@@ -142,6 +141,7 @@
             nrb = "nh os boot --hostname default";
             da = "sudo nixos-rebuild dry-activate --flake .#default";
             dr = "nixos-rebuild dry-run --flake .#default";
+            ncb = "sudo nix-collect-garbage -d";
             ncg = "sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
             # The ultimate one-word vault editing command
             vault-edit = "SOPS_AGE_KEY_FILE=\$HOME/.config/sops/age/keys.txt ${pkgs.sops}/bin/sops \$HOME/my-nixos-flake/secrets/secrets.yaml";
