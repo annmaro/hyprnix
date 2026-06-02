@@ -24,9 +24,9 @@
             # True AMOLED black for the deep background layers
             background = "#000000";
             # Dropdown panels, card backdrops, and widget canvases use the Stylix scheme
-            surface = bg;
-            onBackground = fg;
-            onSurface = fg;
+            surface = bgColor;
+            onBackground = fgColor;
+            onSurface = fgColor;
             primary = accentColor; # Toggles, active sliders, primary states
             secondary = surfaceMuted;
           };
