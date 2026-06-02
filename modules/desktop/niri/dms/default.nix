@@ -17,18 +17,48 @@
         accentColor = "#${config.lib.stylix.colors.base0D}"; # Primary Accent
         surfaceMuted = "#${config.lib.stylix.colors.base03}";
 
-        # Define the amoledBlackTheme structure here using Stylix tokens
         amoledBlackTheme = {
-          theme = {
-            name = "custom";
-            # True AMOLED black for the deep background layers
+          dark = {
             background = "#000000";
-            # Dropdown panels, card backdrops, and widget canvases use the Stylix scheme
-            surface = bgColor;
-            onBackground = fgColor;
-            onSurface = fgColor;
-            primary = accentColor; # Toggles, active sliders, primary states
+            backgroundText = fgColor;
+            error = "#dd0000";
+            info = "#03fcc6";
+            name = "AmoledBlack";
+            outline = "#555555";
+            primary = accentColor;
+            primaryContainer = "#03fcc6";
+            primaryText = "#000000";
             secondary = surfaceMuted;
+            surface = bgColor;
+            surfaceContainer = bgColor;
+            surfaceContainerHigh = "#222222";
+            surfaceContainerHighest = "#555555";
+            surfaceText = fgColor;
+            surfaceTint = accentColor;
+            surfaceVariant = "#222222";
+            surfaceVariantText = "#bbbbbb";
+            warning = accentColor;
+          };
+          light = {
+            background = "#000000";
+            backgroundText = fgColor;
+            error = "#dd0000";
+            info = "#03fcc6";
+            name = "AmoledBlack";
+            outline = "#555555";
+            primary = accentColor;
+            primaryContainer = "#03fcc6";
+            primaryText = "#000000";
+            secondary = surfaceMuted;
+            surface = bgColor;
+            surfaceContainer = bgColor;
+            surfaceContainerHigh = "#222222";
+            surfaceContainerHighest = "#555555";
+            surfaceText = fgColor;
+            surfaceTint = accentColor;
+            surfaceVariant = "#222222";
+            surfaceVariantText = "#bbbbbb";
+            warning = accentColor;
           };
         };
       in
@@ -84,6 +114,9 @@
           dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
           currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
           customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, which is generated dynamically from your Stylix palette. Make sure this path matches where your theme file is generated and stored.
+
+          fontFamily = config.stylix.fonts.sansSerif.name;
+          monoFontFamily = config.stylix.fonts.monospace.name;
 
           profileImage = "${config.home.homeDirectory}/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
           launcherLogoMode = "os"; # Set to "os" to display your custom NixOS system logo (SystemLogo.qml) inside the launcher button
