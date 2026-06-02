@@ -4,17 +4,22 @@
   ...
 }:
 {
-
   home-manager.sharedModules = [
     (
       { pkgs, ... }:
       let
-        # Import spicetify-nix's pin of nixpkgs and inject the allowUnfree config
-        spicePkgs = import inputs.spicetify-nix.inputs.nixpkgs {
+        # 1. Create a custom pkgs instance that explicitly allows unfree packages
+        unfreePkgs = import inputs.nixpkgs {
           inherit (pkgs) system;
           config = {
             allowUnfree = true;
+            allowUnfreePredicate = _: true;
           };
+        };
+
+        # 2. Use spicetify-nix's internal builder to bind its packages to our unfreePkgs
+        spicePkgs = inputs.spicetify-nix.builders.spicetify-packages {
+          pkgs = unfreePkgs;
         };
       in
       {
@@ -24,26 +29,17 @@
         # configure spicetify :)
         programs.spicetify = {
           enable = true;
-          theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.onepunch;
+
+          # 3. Use the newly bound spicePkgs for both the theme and your extensions
+          theme = spicePkgs.themes.onepunch;
           colorScheme = "dark";
-          # windowManagerPatch = config.programs.hyprland.enable;
+
           enabledExtensions = with spicePkgs.extensions; [
             adblock
-            shuffle # shuffle+ (special characters are sanitized out of ext names)
-            keyboardShortcut # vimium-like navigation
-            copyLyrics # copy lyrics with selection
-            # autoVolume
-            # showQueueDuration
-            # fullAppDisplay
-            # hidePodcasts
+            shuffle
+            keyboardShortcut
+            copyLyrics
           ];
-          # enabledCustomApps = with spicePkgs.apps; [
-          #   reddit
-          #   lyricsPlus
-          #   marketplace
-          #   localFiles
-          #   ncsVisualizer
-          # ];
         };
       }
     )
