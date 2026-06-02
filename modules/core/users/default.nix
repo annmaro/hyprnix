@@ -42,7 +42,7 @@ in
           BROWSER = "${browser}";
           TERMINAL = "${terminal}";
         };
-        #enableNixpkgsReleaseCheck = false;
+        enableNixpkgsReleaseCheck = false;
       };
 
     };
