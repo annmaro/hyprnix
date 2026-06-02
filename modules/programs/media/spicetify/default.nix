@@ -18,6 +18,7 @@
         # configure spicetify :)
         programs.spicetify = {
           enable = true;
+          spicetifyPackage = spicePkgs.spicetify;
           theme = spicePkgs.themes.onepunch;
           colorScheme = "dark";
           # windowManagerPatch = config.programs.hyprland.enable;
