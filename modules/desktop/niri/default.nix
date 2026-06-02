@@ -190,15 +190,16 @@ in
                place-within-backdrop true
               }
 
-             
+           layer-rule {
+               match namespace="^awww-daemonoverlay$"
+               place-within-backdrop true
+              }
 
           overview {
                workspace-shadow { 
                 off
                }
            }           
-
-           
 
            layer-rule {
                match namespace="^rofi$"
