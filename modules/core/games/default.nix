@@ -4,14 +4,7 @@
   ...
 }:
 {
-  # Allow unfree packages for gaming
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
-    ];
+
 
   # Graphics Configuration
   hardware.graphics = {
