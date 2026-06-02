@@ -76,7 +76,7 @@
             notifications = true;
             idle = true;
             lockscreen = true;
-            wallpaper = true; # false to keep it managed by your separate awww/swaybg
+            wallpaper = false; # false to keep it managed by your separate awww/swaybg
             launcher = false; # Handled by your native rofi setup
             dock = false;
           };
