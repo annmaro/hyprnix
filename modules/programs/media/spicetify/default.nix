@@ -9,7 +9,12 @@
     (
       { pkgs, ... }:
       let
-        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        spicePkgs = import inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system}.path {
+          inherit (pkgs) system;
+          config = {
+            allowUnfree = true;
+          };
+        };
       in
       {
         # import the flake's module for your system
@@ -18,7 +23,6 @@
         # configure spicetify :)
         programs.spicetify = {
           enable = true;
-          spicetifyPackage = spicePkgs.spicetify;
           theme = spicePkgs.themes.onepunch;
           colorScheme = "dark";
           # windowManagerPatch = config.programs.hyprland.enable;

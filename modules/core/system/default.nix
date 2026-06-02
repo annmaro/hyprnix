@@ -104,7 +104,7 @@ in
   nixpkgs = {
     config = {
       allowUnfree = true;
-      # allowUnfreePredicate = _: true;
+      allowUnfreePredicate = _: true;
     };
   };
   system.stateVersion = "26.05"; # Do not change!
