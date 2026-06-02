@@ -4,7 +4,6 @@
   outputs,
   host,
   pkgs,
-  overlays,
   ...
 }:
 let
@@ -103,7 +102,6 @@ in
 
   console.keyMap = "${consoleKeymap}";
   nixpkgs = {
-    overlays = builtins.attrValues overlays;
     config = {
       allowUnfree = true;
       # allowUnfreePredicate = _: true;
