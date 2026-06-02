@@ -8,18 +8,13 @@
     (
       { pkgs, ... }:
       let
-        # 1. Create a custom pkgs instance that explicitly allows unfree packages
+        # 1. Grab the theme packages from the input normally
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
+        # 2. Build a local unfree package set just for pulling the core spotify binary
         unfreePkgs = import inputs.nixpkgs {
           inherit (pkgs) system;
-          config = {
-            allowUnfree = true;
-            allowUnfreePredicate = _: true;
-          };
-        };
-
-        # 2. Use spicetify-nix's internal builder to bind its packages to our unfreePkgs
-        spicePkgs = inputs.spicetify-nix.builders.spicetify-packages {
-          pkgs = unfreePkgs;
+          config.allowUnfree = true;
         };
       in
       {
@@ -30,7 +25,9 @@
         programs.spicetify = {
           enable = true;
 
-          # 3. Use the newly bound spicePkgs for both the theme and your extensions
+          # 3. Force the module to build the final client using our unfree package set
+          spicetifyPackage = spicePkgs.spicetify.override { pkgs = unfreePkgs; };
+
           theme = spicePkgs.themes.onepunch;
           colorScheme = "dark";
 
