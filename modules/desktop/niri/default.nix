@@ -21,6 +21,7 @@ let
   clipmanager = pkgs.callPackage ./scripts/clipmanager.nix { };
   fileManagerScript = pkgs.callPackage ./scripts/file-manager.nix { inherit terminal; };
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
+  wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
 in
 {
   imports = [
