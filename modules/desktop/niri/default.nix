@@ -197,13 +197,12 @@ in
            layer-rule {
                match namespace="^awww$"
                place-within-backdrop true
-               background-effect {
-                    blur true
-                    xray false
-                    noise 0.03
-                    saturation 1.25
-                }
-            }
+              }
+
+            layer-rule {
+               match namespace="^overview$"   
+               place-within-backdrop true
+              }  
 
           overview {
                workspace-shadow { 
