@@ -5,24 +5,24 @@ pkgs.writeShellApplication {
 
   # Declare exact runtime dependencies needed for your wallpaper boot cycle
   runtimeInputs = with pkgs; [
-    coreutils   # Provides 'sleep'
-    procps      # Provides 'pgrep'
-    awww        # Provides 'awww-daemon' [cite: 8]
-    waypaper    # Provides 'waypaper' [cite: 12]
+    coreutils # Provides 'sleep'
+    procps # Provides 'pgrep'
+    awww # Provides 'awww-daemon'
+    waypaper # Provides 'waypaper'
     imagemagick # Provides 'magick' for blurring
-    gnugrep     # Provides 'grep'
-    gnused      # Provides 'sed'
+    gnugrep # Provides 'grep'
+    gnused # Provides 'sed'
   ];
 
   text = ''
-    # 1. Ensure the animation backend daemon is running in the background [cite: 6]
+    # 1. Ensure the animation backend daemon is running in the background 
     if ! pgrep awww-daemon > /dev/null 2>&1; then
       awww-daemon &
       sleep 0.5
     fi
 
-    # 2. Hand off the restoration job entirely to Waypaper [cite: 12]
-    # This reads your setup inside ~/.config/waypaper/config.ini natively [cite: 4]
+    # 2. Hand off the restoration job entirely to Waypaper 
+    # This reads your setup inside ~/.config/waypaper/config.ini natively 
     waypaper --restore > /dev/null 2>&1
 
     # 3. Generate and set a blurred overview wallpaper for Niri

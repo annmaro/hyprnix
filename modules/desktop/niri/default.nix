@@ -191,7 +191,7 @@ in
               }
 
             layer-rule {
-               match namespace="^overview$"   
+               match namespace="awww-daemon:blurwallpaper"   
                place-within-backdrop true
               }  
 
