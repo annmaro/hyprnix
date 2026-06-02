@@ -69,7 +69,7 @@
         # =====================================================================
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
           configVersion = 2;
-          disableWallpaper = false; # Set true if you want to handle wallpaper through swaybg/awww
+          disableWallpaper = true; # Set true if you want to handle wallpaper through swaybg/awww
 
           modules = {
             bar = true;
