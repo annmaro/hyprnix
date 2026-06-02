@@ -15,11 +15,14 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    # 1. Ensure the animation backend daemon is running in the background 
-    if ! pgrep awww-daemon > /dev/null 2>&1; then
+    # 1. Ensure the animation backend daemons are running in the background
+    if ! pgrep -f "awww-daemon$" > /dev/null 2>&1; then
       awww-daemon &
-      sleep 0.5
     fi
+    if ! pgrep -f "awww-daemon --namespace overlay" > /dev/null 2>&1; then
+      awww-daemon --namespace overlay &
+    fi
+    sleep 0.5
 
     # 2. Hand off the restoration job entirely to Waypaper 
     # This reads your setup inside ~/.config/waypaper/config.ini natively 
