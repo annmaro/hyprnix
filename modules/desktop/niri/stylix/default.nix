@@ -66,7 +66,6 @@
               '';
             };
             qt.enable = true;
-            feh.enable = true;
             btop.enable = true;
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
@@ -86,7 +85,7 @@
             # Add any other apps here if you want to manage their themes manually:
             rofi.enable = false;
             spicetify.enable = false;
-            wallpaper.enable = false;
+            feh.enable = false;
           };
 
           # Generate a 1x1 solid black pixel on the fly as your wallpaper engine source
