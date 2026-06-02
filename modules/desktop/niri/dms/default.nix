@@ -99,7 +99,9 @@
         # =====================================================================
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
           configVersion = 6;
-          disableWallpaper = true; # Set true if you want to handle wallpaper through swaybg/awww
+          screenPreferences = {
+            wallpaper = []; # This replaces the old disableWallpaper = true flag in DMS v6
+          };
 
           modules = {
             bar = true;
