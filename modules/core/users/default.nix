@@ -45,10 +45,7 @@ in
         };
         enableNixpkgsReleaseCheck = false;
       };
-      nixpkgs = {
-        config = pkgs.lib.mkForce {};
-        overlays = pkgs.lib.mkForce null;
-      };
+
     };
   };
   users = {

@@ -54,10 +54,7 @@ let
       sessionVariables = sessionVariablesFor editorArg;
       enableNixpkgsReleaseCheck = false;
     };
-    nixpkgs = {
-      config = lib.mkForce {};
-      overlays = lib.mkForce null;
-    };
+
   };
 
   userAttrs = userName: {
