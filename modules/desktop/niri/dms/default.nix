@@ -5,16 +5,34 @@
   inputs,
   ...
 }:
-let
-  # Import the custom theme module directly into a Nix variable
-  amoledBlackTheme = import ./dms_theme.nix { inherit pkgs lib; };
-in
+
 {
   home-manager.sharedModules = [
     (
       { config, ... }:
-      {
 
+      let
+        bgColor = "#${config.lib.stylix.colors.base00}"; # Background
+        fgColor = "#${config.lib.stylix.colors.base05}"; # Default Text
+        accentColor = "#${config.lib.stylix.colors.base0D}"; # Primary Accent
+        surfaceMuted = "#${config.lib.stylix.colors.base03}";
+
+        # Define the amoledBlackTheme structure here using Stylix tokens
+        amoledBlackTheme = {
+          theme = {
+            name = "custom";
+            # True AMOLED black for the deep background layers
+            background = "#000000";
+            # Dropdown panels, card backdrops, and widget canvases use the Stylix scheme
+            surface = bg;
+            onBackground = fg;
+            onSurface = fg;
+            primary = accent; # Toggles, active sliders, primary states
+            secondary = surfaceMuted;
+          };
+        };
+      in
+      {
         imports = [
           inputs.dms.homeModules.dank-material-shell
           inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
@@ -41,7 +59,7 @@ in
         # =====================================================================
         # 🎨 AUTOMATIC THEME GENERATION
         # =====================================================================
-        # This handles writing out your theme.json using the file we imported above
+        # Nix now dynamically generates the file using your Stylix palette!
         xdg.configFile."DankMaterialShell/themes/amoledBlack/theme.json".text =
           builtins.toJSON amoledBlackTheme;
         xdg.configFile."DankMaterialShell/nix.png".source = ./nix.png; # Symlink the local nix.png into the expected path in the home directory for DMS to use as the profile image
@@ -65,7 +83,7 @@ in
 
           dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
           currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
-          customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file for consistent theming across all DMS widgets. Make sure this file exists and contains your desired color settings.
+          customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, which is generated dynamically from your Stylix palette. Make sure this path matches where your theme file is generated and stored.
 
           profileImage = "${config.home.homeDirectory}/.config/DankMaterialShell/nix.png"; # Set the path to your profile image for display in the overview and other DMS components. Make sure the image exists at this location and is in a supported format (e.g., PNG, JPEG).
           launcherLogoMode = "os"; # Set to "os" to display your custom NixOS system logo (SystemLogo.qml) inside the launcher button

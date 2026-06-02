@@ -10,7 +10,6 @@
 let
   inherit (lib) getExe;
   inherit (import "${self}/hosts/${host}/variables.nix")
-    bar
     browser
     terminal
     tuiFileManager
@@ -19,28 +18,16 @@ let
     ;
 
   # Import script modules explicitly to map them into your hotkeys
-  autoclicker = pkgs.callPackage ./scripts/autoclicker.nix { };
-  batterynotify = pkgs.callPackage ./scripts/batterynotify.nix { };
   clipmanager = pkgs.callPackage ./scripts/clipmanager.nix { };
   fileManagerScript = pkgs.callPackage ./scripts/file-manager.nix { inherit terminal; };
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
-  keyboardswitch = pkgs.callPackage ./scripts/keyboardswitch.nix { };
-  keybinds = pkgs.callPackage ./scripts/keybinds.nix { };
-  mediactrl = pkgs.callPackage ./scripts/mediactrl.nix { };
-  screen-record = pkgs.callPackage ./scripts/screen-record.nix { };
-  screenshot = pkgs.callPackage ./scripts/screenshot.nix { };
-  wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
-  zoom = pkgs.callPackage ./scripts/zoom.nix { };
 in
 {
   imports = [
-    #./dms
+    ./dms
     ./rofi
-    ./waybar
     ./stylix
     ./swaylock
-    ./swaync
-    ./wlogout
   ];
 
   # Standard core CLI/desktop utility tools
@@ -139,12 +126,6 @@ in
 
           // 🖼️ Initialize your awww + waypaper background cycle right away
           spawn-at-startup "${getExe wallpaper}"
-
-          // Direct autostart for Waybar
-          spawn-at-startup "waybar"
-
-          // Start background utility scripts
-          spawn-at-startup "${getExe batterynotify}"
 
 
           // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
