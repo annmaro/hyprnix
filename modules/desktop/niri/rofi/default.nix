@@ -1,11 +1,11 @@
-{ pkgs, config, ... }:
+{ pkgs, config, self, ... }:
 
 {
   home-manager.sharedModules = [
+    ./rofi-powermenu.nix
     (
       { ... }:
       {
-
         programs.rofi = {
           enable = true;
           terminal = "kitty";
@@ -20,7 +20,14 @@
             in
             {
               "*" = {
-                font = "JetBrains Mono Nerd Font 12";
+                font = "JetBrains Mono Nerd Font 10";
+
+                background = mkLiteral "#1d2021";
+                background-alt = mkLiteral "#3c3836";
+                foreground = mkLiteral "#fbf1c7";
+                selected = mkLiteral "#fabd2f";
+                active = mkLiteral "#8ec07c";
+                urgent = mkLiteral "#fe8019";
               };
 
               "window" = {
@@ -28,74 +35,106 @@
                 location = mkLiteral "center";
                 anchor = mkLiteral "center";
                 fullscreen = false;
-                width = mkLiteral "800px";
+                width = mkLiteral "1000px";
                 x-offset = mkLiteral "0px";
                 y-offset = mkLiteral "0px";
                 enabled = true;
-                margin = mkLiteral "0px";
-                padding = mkLiteral "0px";
                 border-radius = mkLiteral "20px";
                 cursor = "default";
-                # CHANGED: Swapped solid AMOLED black for 80% transparent black
-                background-color = mkLiteral "#000000cc";
+                background-color = mkLiteral "@background";
               };
 
               "mainbox" = {
                 enabled = true;
-                spacing = mkLiteral "25px";
-                padding = mkLiteral "50px";
+                spacing = mkLiteral "0px";
                 background-color = mkLiteral "transparent";
+                orientation = mkLiteral "vertical";
                 children = map mkLiteral [
                   "inputbar"
+                  "listbox"
+                ];
+              };
+
+              "listbox" = {
+                spacing = mkLiteral "20px";
+                padding = mkLiteral "20px";
+                background-color = mkLiteral "transparent";
+                orientation = mkLiteral "vertical";
+                children = map mkLiteral [
                   "message"
                   "listview"
-                  "mode-switcher"
                 ];
               };
 
               "inputbar" = {
                 enabled = true;
-                spacing = mkLiteral "0px";
-                margin = mkLiteral "0px 200px";
-                padding = mkLiteral "5px";
-                border = mkLiteral "1px solid";
-                border-radius = mkLiteral "100%";
-                border-color = mkLiteral "#3c3836"; # Gruvbox Dark Gray Border
+                spacing = mkLiteral "10px";
+                padding = mkLiteral "80px 60px";
                 background-color = mkLiteral "transparent";
+                background-image = mkLiteral ''url("${self}/modules/wallpapers/a_rocky_beach_with_waves_crashing_on_the_shore.jpg", width)'';
+                text-color = mkLiteral "@foreground";
+                orientation = mkLiteral "horizontal";
                 children = map mkLiteral [
                   "textbox-prompt-colon"
                   "entry"
+                  "dummy"
+                  "mode-switcher"
                 ];
               };
 
               "textbox-prompt-colon" = {
                 enabled = true;
                 expand = false;
-                padding = mkLiteral "8px 11px";
-                border-radius = mkLiteral "100%";
-                # CHANGED: Swapped Gruvbox Gold (#fabd2f) to Gruvbox Orange Focus (#fe8019)
-                background-color = mkLiteral "#fabd2f";
-                text-color = mkLiteral "#000000"; # Dark Text on Accent
                 str = "";
+                padding = mkLiteral "12px 15px";
+                border-radius = mkLiteral "100%";
+                background-color = mkLiteral "@background-alt";
+                text-color = mkLiteral "inherit";
               };
 
               "entry" = {
                 enabled = true;
-                padding = mkLiteral "8px 12px";
-                border = mkLiteral "0px solid";
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fbf1c7"; # Gruvbox Cream Foreground
+                expand = false;
+                width = mkLiteral "300px";
+                padding = mkLiteral "12px 16px";
+                border-radius = mkLiteral "100%";
+                background-color = mkLiteral "@background-alt";
+                text-color = mkLiteral "inherit";
                 cursor = mkLiteral "text";
-                placeholder = "Search...";
-                placeholder-color = mkLiteral "#7c6f64"; # Muted Gray Placeholder
-                vertical-align = mkLiteral "0.5";
-                horizontal-align = mkLiteral "0.0";
+                placeholder = "Search";
+                placeholder-color = mkLiteral "inherit";
+              };
+
+              "dummy" = {
+                expand = true;
+                background-color = mkLiteral "transparent";
+              };
+
+              "mode-switcher" = {
+                enabled = true;
+                spacing = mkLiteral "10px";
+                background-color = mkLiteral "transparent";
+                text-color = mkLiteral "@foreground";
+              };
+
+              "button" = {
+                width = mkLiteral "80px";
+                padding = mkLiteral "12px";
+                border-radius = mkLiteral "100%";
+                background-color = mkLiteral "@background-alt";
+                text-color = mkLiteral "inherit";
+                cursor = mkLiteral "pointer";
+              };
+
+              "button selected" = {
+                background-color = mkLiteral "@selected";
+                text-color = mkLiteral "@background";
               };
 
               "listview" = {
                 enabled = true;
                 columns = 2;
-                lines = 10;
+                lines = 8;
                 cycle = true;
                 dynamic = true;
                 scrollbar = false;
@@ -105,98 +144,83 @@
                 fixed-columns = true;
                 spacing = mkLiteral "10px";
                 background-color = mkLiteral "transparent";
+                text-color = mkLiteral "@foreground";
                 cursor = "default";
               };
 
               "element" = {
                 enabled = true;
                 spacing = mkLiteral "10px";
-                margin = mkLiteral "0px";
-                padding = mkLiteral "5px";
-                border = mkLiteral "0px solid";
+                padding = mkLiteral "4px";
                 border-radius = mkLiteral "100%";
-                border-color = mkLiteral "transparent";
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fbf1c7";
+                text-color = mkLiteral "@foreground";
                 cursor = mkLiteral "pointer";
               };
 
               "element normal.normal" = {
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fbf1c7";
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+              };
+
+              "element normal.urgent" = {
+                background-color = mkLiteral "@urgent";
+                text-color = mkLiteral "@foreground";
               };
 
               "element normal.active" = {
-                background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
-                text-color = mkLiteral "#b8bb26"; # Gruvbox Green Accent
+                background-color = mkLiteral "@active";
+                text-color = mkLiteral "@background";
               };
 
               "element selected.normal" = {
-                background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
-                text-color = mkLiteral "#fabd2f"; # Gruvbox Yellow Focus
+                background-color = mkLiteral "@selected";
+                text-color = mkLiteral "@background";
+              };
+
+              "element selected.urgent" = {
+                background-color = mkLiteral "@urgent";
+                text-color = mkLiteral "@foreground";
               };
 
               "element selected.active" = {
-                background-image = mkLiteral "linear-gradient(to right, #282828, #1d2021)";
-                text-color = mkLiteral "#fb4934";
+                background-color = mkLiteral "@urgent";
+                text-color = mkLiteral "@foreground";
               };
 
               "element-icon" = {
                 background-color = mkLiteral "transparent";
-                size = mkLiteral "24px";
-                cursor = mkLiteral "inherit";
-                # Forces the icon to inherit colors or dim down when not selected
                 text-color = mkLiteral "inherit";
+                size = mkLiteral "32px";
+                cursor = mkLiteral "inherit";
               };
 
               "element-text" = {
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "inherit"; # Dynamically matches element state text-color
+                text-color = mkLiteral "inherit";
                 cursor = mkLiteral "inherit";
                 vertical-align = mkLiteral "0.5";
                 horizontal-align = mkLiteral "0.0";
               };
 
-              "mode-switcher" = {
-                enabled = true;
-                expand = false;
-                spacing = mkLiteral "10px";
-                margin = mkLiteral "0px 100px";
-                padding = mkLiteral "12px";
-                border-radius = mkLiteral "100%";
-                background-color = mkLiteral "#1d2021"; # Gruvbox Background Accent Box
-              };
-
-              "button" = {
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#7c6f64";
-                cursor = mkLiteral "pointer";
-              };
-
-              "button selected" = {
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fabd2f";
-              };
-
-              "error-message" = {
-                padding = mkLiteral "20px";
-                background-color = mkLiteral "#000000";
-                text-color = mkLiteral "#fb4934";
-              };
-
               "message" = {
-                padding = mkLiteral "0px";
                 background-color = mkLiteral "transparent";
-                text-color = mkLiteral "#fabd2f";
               };
 
               "textbox" = {
-                padding = mkLiteral "0px";
-                border-radius = mkLiteral "0px";
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "inherit";
+                padding = mkLiteral "12px";
+                border-radius = mkLiteral "100%";
+                background-color = mkLiteral "@background-alt";
+                text-color = mkLiteral "@foreground";
                 vertical-align = mkLiteral "0.5";
                 horizontal-align = mkLiteral "0.0";
+              };
+
+              "error-message" = {
+                padding = mkLiteral "12px";
+                border-radius = mkLiteral "20px";
+                background-color = mkLiteral "@background";
+                text-color = mkLiteral "@foreground";
               };
             };
         };

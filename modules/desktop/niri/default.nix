@@ -298,6 +298,7 @@ in
               "Mod+Shift+R" { spawn "sh" "-c" "thunar -q && thunar --daemon"; }
               "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
               "Mod+Shift+S" { spawn "spotify"; }
+              "Mod+Shift+P" { spawn "rofi-powermenu"; }
               "Mod+Shift+Y" { spawn "youtube-music"; }
               "Ctrl+Alt+Delete" { spawn "ghostty" "-e" "btop"; }
               "Mod+Ctrl+C" { spawn "hyprpicker" "--autocopy" "--format=hex"; }
