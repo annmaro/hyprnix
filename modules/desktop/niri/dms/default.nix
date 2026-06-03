@@ -185,11 +185,9 @@
               ];
               rightWidgets = [
                 "weather"
-                "systemTray"
-                "cpuUsage"
-                "memUsage"
                 "cpuTemp"
-                "gpuTemp"
+                "systemTray"
+                "memUsage"
                 "controlCenterButton"
                 "notificationButton"
               ];
