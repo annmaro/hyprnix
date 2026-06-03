@@ -171,7 +171,7 @@ let
 
     # Rofi CMD
     rofi_cmd() {
-    	${pkgs.rofi-wayland}/bin/rofi -dmenu \
+    	${pkgs.rofi}/bin/rofi -dmenu \
     		-p "󰀉 $USER@''$(hostname)" \
     		-mesg "󱎫 Uptime: $cleaned_uptime" \
     		-theme ${powermenuTheme}
