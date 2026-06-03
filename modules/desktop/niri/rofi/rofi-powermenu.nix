@@ -165,9 +165,18 @@ let
 
     # Rofi CMD
     rofi_cmd() {
-    	${pkgs.rofi}/bin/rofi -dmenu \
-    		-p "󰀉 $USER@$(hostname)" \
-    		-mesg "󱎫 Uptime: ''$(uptime -p | sed -e 's/up //g')" \
+        # Calculate pretty uptime reliably with explicit Nix paths
+        local uptime_pretty
+        if ${pkgs.procps}/bin/uptime -p &>/dev/null; then
+            uptime_pretty="$(${pkgs.procps}/bin/uptime -p | ${pkgs.gnused}/bin/sed -e 's/up //g')"
+        else
+            # Fallback if pretty-print fails for some reason
+            uptime_pretty="$(${pkgs.procps}/bin/uptime | ${pkgs.awk}/bin/awk -F, '{sub(/.*up /,"",$1); print $1}')"
+        fi
+
+    	${pkgs.rofi-wayland}/bin/rofi -dmenu \
+    		-p "󰀉 $USER@''$(hostname)" \
+    		-mesg "󱎫 Uptime: $uptime_pretty" \
     		-theme ${powermenuTheme}
     }
 
