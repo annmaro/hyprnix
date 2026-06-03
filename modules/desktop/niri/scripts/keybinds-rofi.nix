@@ -12,11 +12,11 @@ pkgs.writeShellScriptBin "rofi-keybinds" ''
   # 1. Grab everything between 'binds {' and the matching '}'
   # 2. Filter out comments, empty lines, and brackets
   # 3. Clean up syntax to look like "Keybind  ->  Action"
-  awk '/binds \{/{flag=1; next} /\}/{if(flag) exit} flag' "$NIRI_CONFIG" | \
-  grep -v -E '^[[:space:]]*(\/\/|#|$)' | \
-  sed -E 's/^[[:space:]]*"([^"]+)"[[:space:]]*\{[[:space:]]*(spawn|close-window|quit|fullscreen-window|maximize-column|toggle-window-floating|switch-preset-column-width|focus|move)[[:space:]]*([^;]*);?[[:space:]]*\}/\1  ->  \2 \3/g' | \
+  awk '/binds \{/{flag=1; next} /^\}/{if(flag) exit} flag' "$NIRI_CONFIG" | \
+  grep -v -E '^[[:space:]]*(//|#|$)' | \
+  sed -E 's/^[[:space:]]*"([^"]+)"[[:space:]]*\{[[:space:]]*([^}]+)[[:space:]]*\}/\1  ->  \2/g' | \
   sed -E 's/[";]//g' | \
-  sed -E 's/[{}]//g' | \
+  sed -E 's/[[:space:]]+$//g' | \
   sed -E 's/[[:space:]]+==>[[:space:]]+/  ->  /g' | \
   ${pkgs.rofi}/bin/rofi -dmenu -i -p "⌨️ Dynamic Keybindings" \
       -theme-str 'window { width: 45%; height: 50%; }' \

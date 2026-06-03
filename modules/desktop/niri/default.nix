@@ -287,7 +287,7 @@ in
               "Mod+Space" { spawn "rofi" "-show" "drun"; }
               "Mod+V" { spawn "rofi" "-show" "clipboard"; }
               "Mod+Z" { spawn "rofi" "-show" "emoji"; }
-              "Mod+Shift+K" { spawn "keybindsRofi"; }
+              "Mod+Shift+K" { spawn "${getExe keybindsRofi}"; }
               "Mod+G" { spawn "launcher" "games"; }
               "Mod+Alt+G" { spawn "gamemode"; }
               "Alt+F4" { close-window; }
