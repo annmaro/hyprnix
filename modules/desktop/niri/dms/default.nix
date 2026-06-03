@@ -97,7 +97,7 @@
         # =====================================================================
         # 🎨 SETTINGS.JSON & SESSION STATE CONFIGURATION
         # =====================================================================
-        
+
         home.activation.dmsWeather = config.lib.dag.entryAfter [ "writeBoundary" ] ''
           SESSION_FILE="$HOME/.local/state/DankMaterialShell/session.json"
           if [ -f "$SESSION_FILE" ] && [ ! -L "$SESSION_FILE" ]; then
@@ -112,7 +112,7 @@
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
           configVersion = 6;
           screenPreferences = {
-            wallpaper = []; # This replaces the old disableWallpaper = true flag in DMS v6
+            wallpaper = [ ]; # This replaces the old disableWallpaper = true flag in DMS v6
           };
 
           modules = {
@@ -149,7 +149,6 @@
           systemTrayIconTintMode = "primary"; # Tint system tray icons with the primary color for a more cohesive look. Adjust as needed based on your custom theme's color palette for optimal aesthetics.
           systemTrayIconTintSaturation = 40; # Increase saturation of tinted system tray icons to make them pop against the background. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
           systemTrayIconTintStrength = 150; # Increase tint strength for system tray icons to create a more pronounced effect and better integration with the overall theme. Adjust as needed based on your custom theme's color palette and desired level of emphasis on the icons.
-
 
           barConfigs = [
             {
@@ -189,7 +188,10 @@
                 "systemTray"
                 "cpuUsage"
                 "memUsage"
+                "cpuTemp"
+                "gpuTemp"
                 "controlCenterButton"
+                "notificationButton"
               ];
             }
           ];
