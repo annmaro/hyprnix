@@ -163,20 +163,17 @@ let
     yes='󰄬'
     no='󰅖'
 
+    # Fetch uptime using the absolute path to procps
+    raw_uptime="$(${pkgs.procps}/bin/uptime -p)"
+
+    # Strip the leading "up " using native Bash string manipulation
+    cleaned_uptime=''${raw_uptime#up }
+
     # Rofi CMD
     rofi_cmd() {
-        # Calculate pretty uptime reliably with explicit Nix paths
-        local uptime_pretty
-        if ${pkgs.procps}/bin/uptime -p &>/dev/null; then
-            uptime_pretty="$(${pkgs.procps}/bin/uptime -p | ${pkgs.gnused}/bin/sed -e 's/up //g')"
-        else
-            # Fallback if pretty-print fails for some reason
-            uptime_pretty="$(${pkgs.procps}/bin/uptime | ${pkgs.awk}/bin/awk -F, '{sub(/.*up /,"",$1); print $1}')"
-        fi
-
     	${pkgs.rofi-wayland}/bin/rofi -dmenu \
     		-p "󰀉 $USER@''$(hostname)" \
-    		-mesg "󱎫 Uptime: $uptime_pretty" \
+    		-mesg "󱎫 Uptime: $cleaned_uptime" \
     		-theme ${powermenuTheme}
     }
 
