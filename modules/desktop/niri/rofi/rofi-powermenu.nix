@@ -138,7 +138,7 @@ let
         cursor:                      pointer;
     }
     element-text {
-        font:                        "feather bold 32";
+        font:                        "JetBrains Mono Nerd Font Bold 32";
         background-color:            transparent;
         text-color:                  inherit;
         cursor:                      inherit;
@@ -153,27 +153,27 @@ let
 
   # 3. Re-engineered powermenu.sh
   powermenuScript = pkgs.writeShellScriptBin "rofi-powermenu" ''
-    # Options
-    hibernate=''
-    shutdown=''
-    reboot=''
-    lock=''
-    suspend=''
-    logout=''
-    yes=''
-    no=''
+    # Options using standard Nerd Font Glyphs
+    lock='󰌾'
+    suspend='󰤄'
+    logout='󰍃'
+    hibernate='󰗽'
+    reboot='󰜉'
+    shutdown='󰐥'
+    yes='󰄬'
+    no='󰅖'
 
     # Rofi CMD
     rofi_cmd() {
-    	${pkgs.rofi}/bin/rofi -dmenu \
-    		-p " $USER@$(hostname)" \
-    		-mesg " Uptime: $(uptime -p | sed -e 's/up //g')" \
+    	${pkgs.rofi-wayland}/bin/rofi -dmenu \
+    		-p "󰀉 $USER@$(hostname)" \
+    		-mesg "󱎫 Uptime: $(uptime -p | sed -e 's/up //g')" \
     		-theme ${powermenuTheme}
     }
 
     # Confirmation CMD
     confirm_cmd() {
-    	${pkgs.rofi}/bin/rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
+    	${pkgs.rofi-wayland}/bin/rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
     		-theme-str 'mainbox {orientation: vertical; children: [ "message", "listview" ];}' \
     		-theme-str 'listview {columns: 2; lines: 1;}' \
     		-theme-str 'element-text {horizontal-align: 0.5;}' \
@@ -189,14 +189,15 @@ let
     	echo -e "$yes\n$no" | confirm_cmd
     }
 
-    # Pass variables to rofi dmenu
+    # Pass variables to rofi dmenu (matches the 6-icon layout grid)
     run_rofi() {
     	echo -e "$lock\n$suspend\n$logout\n$hibernate\n$reboot\n$shutdown" | rofi_cmd
     }
 
     # Execute Command
     run_cmd() {
-    	selected="$(confirm_exit)"
+    	# Trim whitespace using xargs to protect matching
+    	selected="''$(confirm_exit | ${pkgs.findutils}/bin/xargs)"
     	if [[ "$selected" == "$yes" ]]; then
     		if [[ $1 == '--shutdown' ]]; then
     			systemctl poweroff
@@ -214,9 +215,9 @@ let
     	fi
     }
 
-    # Actions
-    chosen="''$(run_rofi)"
-    case \''${chosen} in
+    # Actions - Clean whitespace output with xargs
+    chosen="''$(run_rofi | ${pkgs.findutils}/bin/xargs)"
+    case ''${chosen} in
         $shutdown)
     		run_cmd --shutdown
             ;;
