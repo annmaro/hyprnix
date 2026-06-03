@@ -157,7 +157,7 @@ let
     lock='󰌾'
     suspend='󰤄'
     logout='󰍃'
-    hibernate='󰗽'
+    hibernate='󰒲'
     reboot='󰜉'
     shutdown='󰐥'
     yes='󰄬'
@@ -167,7 +167,7 @@ let
     rofi_cmd() {
     	${pkgs.rofi}/bin/rofi -dmenu \
     		-p "󰀉 $USER@$(hostname)" \
-    		-mesg "󱎫 Uptime: $(uptime -p | sed -e 's/up //g')" \
+    		-mesg "󱎫 Uptime: ''$(uptime -p | sed -e 's/up //g')" \
     		-theme ${powermenuTheme}
     }
 
