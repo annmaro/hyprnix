@@ -196,6 +196,9 @@ in
               }
 
           overview {
+             // 🌫️ This is the magic link!
+            // It tells Niri to bring the overlay namespace forward during overview
+              show-layer-namespaces-in-backdrop "awww-daemonoverlay"
                workspace-shadow { 
                 off
                }
