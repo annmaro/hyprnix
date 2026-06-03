@@ -22,6 +22,7 @@ let
   fileManagerScript = pkgs.callPackage ./scripts/file-manager.nix { inherit terminal; };
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
   wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
+  keybindsRofi = pkgs.callPackage ./scripts/keybinds-rofi.nix { };
 in
 {
   imports = [
@@ -286,6 +287,7 @@ in
               "Mod+Space" { spawn "rofi" "-show" "drun"; }
               "Mod+V" { spawn "rofi" "-show" "clipboard"; }
               "Mod+Z" { spawn "rofi" "-show" "emoji"; }
+              "Mod+/" { spawn "keybindsRofi"; }
               "Mod+G" { spawn "launcher" "games"; }
               "Mod+Alt+G" { spawn "gamemode"; }
               "Alt+F4" { close-window; }

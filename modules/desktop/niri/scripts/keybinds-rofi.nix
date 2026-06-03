@@ -1,51 +1,24 @@
 { pkgs, ... }:
 
-pkgs.writeShellApplication {
-  name = "keybinds-show";
-  
-  # Dependencies are managed here. 
-  # This puts these binaries in the PATH for this specific script.
-  runtimeInputs = with pkgs;[ 
-    procps 
-    gnugrep 
-    gnused 
-    rofi 
-    coreutils 
-  ];
+pkgs.writeShellScriptBin "rofi-keybinds" ''
+  # Target the active home-manager deployment path for this file
+  NIRI_CONFIG="$HOME/.config/niri/config.kdl"
 
-  text = ''
-    # Kill yad to not interfere with these binds
-    pkill yad || true
-
-    # Check if rofi is already running
-    if pidof rofi > /dev/null; then
-      pkill rofi
-    fi
-
-    # Variables for configuration paths
-    # Note: ''${} is used to escape the variable for bash within Nix
-    keybinds_conf="''${XDG_CONFIG_HOME:-$HOME/.config}/hypr/binds.lua"
-    rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-4/style-4.rasi"
-    r_override="entry{placeholder:'Search KeyBinds...';}"
-    msg='☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function'
-
-    # Match and grab bind lines
-    keybinds=$(grep -E 'hl\.bind' "$keybinds_conf")
-
-    if [[ -z "$keybinds" ]]; then
-      echo "no keybinds found."
+  if [ ! -f "$NIRI_CONFIG" ]; then
+      echo "Error: Niri config not found at $NIRI_CONFIG" | ${pkgs.rofi}/bin/rofi -dmenu -p "⚠️ Error"
       exit 1
-    fi
+  fi
 
-    # Cleanup: Strip out the Lua syntax to make it readable in Rofi
-    display_keybinds=$(echo "$keybinds" | \
-      sed -E "s/hl\.bind[em]?\(//g" | \
-      sed "s/function()//g" | \
-      sed "s/end)//g" | \
-      sed "s/hl\.dsp\.//g" | \
-      tr -d '"')
-
-    # Fire up Rofi
-    echo "$display_keybinds" | rofi -dmenu -i -theme-str "$r_override" -config "$rofi_theme" -mesg "$msg"
-  '';
-}
+  # 1. Grab everything between 'binds {' and the matching '}'
+  # 2. Filter out comments, empty lines, and brackets
+  # 3. Clean up syntax to look like "Keybind  ->  Action"
+  awk '/binds \{/{flag=1; next} /\}/{if(flag) exit} flag' "$NIRI_CONFIG" | \
+  grep -v -E '^[[:space:]]*(\/\/|#|$)' | \
+  sed -E 's/^[[:space:]]*"([^"]+)"[[:space:]]*\{[[:space:]]*(spawn|close-window|quit|fullscreen-window|maximize-column|toggle-window-floating|switch-preset-column-width|focus|move)[[:space:]]*([^;]*);?[[:space:]]*\}/\1  ->  \2 \3/g' | \
+  sed -E 's/[";]//g' | \
+  sed -E 's/[{}]//g' | \
+  sed -E 's/[[:space:]]+==>[[:space:]]+/  ->  /g' | \
+  ${pkgs.rofi}/bin/rofi -dmenu -i -p "⌨️ Dynamic Keybindings" \
+      -theme-str 'window { width: 45%; height: 50%; }' \
+      -theme-str 'listview { lines: 20; }'
+''

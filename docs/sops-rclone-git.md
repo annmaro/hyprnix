@@ -14,7 +14,7 @@ Identity paths are initialized dynamically as unprivileged symlinks managed at r
 | :--------------------- | :---------------------- | :--------------------------------- | :------------------------- |
 | User Public Key        | `~/.ssh/id_ed25519.pub` | Upstream host validation (VCS)     | Global / Unrestricted      |
 | User Private Key       | `~/.ssh/id_ed25519`     | Secure host entry validation       | Cryptographically Sealed   |
-| GPG Signing Identifier | `3AA5C34371567BD2`      | Cryptographic signature validation | Public Configuration Token |
+| GPG Signing Identifier | `xxxyyyzzz12345`        | Cryptographic signature validation | Public Configuration Token |
 
 ### 🔒 GPG Code Auditing Infrastructure
 
@@ -65,12 +65,12 @@ The system configuration is split into independent, decoupled components under t
 
 ### 🛡️ Core Infrastructure Module
 
-**File System Path:** `modules/core/sops/default.nix`  
+**File System Path:** `modules/core/git-sops/default.nix`  
 Imports the core sops-nix engine and establishes dynamic volatile memory mappings for all decrypted user-space credentials.
 
 ### 📚 Cloud Mount Optimization Module
 
-**File System Path:** `modules/core/rclone/default.nix`  
+**File System Path:** `modules/programs/media/rclone/default.nix`  
 Establishes an automated user Systemd daemon (`rclone-gdrive-mount.service`) to mount cloud assets on boot.
 It features optimized read-ahead and block-caching configurations designed to strip streaming latency from compressed digital archives (.cbz, .cbr).
 
@@ -84,7 +84,7 @@ It features optimized read-ahead and block-caching configurations designed to st
 
 ### 💻 Signed Git & Development Tooling Module
 
-**File System Path:** `modules/core/git/default.nix`  
+**File System Path:** `modules/core/git-sops/git.nix`  
 Deploys a complete git environment. It dynamically resolves unencrypted keys straight out of memory objects, configures persistent system variables, handles automated historical storage pruning, and loads custom workflow helper utilities.
 
 **🧰 Integrated Core Aliases Ecosystem:**

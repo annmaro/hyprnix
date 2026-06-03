@@ -43,7 +43,8 @@ nixri uses PipeWire as its modern audio server, explicitly disabling the legacy 
   - `enable`: Activates PipeWire.
   - `alsa`, `pulse`, `jack`: Enables emulation/support for all three major audio APIs, ensuring broad compatibility with applications.
   - **Low-Latency Configuration**:
-    - The configuration includes custom JSON-like attribute sets (`extraConfig.pipewire."92-low-latency"` and `extraConfig.pipewire-pulse."92-low-latency"`) that force PipeWire to operate at a consistent sample rate (`48000` Hz) and a fixed, low quantum (buffer size of `256`).
+    - The configuration includes custom JSON-like attribute sets (`extraConfig.pipewire."92-low-latency"` and `extraConfig.pipewire-pulse."92-low-latency"`) that force PipeWire to operate at a consistent base sample rate (`48000` Hz) and a fixed, low quantum (buffer size of `256`).
+    - **Dynamic High-Res Switching**: PipeWire is configured with `default.clock.allowed-rates` (`[ 44100 48000 88200 96000 192000 ]`) to automatically switch to high-resolution sample rates when playing high-fidelity audio files.
     - This tuning significantly reduces audio latency, which is particularly beneficial for gaming and real-time audio processing.
 
 ## How to Apply Changes

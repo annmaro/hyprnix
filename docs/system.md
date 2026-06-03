@@ -1,6 +1,6 @@
 # System Configuration (`modules/core/system/default.nix`)
 
-The `default.nix` file located at `modules/core/system/default.nix` serves as the core system configuration for your nixri setup. It manages Nix settings, localization, package manager defaults, and essential environment variables.
+The system config file located at `modules/core/system/default.nix` serves as the core system configuration for your nixri setup. It manages Nix settings, localization, package manager defaults, and essential environment variables.
 
 ## Structure
 

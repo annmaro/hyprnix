@@ -6,14 +6,14 @@ This document explains how Rofi is configured in the nixri setup and how you can
 
 Rofi's base configuration is managed by Nix via Home Manager. The main files are located at:
 
-- `modules/desktop/hyprland/programs/rofi/default.nix`: The entry point that enables Rofi, configures plugins, and links the local `launchers`, `colors`, and `images` directories to `~/.config/rofi/`.
+- `modules/desktop/niri/programs/rofi/default.nix`: The entry point that enables Rofi, configures plugins, and links the local `launchers`, `colors`, and `images` directories to `~/.config/rofi/`.
 - `modules/desktop/hyprland/programs/rofi/config.nix`: Contains all the general Rofi settings such as matching, history, sorting, window switcher behaviors, and keybindings.
 
 ## Where are the Themes Stored?
 
 nixri uses a collection of Rofi themes curated by Aditya Shakya (@adi1090x). These assets are copied into your system's `~/.config/rofi/` directory on build.
 
-Inside `modules/desktop/hyprland/programs/rofi/`:
+Inside `modules/desktop/niri/programs/rofi/`:
 
 - **`launchers/`**: Contains various structural theme types (e.g., `type-1` to `type-7`). Each type folder has multiple `style-X.rasi` files.
 - **`colors/`**: Contains color schemes (e.g., `catppuccin.rasi`, `tokyonight.rasi`, `dracula.rasi`, etc.).

@@ -7,7 +7,7 @@ The NixOS setup in this repository (`nixri`) is built around Nix Flakes and is h
 - `flake.nix` & `flake.lock`: The core entry points of the configuration. It defines inputs (like NixOS unstable, Home Manager, sops-nix, etc.) and constructs the NixOS systems.
 - `hosts/`: Contains configurations specific to individual machines (hosts).
 - `modules/`: The core of the repository, containing reusable functional blocks (core system settings, programs, desktop environments, etc.).
-- `install.sh` & `live-install.sh`: Automated bootstrap scripts to help set up the configuration on a new machine.
+- `installer.nix`: A work-in-progress installer package to help set up the configuration on a new machine.
 
 ---
 
@@ -26,8 +26,8 @@ This directory manages machine-specific settings. By default, there is a `defaul
 This repository uses a modular design to keep the configuration organized. The main entry point for these modules is `modules/default.nix`, which evaluates the variables defined in your host's `variables.nix` and imports the appropriate sub-modules.
 
 - `core/`: Foundational system configurations that are almost universally applied. Includes setups for:
-  - System boot (`boot.nix`), hardware, and networking (`network.nix`).
-  - Core utilities, shell environments (`bash.nix`, `zsh.nix`), and display managers (`sddm.nix`).
+  - System`boot, hardware, memory,games, fonts, dns, and networking cofig.
+  - Core utilities, shell environments e.g. bash, zsh, and display managers.
   - Users, security, printing, and services.
 - `desktop/`: Contains configurations for Desktop Environments or Window Managers. Currently focused on Wayland setups like Niri.
 - `hardware/`: Hardware-specific configurations, such as video drivers (NVIDIA, AMD, Intel) and extra drive mounts.
@@ -38,8 +38,6 @@ This repository uses a modular design to keep the configuration organized. The m
   - `cli/`: Command-line tools and utilities (e.g., Tmux, Btop, Lazygit).
   - `media/`: Media and communication apps (e.g., Discord, Spicetify, mpv).
   - `misc/`: Other applications like file managers and power management tools.
-- `scripts/`: Custom bash scripts used across the system, integrated into window manager keybindings and system services.
-- `themes/`: System-wide theming settings applied to multiple components.
 
 ### Flake Setup: `flake.nix`
 
