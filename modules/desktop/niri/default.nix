@@ -114,9 +114,6 @@ in
           // 🖼️ Initialize your awww + waypaper background cycle right away
           spawn-at-startup "${getExe wallpaper}"
 
-          // ADD THESE LINES TO ACTUALLY LAUNCH DANK MATERIAL SHELL
-          spawn-at-startup "dms"
-
 
 
           // ⌨️ HARDWARE INPUT & TOUCHPAD MANAGEMENT
@@ -261,7 +258,7 @@ in
 
           window-rule {
               match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
-              opacity 0.80
+              opacity 0.85
               draw-border-with-background false
               background-effect {
                    blur true
