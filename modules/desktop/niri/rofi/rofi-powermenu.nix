@@ -11,9 +11,6 @@ let
   # If it is placed inside your local configuration source directory:
   wallpaperImg = "${self}/modules/wallpapers/rocky_beach.jpg";
 
-  # Alternatively, if you want to pull it from an absolute path on your system, uncomment below:
-  # wallpaperImg = "/home/anand/.config/wallpapers/rocky_beach.jpg";
-
   # 2. Re-engineered style-2.rasi with Gruvbox Light elements
   powermenuTheme = pkgs.writeText "style-2.rasi" ''
     configuration {
