@@ -215,8 +215,8 @@ let
     }
 
     # Actions
-    chosen="$(run_rofi)"
-    case \${chosen} in
+    chosen="''$(run_rofi)"
+    case \''${chosen} in
         $shutdown)
     		run_cmd --shutdown
             ;;
