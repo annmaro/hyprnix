@@ -18,6 +18,7 @@ in
   imports = [ inputs.home-manager.nixosModules.home-manager ];
   programs.dconf.enable = true; # Enable dconf for home-manager
   home-manager = {
+    extraSpecialArgs = { inherit self inputs host; };
     useGlobalPkgs = false; # Let each user manage their own packages to avoid conflicts and ensure user-specific configurations
     useUserPackages = true;
     overwriteBackup = true;
