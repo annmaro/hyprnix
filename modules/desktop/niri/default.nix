@@ -310,7 +310,7 @@ in
               "Mod+Right" { focus-column-right; }
               "Mod+H" { focus-column-left; }
               "Mod+L" { focus-column-right; }
-              "Mod+S" { spawn "sh" "-c" "niri msg action toggle-overview && killall -SIGUSR1 waybar && dms ipc call overview toggle"; }
+              "Mod+S" { spawn "sh" "-c" "niri msg action toggle-overview"; }
               "Mod+Ctrl+Left" { move-column-left; }
               "Mod+Ctrl+Right" { move-column-right; }
               
