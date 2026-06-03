@@ -288,7 +288,9 @@ in
               "Mod+Z" { spawn "rofi" "-show" "emoji"; }
               "Mod+G" { spawn "launcher" "games"; }
               "Mod+Alt+G" { spawn "gamemode"; }
-              "Mod+Q" { close-window; }
+              "Alt+F4" { close-window; }
+              "Ctrl+Q" { close-window; }
+              "Ctrl+S" { spawn "systemctl" "--user" "restart" "dms";}
               "Mod+Delete" { quit; }
               "Mod+Alt+L" { spawn "dms" "session" "lock"; }
               "Mod+N" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
