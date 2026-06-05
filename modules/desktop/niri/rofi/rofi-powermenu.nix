@@ -7,11 +7,21 @@
 }:
 
 let
-  # 1. Reference your rocky beach wallpaper path.
-  # If it is placed inside your local configuration source directory:
-  wallpaperImg = "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
+  # Pull your current wallpaper image variable from Stylix module context
+  wallpaperImg =
+    config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
 
-  # 2. Re-engineered style-2.rasi with Gruvbox Light elements
+  # Safe context color hooks
+  stylixColors = config.lib.stylix.colors or { };
+
+  bg = "#${stylixColors.base00 or "1d2021"}";
+  bgAlt = "#${stylixColors.base02 or "282828"}";
+  fg = "#${stylixColors.base05 or "fbf1c7"}";
+  accent = "#${stylixColors.base0D or "fabd2f"}";
+  active = "#${stylixColors.base0B or "b8bb26"}";
+  urgent = "#${stylixColors.base08 or "fb4934"}";
+
+  # Style-2.rasi with injected configuration values
   powermenuTheme = pkgs.writeText "style-2.rasi" ''
     configuration {
         show-icons:                 false;
@@ -19,13 +29,15 @@ let
 
     /*****----- Global Properties -----*****/
     * {
-        font:                        "JetBrains Mono Nerd Font 10";
-        background:                  #1d2021; /* Gruvbox Dark background */
-        background-alt:              #282828; /* Gruvbox Dark Gray */
-        foreground:                  #fbf1c7; /* Gruvbox Cream Foreground */
-        selected:                    #fabd2f; /* Gruvbox Light Yellow Focus */
-        active:                      #b8bb26; /* Gruvbox Light Green */
-        urgent:                      #fb4934; /* Gruvbox Red */
+        font:                        "${
+          config.stylix.fonts.monospace.name or "JetBrains Mono Nerd Font"
+        } 10";
+        background:                  ${bg};
+        background-alt:              ${bgAlt};
+        foreground:                  ${fg};
+        selected:                    ${accent};
+        active:                      ${active};
+        urgent:                      ${urgent};
     }
 
     /*****----- Main Window -----*****/
@@ -76,7 +88,7 @@ let
         padding:                     15px;
         border-radius:               100%;
         background-color:            @background-alt;
-        text-color:                  @selected; /* Highlight user box with Gruvbox Light Yellow */
+        text-color:                  @selected; 
         border:                      1px solid;
         border-color:                @selected;
         children:                    [ "dummy", "prompt", "dummy"];
@@ -138,7 +150,9 @@ let
         cursor:                      pointer;
     }
     element-text {
-        font:                        "JetBrains Mono Nerd Font Bold 32";
+        font:                        "${
+          config.stylix.fonts.monospace.name or "JetBrains Mono Nerd Font Bold"
+        } 32";
         background-color:            transparent;
         text-color:                  inherit;
         cursor:                      inherit;
@@ -151,9 +165,7 @@ let
     }
   '';
 
-  # 3. Re-engineered powermenu.sh
   powermenuScript = pkgs.writeShellScriptBin "rofi-powermenu" ''
-    # Options using standard Nerd Font Glyphs
     lock='󰌾'
     suspend='󰤄'
     logout='󰍃'
@@ -163,13 +175,9 @@ let
     yes='󰄬'
     no='󰅖'
 
-    # Fetch uptime using the absolute path to procps
     raw_uptime="$(${pkgs.procps}/bin/uptime -p)"
-
-    # Strip the leading "up " using native Bash string manipulation
     cleaned_uptime=''${raw_uptime#up }
 
-    # Rofi CMD
     rofi_cmd() {
     	${pkgs.rofi}/bin/rofi -dmenu \
     		-p "󰀉 $USER@''$(hostname)" \
@@ -177,7 +185,6 @@ let
     		-theme ${powermenuTheme}
     }
 
-    # Confirmation CMD
     confirm_cmd() {
     	${pkgs.rofi}/bin/rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
     		-theme-str 'mainbox {orientation: vertical; children: [ "message", "listview" ];}' \
@@ -190,19 +197,15 @@ let
     		-theme ${powermenuTheme}
     }
 
-    # Ask for confirmation
     confirm_exit() {
     	echo -e "$yes\n$no" | confirm_cmd
     }
 
-    # Pass variables to rofi dmenu (matches the 6-icon layout grid)
     run_rofi() {
     	echo -e "$lock\n$suspend\n$logout\n$hibernate\n$reboot\n$shutdown" | rofi_cmd
     }
 
-    # Execute Command
     run_cmd() {
-    	# Trim whitespace using xargs to protect matching
     	selected="''$(confirm_exit | ${pkgs.findutils}/bin/xargs)"
     	if [[ "$selected" == "$yes" ]]; then
     		if [[ $1 == '--shutdown' ]]; then
@@ -221,7 +224,6 @@ let
     	fi
     }
 
-    # Actions - Clean whitespace output with xargs
     chosen="''$(run_rofi | ${pkgs.findutils}/bin/xargs)"
     case ''${chosen} in
         $shutdown)
@@ -250,6 +252,5 @@ let
   '';
 in
 {
-  # Expose package to the user profile safely
   home.packages = [ powermenuScript ];
 }

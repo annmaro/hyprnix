@@ -12,54 +12,40 @@
       { config, ... }:
 
       let
-        bgColor = "#${config.lib.stylix.colors.base00}"; # Background
-        fgColor = "#${config.lib.stylix.colors.base05}"; # Default Text
-        accentColor = "#${config.lib.stylix.colors.base0D}"; # Primary Accent
-        surfaceMuted = "#${config.lib.stylix.colors.base03}";
+        # Safe extraction of Stylix colors with a fallback syntax layout
+        stylixColors = config.lib.stylix.colors or { };
+
+        bgColor = "#${stylixColors.base00 or "000000"}"; # Background
+        fgColor = "#${stylixColors.base05 or "ffffff"}"; # Default Text
+        accentColor = "#${stylixColors.base0D or "03fcc6"}"; # Primary Accent
+        surfaceMuted = "#${stylixColors.base03 or "222222"}";
+
+        # Cleaned up payload block: Defined once, inherited for both dark & light modes
+        themePayload = {
+          background = "#000000";
+          backgroundText = fgColor;
+          error = "#dd0000";
+          info = "#03fcc6";
+          name = "AmoledBlack";
+          outline = "#555555";
+          primary = accentColor;
+          primaryContainer = "#03fcc6";
+          primaryText = "#000000";
+          secondary = surfaceMuted;
+          surface = bgColor;
+          surfaceContainer = bgColor;
+          surfaceContainerHigh = "#222222";
+          surfaceContainerHighest = "#555555";
+          surfaceText = fgColor;
+          surfaceTint = accentColor;
+          surfaceVariant = "#222222";
+          surfaceVariantText = "#bbbbbb";
+          warning = accentColor;
+        };
 
         amoledBlackTheme = {
-          dark = {
-            background = "#000000";
-            backgroundText = fgColor;
-            error = "#dd0000";
-            info = "#03fcc6";
-            name = "AmoledBlack";
-            outline = "#555555";
-            primary = accentColor;
-            primaryContainer = "#03fcc6";
-            primaryText = "#000000";
-            secondary = surfaceMuted;
-            surface = bgColor;
-            surfaceContainer = bgColor;
-            surfaceContainerHigh = "#222222";
-            surfaceContainerHighest = "#555555";
-            surfaceText = fgColor;
-            surfaceTint = accentColor;
-            surfaceVariant = "#222222";
-            surfaceVariantText = "#bbbbbb";
-            warning = accentColor;
-          };
-          light = {
-            background = "#000000";
-            backgroundText = fgColor;
-            error = "#dd0000";
-            info = "#03fcc6";
-            name = "AmoledBlack";
-            outline = "#555555";
-            primary = accentColor;
-            primaryContainer = "#03fcc6";
-            primaryText = "#000000";
-            secondary = surfaceMuted;
-            surface = bgColor;
-            surfaceContainer = bgColor;
-            surfaceContainerHigh = "#222222";
-            surfaceContainerHighest = "#555555";
-            surfaceText = fgColor;
-            surfaceTint = accentColor;
-            surfaceVariant = "#222222";
-            surfaceVariantText = "#bbbbbb";
-            warning = accentColor;
-          };
+          dark = themePayload;
+          light = themePayload;
         };
       in
       {

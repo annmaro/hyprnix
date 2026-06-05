@@ -9,7 +9,22 @@
   home-manager.sharedModules = [
     ./rofi-powermenu.nix
     (
-      { ... }:
+      { config, ... }: # Pass config context here
+      let
+        # Safe extraction of Stylix colors with structural fallbacks
+        stylixColors = config.lib.stylix.colors or { };
+
+        bgColor = "#${stylixColors.base00 or "1d2021"}"; # Background
+        bgAltColor = "#${stylixColors.base01 or "3c3836"}"; # Secondary Background
+        fgColor = "#${stylixColors.base05 or "fbf1c7"}"; # Text
+        accentColor = "#${stylixColors.base0D or "fabd2f"}"; # Selected Focus
+        activeColor = "#${stylixColors.base0B or "8ec07c"}"; # Active States
+        urgentColor = "#${stylixColors.base08 or "fe8019"}"; # Alert States
+
+        # Pull your primary wallpaper path straight from Stylix dynamically
+        currentWallpaper =
+          config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
+      in
       {
         programs.rofi = {
           enable = true;
@@ -25,14 +40,14 @@
             in
             {
               "*" = {
-                font = "JetBrains Mono Nerd Font 10";
+                font = "${config.stylix.fonts.monospace.name or "JetBrains Mono Nerd Font"} 10";
 
-                background = mkLiteral "#1d2021";
-                background-alt = mkLiteral "#3c3836";
-                foreground = mkLiteral "#fbf1c7";
-                selected = mkLiteral "#fabd2f";
-                active = mkLiteral "#8ec07c";
-                urgent = mkLiteral "#fe8019";
+                background = mkLiteral bgColor;
+                background-alt = mkLiteral bgAltColor;
+                foreground = mkLiteral fgColor;
+                selected = mkLiteral accentColor;
+                active = mkLiteral activeColor;
+                urgent = mkLiteral urgentColor;
               };
 
               "window" = {
@@ -76,7 +91,8 @@
                 spacing = mkLiteral "10px";
                 padding = mkLiteral "80px 60px";
                 background-color = mkLiteral "transparent";
-                background-image = mkLiteral ''url("${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg", width)'';
+                # Dynamically maps the current wallpaper
+                background-image = mkLiteral ''url("${currentWallpaper}", width)'';
                 text-color = mkLiteral "@foreground";
                 orientation = mkLiteral "horizontal";
                 children = map mkLiteral [
