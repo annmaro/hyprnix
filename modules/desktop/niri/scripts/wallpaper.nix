@@ -36,7 +36,8 @@ pkgs.writeShellApplication {
       
       if [ -n "$WALLPAPER" ] && [ -f "$WALLPAPER" ]; then
         BLURRED="/tmp/niri-overview-blurred.jpg"
-        magick "$WALLPAPER" -blur 0x25 "$BLURRED"
+        # Changed blur from 0x25 to 0x3 for a minimal, subtle blur effect
+        magick "$WALLPAPER" -blur 0x3 "$BLURRED"
         awww img -n overlay "$BLURRED"
       fi
     fi

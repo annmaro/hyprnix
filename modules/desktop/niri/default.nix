@@ -241,7 +241,7 @@ in
           }
 
           window-rule {
-              match app-id="^(gnome-disks|org.gnome.Nautilus|thunar|pcmanfm|file-roller|steamwebhelper|spotify|com.github.th_ch.youtube_music)$"
+              match app-id="^(gnome-disks|org.gnome.Nautilus|pcmanfm|file-roller|steamwebhelper|spotify|com.github.th_ch.youtube_music)$"
               opacity 0.70
               draw-border-with-background false
               background-effect {
@@ -251,7 +251,7 @@ in
           }
 
           window-rule {
-              match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code)$"
+              match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code|thunar)$"
               opacity 0.85
               draw-border-with-background false
               background-effect {
