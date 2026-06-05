@@ -28,6 +28,11 @@
 
           image = self + "/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg";
 
+          override = {
+            base0A = "607d8b"; # Set to Papirus Bluegrey
+            base0D = "607d8b"; # Set primary accent to Papirus Bluegrey
+          };
+
           # Base16 AMOLED Black & Gruvbox Yellow scheme
           /*
             base16Scheme = {
