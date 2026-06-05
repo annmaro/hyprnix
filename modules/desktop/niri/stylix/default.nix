@@ -118,7 +118,7 @@
 
           icons = {
             enable = true;
-            package = pkgs.papirus-icon-theme;
+            package = pkgs.papirus-icon-theme.override { color = "bluegrey"; };
             dark = "Papirus-Dark";
             light = "Papirus-Light";
           };

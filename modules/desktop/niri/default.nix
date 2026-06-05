@@ -232,7 +232,7 @@ in
 
           window-rule {
               match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
-              opacity 0.70
+              opacity 0.80
               draw-border-with-background false
               background-effect {
                    blur true
