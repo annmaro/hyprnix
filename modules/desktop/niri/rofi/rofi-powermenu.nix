@@ -7,27 +7,24 @@
 }:
 
 let
-  # Pull your current wallpaper image variable from Stylix module context
   wallpaperImg =
     config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
 
-  # Safe context color hooks
   stylixColors = config.lib.stylix.colors or { };
 
-  bg = "#${stylixColors.base00 or "1d2021"}";
-  bgAlt = "#${stylixColors.base02 or "282828"}";
-  fg = "#${stylixColors.base05 or "fbf1c7"}";
+  bg = "#000000";
+  bgAlt = "#1a1a1a";
+  fg = "#ffffff";
+
   accent = "#${stylixColors.base0D or "fabd2f"}";
   active = "#${stylixColors.base0B or "b8bb26"}";
   urgent = "#${stylixColors.base08 or "fb4934"}";
 
-  # Style-2.rasi with injected configuration values
   powermenuTheme = pkgs.writeText "style-2.rasi" ''
     configuration {
         show-icons:                 false;
     }
 
-    /*****----- Global Properties -----*****/
     * {
         font:                        "${
           config.stylix.fonts.monospace.name or "JetBrains Mono Nerd Font"
@@ -40,7 +37,6 @@ let
         urgent:                      ${urgent};
     }
 
-    /*****----- Main Window -----*****/
     window {
         transparency:                "real";
         location:                    center;
@@ -58,14 +54,12 @@ let
         background-color:            @background;
     }
 
-    /*****----- Main Box -----*****/
     mainbox {
         background-color:            transparent;
         orientation:                 horizontal;
         children:                    [ "imagebox", "listview" ];
     }
 
-    /*****----- Imagebox (Wallpaper Injection) -----*****/
     imagebox {
         spacing:                     20px;
         padding:                     20px;
@@ -74,7 +68,6 @@ let
         children:                    [ "inputbar", "dummy", "message" ];
     }
 
-    /*****----- User -----*****/
     userimage {
         margin:                      0px 0px;
         border:                      10px;
@@ -83,12 +76,11 @@ let
         background-color:            transparent;
     }
 
-    /*****----- Inputbar -----*****/
     inputbar {
         padding:                     15px;
         border-radius:               100%;
         background-color:            @background-alt;
-        text-color:                  @selected; 
+        text-color:                  @selected;
         border:                      1px solid;
         border-color:                @selected;
         children:                    [ "dummy", "prompt", "dummy"];
@@ -103,7 +95,6 @@ let
         text-color:                  inherit;
     }
 
-    /*****----- Message -----*****/
     message {
         enabled:                     true;
         margin:                      0px;
@@ -121,7 +112,6 @@ let
         horizontal-align:            0.5;
     }
 
-    /*****----- Listview -----*****/
     listview {
         enabled:                     true;
         columns:                     3;
@@ -140,7 +130,6 @@ let
         cursor:                      "default";
     }
 
-    /*****----- Elements -----*****/
     element {
         enabled:                     true;
         padding:                     40px 10px;
@@ -157,7 +146,7 @@ let
         text-color:                  inherit;
         cursor:                      inherit;
         vertical-align:              0.5;
-        horizontal-align:            0.5;
+        horizontal-align:              0.5;
     }
     element selected.normal {
         background-color:            var(selected);
