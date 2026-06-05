@@ -68,25 +68,25 @@
               enable = true;
               extraCss = ''
                 window.csd > decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  outline: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base0D}, 0 0 0 1px #${config.lib.stylix.colors.base0D} !important;
+                  border: 1px solid #607d8b !important;
+                  outline: transparent !important;
+                  box-shadow: none !important;
                 }
                 decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  outline: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base0D}, 0 0 0 1px #${config.lib.stylix.colors.base0D} !important;
+                  border: 1px solid #607d8b !important;
+                  outline: transparent !important;
+                  box-shadow: none !important;
                 }
 
                 /* Override Thunar Menu Popups for readability */
                 window.thunar menu, window.thunar .menu, window.thunar popover {
                   background-color: #${config.lib.stylix.colors.base01} !important;
                   color: #${config.lib.stylix.colors.base05} !important;
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
+                  border: 1px solid #607d8b !important;
                 }
                 window.thunar menuitem:hover, window.thunar .menuitem:hover {
                   background-color: #${config.lib.stylix.colors.base02} !important;
-                  color: #${config.lib.stylix.colors.base0D} !important;
+                  color: #607d8b !important;
                 }
               '';
             };
