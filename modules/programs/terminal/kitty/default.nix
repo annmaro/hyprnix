@@ -6,8 +6,8 @@
       programs.kitty = {
         enable = true;
         font = {
-          size = 14.0;
-          name = "JetBrainsMono Nerd Font";
+          size = pkgs.lib.mkForce 14.0;
+          name = pkgs.lib.mkForce "JetBrainsMono Nerd Font";
         };
 
         # Keep non-color behavioral settings and tab structures
