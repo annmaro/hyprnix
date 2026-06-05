@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, self, ... }:
 
 {
   # 1. System-level environment variables (keep this at the root module level)
@@ -21,25 +21,29 @@
           polarity = "dark";
           enableReleaseChecks = false;
 
+          image = ${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg;
+
           # Base16 AMOLED Black & Gruvbox Yellow scheme
-          base16Scheme = {
-            base00 = "000000"; # Background (AMOLED Absolute Black)
-            base01 = "111111"; # Lighter Background (Status bars / panel subtle offsets)
-            base02 = "222222"; # Selection Background
-            base03 = "555555"; # Comments, Invisible details, Outlines
-            base04 = "bbbbbb"; # Dark Text
-            base05 = "ffffff"; # Default Text / Main Foreground
-            base06 = "e6f0ff"; # Light Text
-            base07 = "ffffff"; # Active Text
-            base08 = "dd0000"; # Error / Red
-            base09 = "ff7b00"; # Orange
-            base0A = "fabd2f"; # Yellow (Our structural choice for Accent/Borders)
-            base0B = "03fc7b"; # Green / Coral
-            base0C = "03fcc6"; # Cyan / Turquoise
-            base0D = "fabd2f"; # Accent Color / Active Window Overrides
-            base0E = "cc00ff"; # Magenta / Purple
-            base0F = "ff6600"; # Brown / Dark Orange
-          };
+          /*
+            base16Scheme = {
+              base00 = "000000"; # Background (AMOLED Absolute Black)
+              base01 = "111111"; # Lighter Background (Status bars / panel subtle offsets)
+              base02 = "222222"; # Selection Background
+              base03 = "555555"; # Comments, Invisible details, Outlines
+              base04 = "bbbbbb"; # Dark Text
+              base05 = "ffffff"; # Default Text / Main Foreground
+              base06 = "e6f0ff"; # Light Text
+              base07 = "ffffff"; # Active Text
+              base08 = "dd0000"; # Error / Red
+              base09 = "ff7b00"; # Orange
+              base0A = "fabd2f"; # Yellow (Our structural choice for Accent/Borders)
+              base0B = "03fc7b"; # Green / Coral
+              base0C = "03fcc6"; # Cyan / Turquoise
+              base0D = "fabd2f"; # Accent Color / Active Window Overrides
+              base0E = "cc00ff"; # Magenta / Purple
+              base0F = "ff6600"; # Brown / Dark Orange
+            };
+          */
 
           # 2. Let Stylix handle your Bibata cursor globally
           cursor = {
@@ -67,6 +71,7 @@
             };
             qt.enable = true;
             btop.enable = true;
+            neovim.enable = true;
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
               profileNames = [ "default" ]; # Instructs Stylix which specific active profiles to look up
@@ -79,7 +84,6 @@
             # --- DISABLE STYLIX FOR THESE SPECIFIC APPS ---
             vscode.enable = false;
             kitty.enable = false;
-            neovim.enable = false;
             waybar.enable = false; # We want to manage Waybar's theme manually to leverage its native styling capabilities
             dank-material-shell.enable = false;
 
@@ -90,9 +94,11 @@
           };
 
           # Generate a 1x1 solid black pixel on the fly as your wallpaper engine source
-          image = pkgs.runCommand "amoled_black.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
-            convert -size 1x1 xc:#000000 $out
-          '';
+          /*
+            image = pkgs.runCommand "amoled_black.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
+              convert -size 1x1 xc:#000000 $out
+            '';
+          */
 
           icons = {
             enable = true;

@@ -76,7 +76,7 @@
                 spacing = mkLiteral "10px";
                 padding = mkLiteral "80px 60px";
                 background-color = mkLiteral "transparent";
-                background-image = mkLiteral ''url("${self}/modules/wallpapers/a_rocky_beach_with_waves_crashing_on_the_shore_rofi.jpg", width)'';
+                background-image = mkLiteral ''url("${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg", width)'';
                 text-color = mkLiteral "@foreground";
                 orientation = mkLiteral "horizontal";
                 children = map mkLiteral [

@@ -9,7 +9,7 @@
 let
   # 1. Reference your rocky beach wallpaper path.
   # If it is placed inside your local configuration source directory:
-  wallpaperImg = "${self}/modules/wallpapers/rocky_beach_rofi.jpg";
+  wallpaperImg = "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
 
   # 2. Re-engineered style-2.rasi with Gruvbox Light elements
   powermenuTheme = pkgs.writeText "style-2.rasi" ''
