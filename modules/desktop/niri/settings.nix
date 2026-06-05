@@ -69,7 +69,11 @@
   };
 
   outputs."desc:BOE 0x0690" = {
-    mode = "1920x1080@60.014";
+    mode = {
+      width = 1920;
+      height = 1080;
+      refresh = 60.014;
+    };
     scale = 1.0;
     position = {
       x = 0;
