@@ -28,31 +28,32 @@
 
           image = self + "/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg";
 
-          override = {
-            base0A = "607d8b"; # Set to Papirus Bluegrey
-            base0D = "607d8b"; # Set primary accent to Papirus Bluegrey
-          };
-
-          # Base16 AMOLED Black & Gruvbox Yellow scheme
           /*
-            base16Scheme = {
-              base00 = "000000"; # Background (AMOLED Absolute Black)
-              base01 = "111111"; # Lighter Background (Status bars / panel subtle offsets)
-              base02 = "222222"; # Selection Background
-              base03 = "555555"; # Comments, Invisible details, Outlines
-              base04 = "bbbbbb"; # Dark Text
-              base05 = "ffffff"; # Default Text / Main Foreground
-              base06 = "e6f0ff"; # Light Text
-              base07 = "ffffff"; # Active Text
-              base08 = "dd0000"; # Error / Red
-              base09 = "ff7b00"; # Orange
-              base0A = "fabd2f"; # Yellow (Our structural choice for Accent/Borders)
-              base0B = "03fc7b"; # Green / Coral
-              base0C = "03fcc6"; # Cyan / Turquoise
-              base0D = "fabd2f"; # Accent Color / Active Window Overrides
-              base0E = "cc00ff"; # Magenta / Purple
-              base0F = "ff6600"; # Brown / Dark Orange
+            override = {
+              base0A = "607d8b"; # Set to Papirus Bluegrey
+              base0D = "607d8b"; # Set primary accent to Papirus Bluegrey
             };
+
+            # Base16 AMOLED Black & Gruvbox Yellow scheme
+
+              base16Scheme = {
+                base00 = "000000"; # Background (AMOLED Absolute Black)
+                base01 = "111111"; # Lighter Background (Status bars / panel subtle offsets)
+                base02 = "222222"; # Selection Background
+                base03 = "555555"; # Comments, Invisible details, Outlines
+                base04 = "bbbbbb"; # Dark Text
+                base05 = "ffffff"; # Default Text / Main Foreground
+                base06 = "e6f0ff"; # Light Text
+                base07 = "ffffff"; # Active Text
+                base08 = "dd0000"; # Error / Red
+                base09 = "ff7b00"; # Orange
+                base0A = "fabd2f"; # Yellow (Our structural choice for Accent/Borders)
+                base0B = "03fc7b"; # Green / Coral
+                base0C = "03fcc6"; # Cyan / Turquoise
+                base0D = "fabd2f"; # Accent Color / Active Window Overrides
+                base0E = "cc00ff"; # Magenta / Purple
+                base0F = "ff6600"; # Brown / Dark Orange
+              };
           */
 
           # 2. Let Stylix handle your Bibata cursor globally
