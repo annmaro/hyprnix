@@ -1,4 +1,9 @@
-{ pkgs, inputs, self, ... }:
+{
+  pkgs,
+  inputs,
+  self,
+  ...
+}:
 
 {
   # 1. System-level environment variables (keep this at the root module level)
@@ -21,7 +26,7 @@
           polarity = "dark";
           enableReleaseChecks = false;
 
-          image = ${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg;
+          image = self + "/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg";
 
           # Base16 AMOLED Black & Gruvbox Yellow scheme
           /*
