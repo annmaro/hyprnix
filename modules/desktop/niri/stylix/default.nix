@@ -87,6 +87,7 @@
             };
             qt.enable = true;
             btop.enable = true;
+            kitty.enable = true; # Ensures Stylix automatically hooks into the layout template
             neovim.enable = true;
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
@@ -99,7 +100,6 @@
 
             # --- DISABLE STYLIX FOR THESE SPECIFIC APPS ---
             vscode.enable = false;
-            kitty.enable = false;
             waybar.enable = false; # We want to manage Waybar's theme manually to leverage its native styling capabilities
             dank-material-shell.enable = false;
 
