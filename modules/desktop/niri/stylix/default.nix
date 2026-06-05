@@ -72,6 +72,17 @@
                   outline: 1px solid #${config.lib.stylix.colors.base0A} !important;
                   box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base0A}, 0 0 0 1px #${config.lib.stylix.colors.base0A} !important;
                 }
+
+                /* Override Thunar Menu Popups for readability */
+                window.thunar menu, window.thunar .menu, window.thunar popover {
+                  background-color: #${config.lib.stylix.colors.base01} !important;
+                  color: #${config.lib.stylix.colors.base05} !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0A} !important;
+                }
+                window.thunar menuitem:hover, window.thunar .menuitem:hover {
+                  background-color: #${config.lib.stylix.colors.base02} !important;
+                  color: #${config.lib.stylix.colors.base0A} !important;
+                }
               '';
             };
             qt.enable = true;

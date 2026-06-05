@@ -23,7 +23,7 @@
 
         # Pull your primary wallpaper path straight from Stylix dynamically
         currentWallpaper =
-          config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi.jpg";
+          config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi1.jpg";
       in
       {
         programs.rofi = {
