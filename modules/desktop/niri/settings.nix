@@ -82,13 +82,6 @@
     "2" = { };
   };
 
-  blur = {
-    passes = 3;
-    offset = 3.0;
-    noise = 0.02;
-    saturation = 1.1;
-  };
-
   layout = {
     gaps = 9;
     center-focused-column = "never";
