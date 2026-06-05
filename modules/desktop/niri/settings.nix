@@ -30,9 +30,21 @@
   };
 
   spawn-at-startup = [
-    { command = "sh -c 'sleep 1 && wlsunset -T 3800 -t 3799'"; }
-    { command = "sh -c 'sleep 2 && thunar --daemon'"; }
-    { command = "${getExe wallpaper}"; }
+    {
+      command = [
+        "sh"
+        "-c"
+        "sleep 1 && wlsunset -T 3800 -t 3799"
+      ];
+    }
+    {
+      command = [
+        "sh"
+        "-c"
+        "sleep 2 && thunar --daemon"
+      ];
+    }
+    { command = [ "${getExe wallpaper}" ]; }
   ];
 
   input = {
@@ -70,6 +82,12 @@
     "2" = { };
   };
 
+  blur = {
+    passes = 3;
+    offset = 3.0;
+    noise = 0.02;
+    saturation = 1.1;
+  };
 
   layout = {
     gaps = 9;
