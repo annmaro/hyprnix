@@ -1,7 +1,7 @@
 { self, pkgs }:
 
 pkgs.writeShellScriptBin "installer" ''
-  set -e
+  set -ex
 
   # Colors for clean terminal output
   RED='\033[0;31m'
