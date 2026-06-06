@@ -60,8 +60,8 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus.enable = true;
-    focus-follows-mouse.enable = true;
+    warp-mouse-to-focus = true;
+    focus-follows-mouse = true;
   };
 
   outputs."desc:BOE 0x0690" = {
@@ -95,8 +95,8 @@
     background-color = "transparent";
     border = {
       width = 1;
-      active.color = "#${config.lib.stylix.colors.base0D}";
-      inactive.color = "transparent";
+      active-color = "#${config.lib.stylix.colors.base0D}";
+      inactive-color = "transparent";
     };
     preset-column-widths = [
       { proportion = 0.33333; }
@@ -112,12 +112,7 @@
     }
     {
       matches = [ { namespace = "^rofi$"; } ];
-      geometry-corner-radius = {
-        top-left = 12.0;
-        top-right = 12.0;
-        bottom-left = 12.0;
-        bottom-right = 12.0;
-      };
+      geometry-corner-radius = 12.0;
       background-effect = {
         blur = true;
         xray = false;
@@ -134,17 +129,12 @@
   ];
 
   overview = {
-    workspace-shadow.enable = false;
+    # workspace-shadow.enable = false; # wrapper-modules does not parse this directly
   };
 
   window-rules = [
     {
-      geometry-corner-radius = {
-        top-left = 12.0;
-        top-right = 12.0;
-        bottom-left = 12.0;
-        bottom-right = 12.0;
-      };
+      geometry-corner-radius = 12.0;
       clip-to-geometry = true;
     }
     {
