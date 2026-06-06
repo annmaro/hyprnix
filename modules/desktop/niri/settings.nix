@@ -130,11 +130,11 @@ in
   window-rules = [
     {
       geometry-corner-radius = 12.0;
-      clip-to-geometry = kdlFlag;
+      clip-to-geometry = true;
     }
     {
       matches = [ { app-id = "^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"; } ];
-      open-maximized = kdlFlag;
+      open-maximized = true;
       opacity = 1.0;
     }
     {
@@ -177,11 +177,11 @@ in
           app-id = "^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$";
         }
       ];
-      open-floating = kdlFlag;
+      open-floating = true;
     }
     {
       matches = [ { title = "^Picture-in-Picture$"; } ];
-      open-floating = kdlFlag;
+      open-floating = true;
     }
   ];
 
