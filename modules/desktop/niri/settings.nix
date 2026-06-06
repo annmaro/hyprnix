@@ -8,9 +8,12 @@
   keybindsRofi,
 }:
 
+let
+  kdlFlag = self: { custom = args: "${args.indent}\"${args.name}\""; };
+in
 {
-  prefer-no-csd = null;
-  hotkey-overlay.skip-at-startup = null;
+  prefer-no-csd = kdlFlag;
+  hotkey-overlay.skip-at-startup = kdlFlag;
 
   environment = {
     XDG_CURRENT_DESKTOP = "niri";
@@ -60,8 +63,8 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus = null;
-    focus-follows-mouse = null;
+    warp-mouse-to-focus = kdlFlag;
+    focus-follows-mouse = kdlFlag;
   };
 
   outputs."desc:BOE 0x0690" = {
@@ -127,11 +130,11 @@
   window-rules = [
     {
       geometry-corner-radius = 12.0;
-      clip-to-geometry = null;
+      clip-to-geometry = kdlFlag;
     }
     {
       matches = [ { app-id = "^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"; } ];
-      open-maximized = null;
+      open-maximized = kdlFlag;
       opacity = 1.0;
     }
     {
@@ -174,201 +177,201 @@
           app-id = "^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$";
         }
       ];
-      open-floating = null;
+      open-floating = kdlFlag;
     }
     {
       matches = [ { title = "^Picture-in-Picture$"; } ];
-      open-floating = null;
+      open-floating = kdlFlag;
     }
   ];
 
   binds = {
-    "Mod+Return".action.spawn = "ghostty";
-    "Mod+T".action.spawn = "kitty";
-    "Mod+C".action.spawn = "editor";
-    "Mod+F".action.spawn = "firefox";
-    "Mod+A".action.spawn = "antigravity";
-    "Mod+Space".action.spawn = [
+    "Mod+Return".spawn = "ghostty";
+    "Mod+T".spawn = "kitty";
+    "Mod+C".spawn = "editor";
+    "Mod+F".spawn = "firefox";
+    "Mod+A".spawn = "antigravity";
+    "Mod+Space".spawn = [
       "rofi"
       "-show"
       "drun"
     ];
-    "Mod+V".action.spawn = [
+    "Mod+V".spawn = [
       "rofi"
       "-show"
       "clipboard"
     ];
-    "Mod+Z".action.spawn = [
+    "Mod+Z".spawn = [
       "rofi"
       "-show"
       "emoji"
     ];
-    "Mod+Shift+K".action.spawn = "${getExe keybindsRofi}";
-    "Mod+G".action.spawn = [
+    "Mod+Shift+K".spawn = "${getExe keybindsRofi}";
+    "Mod+G".spawn = [
       "launcher"
       "games"
     ];
-    "Mod+Alt+G".action.spawn = "gamemode";
-    "Alt+F4".action.close-window = [ ];
-    "Ctrl+Q".action.close-window = [ ];
-    "Alt+S".action.spawn = [
+    "Mod+Alt+G".spawn = "gamemode";
+    "Alt+F4".close-window = kdlFlag;
+    "Ctrl+Q".close-window = kdlFlag;
+    "Alt+S".spawn = [
       "systemctl"
       "--user"
       "restart"
       "dms"
     ];
-    "Mod+Delete".action.quit = [ ];
-    "Mod+Alt+L".action.spawn = [
+    "Mod+Delete".quit = kdlFlag;
+    "Mod+Alt+L".spawn = [
       "dms"
       "session"
       "lock"
     ];
-    "Mod+N".action.spawn = [
+    "Mod+N".spawn = [
       "dms"
       "ipc"
       "call"
       "notifications"
       "toggle"
     ];
-    "Mod+D".action.spawn = [
+    "Mod+D".spawn = [
       "eww"
       "open"
       "--toggle"
       "dashboard"
     ];
-    "Mod+Shift+E".action.spawn = [
+    "Mod+Shift+E".spawn = [
       "dms"
       "ipc"
       "call"
       "session"
       "toggle"
     ];
-    "Mod+Shift+C".action.spawn = "code";
-    "Mod+Shift+R".action.spawn = [
+    "Mod+Shift+C".spawn = "code";
+    "Mod+Shift+R".spawn = [
       "sh"
       "-c"
       "thunar -q && thunar --daemon"
     ];
-    "Mod+Backspace".action.spawn = [
+    "Mod+Backspace".spawn = [
       "sh"
       "-c"
       "pkill -x wlogout || wlogout -b 4"
     ];
-    "Mod+Shift+S".action.spawn = "spotify";
-    "Mod+Shift+P".action.spawn = "rofi-powermenu";
-    "Mod+Shift+Y".action.spawn = "youtube-music";
-    "Ctrl+Alt+Delete".action.spawn = [
+    "Mod+Shift+S".spawn = "spotify";
+    "Mod+Shift+P".spawn = "rofi-powermenu";
+    "Mod+Shift+Y".spawn = "youtube-music";
+    "Ctrl+Alt+Delete".spawn = [
       "ghostty"
       "-e"
       "btop"
     ];
-    "Mod+Ctrl+C".action.spawn = [
+    "Mod+Ctrl+C".spawn = [
       "hyprpicker"
       "--autocopy"
       "--format=hex"
     ];
-    "Mod+F9".action.spawn = [
+    "Mod+F9".spawn = [
       "sh"
       "-c"
       "wlsunset -T 3800 -t 3799"
     ];
-    "Mod+F10".action.spawn = [
+    "Mod+F10".spawn = [
       "sh"
       "-c"
       "pkill -9 wlsunset || killall -9 wlsunset"
     ];
 
-    "Mod+Left".action.focus-column-left = [ ];
-    "Mod+Right".action.focus-column-right = [ ];
-    "Mod+H".action.focus-column-left = [ ];
-    "Mod+L".action.focus-column-right = [ ];
-    "Mod+S".action.spawn = [
+    "Mod+Left".focus-column-left = kdlFlag;
+    "Mod+Right".focus-column-right = kdlFlag;
+    "Mod+H".focus-column-left = kdlFlag;
+    "Mod+L".focus-column-right = kdlFlag;
+    "Mod+S".spawn = [
       "sh"
       "-c"
       "niri msg action toggle-overview"
     ];
-    "Mod+Ctrl+Left".action.move-column-left = [ ];
-    "Mod+Ctrl+Right".action.move-column-right = [ ];
+    "Mod+Ctrl+Left".move-column-left = kdlFlag;
+    "Mod+Ctrl+Right".move-column-right = kdlFlag;
 
-    "Mod+K".action.focus-window-up = [ ];
-    "Mod+J".action.focus-window-down = [ ];
-    "Mod+Ctrl+K".action.move-column-to-workspace-up = [ ];
-    "Mod+Ctrl+J".action.move-column-to-workspace-down = [ ];
-    "Mod+WheelScrollDown".action.focus-workspace-down = [ ];
-    "Mod+WheelScrollUp".action.focus-workspace-up = [ ];
+    "Mod+K".focus-window-up = kdlFlag;
+    "Mod+J".focus-window-down = kdlFlag;
+    "Mod+Ctrl+K".move-column-to-workspace-up = kdlFlag;
+    "Mod+Ctrl+J".move-column-to-workspace-down = kdlFlag;
+    "Mod+WheelScrollDown".focus-workspace-down = kdlFlag;
+    "Mod+WheelScrollUp".focus-workspace-up = kdlFlag;
 
-    "Mod+R".action.switch-preset-column-width = [ ];
-    "Mod+M".action.maximize-column = [ ];
-    "Alt+Return".action.fullscreen-window = [ ];
-    "Mod+W".action.toggle-window-floating = [ ];
-    "Mod+1".action.focus-workspace = 1;
-    "Mod+2".action.focus-workspace = 2;
-    "Mod+3".action.focus-workspace = 3;
-    "Mod+Shift+1".action.move-column-to-workspace = 1;
-    "Mod+Shift+2".action.move-column-to-workspace = 2;
-    "Mod+Shift+3".action.move-column-to-workspace = 3;
-    "Mod+Shift+4".action.move-column-to-workspace = 4;
-    "Mod+Shift+5".action.move-column-to-workspace = 5;
+    "Mod+R".switch-preset-column-width = kdlFlag;
+    "Mod+M".maximize-column = kdlFlag;
+    "Alt+Return".fullscreen-window = kdlFlag;
+    "Mod+W".toggle-window-floating = kdlFlag;
+    "Mod+1".focus-workspace = 1;
+    "Mod+2".focus-workspace = 2;
+    "Mod+3".focus-workspace = 3;
+    "Mod+Shift+1".move-column-to-workspace = 1;
+    "Mod+Shift+2".move-column-to-workspace = 2;
+    "Mod+Shift+3".move-column-to-workspace = 3;
+    "Mod+Shift+4".move-column-to-workspace = 4;
+    "Mod+Shift+5".move-column-to-workspace = 5;
 
-    "XF86AudioRaiseVolume".action.spawn = [
+    "XF86AudioRaiseVolume".spawn = [
       "pamixer"
       "-i"
       "2"
     ];
-    "XF86AudioLowerVolume".action.spawn = [
+    "XF86AudioLowerVolume".spawn = [
       "pamixer"
       "-d"
       "2"
     ];
-    "XF86AudioMute".action.spawn = [
+    "XF86AudioMute".spawn = [
       "pamixer"
       "-t"
     ];
-    "XF86AudioMicMute".action.spawn = [
+    "XF86AudioMicMute".spawn = [
       "pamixer"
       "--default-source"
       "-t"
     ];
-    "XF86MonBrightnessUp".action.spawn = [
+    "XF86MonBrightnessUp".spawn = [
       "brightnessctl"
       "set"
       "+2%"
     ];
-    "XF86MonBrightnessDown".action.spawn = [
+    "XF86MonBrightnessDown".spawn = [
       "brightnessctl"
       "set"
       "2%-"
     ];
-    "XF86AudioPlay".action.spawn = [
+    "XF86AudioPlay".spawn = [
       "playerctl"
       "play-pause"
     ];
-    "XF86AudioPause".action.spawn = [
+    "XF86AudioPause".spawn = [
       "playerctl"
       "play-pause"
     ];
-    "XF86AudioNext".action.spawn = [
+    "XF86AudioNext".spawn = [
       "playerctl"
       "next"
     ];
-    "XF86AudioPrev".action.spawn = [
+    "XF86AudioPrev".spawn = [
       "playerctl"
       "previous"
     ];
-    "XF86Sleep".action.spawn = [
+    "XF86Sleep".spawn = [
       "systemctl"
       "suspend"
     ];
-    "Mod+Up".action.focus-window-or-workspace-up = [ ];
-    "Mod+Down".action.focus-window-or-workspace-down = [ ];
-    "Mod+Ctrl+Up".action.move-workspace-up = [ ];
-    "Mod+Ctrl+Down".action.move-workspace-down = [ ];
-    "Mod+P".action.spawn = [
+    "Mod+Up".focus-window-or-workspace-up = kdlFlag;
+    "Mod+Down".focus-window-or-workspace-down = kdlFlag;
+    "Mod+Ctrl+Up".move-workspace-up = kdlFlag;
+    "Mod+Ctrl+Down".move-workspace-down = kdlFlag;
+    "Mod+P".spawn = [
       "sh"
       "-c"
       "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
     ];
-    "Mod+Ctrl+P".action.spawn = [
+    "Mod+Ctrl+P".spawn = [
       "sh"
       "-c"
       "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
