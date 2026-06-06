@@ -9,8 +9,8 @@
 }:
 
 {
-  prefer-no-csd = true;
-  hotkey-overlay.skip-at-startup = true;
+  prefer-no-csd = null;
+  hotkey-overlay.skip-at-startup = null;
 
   environment = {
     XDG_CURRENT_DESKTOP = "niri";
@@ -60,8 +60,8 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus = true;
-    focus-follows-mouse = true;
+    warp-mouse-to-focus = null;
+    focus-follows-mouse = null;
   };
 
   outputs."desc:BOE 0x0690" = {
@@ -127,12 +127,11 @@
   window-rules = [
     {
       geometry-corner-radius = 12.0;
-      clip-to-geometry = true;
+      clip-to-geometry = null;
     }
     {
       matches = [ { app-id = "^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"; } ];
-      open-maximized = true;
-      draw-border-with-background = false;
+      open-maximized = null;
       opacity = 1.0;
     }
     {
@@ -140,7 +139,6 @@
         { app-id = "^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"; }
       ];
       opacity = 0.80;
-      draw-border-with-background = false;
       background-effect = {
         blur = true;
         xray = false;
@@ -153,7 +151,6 @@
         }
       ];
       opacity = 0.70;
-      draw-border-with-background = false;
       background-effect = {
         blur = true;
         xray = false;
@@ -166,7 +163,6 @@
         }
       ];
       opacity = 0.85;
-      draw-border-with-background = false;
       background-effect = {
         blur = true;
         xray = false;
@@ -178,11 +174,11 @@
           app-id = "^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$";
         }
       ];
-      open-floating = true;
+      open-floating = null;
     }
     {
       matches = [ { title = "^Picture-in-Picture$"; } ];
-      open-floating = true;
+      open-floating = null;
     }
   ];
 
