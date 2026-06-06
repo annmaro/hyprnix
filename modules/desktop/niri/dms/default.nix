@@ -51,12 +51,18 @@
       {
         imports = [
           inputs.dms.homeModules.dank-material-shell
+          inputs.dms.homeModules.niri # Enforce native Niri features & auto-spawning
           ./logo.nix # Custom system logo plugin with inline QML for better performance and easier management
         ];
 
         programs.dank-material-shell = {
           enable = true;
           systemd.enable = true;
+
+          niri = {
+            enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
+            enableSpawn = false; # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
+          };
         };
 
         home.packages = with pkgs; [
