@@ -78,7 +78,7 @@ in
 
         # This empty set satisfies the module validator to prevent the null-error,
         # ensuring your native KDL string below generates seamlessly.
-        programs.niri.package = pkgs.niri-unstable;
+        programs.niri.package = pkgs.niri;
         programs.niri.settings = { };
 
         # =====================================================================
