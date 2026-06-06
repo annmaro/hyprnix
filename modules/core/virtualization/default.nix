@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   # Ensure nixvirt is passed via inputs in your flake.nix
@@ -17,10 +23,6 @@ in
       package = pkgs.qemu_kvm;
       runAsRoot = true;
       swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
     };
   };
 
@@ -35,11 +37,11 @@ in
 
   # NixVirt configuration for qemu:///system
   virtualisation.libvirt.connections."qemu:///system" = {
-    
+
     # Declarative Virtual Machine (Domain) definition
     domains = [
       {
-        # Using raw XML gives you absolute control over performance tweaks 
+        # Using raw XML gives you absolute control over performance tweaks
         # (like host-passthrough, cache writeback, io threads, 3d acceleration)
         definition = pkgs.writeText "nixos-vm.xml" ''
           <domain type='kvm'>
@@ -51,7 +53,7 @@ in
             
             <os>
               <type arch='x86_64' machine='q35'>hvm</type>
-              <loader readonly='yes' type='pflash'>/run/current-system/sw/share/OVMF/OVMF_CODE.fd</loader>
+              <loader readonly='yes' type='pflash'>/run/libvirt/nix-ovmf/OVMF_CODE.fd</loader>
             </os>
             
             <devices>
