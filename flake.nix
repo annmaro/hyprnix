@@ -6,7 +6,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak?ref=latest";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     niri = {
