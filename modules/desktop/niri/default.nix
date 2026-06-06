@@ -61,10 +61,11 @@ in
   services.displayManager.defaultSession = "niri";
 
   # Core Flake deployment hooks (System-wide package)
-  programs.niri = {
-    enable = true;
-  };
-
+  /*
+    programs.niri = {
+      enable = true;
+    };
+  */
   home-manager.sharedModules = [
     (
       { config, ... }:
