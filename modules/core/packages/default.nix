@@ -39,7 +39,6 @@
     vivaldi # Browser for our Friends, powerful and personal
     pdf4qt # Open source PDF editor
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
-    uget # Download manager using GTK and libcurls
     easyeffects # Audio effects for PipeWire applications
     # pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
@@ -55,7 +54,7 @@
     vulkan-tools # Khronos official Vulkan Tools and Utilities
     age # Modern encryption tool with small explicit keys
     xdg-utils # Set of command line tools that assist applications with a variety of desktop integration tasks
-    eza # Enhanced `ls` command replacement  
+    eza # Enhanced `ls` command replacement
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program

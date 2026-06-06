@@ -9,11 +9,12 @@
       # Use the official Flatpak application ID (e.g., from flathub.org)
       # Examples:
       packages = [
-        "com.github.tchx84.Flatseal"      # Manage flatpak permissions - should always have this
-        "io.github.flattool.Warehouse"    # Manage flatpaks, clean data, remove flatpaks and deps
-        "app.opencomic.OpenComic"         # Comic and Manga reader
-        "org.sabnzbd.sabnzbd"             # Free and easy binary newsreader
-        "org.freefilesync.FreeFileSync"   # Visual folder comparison and synchrocd ..nization  
+        "com.github.tchx84.Flatseal" # Manage flatpak permissions - should always have this
+        "io.github.flattool.Warehouse" # Manage flatpaks, clean data, remove flatpaks and deps
+        "app.opencomic.OpenComic" # Comic and Manga reader
+        "org.sabnzbd.sabnzbd" # Free and easy binary newsreader
+        "org.freefilesync.FreeFileSync" # Visual folder comparison and synchrocd ..nization
+        "io.github.giantpinkrobots.varia" # Download files, videos and torrents
         #"it.mijorus.gearlever"           # Manage and support AppImages
         #"com.rtosta.zapzap"              # WhatsApp client
         #"io.github.freedoom.Phase1"      #  Classic Doom FPS 1
