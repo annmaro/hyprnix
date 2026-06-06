@@ -62,6 +62,17 @@
           niri = {
             enableKeybinds = false; # Disable DMS's built-in keybinds to prevent conflicts with your custom ones
             enableSpawn = false; # Disable DMS's built-in autostart to prevent conflicts with your custom spawn-at-startup setup
+            includes = {
+              enable = true;
+              # Set override to false so your custom hm.kdl takes priority
+              override = false;
+              # Exclude colors and layout files so DMS doesn't inject its own window borders
+              filesToInclude = [
+                "alttab"
+                "binds"
+                "wpblur"
+              ];
+            };
           };
         };
 
