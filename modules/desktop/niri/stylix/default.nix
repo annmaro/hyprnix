@@ -112,6 +112,7 @@
             # Add any other apps here if you want to manage their themes manually:
             rofi.enable = false;
             spicetify.enable = false;
+            cava.enable = false;
             feh.enable = false;
           };
 
