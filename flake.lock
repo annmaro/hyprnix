@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780703161,
-        "narHash": "sha256-KW+F0sALi1DgVtgpUIrZpmNxaEzo4AZByp15mE18+LQ=",
+        "lastModified": 1780715834,
+        "narHash": "sha256-DJwIs0RG20sjWR37mF4I7k3P3SQM97BDh9o8V5cUgo8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "5716249bd9c5c73914464fec09bb16c1c27b8496",
+        "rev": "e7ccb702a3141bfb62a6597e7863c25afff07d60",
         "type": "github"
       },
       "original": {
@@ -601,17 +601,36 @@
         "type": "github"
       }
     },
+    "nixvirt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748140003,
+        "narHash": "sha256-DNBZmuk1YRM2PmwbHzVdXumRjCUzQkMarg4iI/37rOQ=",
+        "rev": "5dfe108fd859b122f9a96981cb6bc12297653d6c",
+        "revCount": 407,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/AshleyYakeley/NixVirt/0.6.0/0197059a-e45f-7446-86b5-411ccc894ab0/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/AshleyYakeley/NixVirt/%2A.tar.gz"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1780704056,
-        "narHash": "sha256-wPq16Ci9SMTSqEJbjaBKaHZBb4eS4ryVHwd3yY/vP3A=",
+        "lastModified": 1780764149,
+        "narHash": "sha256-xc6rCpAFvxh+swhHBoGJVIIDcS7Gu3TO8ZzXKmw1BUY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "c4975e3a5b23f14f4bd43e28a0d42f2b16e6f0b8",
+        "rev": "eccd9565a6b46fd4299830b788bce8f2954d32bd",
         "type": "github"
       },
       "original": {
@@ -722,6 +741,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "nixvirt": "nixvirt",
         "nur": "nur",
         "nvchad4nix": "nvchad4nix",
         "nvf": "nvf",
@@ -741,11 +761,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780180566,
-        "narHash": "sha256-tfXlfIFWY+E/izmRb9Qd3to3guxhyIh9HyZAoTKqa9k=",
+        "lastModified": 1780758567,
+        "narHash": "sha256-3guWRbX1CgSU6hltf//lrru7fSHKZIIw0zIMFM2jmvY=",
         "owner": "uiriansan",
         "repo": "SilentSDDM",
-        "rev": "0828621769acaa26ef131ed96255c7bd06038111",
+        "rev": "9ccebeb6b526eee779b0807fe85b813d47d78ff7",
         "type": "github"
       },
       "original": {
