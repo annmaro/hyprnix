@@ -30,21 +30,17 @@
   };
 
   spawn-at-startup = [
-    {
-      command = [
-        "sh"
-        "-c"
-        "sleep 1 && wlsunset -T 3800 -t 3799"
-      ];
-    }
-    {
-      command = [
-        "sh"
-        "-c"
-        "sleep 2 && thunar --daemon"
-      ];
-    }
-    { command = [ "${getExe wallpaper}" ]; }
+    [
+      "sh"
+      "-c"
+      "sleep 1 && wlsunset -T 3800 -t 3799"
+    ]
+    [
+      "sh"
+      "-c"
+      "sleep 2 && thunar --daemon"
+    ]
+    [ "${getExe wallpaper}" ]
   ];
 
   input = {
@@ -64,7 +60,7 @@
       accel-profile = "flat";
       accel-speed = 0.0;
     };
-    warp-mouse-to-focus = true;
+    warp-mouse-to-focus.enable = true;
     focus-follows-mouse.enable = true;
   };
 
@@ -86,14 +82,21 @@
     "2" = { };
   };
 
+  blur = {
+    passes = 3;
+    offset = 3.0;
+    noise = 0.02;
+    saturation = 1.1;
+  };
+
   layout = {
     gaps = 9;
     center-focused-column = "never";
     background-color = "transparent";
     border = {
       width = 1;
-      active-color = "#${config.lib.stylix.colors.base0D}";
-      inactive-color = "transparent";
+      active.color = "#${config.lib.stylix.colors.base0D}";
+      inactive.color = "transparent";
     };
     preset-column-widths = [
       { proportion = 0.33333; }
@@ -109,7 +112,12 @@
     }
     {
       matches = [ { namespace = "^rofi$"; } ];
-      geometry-corner-radius = 12;
+      geometry-corner-radius = {
+        top-left = 12.0;
+        top-right = 12.0;
+        bottom-left = 12.0;
+        bottom-right = 12.0;
+      };
       background-effect = {
         blur = true;
         xray = false;
@@ -131,12 +139,17 @@
 
   window-rules = [
     {
-      geometry-corner-radius = 12;
+      geometry-corner-radius = {
+        top-left = 12.0;
+        top-right = 12.0;
+        bottom-left = 12.0;
+        bottom-right = 12.0;
+      };
       clip-to-geometry = true;
     }
     {
       matches = [ { app-id = "^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"; } ];
-      open-maximized-to-edges = true;
+      open-maximized = true;
       draw-border-with-background = false;
       opacity = 1.0;
     }

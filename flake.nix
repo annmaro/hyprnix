@@ -6,6 +6,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     niri.url = "github:sodiboo/niri-flake";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
     home-manager = {
       url = "github:nix-community/home-manager";

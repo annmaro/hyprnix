@@ -76,23 +76,25 @@ in
         # Set wallpaper
         services.awww.enable = true;
 
-        # This empty set satisfies the module validator to prevent the null-error,
-        # ensuring your native KDL string below generates seamlessly.
-        programs.niri.package = pkgs.niri;
         # =====================================================================
         # 🎛️ NIRI NATIVE CONFIGURATION (All settings managed here)
         # =====================================================================
-        programs.niri.settings = import ./settings.nix {
-          inherit
-            config
-            pkgs
-            getExe
-            kbdLayout
-            kbdVariant
-            wallpaper
-            keybindsRofi
-            ;
+        programs.niri.package = inputs.wrapper-modules.wrappers.niri.wrap {
+          inherit pkgs;
+          settings = import ./settings.nix {
+            inherit
+              config
+              pkgs
+              getExe
+              kbdLayout
+              kbdVariant
+              wallpaper
+              keybindsRofi
+              ;
+          };
         };
+
+        programs.niri.settings = lib.mkForce { };
 
         xdg.portal = {
           enable = true;
