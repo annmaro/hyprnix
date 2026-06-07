@@ -1,4 +1,8 @@
-{ disk ? "/dev/sda", ... }: {
+{
+  disk ? "/dev/sda",
+  ...
+}:
+{
   disko.devices = {
     disk = {
       main = {
@@ -25,22 +29,35 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" -L "root" ]; # Matches 'mkfs.btrfs -f -L "root"' from installer
+                extraArgs = [
+                  "-f"
+                  "-L"
+                  "root"
+                ]; # Matches 'mkfs.btrfs -f -L "root"' from installer
                 subvolumes = {
                   # Main root subvolume
                   "@" = {
                     mountpoint = "/";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                   # Home subvolume
                   "@home" = {
                     mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                   # Nix store subvolume
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                 };
               };
