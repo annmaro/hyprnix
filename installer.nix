@@ -70,6 +70,13 @@ pkgs.writeShellScriptBin "installer" ''
   read -rp "Enter desired system hostname [default: nixos]: " hostname
   hostname=''${hostname:-nixos}
 
+  # Git credentials prompt
+  read -rp "Enter your Git Username (e.g., John Doe) [default: $username]: " git_username
+  git_username=''${git_username:-$username}
+  
+  read -rp "Enter your Git Email (e.g., john@example.com): " git_email
+  git_email=''${git_email:-""}
+
   # Password prompt
   while true; do
       read -rsp "Enter password for $username: " password;
@@ -212,6 +219,8 @@ pkgs.writeShellScriptBin "installer" ''
       if [ -f "/mnt/etc/nixos/hosts/default/variables.nix" ]; then
           sed -i -e "s/username = \".*\"/username = \"$username\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
           sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
+          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
+          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
       fi
 
       # Trigger deployment target evaluation with explicit experimental flags
@@ -237,6 +246,8 @@ pkgs.writeShellScriptBin "installer" ''
       if [ -f "./hosts/default/variables.nix" ]; then
           sed -i -e "s/username = \".*\"/username = \"$username\"/" "./hosts/default/variables.nix"
           sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "./hosts/default/variables.nix"
+          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "./hosts/default/variables.nix"
+          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "./hosts/default/variables.nix"
       fi
 
       info "Cleaning up conflicting native configuration files..."
