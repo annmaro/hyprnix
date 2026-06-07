@@ -264,7 +264,7 @@ pkgs.writeShellScriptBin "installer" ''
       sudo git -C . add hosts/default/hardware-configuration.nix || true
 
       info "Building and activating configuration changes..."
-      if sudo nixos-rebuild switch --flake .#default --extra-experimental-features "nix-command flakes"; then
+      if sudo NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-rebuild switch --flake .#default; then
           info "System switched successfully!"
       else
           error "Nixos-rebuild failed. Review compilation output messages above."
