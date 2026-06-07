@@ -11,6 +11,7 @@ in
     # Core Modules (Don't change unless you know what you're doing)
     "${self}/modules/core/boot"
     "${self}/modules/core/bash"
+    "${self}/modules/core/disko"
     "${self}/modules/core/zsh"
     "${self}/modules/core/games"
     "${self}/modules/core/starship"
