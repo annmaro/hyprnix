@@ -1,6 +1,8 @@
 {
   # User Configuration
   username = "annmaro"; 
+  gitUsername = "annmaro";
+  gitEmail = "anandk60440@gmail.com";
   desktop = "niri"; 
   terminal = "kitty"; # Options: kitty, alacritty
   editor = "neovim"; # Options: vscode, antigravity, neovim

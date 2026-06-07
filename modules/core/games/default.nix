@@ -1,8 +1,13 @@
 {
   pkgs,
   lib,
+  self,
+  host,
   ...
 }:
+let
+  inherit (import "${self}/hosts/${host}/variables.nix") username;
+in
 {
 
 
@@ -25,7 +30,7 @@
   ];
 
   # User groups configuration
-  users.users.annmaro.extraGroups = [ "gamemode" ];
+  users.users.${username}.extraGroups = [ "gamemode" ];
 
   # Programs & Gaming Configurations
   programs = {

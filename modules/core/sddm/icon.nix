@@ -1,9 +1,11 @@
+{ self, host, ... }:
 {
 
   systemd.tmpfiles.rules =
 
     let
-      user = "annmaro";
+      inherit (import "${self}/hosts/${host}/variables.nix") username;
+      user = "${username}";
       iconPath = ./nix.png;
     in
     [

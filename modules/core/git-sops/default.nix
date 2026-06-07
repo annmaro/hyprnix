@@ -1,8 +1,9 @@
-{ config, inputs, pkgs, ... }: 
-
+{ self, host, config, inputs, pkgs, ... }: 
+let
+  inherit (import "${self}/hosts/${host}/variables.nix") username;
+in
 {
-
-  home-manager.users.annmaro = { config, pkgs, ... }: 
+  home-manager.users.${username} = { config, pkgs, ... }: 
 
  {  
 

@@ -1,5 +1,7 @@
-{ pkgs, config, ... }:
-
+{ self, host, pkgs, config, ... }:
+let
+  inherit (import "${self}/hosts/${host}/variables.nix") gitUsername gitEmail;
+in
 {
       
       home.packages = [ 
@@ -34,8 +36,8 @@
         # --- UNIFIED CONFIGURATION: All parameters routed through settings ---
         settings = {
           # Moved here: Maps directly to the global [user] block inside .gitconfig
-          user.name = "annmaro";
-          user.email = "anandk60440@gmail.com";
+          user.name = "${gitUsername}";
+          user.email = "${gitEmail}";
 
           # Maps directly to the global [alias] block inside .gitconfig
           alias = {
