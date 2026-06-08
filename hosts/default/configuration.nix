@@ -30,7 +30,7 @@ in
     "${self}/modules/core/users"
     "${self}/modules/core/flatpak"
     "${self}/modules/core/xdg"
-    "${self}/modules/core/virtualization"
+    "${self}/modules/core/virtualisation"
     # "${self}/modules/core/dlna.nix"
 
     # Optional
