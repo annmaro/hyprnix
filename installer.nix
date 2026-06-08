@@ -31,7 +31,7 @@ pkgs.writeShellScriptBin "installer" ''
   if $IS_LIVE_ISO && [ -z "$NIX_FLAGS_ENFORCED" ]; then
       info "Enabling Flake features and preparing environment tools..."
       export NIX_FLAGS_ENFORCED=1
-      exec nix shell nixpkgs#git nixpkgs#pciutils github:nix-community/disko --extra-experimental-features "nix-command flakes" -c sudo -E "$0" "$@"
+      exec nix shell nixpkgs#git nixpkgs#pciutils --extra-experimental-features "nix-command flakes" -c sudo -E "$0" "$@"
       exit $?
   fi
 
@@ -73,7 +73,7 @@ pkgs.writeShellScriptBin "installer" ''
   # Git credentials prompt
   read -rp "Enter your Git Username (e.g., John Doe) [default: $username]: " git_username
   git_username=''${git_username:-$username}
-  
+
   read -rp "Enter your Git Email (e.g., john@example.com): " git_email
   git_email=''${git_email:-""}
 
@@ -90,7 +90,7 @@ pkgs.writeShellScriptBin "installer" ''
       fi
   done
 
-  # GPU Driver selection
+      # GPU Driver selection
   info "Select your system GPU Driver:"
   echo "1) nvidia"
   echo "2) amdgpu"
@@ -105,45 +105,22 @@ pkgs.writeShellScriptBin "installer" ''
       esac
   done
 
+  # Build resource limits
+  echo ""
+  info "System Build Resource Limits (Optional)"
+  warn "Setting these limits can prevent out-of-memory crashes on low-RAM VMs."
+  read -rp "Enter max parallel build jobs (e.g., 2, leave blank for default): " max_jobs
+  read -rp "Enter max cores per job (e.g., 2, leave blank for default): " max_cores
+
+  build_flags=""
+  if [ -n "$max_jobs" ]; then build_flags="$build_flags --max-jobs $max_jobs"; fi
+  if [ -n "$max_cores" ]; then build_flags="$build_flags --cores $max_cores"; fi
+
   # 4. Environment Branch Execution
   if $IS_LIVE_ISO; then
       # --- LIVE ISO ROUTINE ---
-      info "Select Installation Partitioning Method:"
-      echo "1) Automated Wipe (Wipe an ENTIRE drive automatically using Disko)"
-      echo "2) Custom Partitions (Select already existing partitions manually)"
-      echo "3) Your Personal Default (Format existing /dev/sda1 and /dev/sda2 safely)"
-      while true; do
-          read -rp "Enter choice (1, 2 or 3): " install_mode
-          case $install_mode in
-              1|2|3) break ;;
-              *) error "Invalid choice. Choose 1, 2, or 3." ;;
-          esac
-      done
-
-      if [ "$install_mode" = "1" ]; then
-          # --- OPTION 1: AUTOMATED DISKO WIPE ---
-          echo "Available disks on your system:"
-          lsblk -d -o NAME,SIZE,MODEL,TYPE | grep -v loop
-          echo ""
-
-          while true; do
-              read -rp "Enter the exact disk name to WIPE (e.g., sda, nvme0n1): " disk
-              disk=''${disk#/dev/}
-              if [ -b "/dev/$disk" ]; then break; fi
-              error "Invalid block device. Please choose a valid disk."
-          done
-
-          echo -e "\n''${RED}!!! CRITICAL WARNING !!!''${NC}"
-          warn "EVERYTHING on /dev/$disk will be PERMANENTLY DESTROYED."
-          read -rp "To confirm, type 'READY' (case-sensitive): " critical_confirm
-          if [ "$critical_confirm" != "READY" ]; then error "Aborting."; exit 1; fi
-
-          info "Running Disko to completely re-partition and format /dev/$disk..."
-          disko --mode destroy,format,mount --argstr disk "/dev/$disk" ./disko-config.nix
-
-      elif [ "$install_mode" = "2" ]; then
-          # --- OPTION 2: SELECT EXISTING PARTITIONS MANUALLY ---
-          echo "Available partitions on your system:"
+      info "Custom Partitions Routine"
+      echo "Available partitions on your system:"
           lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
           echo ""
 
@@ -179,37 +156,10 @@ pkgs.writeShellScriptBin "installer" ''
           mount -o compress=zstd,noatime,subvol=@nix "$custom_root" /mnt/nix
           mount -o umask=0077 "$custom_efi" /mnt/boot
 
-      elif [ "$install_mode" = "3" ]; then
-          # --- OPTION 3: YOUR PERSONAL QUICK-DEFAULT ---
-          echo -e "\n''${YELLOW}Running safe re-installation on default partitions (/dev/sda1 & /dev/sda2)...''${NC}"
-          echo -e "--------------------------------------------------------"
-          lsblk "/dev/sda"
-          echo -e "--------------------------------------------------------"
-          warn "EVERYTHING on /dev/sda1 (boot) and /dev/sda2 (root) will be WIPED."
-          echo ""
-
-          read -rp "To confirm this is correct, type 'READY' (case-sensitive): " critical_confirm
-          if [ "$critical_confirm" != "READY" ]; then error "Aborting."; exit 1; fi
-
-          info "Running Disko to handle mounting and formatting existing partitions..."
-          disko --mode format,mount --argstr disk "/dev/sda" ./disko-config.nix
-      fi
-
       # --- SHARED INSTALL ENGINE ---
       # Stage configurations inside targeted file system tree
       mkdir -p /mnt/etc/nixos
       cp -r ./ /mnt/etc/nixos
-
-      # Inject Disko config import dynamically if Option 1 or Option 3 was chosen
-      if [ "$install_mode" = "1" ] || [ "$install_mode" = "3" ]; then
-          info "Injecting Disko configuration into host imports..."
-          host=''${host:-default}
-          if [ -f "/mnt/etc/nixos/hosts/\$host/configuration.nix" ]; then
-              sed -i '/imports = \[/a \    ../../disko-config.nix' "/mnt/etc/nixos/hosts/\$host/configuration.nix"
-          elif [ -f "/mnt/etc/nixos/hosts/default/configuration.nix" ]; then
-              sed -i '/imports = \[/a \    ../../disko-config.nix' "/mnt/etc/nixos/hosts/default/configuration.nix"
-          fi
-      fi
 
       # Generate explicit hardware configuration out to file, filtering targeted exclusions
       info "Generating and filtering Hardware Profiles..."
@@ -225,7 +175,7 @@ pkgs.writeShellScriptBin "installer" ''
 
       # Trigger deployment target evaluation with explicit experimental flags
       info "Executing main system installation bootstrap..."
-      nixos-install --flake /mnt/etc/nixos#default --no-root-passwd --extra-experimental-features "nix-command flakes"
+      nixos-install --flake /mnt/etc/nixos#default --no-root-passwd --extra-experimental-features "nix-command flakes" $build_flags
 
       # Set user runtime credentials safely inside target generation
       nixos-enter --root /mnt -c "echo '$password' | passwd --stdin $username"
@@ -275,7 +225,7 @@ pkgs.writeShellScriptBin "installer" ''
       sudo git -C . add hosts/default/hardware-configuration.nix || true
 
       info "Building and activating configuration changes..."
-      if sudo NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-rebuild switch --flake .#default; then
+      if sudo NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-rebuild boot --flake .#default $build_flags; then
           info "System switched successfully!"
       else
           error "Nixos-rebuild failed. Review compilation output messages above."
