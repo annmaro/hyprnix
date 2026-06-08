@@ -8,7 +8,7 @@
 {
   # 1. System-level environment variables (keep this at the root module level)
   environment.variables = {
-    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
     XCURSOR_SIZE = "24";
   };
 
@@ -28,38 +28,29 @@
 
           image = self + "/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg";
 
-          /*
-            override = {
-              base0A = "607d8b"; # Set to Papirus Bluegrey
-              base0D = "607d8b"; # Set primary accent to Papirus Bluegrey
-            };
-
-            # Base16 AMOLED Black & Gruvbox Yellow scheme
-
-              base16Scheme = {
-                base00 = "000000"; # Background (AMOLED Absolute Black)
-                base01 = "111111"; # Lighter Background (Status bars / panel subtle offsets)
-                base02 = "222222"; # Selection Background
-                base03 = "555555"; # Comments, Invisible details, Outlines
-                base04 = "bbbbbb"; # Dark Text
-                base05 = "ffffff"; # Default Text / Main Foreground
-                base06 = "e6f0ff"; # Light Text
-                base07 = "ffffff"; # Active Text
-                base08 = "dd0000"; # Error / Red
-                base09 = "ff7b00"; # Orange
-                base0A = "fabd2f"; # Yellow (Our structural choice for Accent/Borders)
-                base0B = "03fc7b"; # Green / Coral
-                base0C = "03fcc6"; # Cyan / Turquoise
-                base0D = "fabd2f"; # Accent Color / Active Window Overrides
-                base0E = "cc00ff"; # Magenta / Purple
-                base0F = "ff6600"; # Brown / Dark Orange
-              };
-          */
+          base16Scheme = {
+            base00 = "1e1e2e"; # Base (Background)
+            base01 = "181825"; # Mantle
+            base02 = "313244"; # Surface 0
+            base03 = "45475a"; # Surface 1
+            base04 = "585b70"; # Surface 2
+            base05 = "cdd6f4"; # Text (Foreground)
+            base06 = "f5e0dc"; # Rosewater
+            base07 = "b4befe"; # Lavender
+            base08 = "f38ba8"; # Red
+            base09 = "fab387"; # Peach
+            base0A = "f9e2af"; # Yellow
+            base0B = "a6e3a1"; # Green
+            base0C = "89dceb"; # Sapphire
+            base0D = "89b4fa"; # Blue
+            base0E = "cba6f7"; # Mauve
+            base0F = "f5c2e7"; # Pink
+          };
 
           # 2. Let Stylix handle your Bibata cursor globally
           cursor = {
-            package = pkgs.bibata-cursors;
-            name = "Bibata-Modern-Classic";
+            package = pkgs.catppuccin-cursors.mochaMauve;
+            name = "catppuccin-mocha-mauve-cursors";
             size = 24;
           };
 
@@ -69,12 +60,12 @@
               enable = true;
               extraCss = ''
                 window.csd > decoration {
-                  border: 1px solid #607d8b !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
                   outline: transparent !important;
                   box-shadow: none !important;
                 }
                 decoration {
-                  border: 1px solid #607d8b !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
                   outline: transparent !important;
                   box-shadow: none !important;
                 }
@@ -83,11 +74,11 @@
                 window.thunar menu, window.thunar .menu, window.thunar popover {
                   background-color: #${config.lib.stylix.colors.base01} !important;
                   color: #${config.lib.stylix.colors.base05} !important;
-                  border: 1px solid #607d8b !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
                 }
                 window.thunar menuitem:hover, window.thunar .menuitem:hover {
                   background-color: #${config.lib.stylix.colors.base02} !important;
-                  color: #607d8b !important;
+                  color: #${config.lib.stylix.colors.base0D} !important;
                 }
               '';
             };
@@ -95,6 +86,7 @@
             btop.enable = true;
             kitty.enable = true; # Ensures Stylix automatically hooks into the layout template
             neovim.enable = true;
+            swaylock.enable = true; # Tells Stylix to inject the colors into the locker lock ring
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
               profileNames = [ "default" ]; # Instructs Stylix which specific active profiles to look up

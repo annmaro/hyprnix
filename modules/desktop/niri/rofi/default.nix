@@ -14,12 +14,12 @@
         # Safe extraction of Stylix colors with structural fallbacks
         stylixColors = config.lib.stylix.colors or { };
 
-        bgColor = "#${stylixColors.base00 or "1d2021"}"; # Background
-        bgAltColor = "#${stylixColors.base01 or "3c3836"}"; # Secondary Background
-        fgColor = "#${stylixColors.base05 or "fbf1c7"}"; # Text
-        accentColor = "#${stylixColors.base0D or "fabd2f"}"; # Selected Focus
-        activeColor = "#${stylixColors.base0B or "8ec07c"}"; # Active States
-        urgentColor = "#${stylixColors.base08 or "fe8019"}"; # Alert States
+        bgColor = "#${stylixColors.base00 or "1e1e2e"}"; # Background
+        bgAltColor = "#${stylixColors.base01 or "181825"}"; # Secondary Background
+        fgColor = "#${stylixColors.base05 or "cdd6f4"}"; # Text
+        accentColor = "#${stylixColors.base0E or "cba6f7"}"; # Selected Focus
+        activeColor = "#${stylixColors.base0B or "a6e3a1"}"; # Active States
+        urgentColor = "#${stylixColors.base08 or "f38ba8"}"; # Alert States
 
         # Pull your primary wallpaper path straight from Stylix dynamically
         currentWallpaper =

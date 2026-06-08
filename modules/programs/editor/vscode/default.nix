@@ -21,8 +21,8 @@
         package = pkgs.vscode;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
-            jdinhlife.gruvbox
-            pkief.material-icon-theme
+            catppuccin.catppuccin-vsc
+            catppuccin.catppuccin-vsc-icons
             bbenoist.nix
             arrterian.nix-env-selector
             eamodio.gitlens
@@ -48,9 +48,9 @@
             "window.menuBarVisibility" = "classic";
             # "window.zoomLevel" = 0.5;
             "editor.fontSize" = 16;
-            "workbench.colorTheme" = "Gruvbox Dark Hard";
-            "workbench.iconTheme" = "material-icon-theme";
-            # "catppuccin.accentColor" = "mauve";
+            "workbench.colorTheme" = "Catppuccin Mocha";
+            "workbench.iconTheme" = "catppuccin-mocha";
+            "catppuccin.accentColor" = "mauve";
             "vsicons.dontShowNewVersionMessage" = true;
             "explorer.confirmDragAndDrop" = false;
             "editor.fontLigatures" = true;

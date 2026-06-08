@@ -11,7 +11,7 @@
           directory = {
             truncate_to_repo = false;
             read_only = " ro";
-            style = "#57C7FF";
+            style = "#cba6f7";
             # style = "bold italic bright-blue";
           };
           /*
@@ -24,18 +24,18 @@
             };
           */
           character = {
-            success_symbol = "[❯](#FF6AC1)";
-            error_symbol = "[❯](#FF5C57)";
-            vimcmd_symbol = "[❮](bright-green)";
+            success_symbol = "[❯](#cba6f7)";
+            error_symbol = "[❯](#f38ba8)";
+            vimcmd_symbol = "[❮](#a6e3a1)";
           };
           git_branch = {
             format = "[$branch]($style)";
             symbol = "git ";
-            style = "242";
+            style = "#f5c2e7";
           };
           git_status = {
-            format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
-            style = "cyan";
+            format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](#cba6f7) ($ahead_behind$stashed)]($style)";
+            style = "#89dceb";
             conflicted = "​";
             untracked = "​";
             modified = "​";
@@ -46,11 +46,11 @@
           };
           git_state = {
             format = ''\([$state( $progress_current/$progress_total)]($style)\) '';
-            style = "bright-black";
+            style = "#585b70";
           };
           cmd_duration = {
             format = "[$duration]($style) ";
-            style = "yellow";
+            style = "#f9e2af";
           };
           aws = {
             symbol = "aws ";
@@ -99,7 +99,7 @@
 
           shell = {
             disabled = false;
-            style = "cyan";
+            style = "#89dceb";
             bash_indicator = "";
             powershell_indicator = "";
           };
@@ -155,7 +155,7 @@
           };
           python = {
             format = "[$virtualenv]($style) ";
-            style = "bright-black";
+            style = "#585b70";
             symbol = "py ";
           };
           rust = {

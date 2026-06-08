@@ -51,11 +51,6 @@
           ];
         };
 
-        # 3. Ensure Stylix styles them automatically
-        stylix.targets = {
-          swaylock.enable = true; # Tells Stylix to inject the colors into the locker lock ring
-        };
-
       }
     )
   ];

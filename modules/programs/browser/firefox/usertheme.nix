@@ -12,8 +12,8 @@
       /* High Contrast Text */
       --uc-muted-colour: #${config.lib.stylix.colors.base03};
       /* Subdued/Inactive Gray */
-      --uc-accent-colour: #${config.lib.stylix.colors.base0A};
-      /* Gruvbox Gold/Yellow Accent */
+      --uc-accent-colour: #${config.lib.stylix.colors.base0E};
+      /* Catppuccin Mocha Mauve Accent */
 
       /* Container Tabs Color Profiles */
       --uc-identity-colour-blue: #${config.lib.stylix.colors.base0D};
@@ -104,10 +104,10 @@
         --newtab-element-hover-color: #${config.lib.stylix.colors.base01} !important;
         --newtab-text-primary-color: #${config.lib.stylix.colors.base05} !important;
         --newtab-wordmark-color: #${config.lib.stylix.colors.base05} !important;
-        --newtab-primary-action-background: #${config.lib.stylix.colors.base0A} !important;
+        --newtab-primary-action-background: #${config.lib.stylix.colors.base0E} !important;
       }
-      .icon { color: #${config.lib.stylix.colors.base0A} !important; }
-      .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #${config.lib.stylix.colors.base0A} !important; }
+      .icon { color: #${config.lib.stylix.colors.base0E} !important; }
+      .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #${config.lib.stylix.colors.base0E} !important; }
       .top-site-outer .search-topsite { background-color: #${config.lib.stylix.colors.base0D} !important; }
       .compact-cards .card-outer .card-context .card-context-icon.icon-download { fill: #${config.lib.stylix.colors.base0B} !important; }
     }

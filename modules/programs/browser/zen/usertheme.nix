@@ -19,10 +19,10 @@
         --zen-colors-secondary: #${config.lib.stylix.colors.base02} !important;        /* Highlight / Secondary Layers */
 
         /* Accents and Branding Elements */
-        --zen-primary-color: #${config.lib.stylix.colors.base0A} !important;          /* System Accent Primary */
-        --zen-colors-border: #${config.lib.stylix.colors.base0A} !important;
-        --toolbarbutton-icon-fill: #${config.lib.stylix.colors.base0A} !important;
-        --tab-selected-textcolor: #${config.lib.stylix.colors.base0A} !important;
+        --zen-primary-color: #${config.lib.stylix.colors.base0E} !important;          /* System Accent Primary */
+        --zen-colors-border: #${config.lib.stylix.colors.base0E} !important;
+        --toolbarbutton-icon-fill: #${config.lib.stylix.colors.base0E} !important;
+        --tab-selected-textcolor: #${config.lib.stylix.colors.base0E} !important;
 
         /* Typography & High-Contrast Overlays */
         --lwt-text-color: #${config.lib.stylix.colors.base05} !important;             /* Standard Foreground Text */
@@ -47,10 +47,10 @@
 
       .content-shortcuts {
         background-color: #${config.lib.stylix.colors.base00} !important;
-        border-color: #${config.lib.stylix.colors.base0A} !important;
+        border-color: #${config.lib.stylix.colors.base0E} !important;
       }
 
-      .urlbarView-url { color: #${config.lib.stylix.colors.base0A} !important; }
+      .urlbarView-url { color: #${config.lib.stylix.colors.base0E} !important; }
 
       #zen-media-controls-toolbar {
         & #zen-media-progress-bar {
@@ -113,7 +113,7 @@
       @-moz-document url-prefix("about:") {
         :root {
           --in-content-page-color: #${config.lib.stylix.colors.base05} !important;
-          --color-accent-primary: #${config.lib.stylix.colors.base0A} !important;
+          --color-accent-primary: #${config.lib.stylix.colors.base0E} !important;
           background-color: #${config.lib.stylix.colors.base00} !important;
           --in-content-page-background: #${config.lib.stylix.colors.base00} !important;
         }
@@ -127,10 +127,10 @@
           --newtab-element-hover-color: #${config.lib.stylix.colors.base01} !important;
           --newtab-text-primary-color: #${config.lib.stylix.colors.base05} !important;
           --newtab-wordmark-color: #${config.lib.stylix.colors.base05} !important;
-          --newtab-primary-action-background: #${config.lib.stylix.colors.base0A} !important;
+          --newtab-primary-action-background: #${config.lib.stylix.colors.base0E} !important;
         }
-        .icon { color: #${config.lib.stylix.colors.base0A} !important; }
-        .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #${config.lib.stylix.colors.base0A} !important; }
+        .icon { color: #${config.lib.stylix.colors.base0E} !important; }
+        .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title { color: #${config.lib.stylix.colors.base0E} !important; }
         .top-site-outer .search-topsite { background-color: #${config.lib.stylix.colors.base0D} !important; }
         .compact-cards .card-outer .card-context .card-context-icon.icon-download { fill: #${config.lib.stylix.colors.base0B} !important; }
       }
@@ -140,10 +140,10 @@
         :root {
           --zen-colors-tertiary: #${config.lib.stylix.colors.base00} !important;
           --in-content-text-color: #${config.lib.stylix.colors.base05} !important;
-          --link-color: #${config.lib.stylix.colors.base0A} !important;
+          --link-color: #${config.lib.stylix.colors.base0E} !important;
           --zen-colors-primary: #${config.lib.stylix.colors.base01} !important;
           --in-content-box-background: #${config.lib.stylix.colors.base01} !important;
-          --zen-primary-color: #${config.lib.stylix.colors.base0A} !important;
+          --zen-primary-color: #${config.lib.stylix.colors.base0E} !important;
         }
         groupbox, moz-card { background: #${config.lib.stylix.colors.base00} !important; }
         button, groupbox menulist {
@@ -165,7 +165,7 @@
       @-moz-document url-prefix("about:protections") {
         :root {
           --zen-primary-color: #${config.lib.stylix.colors.base00} !important;
-          --social-color: #${config.lib.stylix.colors.base0A} !important;
+          --social-color: #${config.lib.stylix.colors.base0E} !important;
           --cookie-color: #${config.lib.stylix.colors.base0C} !important;
           --fingerprinter-color: #${config.lib.stylix.colors.base09} !important;
           --cryptominer-color: #${config.lib.stylix.colors.base0D} !important;

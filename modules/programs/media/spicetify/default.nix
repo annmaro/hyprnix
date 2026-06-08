@@ -26,8 +26,8 @@
         # Configure spicetify :)
         programs.spicetify = {
           enable = true;
-          theme = spicePkgs.themes.onepunch;
-          colorScheme = "dark";
+          theme = spicePkgs.themes.catppuccin;
+          colorScheme = "mocha";
 
           enabledExtensions = with spicePkgs.extensions; [
             adblock

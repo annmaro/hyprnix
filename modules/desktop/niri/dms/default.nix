@@ -15,35 +15,35 @@
         # Safe extraction of Stylix colors with a fallback syntax layout
         stylixColors = config.lib.stylix.colors or { };
 
-        bgColor = "#${stylixColors.base00 or "000000"}"; # Background
-        fgColor = "#${stylixColors.base05 or "ffffff"}"; # Default Text
-        accentColor = "#${stylixColors.base0D or "03fcc6"}"; # Primary Accent
-        surfaceMuted = "#${stylixColors.base03 or "222222"}";
+        bgColor = "#${stylixColors.base00 or "1e1e2e"}"; # Background
+        fgColor = "#${stylixColors.base05 or "cdd6f4"}"; # Default Text
+        accentColor = "#${stylixColors.base0E or "cba6f7"}"; # Primary Accent (Mauve)
+        surfaceMuted = "#${stylixColors.base03 or "45475a"}";
 
         # Cleaned up payload block: Defined once, inherited for both dark & light modes
         themePayload = {
-          background = "#000000";
+          background = bgColor;
           backgroundText = fgColor;
-          error = "#dd0000";
-          info = "#03fcc6";
-          name = "AmoledBlack";
-          outline = "#555555";
+          error = "#${stylixColors.base08 or "f38ba8"}";
+          info = "#${stylixColors.base0D or "89b4fa"}";
+          name = "CatppuccinMocha";
+          outline = "#${stylixColors.base04 or "585b70"}";
           primary = accentColor;
-          primaryContainer = "#03fcc6";
-          primaryText = "#000000";
+          primaryContainer = accentColor;
+          primaryText = bgColor;
           secondary = surfaceMuted;
           surface = bgColor;
           surfaceContainer = bgColor;
-          surfaceContainerHigh = "#222222";
-          surfaceContainerHighest = "#555555";
+          surfaceContainerHigh = surfaceMuted;
+          surfaceContainerHighest = "#${stylixColors.base04 or "585b70"}";
           surfaceText = fgColor;
           surfaceTint = accentColor;
-          surfaceVariant = "#222222";
-          surfaceVariantText = "#bbbbbb";
-          warning = accentColor;
+          surfaceVariant = surfaceMuted;
+          surfaceVariantText = fgColor;
+          warning = "#${stylixColors.base0A or "f9e2af"}";
         };
 
-        amoledBlackTheme = {
+        catppuccinMochaTheme = {
           dark = themePayload;
           light = themePayload;
         };
@@ -95,8 +95,8 @@
         # 🎨 AUTOMATIC THEME GENERATION
         # =====================================================================
         # Nix now dynamically generates the file using your Stylix palette!
-        xdg.configFile."DankMaterialShell/themes/amoledBlack/theme.json".text =
-          builtins.toJSON amoledBlackTheme;
+        xdg.configFile."DankMaterialShell/themes/catppuccinMocha/theme.json".text =
+          builtins.toJSON catppuccinMochaTheme;
         xdg.configFile."DankMaterialShell/nix.png".source = ./nix.png; # Symlink the local nix.png into the expected path in the home directory for DMS to use as the profile image
 
         # =====================================================================
@@ -132,7 +132,7 @@
 
           dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
           currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
-          customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/amoledBlack/theme.json"; # Path to your custom theme file, which is generated dynamically from your Stylix palette. Make sure this path matches where your theme file is generated and stored.
+          customThemeFile = "${config.home.homeDirectory}/.config/DankMaterialShell/themes/catppuccinMocha/theme.json"; # Path to your custom theme file, which is generated dynamically from your Stylix palette. Make sure this path matches where your theme file is generated and stored.
 
           fontFamily = config.stylix.fonts.sansSerif.name;
           monoFontFamily = config.stylix.fonts.monospace.name;

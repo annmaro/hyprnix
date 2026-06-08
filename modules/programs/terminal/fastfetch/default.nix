@@ -1,27 +1,31 @@
 { config, pkgs, ... }:
 
 let
-  # Re-mapped to standard ANSI naming aliases matching our new Gruvbox values
-  labels     = "blue";    # Gruvbox Blue (83a598)
-  kernelCol  = "magenta"; # Gruvbox Purple (d3869b)
-  uptimeCol  = "green";   # Gruvbox Green (b8bb26)
-  pkgsCol    = "red";     # Gruvbox Red (fb4934)
-  shellCol   = "yellow";  # Gruvbox Yellow/Gold (fabd2f)
-  cpuCol     = "cyan";    # Gruvbox Aqua/Cyan (8ec07c)
-  gpuCol     = "cyan";    # Gruvbox Aqua/Cyan (8ec07c)
-  memCol     = "magenta"; # Gruvbox Purple (d3869b)
-  wmCol      = "yellow";  # Gruvbox Orange/Yellow (fe8019 / fabd2f)
-  termCol    = "blue";    # Gruvbox Blue (83a598)
+  # Extract Stylix colors dynamically
+  stylixColors = config.lib.stylix.colors or { };
+
+  # Map labels directly to your Catppuccin palette strings
+  # Utilizing standard base16 mapping conventions
+  labels = "#${stylixColors.base0E or "cba6f7"}"; # Mauve (Primary Accent)
+  kernelCol = "#${stylixColors.base0D or "89b4fa"}"; # Blue
+  uptimeCol = "#${stylixColors.base0B or "a6e3a1"}"; # Green
+  pkgsCol = "#${stylixColors.base08 or "f38ba8"}"; # Red
+  shellCol = "#${stylixColors.base0A or "f9e2af"}"; # Yellow
+  cpuCol = "#${stylixColors.base0C or "89dceb"}"; # Sapphire
+  gpuCol = "#${stylixColors.base0C or "89dceb"}"; # Sapphire
+  memCol = "#${stylixColors.base0F or "f5c2e7"}"; # Pink
+  wmCol = "#${stylixColors.base09 or "fab387"}"; # Peach
+  termCol = "#${stylixColors.base07 or "b4befe"}"; # Lavender
 in
 {
   home-manager.sharedModules = [
-    (_: {   
+    (_: {
       programs.fastfetch = {
         enable = true;
         package = pkgs.fastfetch;
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
-        
+
           logo = {
             source = "./nixos.png";
             padding = {
@@ -33,8 +37,8 @@ in
           display = {
             separator = " ── ";
             color = {
-              keys = "yellow"; /* Swapped separator color to Gruvbox Gold */
-              title = "blue";
+              keys = "#${stylixColors.base0E or "cba6f7"}"; # Mauve Accent Separator
+              title = "#${stylixColors.base05 or "cdd6f4"}"; # Default Text White
             };
           };
 
@@ -42,8 +46,8 @@ in
             {
               type = "title";
               color = {
-                user = "blue";
-                host = "magenta";
+                user = "#${stylixColors.base0E or "cba6f7"}"; # Mauve
+                host = "#${stylixColors.base0F or "f5c2e7"}"; # Pink
               };
             }
             "break"
@@ -101,7 +105,7 @@ in
             "break"
             {
               type = "colors";
-              symbol = "circle"; /* Swapped from block to circular dots */
+              symbol = "circle";
               paddingLeft = 2;
             }
           ];

@@ -105,7 +105,7 @@
         userSettings = rec {
           uiTheme = "dark";
           uiAccentCustom = true;
-          uiAccentCustom0 = "#CA9EE6";
+          uiAccentCustom0 = "#cba6f7";
           cloudStorageEnabled = lib.mkForce false;
           advancedUserEnabled = true;
           userFiltersTrusted = true;
@@ -207,8 +207,8 @@
         textStroke = 0;
         engine = "dynamicTheme";
         stylesheet = "";
-        darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Pure AMOLED Black
-        darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Cream System Text
+        darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Catppuccin Mocha Background
+        darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Catppuccin Mocha Text
         scrollbarColor = "";
         selectionColor = "#${config.lib.stylix.colors.base02}";
         styleSystemControls = true;

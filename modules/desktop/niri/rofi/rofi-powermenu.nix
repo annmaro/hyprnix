@@ -12,13 +12,13 @@ let
 
   stylixColors = config.lib.stylix.colors or { };
 
-  bg = "#000000";
-  bgAlt = "#1a1a1a";
-  fg = "#ffffff";
+  bg = "#${stylixColors.base00 or "1e1e2e"}";
+  bgAlt = "#${stylixColors.base01 or "181825"}";
+  fg = "#${stylixColors.base05 or "cdd6f4"}";
 
-  accent = "#${stylixColors.base0D or "fabd2f"}";
-  active = "#${stylixColors.base0B or "b8bb26"}";
-  urgent = "#${stylixColors.base08 or "fb4934"}";
+  accent = "#${stylixColors.base0E or "cba6f7"}";
+  active = "#${stylixColors.base0B or "a6e3a1"}";
+  urgent = "#${stylixColors.base08 or "f38ba8"}";
 
   powermenuTheme = pkgs.writeText "style-2.rasi" ''
     configuration {

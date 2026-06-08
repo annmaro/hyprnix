@@ -172,7 +172,7 @@ in
                border {
                   width 2
           // Dynamically targets your Stylix primary accent color
-          active-color "#${config.lib.stylix.colors.base0D}"
+          active-color "#${config.lib.stylix.colors.base0E}"
           // Targets the default dim/outline color from your Stylix palette
           inactive-color "transparent"
               }
