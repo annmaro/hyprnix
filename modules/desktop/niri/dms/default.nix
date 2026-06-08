@@ -80,8 +80,8 @@
           Clear Out Stale Local DMS Configurations before generating colors from stylix to prevent conflicts and ensure a clean slate for the new theme.
           This is necessary because DMS v6 introduced some changes to how it handles themes and configurations, and old files can cause unexpected behavior if not removed.
 
-          rm - rf ~/.config/niri/dms/colors.kdl
-          rm - rf ~/.config/niri/dms/layout.kdl
+          rm -rf ~/.config/niri/dms/colors.kdl
+          rm -rf ~/.config/niri/dms/layout.kdl
         */
 
         home.packages = with pkgs; [
