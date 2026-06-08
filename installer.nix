@@ -175,7 +175,7 @@ pkgs.writeShellScriptBin "installer" ''
 
       # Trigger deployment target evaluation with explicit experimental flags
       info "Executing main system installation bootstrap..."
-      NIX_CONFIG="extra-experimental-features = nix-command fl nixos-install --flake /akes"mnt/etc/nixos#default --no-root-passwd $build_flags
+      NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-install --flake /mnt/etc/nixos#default --no-root-passwd $build_flags
 
       # Set user runtime credentials safely inside target generation
       nixos-enter --root /mnt -c "echo '$password' | passwd --stdin $username"
