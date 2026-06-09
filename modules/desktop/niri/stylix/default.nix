@@ -26,7 +26,7 @@
           polarity = "dark";
           enableReleaseChecks = false;
 
-          image = self + "/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash.jpg";
+          image = self + "/modules/wallpapers/tree.jpg";
 
           base16Scheme = {
             base00 = "1e1e2e"; # Base (Background)
@@ -74,7 +74,7 @@
                 window.thunar menu, window.thunar .menu, window.thunar popover {
                   background-color: #${config.lib.stylix.colors.base01} !important;
                   color: #${config.lib.stylix.colors.base05} !important;
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0E} !important;
                 }
                 window.thunar menuitem:hover, window.thunar .menuitem:hover {
                   background-color: #${config.lib.stylix.colors.base02} !important;

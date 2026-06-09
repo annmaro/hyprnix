@@ -99,7 +99,7 @@
         userSettings = rec {
           uiTheme = "dark";
           uiAccentCustom = true;
-          uiAccentCustom0 = "#cba6f7";
+          uiAccentCustom0 = "#cba6f7"; # Catppuccin Mauve
           cloudStorageEnabled = lib.mkForce false;
           advancedUserEnabled = true;
           userFiltersTrusted = true;
