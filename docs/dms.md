@@ -15,6 +15,7 @@ All active features of the Dank Material Shell are configured within the modular
 
 ### 1. Unified Status Bar (`modules.bar = true`)
 The shell renders a premium top bar, custom-tailored with the following layout and design variables:
+
 - **Floating Capsule-only Aesthetic**: The main bar transparency is set to `0.50` with widget opacity at `0.90`. Spacing is set to `0`. This creates a floating pill look where the background is subtle but provides distinct separation from the wallpaper.
 - **High-Visibility Widget Outlines**: Widget outlines are enabled (`widgetOutlineEnabled = true`), styled in the theme's primary color, set to fully opaque (`1.0`), and given a clean 1px thickness for maximum contrast and defined borders.
 - **Geometric Controls**: The configuration forces `squareCorners = true` to give all corners a classic square shape, overriding any `gothCornersEnabled` parameters.
@@ -59,15 +60,13 @@ Instead of rigid assets, DMS color management is dynamically constructed directl
 - **User Avatar**: Implements a dedicated local image file (`./nix.png`) symlinked automatically via Nix into the expected configuration path (`~/.config/DankMaterialShell/nix.png`), feeding directly into the shell dashboard overview profile component.
 
 ### Automated Weather Engine State Activation
-To circumvent manual dashboard parameter lookup, the environment leverages a Home Manager activation script (`home.activation.dmsWeather`) executing right after filesystem generation (`entryAfter [ "writeBoundary" ]`). The script leverages `jq` to safely initialize or modify the state payload cache inside `~/.local/state/DankMaterialShell/session.json`, locking coordinates and region indicators dynamically:
-- **Target Location**: Ramgarh, Jharkhand, India
-- **Target Coordinates**: 23.5987759, 85.5369156
-
+To circumvent manual dashboard parameter lookup, the environment leverages a Home Manager activation script (`home.activation.dmsWeather`) executing right after filesystem generation (`entryAfter [ "writeBoundary" ]`). The script leverages `jq` to safely initialize or modify the state payload cache inside `~/.local/state/DankMaterialShell/session.json`, locking coordinates and region indicators dynamically.
 ---
 
 ## Packages & Dependencies
 
 To support the complete functionality of this shell, the module declares and installs the following package hooks:
+
 - **`dgop`**: Core system performance-tracking daemon required for real-time CPU/RAM status bar reporting.
 - **`jq`**: Lightweight command-line JSON processor leveraged during activation loops to stamp session values safely.
 - **`nerd-fonts.jetbrains-mono`**: Premium monospace font applied across text layouts and terminal integrations.

@@ -23,6 +23,7 @@ let
   gamemode = pkgs.callPackage ./scripts/gamemode.nix { };
   wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { };
   keybindsRofi = pkgs.callPackage ./scripts/keybinds-rofi.nix { };
+  screenRecorder = pkgs.callPackage ./scripts/screen-record.nix { };
 in
 {
   imports = [
@@ -298,7 +299,9 @@ in
               "Mod+D" { spawn "eww" "open" "--toggle" "dashboard"; }
               "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
               "Mod+Shift+C" { spawn "code"; }
-              "Mod+Shift+R" { spawn "sh" "-c" "thunar -q && thunar --daemon"; }
+              "Mod+Shift+T" { spawn "sh" "-c" "thunar -q && thunar --daemon"; }
+              "Mod+Shift+R" { spawn "${getExe screenRecorder}" "a"; }
+              "Mod+Escape" { spawn "pkill" "-SIGINT" "-x" "wf-recorder"; }
               "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
               "Mod+Shift+S" { spawn "spotify"; }
               "Mod+Shift+P" { spawn "rofi-powermenu"; }
