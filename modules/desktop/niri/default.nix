@@ -300,7 +300,7 @@ in
               "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
               "Mod+Shift+C" { spawn "code"; }
               "Mod+Shift+T" { spawn "sh" "-c" "thunar -q && thunar --daemon"; }
-              "Mod+Shift+R" { spawn "${getExe screenRecorder}" "a"; }
+              "Mod+Shift+R" { spawn "${getExe screenRecorder}" "m"; }
               "Mod+Escape" { spawn "pkill" "-SIGINT" "-x" "wf-recorder"; }
               "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
               "Mod+Shift+S" { spawn "spotify"; }

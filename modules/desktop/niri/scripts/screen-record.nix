@@ -44,6 +44,6 @@ pkgs.writeShellApplication {
     esac
 
     notify-send -e -t 2500 -u low "Recording Started"
-    wf-recorder --audio -g "$REGION" -f "$DIR/recording_''${timestamp}.mp4"
+    wf-recorder -g "$REGION" -f "$DIR/recording_''${timestamp}.mp4"
   '';
 }
