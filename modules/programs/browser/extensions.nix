@@ -80,11 +80,6 @@
       installation_mode = "force_installed";
       install_url = "https://github.com/mkaply/queryamoid/releases/download/v0.2/query_amo_addon_id-0.2-fx.xpi";
     };
-    "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}" = {
-      private_browsing = true;
-      installation_mode = "force_installed";
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-mauve-git/latest.xpi";
-    };
   };
 
   extensionConfig = {
