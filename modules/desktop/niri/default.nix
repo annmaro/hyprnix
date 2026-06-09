@@ -285,7 +285,7 @@ in
               "Mod+A" { spawn "antigravity"; }
               "Mod+Space" { spawn "rofi" "-show" "drun"; }
               "Mod+V" { spawn "rofi" "-show" "clipboard"; }
-              "Mod+Z" { spawn "rofi" "-show" "emoji"; }
+              "Mod+Z" { spawn "zen-beta"; }
               "Mod+Shift+K" { spawn "${getExe keybindsRofi}"; }
               "Mod+G" { spawn "launcher" "games"; }
               "Mod+Alt+G" { spawn "gamemode"; }
@@ -293,7 +293,7 @@ in
               "Ctrl+Q" { close-window; }
               "Alt+S" { spawn "systemctl" "--user" "restart" "dms";}
               "Mod+Delete" { quit; }
-              "Mod+Alt+L" { spawn "dms" "session" "lock"; }
+              "Mod+Alt+L" { spawn "swaylock"; }
               "Mod+N" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
               "Mod+D" { spawn "eww" "open" "--toggle" "dashboard"; }
               "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
