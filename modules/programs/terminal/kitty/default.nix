@@ -5,6 +5,7 @@
 
       programs.kitty = {
         enable = true;
+        themeFile = "Catppuccin-Mocha";
         font = {
           size = pkgs.lib.mkForce 14.0;
           name = pkgs.lib.mkForce "JetBrainsMono Nerd Font";
@@ -28,9 +29,6 @@
           inactive_tab_font_style = "normal";
           tab_bar_style = "powerline";
           tab_powerline_style = "round";
-
-          # All manual color overrides (background, foreground, color0-15, active_tab_background, etc.)
-          # have been deleted from here so they don't fight with Stylix.
         };
 
         keybindings = {
