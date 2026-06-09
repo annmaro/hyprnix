@@ -20,9 +20,7 @@
         accentColor = "#${stylixColors.base0E or "cba6f7"}"; # Selected Focus
         activeColor = "#${stylixColors.base0B or "a6e3a1"}"; # Active States
         urgentColor = "#${stylixColors.base08 or "f38ba8"}"; # Alert States
-
-        # Pull your primary wallpaper path straight from Stylix dynamically
-        currentWallpaper = config.stylix.image or "${self}/modules/wallpapers/tree-rofi.jpg";
+        currentWallpaper = "${self}/modules/wallpapers/tree-rofi.jpg";
       in
       {
         programs.rofi = {
