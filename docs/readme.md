@@ -23,8 +23,6 @@
    </p>
 </div>
 
-> [!CAUTION]
-
 
 ## Screenshots
 
@@ -60,8 +58,9 @@
 > - `hosts/default/variables.nix`: Contains host-specific variables.
 > - `hosts/default/host-packages.nix`: Lists installed packages for the host.
 > - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
-> - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
 > - `modules/core/packages/`: Contains the list of packages to be installed.
+> - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
+
 
 You can also check the [Production Docs](https://annmaro.github.io/nixri) for a better understanding of the entire NixOS setup.
 
@@ -94,7 +93,7 @@ The install and rebuild scripts automate the setup process, including hosts, use
 **Method 2: Manual:**
 
 1. Copy `hosts/default` to a new directory (e.g., `hosts/Laptop`)
-2. Edit the new host's `variables.nix` and `host-packages.nix`
+2. Edit the new host's `variables.nix`, `core packages` and `host-packages.nix`
 3. Add the host to `flake.nix`:
 
 4. Rebuild with the new hostname using either `nixos-rebuild` or `nh` (see [Rebuilding](#rebuilding) below). Once rebuilt, any rebuilding method can be used, as the host name will be implicitly recognised.
@@ -134,7 +133,9 @@ View all keybindings with `Super + Shift + K`.
 
 ## Credits/Inspiration
 
-| Credit                                      | Reason                                      |
-| ------------------------------------------- | ------------------------------------------- |
-| [Sly-Harvey](//github.com/Sly-Harvey/NixOS) | Thanks for creating such a wonderful config |
-| [Nixy](https://github.com/anotherhadi/nixy) | Amazing Neovim config                       |
+| Credit                                             | Reason                                      |
+| -------------------------------------------------- | ------------------------------------------- |
+| [Sly-Harvey](//github.com/Sly-Harvey/NixOS)        | Thanks for creating such a wonderful config |
+| [Nixy](https://github.com/anotherhadi/nixy)        | Amazing Neovim config                       |
+| [Rofi-adi1090x ](https://github.com/adi1090x/rofi) | Rofi custom launcher & powermenu            |
+

@@ -185,12 +185,7 @@ in
 
 
 
-          // 🎛️ LAYER RULES (Overview background)
-
-           layer-rule {
-               match namespace="^awww-daemonoverlay$"
-               place-within-backdrop true
-              }
+           // 🎛️ LAYER RULES (Overview background)
 
           overview {
              

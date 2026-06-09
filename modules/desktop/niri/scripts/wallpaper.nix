@@ -9,9 +9,6 @@ pkgs.writeShellApplication {
     procps # Provides 'pgrep'
     awww # Provides 'awww-daemon'
     waypaper # Provides 'waypaper'
-    imagemagick # Provides 'magick' for blurring
-    gnugrep # Provides 'grep'
-    gnused # Provides 'sed'
   ];
 
   text = ''
@@ -19,27 +16,10 @@ pkgs.writeShellApplication {
     if ! pgrep -f "awww-daemon$" > /dev/null 2>&1; then
       awww-daemon &
     fi
-    if ! pgrep -f "awww-daemon --namespace overlay" > /dev/null 2>&1; then
-      awww-daemon --namespace overlay &
-    fi
     sleep 0.5
 
     # 2. Hand off the restoration job entirely to Waypaper 
     # This reads your setup inside ~/.config/waypaper/config.ini natively 
     waypaper --restore > /dev/null 2>&1
-
-    # 3. Generate and set a blurred overview wallpaper for Niri
-    CONFIG_FILE="$HOME/.config/waypaper/config.ini"
-    if [ -f "$CONFIG_FILE" ]; then
-      # Extract the wallpaper path from the config and expand ~ to $HOME
-      WALLPAPER=$(grep -m 1 '^wallpaper =' "$CONFIG_FILE" | cut -d '=' -f 2- | sed 's/^[[:space:]]*//' | sed "s|^~|$HOME|")
-      
-      if [ -n "$WALLPAPER" ] && [ -f "$WALLPAPER" ]; then
-        BLURRED="/tmp/niri-overview-blurred.jpg"
-        # Changed blur from 0x25 to 0x3 for a minimal, subtle blur effect
-        magick "$WALLPAPER" -blur 0x3 "$BLURRED"
-        awww img -n overlay "$BLURRED"
-      fi
-    fi
   '';
 }
