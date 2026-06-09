@@ -140,6 +140,7 @@ jobs:
                         <li>🏠 <a href="/nixri/index.html">NixOS Overview (Home)</a></li>
                         <li>📖 <a href="/nixri/docs/readme.html">Installation & Usage</a></li>
                         <li>💿 <a href="/nixri/docs/installer.html">Installer Script</a></li>
+                        <li>✨ <a href="/nixri/docs/stylix.html">Stylix Theming</a></li>
                         <li>🎛️ <a href="/nixri/docs/variables.html">System Variables</a></li>
                         <li>🚀 <a href="/nixri/docs/boot.html">Boot Config</a></li>
                         <li>🖥️ <a href="/nixri/docs/system.html">System Config</a></li>
@@ -151,6 +152,7 @@ jobs:
                         <li>⚙️ <a href="/nixri/docs/core.html">Core Modules</a></li>
                         <li>📊 <a href="/nixri/docs/waybar.html">Waybar Config</a></li>
                         <li>🔍 <a href="/nixri/docs/rofi.html">Rofi Config</a></li>
+                        <li>📝 <a href="/nixri/docs/neovim.html">Neovim Config</a></li>
                         <li>🔐 <a href="/nixri/docs/sops-rclone-git.html">Security & Deployment</a></li>
                       </ul>
                     </div>

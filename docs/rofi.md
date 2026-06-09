@@ -1,122 +1,58 @@
 # Rofi Configuration & Theming
 
-This document explains how Rofi is configured in the nixri setup and how you can declaratively change its theme and color schemes.
+This document explains how Rofi is configured in the nixri setup, how it automatically synchronizes its theme with your global system aesthetics, and details the custom powermenu script.
 
 ## Overview
 
-Rofi's base configuration is managed by Nix via Home Manager. The main files are located at:
+Rofi's entire configuration has been completely overhauled from legacy static `.rasi` files to a fully declarative Nix implementation via Home Manager. The main files are located at `modules/desktop/niri/rofi`:
 
-- `modules/desktop/niri/programs/rofi/default.nix`: The entry point that enables Rofi, configures plugins, and links the local `launchers`, `colors`, and `images` directories to `~/.config/rofi/`.
-- `modules/desktop/hyprland/programs/rofi/config.nix`: Contains all the general Rofi settings such as matching, history, sorting, window switcher behaviors, and keybindings.
+- **`default.nix`**: The entry point that enables Rofi and declares the complete theme. It dynamically imports variables from the global `stylix` palette and constructs the CSS-like Rasi structures natively in Nix using `mkLiteral`.
+- **`config.nix`**: Contains all the general Rofi settings, such as fuzzy matching, history tracking, sorting behavior, and generic keybindings for navigating lists.
+- **`rofi-powermenu.nix`**: A standalone custom Rofi launcher specifically built to act as an elegant, icon-driven system exit menu.
 
-## Where are the Themes Stored?
+---
 
-nixri uses a collection of Rofi themes curated by Aditya Shakya (@adi1090x). These assets are copied into your system's `~/.config/rofi/` directory on build.
+## Declarative Theming (Stylix Integration)
 
-Inside `modules/desktop/niri/programs/rofi/`:
+Unlike traditional setups that require you to maintain dozens of external `colors.rasi` files or download pre-made themes from external repositories, nixri uses **Stylix** to colorize Rofi on the fly. 
 
-- **`launchers/`**: Contains various structural theme types (e.g., `type-1` to `type-7`). Each type folder has multiple `style-X.rasi` files.
-- **`colors/`**: Contains color schemes (e.g., `catppuccin.rasi`, `tokyonight.rasi`, `dracula.rasi`, etc.).
-- **`images/`**: Contains background images used by some theme styles.
+Inside `default.nix` and `rofi-powermenu.nix`, the configuration explicitly pulls from `config.lib.stylix.colors` to dynamically build the exact highlight patterns for your system:
 
-## How to Change the Theme Declaratively
+- `base00`: Background (`bgColor`)
+- `base01`: Secondary Background (`bgAltColor`)
+- `base05`: Text (`fgColor`)
+- `base0E`: Selected Focus (`accentColor`)
+- `base0B`: Active States (`activeColor`)
+- `base08`: Urgent / Alert States (`urgentColor`)
 
-Unlike editing a global config file, the theme in nixri is set explicitly in the scripts that launch Rofi. This allows you to use different themes for different Rofi modes (e.g., one theme for the application launcher, and another for the window switcher).
+Because the entire theme tree is generated at build time using `mkLiteral` structures, Rofi will perfectly match your system's global aesthetics whenever you change your base16 palette in `stylix/default.nix`. 
 
-To change the theme declaratively, modify the **Launcher Script**:
+### Background Images
+Rofi uses a fixed background image mapped directly from your Nix repository:
+```nix
+currentWallpaper = "${self}/modules/wallpapers/tree-rofi.jpg";
+```
+This image is embedded directly into the `inputbar` (and `imagebox` for the powermenu) natively. By keeping a smaller, optimized image (`tree-rofi.jpg`) rather than loading a massive 4K wallpaper, Rofi opens completely instantly without the micro-stutter typical of image-heavy launchers.
 
-1. Open `modules/scripts/launcher.nix` in your text editor.
-2. Locate the `case $1 in` block where different Rofi modes (`drun`, `window`, `file`, etc.) are defined.
-3. For the mode you want to change, modify the `rofi_theme` variable.
+---
 
-For example, to change the application launcher (`drun`) theme:
+## Custom Powermenu (`rofi-powermenu`)
 
+To provide a sleek and safe exit workflow, nixri implements a heavily stylized shutdown menu in `rofi-powermenu.nix`.
+
+### Features
+1. **System Controls**: Displays large, beautiful icons for Lock, Suspend, Logout, Hibernate, Reboot, and Shutdown.
+2. **System Information**: Automatically pulls your `$USER`, `hostname`, and exact system `uptime` to display in the menu header.
+3. **Safety Confirmation**: To prevent accidental shutdowns, clicking any destructive option triggers a secondary, centered Rofi confirmation window asking "Are you Sure?" with `Yes/No` checkmarks.
+4. **Wayland Integration**: Safely interfaces with `systemctl` for hardware states and talks directly to the `niri` IPC to cleanly close the session on logout.
+
+### Customizing the Powermenu
+
+If you want to adjust the icon fonts or tweak the interactive prompts, you can edit the script portion located at the bottom of `rofi-powermenu.nix`:
 ```bash
-  drun)
-    # Change the type-X and style-Y to your preferred theme.
-    rofi_theme="''${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-7/style-2.rasi"
-    # ...
-    rofi -show drun -theme "$rofi_theme"
+lock='󰌾'
+suspend='󰤄'
+logout='󰍃'
+# ...
 ```
-
-### Changing the Keybinds Menu Theme
-
-The keybinds display menu also uses Rofi but is launched from a different script. To change its theme:
-
-1. Open `modules/desktop/hyprland/scripts/keybinds-rofi.sh`.
-2. Modify the `rofi_theme` variable to point to your desired style.
-
-```bash
-rofi_theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-4/style-4.rasi"
-```
-
-## How to Change Colors
-
-Some Rofi themes (especially `type-1` through `type-5`) share a global color configuration. They import their colors from a shared `colors.rasi` file.
-
-To change the color scheme for these themes:
-
-1. Open the corresponding shared color file, for example: `modules/desktop/hyprland/programs/rofi/launchers/type-4/shared/colors.rasi`.
-2. Change the `@import` directive to load a different color palette from the `colors/` directory.
-
-```css
-/* Change 'catppuccin.rasi' to 'dracula.rasi', 'tokyonight.rasi', etc. */
-@import "~/.config/rofi/colors/catppuccin.rasi"
-```
-
-*Note: Some newer styles (like those in `type-6` and `type-7`) define their colors inline within the `style-X.rasi` file itself. To change colors for those styles, edit the `* { ... }` color variables block directly in the respective style file.*
-
-## Applying Changes
-
-Once you've made changes to the `launcher.nix`, `keybinds-rofi.sh`, or the Rasi files, rebuild your NixOS system or update your Home Manager configuration (e.g., by running your custom rebuild script) for the changes to take effect.
-
-## Troubleshooting: Micro-stutter or Lag with Images
-
-That micro-stutter or lag when you press your hotkey is a very common quirk when adding images to Rofi. Because Rofi is designed to be extremely lightweight, it doesn't run as a persistent background service (daemon) by default. This means every single time you press your shortcut, Rofi has to wake up, read the image file from your hard drive, decode it, and scale it down to fit the window.
-
-If your background image is a high-resolution 1080p or 4K wallpaper (which is usually the case with these themes), the CPU has to do a lot of heavy lifting in those few milliseconds, causing that noticeable delay.
-
-Here is how to eliminate the lag and make Rofi instant again.
-
-### 1. The Quick Fix: Downscale and Compress
-
-The absolute best way to fix this is to pre-scale the image to the exact size Rofi needs. Rofi windows are usually quite small (e.g., 600x400 pixels). There is no reason to force it to load a 4K image.
-
-Since you are on NixOS, you don't even need to permanently install an image editor. You can use ImageMagick temporarily to create a lightning-fast, optimized version of your background.
-
-Run this command in your terminal (make sure to replace `telescope.png` with your actual image filename):
-
-```bash
-# This creates a much smaller, compressed version of the image
-nix run nixpkgs#imagemagick -- convert ~/nixri/modules/desktop/hyprland/programs/rofi/images/telescope.png -resize 800x ~/nixri/modules/desktop/hyprland/programs/rofi/images/telescope-fast.jpg
-```
-
-### 2. If ImageMagick is already installed
-
-If you already have ImageMagick installed on your system, you can run the commands directly without `nix run`.
-
-**For a single file:**
-
-```bash
-magick ~/nixri/modules/desktop/hyprland/programs/rofi/images/your-image.png -resize 800x ~/nixri/modules/desktop/hyprland/programs/rofi/images/your-image-fast.png
-```
-
-### 3. Update your Theme File
-
-Now, update your `.rasi` file to point to this new, lightweight image.
-
-Open your theme file (e.g., `modules/desktop/hyprland/programs/rofi/launchers/type-2/style-2.rasi`).
-
-Update the `background-image` line to use the new `.png`:
-
-```css
-inputbar {
-    background-image: url("~/.config/rofi/images/your-image-fast.png", width);
-}
-```
-
-### 4. Rebuild and Test
-
-Run your system rebuild command (`sudo nixos-rebuild switch --flake .#default`).
-
-Because the new image is significantly smaller in both dimensions and file size (often dropping from 3MB to around 50KB), Rofi will be able to parse and paint it to your screen almost instantly.
+To change its structural design, modify the `powermenuTheme` block at the top of the file, which dictates the spacing, border radii, and dimensions using the same Stylix colors as the main application launcher.

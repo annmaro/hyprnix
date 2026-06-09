@@ -21,20 +21,19 @@ This section defines the core Linux kernel to be used along with specific parame
 - **`kernel.sysctl`**: Sets sysctl variables. Here, `vm.swappiness` is set to `100`, which is often tuned for setups using zRAM to maximize memory compression efficiency.
 - **`kernelParams`**: Defines arguments passed to the kernel at boot. Currently, it uses `"preempt=full"` to prioritize lower latency at the expense of slight throughput reductions—ideal for desktop and gaming environments.
 
-### 3. Bootloader (GRUB & EFI)
+### 3. Bootloader (systemd-boot & EFI)
 
-This configuration uses GRUB as the primary bootloader and explicitly disables systemd-boot.
+This configuration uses `systemd-boot` as the primary lightweight bootloader and explicitly disables GRUB.
 
-- **`loader.systemd-boot.enable`**: Set to `false`.
+- **`loader.systemd-boot`**:
+  - `enable`: Set to `true` to use systemd-boot.
+  - `consoleMode`: Set to `"auto"` to automatically scale up the text and resolution during boot based on your hardware display.
 - **`loader.efi`**:
-  - `canTouchEfiVariables`: Set to `true`, allowing the installation process to modify EFI variables.
-  - `efiSysMountPoint`: Mounts the EFI partition at `/boot`.
-- **`loader.timeout`**: Sets the boot menu display duration to `10` seconds.
+  - `canTouchEfiVariables`: Set to `true`, allowing the installation process to seamlessly modify EFI boot variables.
+  - `efiSysMountPoint`: Mounts the EFI partition precisely at `/boot`.
+- **`loader.timeout`**: Sets the boot menu display duration to `10` seconds, giving you ample time to select alternative generations if needed.
 - **`loader.grub`**:
-  - `enable`: Set to `true` to use GRUB.
-  - `efiSupport`: Enabled to support UEFI systems.
-  - `useOSProber`: Enabled (`true`) to detect and include other operating systems (like Windows or other Linux distros) in the GRUB menu.
-  - **`theme`**: A custom GRUB theme is applied by downloading and installing the "distro-grub-themes" (NixOS variant) from GitHub.
+  - `enable`: Set explicitly to `false` to prevent bootloader conflicts.
 
 ### 4. AppImage Support
 
