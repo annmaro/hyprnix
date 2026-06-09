@@ -190,8 +190,11 @@ in
            layer-rule {
                match namespace="^awww-daemon$"
                place-within-backdrop true
-               blur false
-               xray false
+               background-effect {
+                   blur false
+                   xray false
+               }
+
               }
 
           overview {
