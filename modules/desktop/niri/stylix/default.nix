@@ -85,7 +85,7 @@
             qt.enable = true;
             btop.enable = true;
             kitty.enable = true; # Ensures Stylix automatically hooks into the layout template
-            neovim.enable = true;
+            neovim.enable = false;
             swaylock.enable = true; # Tells Stylix to inject the colors into the locker lock ring
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
