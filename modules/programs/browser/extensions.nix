@@ -52,12 +52,6 @@
       installation_mode = "force_installed";
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/firemonkey/latest.xpi";
     };
-    "{c4b582ec-4343-438c-bda2-2f691c16c262}" = {
-      private_browsing = true;
-      default_area = "navbar";
-      installation_mode = "force_installed";
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/600-sound-volume/latest.xpi";
-    };
     "addon@darkreader.org" = {
       private_browsing = true;
       # default_area = "navbar";
@@ -85,6 +79,11 @@
       private_browsing = true;
       installation_mode = "force_installed";
       install_url = "https://github.com/mkaply/queryamoid/releases/download/v0.2/query_amo_addon_id-0.2-fx.xpi";
+    };
+    "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}" = {
+      private_browsing = true;
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-mauve-git/latest.xpi";
     };
   };
 
@@ -195,27 +194,28 @@
       fetchNews = true;
       syncSitesFixes = true;
       previewNewDesign = true;
-
-      theme = {
-        mode = 1;
-        brightness = 100;
-        contrast = 100;
-        grayscale = 0;
-        sepia = 0;
-        useFont = false;
-        fontFamily = "JetBrainsMono Nerd Font";
-        textStroke = 0;
-        engine = "dynamicTheme";
-        stylesheet = "";
-        darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Catppuccin Mocha Background
-        darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Catppuccin Mocha Text
-        scrollbarColor = "";
-        selectionColor = "#${config.lib.stylix.colors.base02}";
-        styleSystemControls = true;
-        lightColorScheme = "Default";
-        darkColorScheme = "Default";
-        immediateModify = false;
-      };
+      /*
+        theme = {
+          mode = 1;
+          brightness = 100;
+          contrast = 100;
+          grayscale = 0;
+          sepia = 0;
+          useFont = false;
+          fontFamily = "JetBrainsMono Nerd Font";
+          textStroke = 0;
+          engine = "dynamicTheme";
+          stylesheet = "";
+          darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Catppuccin Mocha Background
+          darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Catppuccin Mocha Text
+          scrollbarColor = "";
+          selectionColor = "#${config.lib.stylix.colors.base02}";
+          styleSystemControls = true;
+          lightColorScheme = "Default";
+          darkColorScheme = "Default";
+          immediateModify = false;
+        };
+      */
     };
   };
 }

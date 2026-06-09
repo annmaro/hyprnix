@@ -11,9 +11,6 @@
   home-manager.sharedModules = [
     (
       { config, ... }:
-      let
-        theme = import ./usertheme.nix { inherit config; };
-      in
       {
         programs.firefox = {
           enable = true;
@@ -30,8 +27,8 @@
               settings = import ./settings.nix { inherit self lib config; };
               bookmarks = import (self + "/modules/programs/browser/bookmarks.nix");
               search = import ./search.nix { inherit self pkgs; };
-              userChrome = theme.userChrome;
-              userContent = theme.userContent;
+              # userChrome = theme.userChrome;
+              # userContent = theme.userContent;
               extraConfig = ''
                 ${builtins.readFile "${inputs.betterfox}/Fastfox.js"}
                 ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
