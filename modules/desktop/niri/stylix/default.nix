@@ -26,7 +26,7 @@
           polarity = "dark";
           enableReleaseChecks = false;
 
-          image = self + "/modules/wallpapers/tree.jpg";
+          image = self + "/modules/wallpapers/tree-rofi.jpg";
 
           base16Scheme = {
             base00 = "1e1e2e"; # Base (Background)
