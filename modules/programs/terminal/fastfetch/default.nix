@@ -28,10 +28,12 @@ in
 
           logo = {
             source = "./nixos.png";
-            padding = {
-              top = 2;
-              right = 4;
-            };
+            /*
+              padding = {
+                top = 2;
+                right = 4;
+              };
+            */
           };
 
           display = {
