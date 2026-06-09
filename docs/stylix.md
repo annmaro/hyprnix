@@ -27,10 +27,10 @@ Stylix injects the defined Base16 colors, fonts, and cursors directly into suppo
 #### Auto-Themed Targets
 - **GTK (`gtk`)**: Enforces GTK themes and injects extra raw CSS. This custom CSS explicitly strips borders and drop-shadows from client-side window decorations (`csd`) to fit Niri's flat aesthetic, and overrides Thunar's right-click menu popup colors for better readability.
 - **Qt (`qt`)**: Hooks the Kvantum engine into `qt5ct`/`qt6ct` to force Qt-based programs (like VLC or OBS) to align with the global dark theme.
-- **Applications**: `kitty`, `btop`, `swaylock`, `firefox`, and `zen-browser` have automatic CSS/config generation enabled, instantly inheriting the base16 scheme.
+- **Applications**: `btop`, `swaylock`, `firefox`, and `zen-browser` have automatic CSS/config generation enabled, instantly inheriting the base16 scheme.
 
 #### Manually Themed Targets (Disabled in Stylix)
-- `vscode`, `rofi`, `neovim`, `waybar`, `dank-material-shell`, `spicetify`, `cava`, `feh`.
+- `vscode`, `rofi`, `kitty`, `neovim`, `waybar`, `dank-material-shell`, `spicetify`, `cava`, `feh`.
 - *Why are they disabled?* These applications are explicitly disabled in Stylix because they require highly specialized, custom configurations. Instead of using Stylix's generic configuration templates, these apps pull the global colors manually via `config.lib.stylix.colors.baseXX` (as seen in the Rofi and Neovim docs) to construct highly complex, custom UI designs without conflicts.
 
 ### Icon System
