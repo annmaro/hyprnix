@@ -24,14 +24,7 @@
 </div>
 
 > [!CAUTION]
-> ### 🚨 ARCHITECTURAL SHIFT: SWITCHED FROM HYPRLAND TO NIRI 🚨
-> 
-> **This repository has permanently moved away from the Hyprland ecosystem and Waybar.** The desktop environment is now completely driven by the **Niri scrollable-tiling compositor** and **Dank Material Shell (DMS)** for the top bar, notification stack, and session management.
-> 
-> If you have an active fork of this repository:
-> * Your existing configurations for `hyprlock`, `hypridle`, and `waybar` have been structural entry points that are no longer supported.
-> * Blindly pulling the latest upstream changes into an older Hyprland-based layout **will break your Nix system evaluation due to module/variable import modifications**.
-> * To properly transition your machine or review what changed, please follow the comprehensive **[Niri Migration & Switching Guide](./niri-migration.md)** *(link to be updated)* before running your next rebuild.
+
 
 ## Screenshots
 
@@ -54,8 +47,6 @@
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
   - [Installation Steps](#installation-steps)
-- [Usage](#usage)
-  - [Managing Hosts](#managing-hosts)
   - [Rebuilding](#rebuilding)
   - [Rollbacks](#rollbacks)
   - [Keybindings](#keybindings)
@@ -70,12 +61,15 @@
 > - `hosts/default/host-packages.nix`: Lists installed packages for the host.
 > - `hosts/default/configuration.nix`: Module imports for the host and extra configuration.
 > - `modules/hardware/drives/`: Optional fstab-style mounts for extra volumes (e.g. games/work).
+> - `modules/core/packages/`: Contains the list of packages to be installed.
 
 You can also check the [Production Docs](https://annmaro.github.io/nixri) for a better understanding of the entire NixOS setup.
 
-Install on a running system or from the NixOS live installer. Get the minimal ISO from the [NixOS website](https://nixos.org/download/#nixos-iso).
+This flake is designed for a minimal install of nixos. install nixos first, then follow the instructions below.
 
 ### Installation Steps
+
+**Method 1: Automatic**
 
 1. Clone the Repository:
 
@@ -92,20 +86,10 @@ cd ~/nixri
 3. Run the Installer:
 
 ```bash
-./install.sh
+nix run .#installer --extra-experimental-features "nix-command flakes"
 ```
 
 The install and rebuild scripts automate the setup process, including hosts, username, and applying the configuration. It also automatically generates the hardware-configuration.nix file based on your system's detected hardware, eliminating the need to manually generate it.
-
-## Usage
-
-### Managing Hosts
-
-**Method 1: Automatic** - run the installer again to select or create another host:
-
-```bash
-./install.sh
-```
 
 **Method 2: Manual:**
 
@@ -119,8 +103,6 @@ The install and rebuild scripts automate the setup process, including hosts, use
 
 Apply configuration changes:
 
-- **Keyboard shortcut:** `Super + U`
-- **rebuild script:** `rebuild`
 - **nixos-rebuild:** `sudo nixos-rebuild switch --flake ~/nixri#<HOST>`
 - **nh:** `nh os switch --hostname <HOST>`
 
@@ -148,7 +130,7 @@ Replace `N` with the generation number (e.g., `69`).
 
 ### Keybindings
 
-View all keybindings with `Super + ?` or `Super + Ctrl + K`.
+View all keybindings with `Super + Shift + K`.
 
 ## Credits/Inspiration
 

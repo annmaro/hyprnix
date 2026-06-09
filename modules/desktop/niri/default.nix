@@ -162,7 +162,7 @@ in
 
           // 📐 LAYOUT STYLE & WINDOW GAPS
           layout {
-              gaps 9
+              gaps 8
               center-focused-column "never"
               background-color "transparent"
 
@@ -170,7 +170,7 @@ in
                   off
               }
                border {
-                  width 2
+                  width 1
           // Dynamically targets your Stylix primary accent color
           active-color "#${config.lib.stylix.colors.base0E}"
           // Targets the default dim/outline color from your Stylix palette
@@ -322,11 +322,26 @@ in
               "Mod+Ctrl+J" { move-column-to-workspace-down; }
               "Mod+WheelScrollDown" { focus-workspace-down; }
               "Mod+WheelScrollUp" { focus-workspace-up; }
+             
+              "Mod+Up" { focus-window-or-workspace-up; }
+              "Mod+Down" { focus-window-or-workspace-down; }
+              "Mod+Ctrl+Up" { move-workspace-up; }
+              "Mod+Ctrl+Down" { move-workspace-down; }
 
               "Mod+R" { switch-preset-column-width; }
               "Mod+M" { maximize-column; }
               "Alt+Return" { fullscreen-window; }
-              "Mod+W" { toggle-window-floating; }
+              "Mod+Shift+V" { toggle-window-floating; }
+              "Mod+W" { switch-focus-between-floating-and-tiling; }
+              
+              // Adjust Column Width (Horizontal)
+              "Mod+Equal" { set-column-width "+10%"; }
+              "Mod+Minus" { set-column-width "-10%"; }
+             
+             // Adjust Window Height (Vertical)
+              "Mod+Shift+Minus" { set-window-height "-10%"; }
+              "Mod+Shift+Equal" { set-window-height "+10%"; }
+              
               "Mod+1" { focus-workspace 1; }
               "Mod+2" { focus-workspace 2; }
               "Mod+3" { focus-workspace 3; }
@@ -347,10 +362,6 @@ in
               "XF86AudioNext" { spawn "playerctl" "next"; }
               "XF86AudioPrev" { spawn "playerctl" "previous"; }
               "XF86Sleep" { spawn "systemctl" "suspend"; }
-              "Mod+Up" { focus-window-or-workspace-up; }
-              "Mod+Down" { focus-window-or-workspace-down; }
-              "Mod+Ctrl+Up" { move-workspace-up; }
-              "Mod+Ctrl+Down" { move-workspace-down; }
               "Mod+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
               "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
           }

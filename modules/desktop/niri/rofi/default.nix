@@ -22,8 +22,7 @@
         urgentColor = "#${stylixColors.base08 or "f38ba8"}"; # Alert States
 
         # Pull your primary wallpaper path straight from Stylix dynamically
-        currentWallpaper =
-          config.stylix.image or "${self}/modules/wallpapers/clay-banks-u27Rrbs9Dwc-unsplash-rofi1.jpg";
+        currentWallpaper = config.stylix.image or "${self}/modules/wallpapers/tree-rofi.jpg";
       in
       {
         programs.rofi = {
