@@ -62,6 +62,7 @@ Instead of rigid assets, DMS color management is dynamically constructed directl
 ### Automated Weather Engine State Activation
 
 To circumvent manual dashboard parameter lookup, the environment leverages a Home Manager activation script (`home.activation.dmsWeather`) executing right after filesystem generation (`entryAfter [ "writeBoundary" ]`). The script leverages `jq` to safely initialize or modify the state payload cache inside `~/.local/state/DankMaterialShell/session.json`, locking coordinates and region indicators dynamically.
+
 ---
 
 ## Packages & Dependencies
