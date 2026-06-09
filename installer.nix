@@ -157,25 +157,32 @@ pkgs.writeShellScriptBin "installer" ''
           mount -o umask=0077 "$custom_efi" /mnt/boot
 
       # --- SHARED INSTALL ENGINE ---
+      # Rename the host directory and update flake if a custom hostname was provided
+      if [ "$hostname" != "default" ]; then
+          mv ./hosts/default ./hosts/"$hostname"
+          sed -i -e "s/default = mkHost \"default\"/$hostname = mkHost \"$hostname\"/" ./flake.nix
+      fi
+
       # Stage configurations inside targeted file system tree
       mkdir -p /mnt/etc/nixos
       cp -r ./ /mnt/etc/nixos
 
       # Generate explicit hardware configuration out to file, filtering targeted exclusions
       info "Generating and filtering Hardware Profiles..."
-      nixos-generate-config --root /mnt --show-hardware-config | grep -v -E "secrets|rclone" > /mnt/etc/nixos/hosts/default/hardware-configuration.nix
+      nixos-generate-config --root /mnt --show-hardware-config | grep -v -E "secrets|rclone" > "/mnt/etc/nixos/hosts/$hostname/hardware-configuration.nix"
 
       # Dynamic Values Injections (Handled safely on the target filesystem)
-      if [ -f "/mnt/etc/nixos/hosts/default/variables.nix" ]; then
-          sed -i -e "s/username = \".*\"/username = \"$username\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
-          sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
-          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
-          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "/mnt/etc/nixos/hosts/default/variables.nix"
+      if [ -f "/mnt/etc/nixos/hosts/$hostname/variables.nix" ]; then
+          sed -i -e "s/hostname = \".*\"/hostname = \"$hostname\"/" "/mnt/etc/nixos/hosts/$hostname/variables.nix"
+          sed -i -e "s/username = \".*\"/username = \"$username\"/" "/mnt/etc/nixos/hosts/$hostname/variables.nix"
+          sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "/mnt/etc/nixos/hosts/$hostname/variables.nix"
+          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "/mnt/etc/nixos/hosts/$hostname/variables.nix"
+          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "/mnt/etc/nixos/hosts/$hostname/variables.nix"
       fi
 
       # Trigger deployment target evaluation with explicit experimental flags
       info "Executing main system installation bootstrap..."
-      NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-install --flake /mnt/etc/nixos#default --no-root-passwd $build_flags
+      NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-install --flake "/mnt/etc/nixos#$hostname" --no-root-passwd $build_flags
 
       # Set user runtime credentials safely inside target generation
       nixos-enter --root /mnt -c "echo '$password' | passwd --stdin $username"
@@ -193,11 +200,18 @@ pkgs.writeShellScriptBin "installer" ''
 
   else
       # --- EXISTING INSTALLED SYSTEM ROUTINE ---
-      if [ -f "./hosts/default/variables.nix" ]; then
-          sed -i -e "s/username = \".*\"/username = \"$username\"/" "./hosts/default/variables.nix"
-          sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "./hosts/default/variables.nix"
-          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "./hosts/default/variables.nix"
-          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "./hosts/default/variables.nix"
+      # Rename the host directory and update flake if a custom hostname was provided
+      if [ "$hostname" != "default" ] && [ -d "./hosts/default" ]; then
+          mv ./hosts/default ./hosts/"$hostname"
+          sed -i -e "s/default = mkHost \"default\"/$hostname = mkHost \"$hostname\"/" ./flake.nix
+      fi
+
+      if [ -f "./hosts/$hostname/variables.nix" ]; then
+          sed -i -e "s/hostname = \".*\"/hostname = \"$hostname\"/" "./hosts/$hostname/variables.nix"
+          sed -i -e "s/username = \".*\"/username = \"$username\"/" "./hosts/$hostname/variables.nix"
+          sed -i -e "s/videoDriver = \".*\"/videoDriver = \"$driver\"/" "./hosts/$hostname/variables.nix"
+          sed -i -e "s/gitUsername = \".*\"/gitUsername = \"$git_username\"/" "./hosts/$hostname/variables.nix"
+          sed -i -e "s/gitEmail = \".*\"/gitEmail = \"$git_email\"/" "./hosts/$hostname/variables.nix"
       fi
 
       info "Cleaning up conflicting native configuration files..."
@@ -215,17 +229,17 @@ pkgs.writeShellScriptBin "installer" ''
       done
 
       # Synchronize native system hardware settings safely while discarding sensitive paths
-      target_hardware="./hosts/default/hardware-configuration.nix"
+      target_hardware="./hosts/$hostname/hardware-configuration.nix"
       if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
           grep -v -E "secrets|rclone" "/etc/nixos/hardware-configuration.nix" | sudo tee "$target_hardware" >/dev/null
       else
           sudo nixos-generate-config --show-hardware-config | grep -v -E "secrets|rclone" | sudo tee "$target_hardware" >/dev/null
       fi
 
-      sudo git -C . add hosts/default/hardware-configuration.nix || true
+      sudo git -C . add "hosts/$hostname/hardware-configuration.nix" || true
 
       info "Building and activating configuration changes..."
-      if sudo NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-rebuild boot --flake .#default $build_flags; then
+      if sudo NIX_CONFIG="extra-experimental-features = nix-command flakes" nixos-rebuild switch --flake ".#$hostname" $build_flags; then
           info "System switched successfully!"
       else
           error "Nixos-rebuild failed. Review compilation output messages above."
