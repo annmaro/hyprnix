@@ -189,28 +189,27 @@
       fetchNews = true;
       syncSitesFixes = true;
       previewNewDesign = true;
-      /*
-        theme = {
-          mode = 1;
-          brightness = 100;
-          contrast = 100;
-          grayscale = 0;
-          sepia = 0;
-          useFont = false;
-          fontFamily = "JetBrainsMono Nerd Font";
-          textStroke = 0;
-          engine = "dynamicTheme";
-          stylesheet = "";
-          darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Catppuccin Mocha Background
-          darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Catppuccin Mocha Text
-          scrollbarColor = "";
-          selectionColor = "#${config.lib.stylix.colors.base02}";
-          styleSystemControls = true;
-          lightColorScheme = "Default";
-          darkColorScheme = "Default";
-          immediateModify = false;
-        };
-      */
+
+      theme = {
+        mode = 1;
+        brightness = 100;
+        contrast = 100;
+        grayscale = 0;
+        sepia = 0;
+        useFont = false;
+        fontFamily = "JetBrainsMono Nerd Font";
+        textStroke = 0;
+        engine = "dynamicTheme";
+        stylesheet = "";
+        darkSchemeBackgroundColor = "#${config.lib.stylix.colors.base00}"; # Catppuccin Mocha Background
+        darkSchemeTextColor = "#${config.lib.stylix.colors.base05}"; # Catppuccin Mocha Text
+        scrollbarColor = "";
+        selectionColor = "#${config.lib.stylix.colors.base02}";
+        styleSystemControls = true;
+        lightColorScheme = "Default";
+        darkColorScheme = "Default";
+        immediateModify = false;
+      };
     };
   };
 }
