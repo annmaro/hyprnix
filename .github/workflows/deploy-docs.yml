@@ -150,7 +150,6 @@ jobs:
                         <li>🔮 <a href="/nixri/docs/niri.html">Niri Config</a></li>
                         <li>🎨 <a href="/nixri/docs/dms.html">Dank Material Shell</a></li>
                         <li>⚙️ <a href="/nixri/docs/core.html">Core Modules</a></li>
-                        <li>📊 <a href="/nixri/docs/waybar.html">Waybar Config</a></li>
                         <li>🔍 <a href="/nixri/docs/rofi.html">Rofi Config</a></li>
                         <li>📝 <a href="/nixri/docs/neovim.html">Neovim Config</a></li>
                         <li>🔐 <a href="/nixri/docs/sops-rclone-git.html">Security & Deployment</a></li>

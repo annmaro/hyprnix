@@ -7,7 +7,7 @@
 
 let
   sddm-theme = inputs.silentSDDM.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-    theme = "default"; # select the config of your choice
+    theme = "silvia"; # select the config of your choice
     # Pass the local image so it gets copied into the theme's background folder
     extraBackgrounds = [ (self + "/modules/wallpapers/city-horizon.jpg") ];
 

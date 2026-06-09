@@ -289,7 +289,7 @@ in
               "Mod+Z" { spawn "zen-beta"; }
               "Mod+Shift+K" { spawn "${getExe keybindsRofi}"; }
               "Mod+G" { spawn "launcher" "games"; }
-              "Mod+Alt+G" { spawn "gamemode"; }
+              "Mod+Alt+G" { spawn "${getExe gamemode}"; }
               "Alt+F4" { close-window; }
               "Ctrl+Q" { close-window; }
               "Alt+S" { spawn "systemctl" "--user" "restart" "dms";}
@@ -300,6 +300,7 @@ in
               "Mod+Shift+E" { spawn "dms" "ipc" "call" "session" "toggle"; }
               "Mod+Shift+C" { spawn "code"; }
               "Mod+Shift+T" { spawn "sh" "-c" "thunar -q && thunar --daemon"; }
+              
               "Mod+Shift+R" { spawn "${getExe screenRecorder}" "m"; }
               "Mod+Escape" { spawn "pkill" "-SIGINT" "-x" "wf-recorder"; }
               "Mod+Backspace" { spawn "sh" "-c" "pkill -x wlogout || wlogout -b 4"; }
