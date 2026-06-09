@@ -184,7 +184,7 @@
       };
       detectDarkTheme = true;
       enabledByDefault = true;
-      changeBrowserTheme = false;
+      changeBrowserTheme = true;
       enableForProtectedPages = true;
       fetchNews = true;
       syncSitesFixes = true;
