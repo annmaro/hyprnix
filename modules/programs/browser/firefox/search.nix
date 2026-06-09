@@ -2,7 +2,7 @@
 {
   force = true;
   default = "Brave";
-  privateDefault = "Startpage";
+  privateDefault = "google";
   order = [
     "Startpage"
     "Searx"

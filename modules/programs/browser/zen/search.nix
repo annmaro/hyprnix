@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
   force = true;
-  default = "ddg";
+  default = "Brave";
   privateDefault = "google";
   order = [
     "Searx"
+    "Brave"
     "Perplexity"
     "google"
     "NixOS Packages"
