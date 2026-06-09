@@ -85,7 +85,6 @@
             qt.enable = true;
             btop.enable = true;
             kitty.enable = true; # Ensures Stylix automatically hooks into the layout template
-            neovim.enable = false;
             swaylock.enable = true; # Tells Stylix to inject the colors into the locker lock ring
             firefox = {
               enable = true; # Ensures Stylix automatically hooks into the layout template
@@ -106,6 +105,7 @@
             spicetify.enable = false;
             cava.enable = false;
             feh.enable = false;
+            neovim.enable = false;
           };
 
           # Generate a 1x1 solid black pixel on the fly as your wallpaper engine source
