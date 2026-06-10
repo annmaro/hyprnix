@@ -23,11 +23,11 @@
    </p>
 </div>
 
-### Watch the demo video on YouTube
+<h3 align="center">Watch the demo video on YouTube</h3>
 
 <p align="center">
   <a href="https://youtu.be/K9vDWjv49Ck">
-    <img src="https://img.youtube.com/vi/K9vDWjv49Ck/maxresdefault.jpg" alt="My NixOS niri rice" width="600">
+    <img src="https://markdown-videos-api.jorgenkh.no/youtube/K9vDWjv49Ck" alt="My NixOS niri rice" width="600">
   </a>
 </p>
 
