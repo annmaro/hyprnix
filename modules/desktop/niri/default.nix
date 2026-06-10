@@ -272,8 +272,6 @@ in
              // Automatically spans across the horizontal workspace width
                 open-maximized true
 
-            // Centers the ribbon focus straight onto the playing media
-                center-on-focus true
           }
 
           window-rule {
