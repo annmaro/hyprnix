@@ -16,6 +16,7 @@ in
 {
   imports = [ inputs.nix-index-database.nixosModules.nix-index ];
   programs = {
+    xfconf.enable = true;
     nix-index-database.comma.enable = true;
     gnupg.agent = {
       enable = true;
