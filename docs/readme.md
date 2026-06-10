@@ -23,6 +23,8 @@
    </p>
 </div>
 
+### Watch the demo video on YouTube
+
 <p align="center">
   <a href="https://youtu.be/K9vDWjv49Ck">
     <img src="https://img.youtube.com/vi/K9vDWjv49Ck/maxresdefault.jpg" alt="My NixOS niri rice" width="600">
