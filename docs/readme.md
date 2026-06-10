@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://youtu.be/K9vDWjv49Ck">
-    <img src="https://markdown-videos-api.jorgenkh.no/youtube/K9vDWjv49Ck" alt="My NixOS niri rice" width="600">
+    <img src="/img/youtube-thumb.jpg" alt="My NixOS niri rice" width="600">
   </a>
 </p>
 
