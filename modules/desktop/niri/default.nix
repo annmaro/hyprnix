@@ -153,12 +153,12 @@ in
            workspace "2"
 
             // 🌫️ GLOBAL COMPOSITOR CONFIGURATION (Top Level)
-            // (This controls how Niri places windows relative to the bar)
+            
            blur {
-               passes 3       
-               offset 3.0     
-               noise 0.02     
-               saturation 1.1 
+               passes 3        // To keep the gradients perfectly smooth
+               offset 2.0      // Low offset to prevent pixelated blockiness
+               noise 0.0       // Zero grain for an ultra-clean, liquid surface
+               saturation 1.0  // Natural color pass-through 
            }
 
           // 📐 LAYOUT STYLE & WINDOW GAPS
@@ -203,13 +203,6 @@ in
            layer-rule {
                match namespace="^rofi$"
                geometry-corner-radius 12
-
-               background-effect {
-                   blur true
-                   xray false
-                   noise 0.03
-                   saturation 1.25
-               } 
            }
 
           // Force normal, realistic blur for DankMaterialShell popups and panels
@@ -236,7 +229,7 @@ in
            }
 
           window-rule {
-              match app-id="^(kitty|neovim|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
+              match app-id="^(kitty|neovim|yazi|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
               opacity 0.80
               draw-border-with-background false
               background-effect {
@@ -256,7 +249,7 @@ in
           }
 
           window-rule {
-              match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|neovim|nvim-wrapper|antigravity|VSCodium|code|thunar)$"
+              match app-id="^(Emacs|obsidian|proton.vpn.app.gtk|heroic|lutris|discord|webcord|vesktop|nvim-wrapper|antigravity|VSCodium|code|thunar)$"
               opacity 0.85
               draw-border-with-background false
               background-effect {
