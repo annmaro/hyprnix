@@ -23,7 +23,12 @@
    </p>
 </div>
 
-[Watch the Demo Video](/img/niri.mp4)
+<p align="center">
+  <a href="https://youtu.be/K9vDWjv49Ck">
+    <img src="https://youtube.com" alt="My NixOS niri rice" width="600">
+  </a>
+</p>
+
 
 </details>
 
