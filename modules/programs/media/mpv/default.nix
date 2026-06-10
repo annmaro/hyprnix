@@ -4,12 +4,20 @@
     (
       { config, ... }:
       {
+        # Ensure Celluloid is available alongside mpv if you want a minimal GUI alternative
+        home.packages = with pkgs; [ celluloid ];
+
         programs.mpv = {
           enable = true;
+
+          # Modern, native, high-performance UI scripts for Wayland
           scripts = with pkgs.mpvScripts; [
-            thumbnail
-            mpris
+            mpris # Essential for MPRIS daemon sync with Niri audio widgets
+            thumbfast # Much faster, highly-optimized frame generation tool replacing 'thumbnail'
+            uosc # Modern, completely flat, floating context menu and UI for mouse users
           ];
+
+          # Retaining your highly customized keyboard bindings cleanly mapped
           bindings = rec {
             MBTN_LEFT_DBL = "cycle fullscreen";
             MBTN_RIGHT = "cycle pause";
@@ -99,22 +107,34 @@
             CLOSE_WIN = "quit";
             "CLOSE_WIN {encode}" = "quit 4";
             "Ctrl+w" = ''set hwdec "no"'';
-            # T = "script-binding generate-thumbnails";
+
+            # Accessing uosc's ultra-clean floating graphical menu
+            menu = "script-binding uosc/menu";
           };
+
           config = {
+            # Window Layout Adjustments for Tiling/Niri
             osc = "no";
+            border = "no"; # Cleaner framing in structural desktop layouts
+            keep-open = "yes"; # Keeps window alive so Niri columns don't instantly shift away
             resume-playback-check-mtime = true;
-            # ao = "alsa";
+
+            # Wayland Hardware & Rendering Optimizations
+            vo = "gpu-next"; # Critical modern rendering pipe for flawless Wayland handling
+            gpu-context = "wayland"; # Swapped from 'waylandvk' to avoid Vulkan pipeline surface lost bugs on Niri
+            hwdec = "auto-safe"; # Zero-copy GPU video rendering to end your stuttering and crashes
+
+            # File Management & Subtitles
             audio-file-auto = "fuzzy";
             sub-auto = "fuzzy";
-            # gpu-context = "waylandvk";
             wayland-edge-pixels-pointer = 0;
             wayland-edge-pixels-touch = 0;
+
+            # High Quality Screenshots
             screenshot-format = "webp";
             screenshot-webp-lossless = true;
             screenshot-directory = "${config.home.homeDirectory}/Pictures/Screenshots/mpv";
             screenshot-sw = true;
-            # cache-dir = "${config.xdg.cacheHome}/mpv";
             input-default-bindings = false;
           };
         };

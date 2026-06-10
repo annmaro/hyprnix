@@ -107,7 +107,6 @@ in
               WLR_RENDERER_ALLOW_SOFTWARE "1"
               NIXPKGS_ALLOW_UNFREE "1"
               DMS_DISABLE_MATUGEN "0"
-              QT_QPA_PLATFORM "wayland"
           }
 
           // 🚀 SPAWN ON STARTUP / AUTOSTART DAEMONS
