@@ -9,7 +9,7 @@
    <br>
    <p>
       <a href="https://github.com/annmaro/nixri/stargazers">
-         <img src="https://img.shields.io/github/stars/annmaro/nixri?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6" alt="GitHub Stars">
+         <img src="https://img.shields.io/github/stars/annmaro/nixri?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6">
       </a>
       <a href="https://github.com/annmaro/nixri/network/members">
          <img src="https://img.shields.io/github/forks/annmaro/nixri?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=git&logoColor=C6A0F6" alt="GitHub Forks">
