@@ -266,6 +266,17 @@ in
           }
 
           window-rule {
+                match app-id="mpv"
+                match app-id="io.github.celluloid_player.Celluloid"
+
+             // Automatically spans across the horizontal workspace width
+                open-maximized true
+
+            // Centers the ribbon focus straight onto the playing media
+                center-on-focus true
+          }
+
+          window-rule {
               match app-id="^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$"
               open-floating true
           }
