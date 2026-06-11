@@ -229,7 +229,7 @@ in
            }
 
           window-rule {
-              match app-id="^(kitty|neovim|yazi|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
+              match app-id="^(foot|neovim|yazi|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
               opacity 0.80
               draw-border-with-background false
               background-effect {
@@ -268,7 +268,7 @@ in
           }
 
           window-rule {
-              match app-id="^(pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$"
+              match app-id="^(tmux-sessionizer|pavucontrol|blueman-manager|nm-applet|nm-connection-editor|nwg-look|qt5ct|qt6ct|yad|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler|eog)$"
               open-floating true
           }
 
@@ -282,7 +282,8 @@ in
           // 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
           binds {
               "Mod+Return" { spawn "ghostty"; }
-              "Mod+T" { spawn "kitty"; }
+              "Mod+T" { spawn "foot"; }
+              "Ctrl+T" { spawn "foot" "-a" "tmux-sessionizer" "-e" "tmux-sessionizer"; }
               "Mod+C" { spawn "editor"; }
               "Mod+F" { spawn "firefox"; }
               "Mod+A" { spawn "antigravity"; }

@@ -4,11 +4,11 @@
   gitUsername = "annmaro";
   gitEmail = "anandk60440@gmail.com";
   desktop = "niri"; 
-  terminal = "kitty"; # Options: kitty, alacritty
+  terminal = "foot"; # Options: foot, kitty, alacritty
   editor = "neovim"; # Options: vscode, antigravity, neovim
   browser = "firefox"; # Options: firefox, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
-  shell = "zsh"; # Options: zsh, bash
+  shell = "fish"; # Options: fish, zsh, bash
   games = true; # Whether to enable the gaming module
 
   # Hardware Configuration
