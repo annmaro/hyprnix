@@ -6,6 +6,7 @@
         enable = true;
         enableBashIntegration = true;
         enableZshIntegration = true;
+        enableFishIntegration = true;
         shellWrapperName = "y";
 
         # 1. DECLARE THE GVFS PLUGIN HERE
