@@ -27,6 +27,7 @@ in
     "${self}/modules/core/git-sops"
     "${self}/modules/core/syncthing"
     "${self}/modules/core/system"
+    "${self}/modules/core/thunar}"
     "${self}/modules/core/users"
     "${self}/modules/core/flatpak"
     "${self}/modules/core/xdg"
@@ -58,7 +59,6 @@ in
     "${self}/modules/programs/media/mpv"
     "${self}/modules/programs/media/rclone"
     "${self}/modules/programs/misc/tlp"
-    "${self}/modules/programs/misc/thunar"
     "${self}/modules/programs/misc/lact" # GPU fan, clock and power configuration
   ]
   ++ lib.optional (vars.games == true) "${self}/modules/core/games";
