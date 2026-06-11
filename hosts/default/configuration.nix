@@ -48,7 +48,7 @@ in
     "${self}/modules/programs/browser/zen"
     "${self}/modules/programs/cli/direnv"
     "${self}/modules/programs/terminal/fastfetch"
-    "${self}/modules/programs/misc/cpufreq"
+    "${self}/modules/programs/tuning/cpufreq"
     "${self}/modules/programs/cli/cava"
     "${self}/modules/programs/cli/btop"
     # "${self}/modules/programs/media/discord"
@@ -58,8 +58,8 @@ in
     # "${self}/modules/programs/media/obs-studio"
     "${self}/modules/programs/media/mpv"
     "${self}/modules/programs/media/rclone"
-    "${self}/modules/programs/misc/tlp"
-    "${self}/modules/programs/misc/lact" # GPU fan, clock and power configuration
+    "${self}/modules/programs/tuning/tlp"
+    "${self}/modules/programs/tuning/lact" # GPU fan, clock and power configuration
   ]
   ++ lib.optional (vars.games == true) "${self}/modules/core/games";
 }

@@ -21,7 +21,7 @@
 
         Change the text in the Command: box to:
 
-    kitty --directory %f
+    foot --directory %f
 
         Click OK to save the changes and close the dialog.
 

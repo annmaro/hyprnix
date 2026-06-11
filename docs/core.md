@@ -25,7 +25,7 @@ The core modules are responsible for establishing the base layer of the operatin
 ### User Environment & Shell
 
 - **`users`:** Defines the primary user account, default shell, and necessary group memberships (e.g., `wheel`, `networkmanager`, `video`).
-- **`bash` / `zsh`:** System-wide shell configurations and aliases.
+- **`bash` / `fish`:** System-wide shell configurations and aliases.
 - **`starship`:** Cross-shell prompt configuration for a unified terminal experience.
 - **`fonts`:** Installs and configures essential system fonts, including Nerd Fonts required for icons in Waybar and the terminal.
 - **`xdg`:** Sets up XDG user directories (Documents, Downloads, etc.) and XDG Desktop Portals (crucial for Wayland screen sharing and flatpaks).
@@ -48,4 +48,4 @@ The core modules are responsible for establishing the base layer of the operatin
 The `core` directory enforces a modular philosophy:
 
 1. **Separation of Concerns:** If you want to change how networking is handled, you only need to look in `core/network`.
-2. **Reusability:** By decoupling these from the desktop environment (Hyprland), you could theoretically swap out Hyprland for GNOME or KDE while retaining the exact same base system configuration.
+2. **Reusability:** By decoupling these from the desktop environment (niri), you could theoretically swap out niri for GNOME or KDE while retaining the exact same base system configuration.
