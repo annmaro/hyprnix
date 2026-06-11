@@ -38,8 +38,8 @@
 ![Screenshot](../img/preview3.png)
 
 <details>
-
 <summary>More screenshots</summary>
+
 ![Screenshot](../img/preview4.png)
 ![Screenshot](../img/preview5.png)
 ![Screenshot](../img/preview6.png)
