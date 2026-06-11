@@ -27,7 +27,7 @@ in
     "${self}/modules/core/git-sops"
     "${self}/modules/core/syncthing"
     "${self}/modules/core/system"
-    "${self}/modules/core/thunar}"
+    "${self}/modules/core/thunar"
     "${self}/modules/core/users"
     "${self}/modules/core/flatpak"
     "${self}/modules/core/xdg"

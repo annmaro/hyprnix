@@ -282,8 +282,8 @@ in
           // 🕹️ KEYBINDINGS & WORKFLOW CONTROLS
           binds {
               "Mod+Return" { spawn "ghostty"; }
-              "Mod+T" { spawn "foot"; }
-              "Ctrl+T" { spawn "foot" "-a" "tmux-sessionizer" "-e" "tmux-sessionizer"; }
+              "Mod+T" { spawn "footclient"; }
+              "Ctrl+T" { spawn "footclient" "-a" "tmux-sessionizer" "-e" "tmux-sessionizer"; }
               "Mod+C" { spawn "editor"; }
               "Mod+F" { spawn "firefox"; }
               "Mod+A" { spawn "antigravity"; }
