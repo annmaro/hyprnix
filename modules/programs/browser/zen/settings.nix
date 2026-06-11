@@ -95,7 +95,7 @@ in
 
   # Block more unwanted stuff
   "dom.block_multiple_popups" = lock-true;
-  "browser.privatebrowsing.forceMediaMemoryCache" = lock-true;
+  "browser.privatebrowsing.forceMediaMemoryCache" = lock-false;
   "browser.contentblocking.category" = {
     Value = "strict";
     Status = "locked";
