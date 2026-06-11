@@ -30,7 +30,7 @@ Stylix injects the defined Base16 colors, fonts, and cursors directly into suppo
 - **Applications**: `btop`, `swaylock`, `firefox`, and `zen-browser` have automatic CSS/config generation enabled, instantly inheriting the base16 scheme.
 
 #### Manually Themed Targets (Disabled in Stylix)
-- `vscode`, `rofi`, `kitty`, `neovim`, `waybar`, `dank-material-shell`, `spicetify`, `cava`, `feh`.
+- `vscode`, `rofi`, `foot`, `neovim`, `waybar`, `dank-material-shell`, `spicetify`, `cava`, `feh`.
 - *Why are they disabled?* These applications are explicitly disabled in Stylix because they require highly specialized, custom configurations. Instead of using Stylix's generic configuration templates, these apps pull the global colors manually via `config.lib.stylix.colors.baseXX` (as seen in the Rofi and Neovim docs) to construct highly complex, custom UI designs without conflicts.
 
 ### Icon System
