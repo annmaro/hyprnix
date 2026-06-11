@@ -145,7 +145,7 @@ jobs:
                         <li>🚀 <a href="/nixri/docs/boot.html">Boot Config</a></li>
                         <li>🖥️ <a href="/nixri/docs/system.html">System Config</a></li>
                         <li>🛠️ <a href="/nixri/docs/services.html">Services Config</a></li>
-                        <li>🐚 <a href="/nixri/docs/zsh.html">Zsh Config</a></li>
+                        <li>🐚 <a href="/nixri/docs/fish.html">Fish Config</a></li>
                         <li>🌐 <a href="/nixri/docs/browser.html">Browser Config</a></li>
                         <li>🔮 <a href="/nixri/docs/niri.html">Niri Config</a></li>
                         <li>🎨 <a href="/nixri/docs/dms.html">Dank Material Shell</a></li>

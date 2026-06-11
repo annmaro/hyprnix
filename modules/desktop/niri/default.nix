@@ -229,7 +229,7 @@ in
            }
 
           window-rule {
-              match app-id="^(foot|neovim|yazi|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
+              match app-id="^(footclient|neovim|yazi|com.mitchellh.ghostty|Alacritty|org.wezfurlong.wezterm)$"
               opacity 0.80
               draw-border-with-background false
               background-effect {
