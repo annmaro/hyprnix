@@ -1,10 +1,10 @@
 {
   # User Configuration
-  username = "annmaro"; 
+  username = "annmaro";
   gitUsername = "annmaro";
   gitEmail = "anandk60440@gmail.com";
-  desktop = "niri"; 
-  terminal = "foot"; # Options: foot, kitty, alacritty
+  desktop = "niri";
+  terminal = "foot"; # Options: foot, kitty
   editor = "neovim"; # Options: vscode, antigravity, neovim
   browser = "firefox"; # Options: firefox, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
@@ -14,7 +14,7 @@
   # Hardware Configuration
   videoDriver = "intel"; # CRITICAL: Choose your GPU driver (nvidia, amdgpu, intel)
   hostname = "nixri"; # Your system hostname
-  
+
   # Localization
   clock24h = true; # 24H or 12H clock in waybar
   kbdLayout = "us"; # Keyboard layout

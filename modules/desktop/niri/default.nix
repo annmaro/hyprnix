@@ -223,7 +223,7 @@ in
 
           window-rule {
               match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
-              open-maximized-to-edges true
+              open-maximized true
               draw-border-with-background false
               opacity 1.0
            }
@@ -369,7 +369,7 @@ in
               "XF86AudioNext" { spawn "playerctl" "next"; }
               "XF86AudioPrev" { spawn "playerctl" "previous"; }
               "XF86Sleep" { spawn "systemctl" "suspend"; }
-              "Mod+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
+              "Mod+P" { spawn "rofi-rbw"; }
               "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
           }
         '';

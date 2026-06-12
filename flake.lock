@@ -748,6 +748,7 @@
         "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "stevenblack-hosts": "stevenblack-hosts",
         "stylix": "stylix",
         "thunderbird-catppuccin": "thunderbird-catppuccin",
         "wrapper-modules": "wrapper-modules",
@@ -812,6 +813,26 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "stevenblack-hosts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781196941,
+        "narHash": "sha256-HRk8pd3FAj5P3KObzO91NF2BrYV8Wo7hDA8xWYsbTm4=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "b4f4d7af895a3d18be12d1ea2da9430660cebf9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
         "type": "github"
       }
     },
