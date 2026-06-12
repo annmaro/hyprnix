@@ -43,6 +43,7 @@
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     nomacs # Qt-based image viewer
+    epiphany # WebKit based web browser
     # digikam # Photo management application
     gapless # Beautiful, fast, fluent, light weight music player written in GTK4
     spek # Acoustic spectrum analyser for audio files
