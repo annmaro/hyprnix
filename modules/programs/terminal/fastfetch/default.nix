@@ -28,6 +28,7 @@ in
 
           logo = {
             source = ./nixos-logo.png;
+            type = "sixel";
             /*
               padding = {
                 top = 2;

@@ -32,14 +32,14 @@ with lib;
             "inode/blockdevice" = [ "thunar.desktop" ];
 
             # Images - nomacs
-            "image/bmp" = [ "nomacs.desktop" ];
-            "image/gif" = [ "nomacs.desktop" ];
-            "image/jpeg" = [ "nomacs.desktop" ];
-            "image/jpg" = [ "nomacs.desktop" ];
-            "image/png" = [ "nomacs.desktop" ];
-            "image/svg+xml" = [ "nomacs.desktop" ];
-            "image/tiff" = [ "nomacs.desktop" ];
-            "image/webp" = [ "nomacs.desktop" ];
+            "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/jpg" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/tiff" = [ "org.nomacs.ImageLounge.desktop" ];
+            "image/webp" = [ "org.nomacs.ImageLounge.desktop" ];
 
             # Videos - celluloid
             "video/mp4" = [ "io.github.celluloid_player.Celluloid.desktop" ];
@@ -92,8 +92,8 @@ with lib;
             "x-scheme-handler/antigravity" = [ "antigravity.desktop" ];
 
             # Terminal
-            "application/x-terminal-emulator" = [ "kitty.desktop" ];
-            "x-scheme-handler/terminal" = [ "kitty.desktop" ];
+            "application/x-terminal-emulator" = [ "footclient.desktop" ];
+            "x-scheme-handler/terminal" = [ "footclient.desktop" ];
 
             # Torrents - Transmission
             "x-scheme-handler/magnet" = [ "qbittorrent.desktop" ];

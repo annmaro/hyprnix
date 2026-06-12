@@ -33,7 +33,6 @@
     rimgo # Alternative frontend for Imgurss
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
-    vlc # Cross-platform media player and streaming server
     peazip # File and archive manager
     calibre # Comprehensive e-book software
     vivaldi # Browser for our Friends, powerful and personal
@@ -58,20 +57,16 @@
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program
-    # duf # Utility For Viewing Disk Usage In Terminal
+    duf # Utility For Viewing Disk Usage In Terminal
     # dysk # Disk space util nice formattting
     # ffmpeg # Terminal Video / Audio Editing
-    # gemini-cli # CLI AI client ONLY (optional)
     inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
-    # libnotify # For Notifications
     # lolcat # Add Colors To Your Terminal Command Output
     lshw # Detailed Hardware Information
-    # mpv # Incredible Video Player
     ncdu # Disk Usage Analyzer With Ncurses Interface
     nixfmt # Nix Formatter
     # nwg-displays # configure monitor configs via GUI
-    # onefetch # provides zsaneyos build info on current system
     # pavucontrol # For Editing Audio Levels & Devices
     # pciutils # Collection Of Tools For Inspecting PCI Devices
     # picard # For Changing Music Metadata & Getting Cover Art
