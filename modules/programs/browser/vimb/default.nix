@@ -57,33 +57,6 @@
               }
           })();
 
-          // Vimb Smart Dark Mode Styler
-          (function() {
-              'use strict';
-              if (window !== window.top) return;
-
-              if (window.location.hostname.includes("youtube.com") || window.location.hostname.includes("youtu.be")) {
-                  return;
-              }
-
-              const style = document.createElement('style');
-              style.innerHTML = `
-                  html { filter: invert(100%) hue-rotate(180deg) !important; background: #000 !important; }
-                  img, video, iframe, canvas, [style*="background-image"], figure { filter: invert(100%) hue-rotate(180deg) !important; }
-              `;
-              
-              const addStyle = () => {
-                  if (document.head) document.head.appendChild(style);
-                  else if (document.documentElement) document.documentElement.appendChild(style);
-              };
-
-              if (document.readyState === "loading") {
-                  document.addEventListener('DOMContentLoaded', addStyle);
-              } else {
-                  addStyle();
-              }
-          })();
-
           // YouTube Player Ad Skipper
           (function() {
               'use strict';
@@ -118,11 +91,35 @@
           })();
         '';
 
-        # Remove the global raw style.css stylesheet reference
-        xdg.configFile."vimb/style.css".text = "";
+        # Define the global style.css stylesheet for dark mode
+        xdg.configFile."vimb/style.css".text = ''
+          *,div,pre,textarea,body,input,td,tr,p {
+              background-color: #303030 !important;
+              background-image: none !important;
+              color: #bbbbbb !important;
+          }
+          h1,h2,h3,h4 {
+              background-color: #303030 !important;
+              color: #b8ddea !important;
+          }
+          a {
+              color: #70e070 !important;
+          }
+          a:hover,a:focus {
+              color: #7070e0 !important;
+          }
+          a:visited {
+              color: #e07070 !important;
+          }
+          img {
+              opacity: .5;
+          }
+        '';
 
-        # Enable default user styling behavior but let scripts handle the dark mode logic
+        # Vimb settings
         xdg.configFile."vimb/config".text = ''
+          set home-page=https://google.com
+          set download-path=~/Downloads/
           nmap ,b :open https://raindrop.io/add?link=%
         '';
       }
