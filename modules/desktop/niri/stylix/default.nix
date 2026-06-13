@@ -60,25 +60,25 @@
               enable = true;
               extraCss = ''
                 window.csd > decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  outline: transparent !important;
-                  box-shadow: none !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0D};
+                  outline: none;
+                  box-shadow: none;
                 }
                 decoration {
-                  border: 1px solid #${config.lib.stylix.colors.base0D} !important;
-                  outline: transparent !important;
-                  box-shadow: none !important;
+                  border: 1px solid #${config.lib.stylix.colors.base0D};
+                  outline: none;
+                  box-shadow: none;
                 }
 
                 /* Override Thunar Menu Popups for readability */
                 window.thunar menu, window.thunar .menu, window.thunar popover {
-                  background-color: #${config.lib.stylix.colors.base01} !important;
-                  color: #${config.lib.stylix.colors.base05} !important;
-                  border: 1px solid #${config.lib.stylix.colors.base0E} !important;
+                  background-color: #${config.lib.stylix.colors.base01};
+                  color: #${config.lib.stylix.colors.base05};
+                  border: 1px solid #${config.lib.stylix.colors.base0E};
                 }
                 window.thunar menuitem:hover, window.thunar .menuitem:hover {
-                  background-color: #${config.lib.stylix.colors.base02} !important;
-                  color: #${config.lib.stylix.colors.base0D} !important;
+                  background-color: #${config.lib.stylix.colors.base02};
+                  color: #${config.lib.stylix.colors.base0D};
                 }
               '';
             };
