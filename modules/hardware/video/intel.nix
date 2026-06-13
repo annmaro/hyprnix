@@ -15,6 +15,7 @@
   # Graphics / Hardware Acceleration (VA-API)
   hardware.graphics = {
     enable = true; # Explicitly ensure graphics are enabled
+    enable32Bit = true; # Required for certain 32-bit driver dependencies
     extraPackages = with pkgs; [
       intel-media-driver # The correct, high-performance driver for UHD 620
 

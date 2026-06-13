@@ -15,11 +15,9 @@
             postBuild = ''
               wrapProgram $out/bin/vimb \
                 --set GDK_BACKEND "wayland,x11" \
-                --set WEBKIT_DISABLE_DMABUF_RENDERER 1 \
-                --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${gst_all_1.gst-libav}/lib/gstreamer-1.0"
+                --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${gst_all_1.gst-libav}/lib/gstreamer-1.0:${gst_all_1.gst-vaapi}/lib/gstreamer-1.0"
             '';
           })
-
           rbw
           rofi-rbw
           gst_all_1.gstreamer
