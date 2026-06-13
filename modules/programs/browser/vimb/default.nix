@@ -33,6 +33,8 @@
           // Vimb Cosmetic Layout Cleaner
           (function() {
               'use strict';
+              if (window !== window.top) return;
+              
               const adSelectors = [
                   '.adsbox', '.ad-banner', '.adsbygoogle', 'amp-ad',
                   'div[id^="div-gpt-ad"]', '.sponsored-post', '#sidebar-ads',
@@ -57,6 +59,8 @@
           // Vimb Smart Dark Mode Styler
           (function() {
               'use strict';
+              if (window !== window.top) return;
+
               if (window.location.hostname.includes("youtube.com") || window.location.hostname.includes("youtu.be")) {
                   return;
               }
@@ -82,6 +86,8 @@
           // YouTube Player Ad Skipper
           (function() {
               'use strict';
+              if (window !== window.top) return;
+
               if (!window.location.hostname.includes("youtube.com")) return;
 
               function checkAndSkipAds() {
@@ -116,7 +122,6 @@
 
         # Enable default user styling behavior but let scripts handle the dark mode logic
         xdg.configFile."vimb/config".text = ''
-          set user-style=off
           nmap ,b :open https://raindrop.io/add?link=%
         '';
       }
