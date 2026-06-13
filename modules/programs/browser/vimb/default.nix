@@ -89,6 +89,24 @@
 
               setInterval(checkAndSkipAds, 1000);
           })();
+
+          // Vimb Clickjack & Popup Blocker
+          (function() {
+              'use strict';
+              // Hook into window.open to stop automated tab hijacking
+              const originalWindowOpen = window.open;
+              window.open = function(url, name, specs, replace) {
+                  console.log("Vimb blocked an attempted popup to: " + url);
+                  // Return a dummy object so the website's script doesn't crash
+                  return {
+                      focus: function() {},
+                      blur: function() {},
+                      close: function() {},
+                      closed: true
+                  };
+              };
+          })();
+
         '';
 
         # Define the global style.css stylesheet for dark mode
@@ -121,6 +139,7 @@
           set home-page=https://google.com
           set download-path=~/Downloads/
           nmap ,b :open https://raindrop.io/add?link=%
+          nmap ,s :set scripts!<CR>
         '';
       }
     )
