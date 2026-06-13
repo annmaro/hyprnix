@@ -112,7 +112,7 @@
         # Define the global style.css stylesheet for dark mode
         xdg.configFile."vimb/style.css".text = ''
           *,div,pre,textarea,body,input,td,tr,p {
-              background-color: #303030 !important;
+              background-color: #131212 !important;
               background-image: none !important;
               color: #bbbbbb !important;
           }
