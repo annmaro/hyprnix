@@ -11,6 +11,13 @@
           vimb
           rbw
           rofi-rbw
+          rofi-wayland
+          gst_all_1.gstreamer
+          gst_all_1.gst-plugins-base
+          gst_all_1.gst-plugins-good
+          gst_all_1.gst-plugins-bad
+          gst_all_1.gst-plugins-ugly
+          gst_all_1.gst-libav
         ];
 
         xdg.configFile."vimb/scripts.js".text = ''
@@ -54,6 +61,7 @@
 
           (function() {
               'use strict';
+              if (!window.location.hostname.includes("youtube.com")) return;
 
               function clearYouTubeAds() {
                   const video = document.querySelector('video');
