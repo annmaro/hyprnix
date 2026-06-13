@@ -3,11 +3,9 @@
   networking.firewall = {
     allowedTCPPorts = [
       53
-      5335
     ];
     allowedUDPPorts = [
       53
-      5335
     ];
   };
   # Disable systemd dns resolver
@@ -27,13 +25,6 @@
   };
   systemd.services = {
     unbound.stopIfChanged = false;
-    adguardhome.serviceConfig = {
-      After = [
-        "network.target"
-        "unbound.service"
-      ];
-      Requires = [ "unbound.service" ];
-    };
   };
   services = {
     unbound = {
@@ -44,7 +35,7 @@
           # When only using Unbound as DNS, make sure to replace 127.0.0.1 with your ip address
           # When using Unbound in combination with pi-hole or Adguard, leave 127.0.0.1, and point Adguard to 127.0.0.1:PORT
           interface = [ "127.0.0.1" ]; # "::1"
-          port = 5335;
+          port = 53;
           access-control = [
             "127.0.0.1 allow"
             "192.168.0.0/24 allow"
@@ -71,56 +62,6 @@
             ];
           }
         ];
-      };
-    };
-    adguardhome = {
-      enable = true;
-      host = "0.0.0.0";
-      port = 3005;
-      mutableSettings = true;
-      openFirewall = true;
-      settings = {
-        http = {
-          address = "127.0.0.1:3005";
-        };
-        dns = {
-          bind_host = "0.0.0.0";
-          bind_port = 53;
-          upstream_dns = [ "127.0.0.1:5335" ];
-          bootstrap_dns = [ "127.0.0.1:5335" ];
-        };
-        filtering = {
-          protection_enabled = true;
-          filtering_enabled = true;
-
-          parental_enabled = false;
-          safe_search.enabled = false;
-        };
-        filters =
-          map
-            (url: {
-              enabled = true;
-              url = url;
-            })
-            [
-              "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"
-              "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
-              "https://easylist.to/easylist/easylist.txt" # Base filter
-              "https://easylist.to/easylist/easyprivacy.txt" # Privacy protection
-              "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt" # Malware domains
-              "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt" # Scam protection                                                                                      "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt"  # Cryptominers
-
-              # My Lists
-              # "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt" # Large
-              "https://raw.githubusercontent.com/yokoffing/filterlists/refs/heads/main/privacy_essentials.txt"
-              "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/LegitimateURLShortener.txt"
-              "https://raw.githubusercontent.com/yokoffing/filterlists/refs/heads/main/annoyance_list.txt"
-              "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/BrowseWebsitesWithoutLoggingIn.txt"
-              "https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/adblock/spam-tlds-ublock.txt"
-              "https://raw.githubusercontent.com/iam-py-test/my_filters_001/refs/heads/main/antitypo.txt"
-              # "https://raw.githubusercontent.com/iam-py-test/my_filters_001/refs/heads/main/antimalware.txt"
-              # "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/Dandelion%20Sprout's%20Anti-Malware%20List.txt"
-            ];
       };
     };
   };

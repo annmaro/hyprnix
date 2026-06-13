@@ -29,7 +29,7 @@ in
   DisableFeedbackCommands = true;
   DontCheckDefaultBrowser = true;
   DNSOverHTTPS = {
-    Enabled = true;
+    Enabled = false;
   };
   EnableTrackingProtection = {
     Value = true;
