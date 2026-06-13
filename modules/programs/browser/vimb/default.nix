@@ -30,15 +30,7 @@
         ];
 
         xdg.configFile."vimb/scripts.js".text = ''
-          // ==UserScript==
-          // @name         Vimb Cosmetic Layout Cleaner
-          // @namespace    http://tampermonkey.net/
-          // @version      1.0
-          // @description  Collapses layout gaps left behind by host-level blocking
-          // @match        *://*/*
-          // @run-at       document-start
-          // ==/UserScript==
-
+          // Vimb Cosmetic Layout Cleaner
           (function() {
               'use strict';
               const adSelectors = [
@@ -50,27 +42,21 @@
               const style = document.createElement('style');
               style.innerHTML = adSelectors.join(', ') + ' { display: none !important; height: 0 !important; visibility: hidden !important; }';
               
-              if (document.documentElement) {
-                  document.documentElement.appendChild(style);
+              const addStyle = () => {
+                  if (document.head) document.head.appendChild(style);
+                  else if (document.documentElement) document.documentElement.appendChild(style);
+              };
+              
+              if (document.readyState === "loading") {
+                  document.addEventListener('DOMContentLoaded', addStyle);
               } else {
-                  document.addEventListener('DOMContentLoaded', () => {
-                      document.documentElement.appendChild(style);
-                  });
+                  addStyle();
               }
           })();
 
-          // ==UserScript==
-          // @name         Vimb Smart Dark Mode Styler
-          // @namespace    http://tampermonkey.net/
-          // @version      1.1
-          // @description  Inverts light-mode websites while protecting YouTube from color distortion
-          // @match        *://*/*
-          // @run-at       document-start
-          // ==/UserScript==
-
+          // Vimb Smart Dark Mode Styler
           (function() {
               'use strict';
-              // Completely bypass color inversion on YouTube
               if (window.location.hostname.includes("youtube.com") || window.location.hostname.includes("youtu.be")) {
                   return;
               }
@@ -78,27 +64,22 @@
               const style = document.createElement('style');
               style.innerHTML = `
                   html { filter: invert(100%) hue-rotate(180deg) !important; background: #000 !important; }
-                  img, video, iframe, canvas, [style*="background-image"] { filter: invert(100%) hue-rotate(180deg) !important; }
+                  img, video, iframe, canvas, [style*="background-image"], figure { filter: invert(100%) hue-rotate(180deg) !important; }
               `;
               
-              if (document.documentElement) {
-                  document.documentElement.appendChild(style);
+              const addStyle = () => {
+                  if (document.head) document.head.appendChild(style);
+                  else if (document.documentElement) document.documentElement.appendChild(style);
+              };
+
+              if (document.readyState === "loading") {
+                  document.addEventListener('DOMContentLoaded', addStyle);
               } else {
-                  document.addEventListener('DOMContentLoaded', () => {
-                      document.documentElement.appendChild(style);
-                  });
+                  addStyle();
               }
           })();
 
-          // ==UserScript==
-          // @name         YouTube Player Ad Skipper
-          // @namespace    http://tampermonkey.net/
-          // @version      2.0
-          // @description  Bypasses YouTube ads via instant DOM mutations and playhead forwarders
-          // @match        *://*.youtube.com/*
-          // @run-at       document-start
-          // ==/UserScript==
-
+          // YouTube Player Ad Skipper
           (function() {
               'use strict';
               if (!window.location.hostname.includes("youtube.com")) return;
@@ -107,28 +88,26 @@
                   const skipButtons = [
                       '.ytp-ad-skip-button-modern',
                       '.ytp-skip-ad-button',
+                      '.ytp-ad-skip-button',
                       'button[aria-label^="Skip ad"]'
                   ];
 
-                  // 1. Programmatically trigger skip buttons
                   for (const selector of skipButtons) {
                       const button = document.querySelector(selector);
                       if (button && button.offsetParent !== null) {
                           button.click();
-                          return;
                       }
                   }
 
-                  // 2. Fast-forward through unskippable ads instantly
                   const video = document.querySelector('video');
                   if (video && document.querySelector('.ad-showing, .ad-interrupting')) {
-                      video.currentTime = video.duration - 0.1;
+                      if (video.duration && video.currentTime < video.duration - 0.5) {
+                          video.currentTime = video.duration - 0.1;
+                      }
                   }
               }
 
-              // Use MutationObserver for sub-millisecond reactions to DOM changes
-              const observer = new MutationObserver(checkAndSkipAds);
-              observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+              setInterval(checkAndSkipAds, 1000);
           })();
         '';
 
