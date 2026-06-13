@@ -8,9 +8,19 @@
       { config, ... }:
       {
         home.packages = with pkgs; [
-          vimb
+          (symlinkJoin {
+            name = "vimb-wrapped";
+            paths = [ vimb ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/vimb \
+                --set GDK_BACKEND x11 \
+                --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+            '';
+          })
           rbw
           rofi-rbw
+          rofi-wayland
           gst_all_1.gstreamer
           gst_all_1.gst-plugins-base
           gst_all_1.gst-plugins-good
@@ -87,6 +97,7 @@
         '';
 
         xdg.configFile."vimb/config".text = ''
+          set user-style=~/.config/vimb/style.css
           nmap ,b :open https://raindrop.io/add?link=%
         '';
       }
