@@ -222,7 +222,7 @@ in
           }
 
           window-rule {
-              match app-id="^(firefox|zen-beta|floorp|brave-|vlc|easyeffects|gapless)$"
+              match app-id="^(firefox|zen-beta|floorp|vivaldi-stable|brave-|vlc|easyeffects|gapless)$"
               open-maximized true
               draw-border-with-background false
               opacity 1.0

@@ -60,44 +60,84 @@
           })();
 
           // ==UserScript==
-          // @name         YouTube Player Ad Skipper
+          // @name         Vimb Smart Dark Mode Styler
           // @namespace    http://tampermonkey.net/
           // @version      1.1
-          // @description  Bypasses YouTube ads by fast-forwarding and clicking skip buttons
+          // @description  Inverts light-mode websites while protecting YouTube from color distortion
+          // @match        *://*/*
+          // @run-at       document-start
+          // ==/UserScript==
+
+          (function() {
+              'use strict';
+              // Completely bypass color inversion on YouTube
+              if (window.location.hostname.includes("youtube.com") || window.location.hostname.includes("youtu.be")) {
+                  return;
+              }
+
+              const style = document.createElement('style');
+              style.innerHTML = `
+                  html { filter: invert(100%) hue-rotate(180deg) !important; background: #000 !important; }
+                  img, video, iframe, canvas, [style*="background-image"] { filter: invert(100%) hue-rotate(180deg) !important; }
+              `;
+              
+              if (document.documentElement) {
+                  document.documentElement.appendChild(style);
+              } else {
+                  document.addEventListener('DOMContentLoaded', () => {
+                      document.documentElement.appendChild(style);
+                  });
+              }
+          })();
+
+          // ==UserScript==
+          // @name         YouTube Player Ad Skipper
+          // @namespace    http://tampermonkey.net/
+          // @version      2.0
+          // @description  Bypasses YouTube ads via instant DOM mutations and playhead forwarders
           // @match        *://*.youtube.com/*
-          // @run-at       document-idle
+          // @run-at       document-start
           // ==/UserScript==
 
           (function() {
               'use strict';
               if (!window.location.hostname.includes("youtube.com")) return;
 
-              function clearYouTubeAds() {
-                  const video = document.querySelector('video');
-                  const skipButton = document.querySelector('.ytp-skip-ad-button, .ytp-ad-skip-button-modern');
-                  const adOverlay = document.querySelector('.video-ads, .ytp-ad-player-overlay');
+              function checkAndSkipAds() {
+                  const skipButtons = [
+                      '.ytp-ad-skip-button-modern',
+                      '.ytp-skip-ad-button',
+                      'button[aria-label^="Skip ad"]'
+                  ];
 
-                  if (skipButton) {
-                      skipButton.click();
+                  // 1. Programmatically trigger skip buttons
+                  for (const selector of skipButtons) {
+                      const button = document.querySelector(selector);
+                      if (button && button.offsetParent !== null) {
+                          button.click();
+                          return;
+                      }
                   }
 
-                  if (adOverlay && adOverlay.children.length > 0 && video) {
-                      video.muted = true;
-                      video.playbackRate = 16.0; 
+                  // 2. Fast-forward through unskippable ads instantly
+                  const video = document.querySelector('video');
+                  if (video && document.querySelector('.ad-showing, .ad-interrupting')) {
+                      video.currentTime = video.duration - 0.1;
                   }
               }
 
-              setInterval(clearYouTubeAds, 300);
+              // Use MutationObserver for sub-millisecond reactions to DOM changes
+              const observer = new MutationObserver(checkAndSkipAds);
+              observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
           })();
         '';
 
-        xdg.configFile."vimb/style.css".text = ''
-          html { filter: invert(100%) hue-rotate(180deg) !important; background: #000 !important; }
-          img, video, iframe, canvas { filter: invert(100%) hue-rotate(180deg) !important; }
-        '';
+        # Remove the global raw style.css stylesheet reference
+        xdg.configFile."vimb/style.css".text = "";
 
+        # Enable default user styling behavior but let scripts handle the dark mode logic
         xdg.configFile."vimb/config".text = ''
-          set stylesheet=on
+          set user-style=off
           nmap ,b :open https://raindrop.io/add?link=%
         '';
       }
