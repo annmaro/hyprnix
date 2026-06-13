@@ -80,7 +80,6 @@
         '';
 
         xdg.configFile."vimb/config".text = ''
-          set user-style=~/.config/vimb/style.css
           nmap ,b :open https://raindrop.io/add?link=%
         '';
       }

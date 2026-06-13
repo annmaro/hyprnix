@@ -1,34 +1,29 @@
 { pkgs, ... }:
-{
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
 
+{
   boot.kernelParams = [
     "intel_pstate=active"
-    "i915.enable_guc=2" # Enable GuC/HuC firmware loading
+    "i915.enable_guc=3" # Modern flag to force enable GuC/HuC firmware loading
     "i915.enable_psr=1" # Panel Self Refresh for power savings
-    "i915.enable_fbc=1" # Framebuffer compression
-    "i915.fastboot=1" # Skip unnecessary mode sets at boot
     "mem_sleep_default=deep" # Allow deepest sleep states
-    "i915.enable_dc=2" # Display power saving
     "nvme.noacpi=1" # Helps with NVME power consumption
   ];
 
   # Load the driver
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # OpenGL
+  # Graphics / Hardware Acceleration (VA-API)
   hardware.graphics = {
+    enable = true; # Explicitly ensure graphics are enabled
     extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      libva-vdpau-driver
-      libvdpau-va-gl
+      intel-media-driver # The correct, high-performance driver for UHD 620
+
+      # OpenCL support for computing tasks (optional, but good for applications like Blender or Darktable)
+      intel-compute-runtime
     ];
   };
 
   # Thermal and Noise Management
   services.thermald.enable = true;
-  services.throttled.enable = true;
+  services.throttled.enable = false; # Keep if resolving laptop-specific throttling bugs
 }

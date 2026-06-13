@@ -26,7 +26,7 @@ in
     "${self}/modules/core/security"
     "${self}/modules/core/services"
     "${self}/modules/core/git-sops"
-    "${self}/modules/core/syncthing"
+    # "${self}/modules/core/syncthing"
     "${self}/modules/core/system"
     "${self}/modules/core/thunar"
     "${self}/modules/core/users"
@@ -61,7 +61,7 @@ in
     "${self}/modules/programs/media/mpv"
     "${self}/modules/programs/media/rclone"
     "${self}/modules/programs/tuning/tlp"
-    "${self}/modules/programs/tuning/lact" # GPU fan, clock and power configuration
+    # "${self}/modules/programs/tuning/lact" # GPU fan, clock and power configuration
   ]
   ++ lib.optional (vars.games == true) "${self}/modules/core/games";
 }
