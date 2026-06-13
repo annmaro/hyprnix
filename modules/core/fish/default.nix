@@ -25,6 +25,9 @@
             
             # Override autosuggestion color to green
             set -g fish_color_autosuggestion green
+
+            # Make parameters use normal text color instead of dim grey from base16
+            set -g fish_color_param normal
           '';
 
           functions = {
