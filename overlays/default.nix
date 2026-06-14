@@ -22,5 +22,27 @@ in
       commandLineArgs = "--password-store=\"gnome-libsecret\"";
     };
 
+    mcomix = prev.symlinkJoin {
+      name = "mcomix-${prev.mcomix.version}";
+      paths = [ prev.mcomix ];
+      postBuild = ''
+        rm $out/bin/mcomix
+        cat << 'EOF' > $out/bin/mcomix
+        #!/usr/bin/env bash
+        args=()
+        for arg in "$@"; do
+          if [[ "$arg" = /* ]]; then
+            args+=("$arg")
+          else
+            args+=("$PWD/$arg")
+          fi
+        done
+        cd "$HOME"
+        exec ${prev.mcomix}/bin/mcomix "''${args[@]}"
+        EOF
+        chmod +x $out/bin/mcomix
+      '';
+    };
+
   };
 }
