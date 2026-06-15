@@ -158,11 +158,17 @@
         xdg.configFile."vimb/config".text = ''
           set home-page=https://google.com
           set download-path=~/Downloads/
+
+          shortcut-default duck
           shortcut-add duck=https://duckduckgo.com/?q=$0
-          shortcut-add rc=https://readallcomics.com/?q=$0
-          shortcut-add marvel=https://comicbookreadingorders.com/marvel/marvel-master-reading-order-part-1/?q=$0
-          shortcut-add cbh=https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/?q=$0
+          shortcut-add y=http://www.youtube.com/results?search_query=$0
+
+          shortcut-add rc=https://readallcomics.com
+          shortcut-add marvel=https://comicbookreadingorders.com/marvel/marvel-master-reading-order-part-1
+          shortcut-add cbh=https://www.comicbookherald.com/the-complete-marvel-reading-order-guide
+
           autocmd LoadStarted *readallcomics.com set scripts=off
+
           nmap ,b :open https://raindrop.io/add?link=%
           nmap ,s :set scripts!<CR>
         '';
