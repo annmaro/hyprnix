@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.stevenblack-hosts.nixosModule
+    ./privoxy.nix
   ];
 
   # This configures the StevenBlack hosts adblocker module.
