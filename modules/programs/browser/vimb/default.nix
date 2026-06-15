@@ -59,6 +59,24 @@
               }
           })();
 
+          // Anti-Adblock Defuser Scriptlet
+          (function() {
+              'use strict';
+              if (window !== window.top) return;
+
+          // Defuse standard variable checks
+            window.canRunAds = true;
+            window.isAdBlockActive = false;
+            window.adsAreWithUs = true;
+
+          // Mock common Google / general ad objects to trick detection scripts
+            if (!window.ga) { window.ga = function() {}; }
+
+          // Prevent common anti-adblock scripts from redefining or crashing on these
+            Object.defineProperty(window, 'AdBlock', { value: false, writable: false });
+            Object.defineProperty(window, 'snack', { value: { isAdBlockerPresent: function() { return false; } }, writable: false });
+          })();
+
           // YouTube Player Ad Skipper
           (function() {
               'use strict';
