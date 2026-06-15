@@ -63,8 +63,8 @@ in
       curl 
       wget 
       gawk 
-      sed 
-      grep 
+      gnused 
+      gnugrep 
       coreutils 
     ];
 
