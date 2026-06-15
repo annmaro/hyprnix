@@ -158,6 +158,7 @@
         xdg.configFile."vimb/config".text = ''
           set home-page=https://google.com
           set download-path=~/Downloads/
+          autocmd LoadStarted *readallcomics.com set scripts=off
           nmap ,b :open https://raindrop.io/add?link=%
           nmap ,s :set scripts!<CR>
         '';
