@@ -31,7 +31,7 @@ in
 
   services.privoxy = {
     enable = true;
-    enableDefConf = true;
+
     settings = {
       # Bind to localhost
       listen-address  = "127.0.0.1:8118";
