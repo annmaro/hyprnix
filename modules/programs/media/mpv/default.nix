@@ -91,9 +91,9 @@
 
             "1" = "add volume -1";
             "2" = "add volume 1";
-            s = "cycle sub";
+            s = ''cycle-values audio-channels "auto-safe" "5.1" "stereo"'';
             v = "cycle video";
-            a = "cycle audio";
+            a = ''cycle-values video-aspect-override "16:9" "4:3" "2.35:1" "2.39:1" "16:10" "-1"'';
             S = ''cycle-values sub-ass-override "force" "no"'';
             PRINT = "screenshot";
             c = "add panscan 0.1";
@@ -123,6 +123,7 @@
             vo = "gpu-next"; # Critical modern rendering pipe for flawless Wayland handling
             gpu-context = "wayland"; # Swapped from 'waylandvk' to avoid Vulkan pipeline surface lost bugs on Niri
             hwdec = "auto-safe"; # Zero-copy GPU video rendering to end your stuttering and crashes
+            audio-channels = "auto-safe"; # Automatically detects and configures your audio channels for the best experience
 
             # File Management & Subtitles
             audio-file-auto = "fuzzy";

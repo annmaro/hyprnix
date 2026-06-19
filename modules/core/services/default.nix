@@ -8,7 +8,7 @@
     gvfs.enable = true; # For Mounting USB & More
     udisks2.enable = true; # For Mounting USB & More
     dbus.enable = true; # interprocess communications manager
-    
+
     # Userspace CPU Scheduler for Improved Latency for Gaming (Hardware Specific)
     # services.scx = {
     #   enable = true;
@@ -49,12 +49,25 @@
       # };
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
-          "default.clock.rate" = 48000;
-          # Add this line below to allow dynamic high-res switching:
-          "default.clock.allowed-rates" = [ 44100 48000 88200 96000 192000 ];
-          "default.clock.quantum" = 256;
-          "default.clock.min-quantum" = 256;
-          "default.clock.max-quantum" = 256;
+          # 1. Base clock matches CD quality (avoiding resampling normal audio)
+          "default.clock.rate" = 44100;
+
+          # 2. Complete Hi-Res ranges matching standard album rates
+          "default.clock.allowed-rates" = [
+            44100
+            48000
+            88200
+            96000
+            176400
+            192000
+            352800
+            384000
+          ];
+
+          # 3. Dynamic quantum window for both speed and stability
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 32;
+          "default.clock.max-quantum" = 2048;
         };
       };
       extraConfig.pipewire-pulse."92-low-latency" = {
@@ -62,11 +75,12 @@
           {
             name = "libpipewire-module-protocol-pulse";
             args = {
-              pulse.min.req = "256/48000";
-              pulse.default.req = "256/48000";
-              pulse.max.req = "256/48000";
-              pulse.min.quantum = "256/48000";
-              pulse.max.quantum = "256/48000";
+              # 4. Allows the Gapless app to request larger buffer sizes on the fly
+              "pulse.min.req" = "32/44100";
+              "pulse.default.req" = "512/44100";
+              "pulse.max.req" = "2048/44100";
+              "pulse.min.quantum" = "32/44100";
+              "pulse.max.quantum" = "2048/44100";
             };
           }
         ];
