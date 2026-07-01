@@ -160,7 +160,7 @@
           set download-path=~/Downloads/
 
           # Default Full-Content zoom level in percent. Default is 100.
-          set default-zoom=200
+          set default-zoom=150
 
           shortcut-default duck
           shortcut-add duck=https://duckduckgo.com/?q=$0
