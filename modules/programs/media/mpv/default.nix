@@ -91,10 +91,10 @@
 
             "1" = "add volume -1";
             "2" = "add volume 1";
-            s = ''cycle-values audio-channels "auto-safe" "5.1" "stereo"'';
+            "Ctrl+s" = ''cycle-values audio-channels "auto-safe" "5.1" "stereo"'';
             v = "cycle video";
-            a = ''cycle-values video-aspect-override "16:9" "4:3" "2.35:1" "2.39:1" "16:10" "-1"'';
-            S = ''cycle-values sub-ass-override "force" "no"'';
+            "Ctrl+a" = ''cycle-values video-aspect-override "16:9" "4:3" "2.35:1" "2.39:1" "16:10" "-1"'';
+            "Ctrl+S" = ''cycle-values sub-ass-override "force" "no"'';
             PRINT = "screenshot";
             c = "add panscan 0.1";
             C = "add panscan -0.1";

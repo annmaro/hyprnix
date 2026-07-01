@@ -159,6 +159,9 @@
           set home-page=https://google.com
           set download-path=~/Downloads/
 
+          # Default Full-Content zoom level in percent. Default is 100.
+          set default-zoom=200
+
           shortcut-default duck
           shortcut-add duck=https://duckduckgo.com/?q=$0
           shortcut-add y=http://www.youtube.com/results?search_query=$0
