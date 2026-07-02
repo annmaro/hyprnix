@@ -10,4 +10,12 @@
       PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
     };
   };
+
+  # Configure SSH client to use port 443 for GitHub to bypass firewall restrictions
+  programs.ssh.extraConfig = ''
+    Host github.com
+      Hostname ssh.github.com
+      Port 443
+      User git
+  '';
 }
