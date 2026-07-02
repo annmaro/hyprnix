@@ -169,6 +169,7 @@
           shortcut-add rc=https://readallcomics.com
           shortcut-add marvel=https://comicbookreadingorders.com/marvel/marvel-master-reading-order-part-1
           shortcut-add cbh=https://www.comicbookherald.com/the-complete-marvel-reading-order-guide
+          shortcut-add cmro=https://marvelreading.com/reading-order/main-616
 
           autocmd LoadStarted *readallcomics.com set scripts=off
 
