@@ -31,6 +31,7 @@ let
     .pixeldrain.com
     .terabox.com
     .teraboxapp.com
+    .mediafire.com
   '';
 in
 {

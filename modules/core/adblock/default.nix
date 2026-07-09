@@ -24,15 +24,5 @@
     blockPorn = false;
   };
 
-  # Manually bypass the host-level block for these platforms
-  networking.extraHosts = ''
 
-    127.0.0.1 pixeldrain.com
-    127.0.0.1 www.pixeldrain.com
-
-    127.0.0.1 terabox.com
-    127.0.0.1 www.terabox.com
-    127.0.0.1 teraboxapp.com
-    127.0.0.1 www.teraboxapp.com
-  '';
 }
