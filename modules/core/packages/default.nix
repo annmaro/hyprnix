@@ -55,6 +55,7 @@
     age # Modern encryption tool with small explicit keys
     xdg-utils # Set of command line tools that assist applications with a variety of desktop integration tasks
     eza # Enhanced `ls` command replacement
+    tor-browser # Privacy-focused browser routing traffic through the Tor network
     # aider-chat # AI in terminal (Optional: Client only)
     # cmatrix # Matrix Movie Effect In Terminal
     # cowsay # Great Fun Terminal Program
