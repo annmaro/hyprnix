@@ -9,7 +9,7 @@
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.spoofdpi}/bin/spoofdpi -addr 127.0.0.1 -port 8080 -enable-doh";
+      ExecStart = "${pkgs.spoofdpi}/bin/spoofdpi --listen-addr 127.0.0.1:8080 --dns-mode doh";
       Restart = "always";
       RestartSec = "5";
       DynamicUser = true;
