@@ -6,7 +6,7 @@ pkgs.writeShellApplication {
   # Nix will automatically place these packages into the script's PATH at runtime
   runtimeInputs = with pkgs; [ 
     coreutils 
-    hyprland   # Provides 'hyprctl'
+    # hyprland   # Provides 'hyprctl'
     jq         # Provides 'jq'
     gawk       # Provides 'awk'
     libnotify  # Provides 'notify-send'

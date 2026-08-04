@@ -4,7 +4,7 @@ pkgs.writeShellApplication {
   name = "gamemode";
 
   runtimeInputs = with pkgs; [
-    hyprland   # Provides hyprctl
+    # hyprland   # Provides hyprctl
     gnused     # Provides sed
     gawk       # Provides awk
   ];

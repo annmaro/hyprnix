@@ -6,7 +6,7 @@ pkgs.writeShellApplication {
   # Nix securely maps these tools onto the script's local execution PATH at runtime
   runtimeInputs = with pkgs; [
     coreutils # Provides echo
-    hyprland  # Provides hyprctl
+    # hyprland  # Provides hyprctl
     gnugrep   # Provides grep
     gawk      # Provides awk
   ];

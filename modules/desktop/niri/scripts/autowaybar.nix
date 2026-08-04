@@ -5,7 +5,7 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs; [
     coreutils
-    hyprland       # provides hyprctl
+    # hyprland       # provides hyprctl
     jq             # provides jq processing
     socat          # provides socket connectivity
     procps         # provides pgrep and pkill

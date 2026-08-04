@@ -4,7 +4,7 @@ pkgs.writeShellApplication {
   name = "smart-kill";
 
   runtimeInputs = with pkgs; [
-    hyprland   # Provides hyprctl
+    # hyprland   # Provides hyprctl
     jq         # Provides jq for JSON parsing
     xdotool    # Provides xdotool for window manipulation
   ];
