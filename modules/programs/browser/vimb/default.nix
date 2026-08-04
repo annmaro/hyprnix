@@ -17,7 +17,7 @@
                 --set http_proxy "http://127.0.0.1:8118" \
                 --set https_proxy "http://127.0.0.1:8118" \
                 --set GDK_BACKEND "wayland,x11" \
-                --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${gst_all_1.gst-libav}/lib/gstreamer-1.0:${gst_all_1.gst-vaapi}/lib/gstreamer-1.0"
+                --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${gst_all_1.gst-libav}/lib/gstreamer-1.0"
             '';
           })
           rbw
@@ -29,7 +29,6 @@
           gst_all_1.gst-plugins-bad
           gst_all_1.gst-plugins-ugly
           gst_all_1.gst-libav
-          gst_all_1.gst-vaapi
         ];
 
         xdg.configFile."vimb/scripts.js".text = ''
