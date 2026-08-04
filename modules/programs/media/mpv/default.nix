@@ -4,8 +4,8 @@
     (
       { config, ... }:
       {
-        # Ensure Celluloid is available alongside mpv if you want a minimal GUI alternative
-        home.packages = with pkgs; [ celluloid ];
+        # Removed Celluloid to ensure custom mpv keyboard shortcuts work perfectly without conflict
+        # home.packages = with pkgs; [ celluloid ];
 
         programs.mpv = {
           enable = true;
