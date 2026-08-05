@@ -94,7 +94,7 @@
             "Ctrl+s" = ''cycle-values audio-channels "auto-safe" "5.1" "stereo"'';
             v = "cycle video";
             "Ctrl+a" =
-              ''cycle-values video-aspect-override "16:9" "4:3" "2.21:1""2.35:1" "2.39:1" "16:10" "-1"'';
+              ''cycle-values video-aspect-override "16:9" "4:3" "2.21:1" "2.35:1" "2.39:1" "16:10" "-1"'';
             "Ctrl+S" = ''cycle-values sub-ass-override "force" "no"'';
             PRINT = "screenshot";
             c = "add panscan 0.1";
