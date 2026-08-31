@@ -25,7 +25,6 @@
             catppuccin.catppuccin-vsc-icons
             bbenoist.nix
             arrterian.nix-env-selector
-            eamodio.gitlens
             github.vscode-github-actions
             yzhang.markdown-all-in-one
             jnoortheen.nix-ide
