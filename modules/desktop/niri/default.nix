@@ -36,7 +36,7 @@ in
   # Standard core CLI/desktop utility tools
   environment.systemPackages = with pkgs; [
     cliphist # Clipboard history manager daemon
-    swappy # Snapshot editor and annotator
+    satty # Snapshot editor and annotator
     libnotify # Notification send tool (notify-send)
     wtype # Wayland keyboard input simulator
     wl-clipboard # Clipboard access commands (wl-copy, wl-paste)
@@ -370,7 +370,7 @@ in
               "XF86AudioPrev" { spawn "playerctl" "previous"; }
               "XF86Sleep" { spawn "systemctl" "suspend"; }
               "Mod+P" { spawn "rofi-rbw"; }
-              "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"; }
+              "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.satty}/bin/satty -f -"; }
           }
         '';
 

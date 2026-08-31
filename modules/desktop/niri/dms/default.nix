@@ -106,16 +106,17 @@
         home.activation.dmsWeather = config.lib.dag.entryAfter [ "writeBoundary" ] ''
           SESSION_FILE="$HOME/.local/state/DankMaterialShell/session.json"
           if [ -f "$SESSION_FILE" ] && [ ! -L "$SESSION_FILE" ]; then
-            $DRY_RUN_CMD ${pkgs.jq}/bin/jq '.weatherLocation = "Jharkhand, India" | .weatherCoordinates = "23.63,85.52"' "$SESSION_FILE" > "$SESSION_FILE.tmp" && \
+            $DRY_RUN_CMD ${pkgs.jq}/bin/jq '.weatherLocation = "Jharkhand, India" | .weatherCoordinates = "23.63,85.52" | .use24HourClock = true' "$SESSION_FILE" > "$SESSION_FILE.tmp" && \
             $DRY_RUN_CMD mv "$SESSION_FILE.tmp" "$SESSION_FILE"
           elif [ ! -f "$SESSION_FILE" ]; then
             $DRY_RUN_CMD mkdir -p "$HOME/.local/state/DankMaterialShell"
-            $DRY_RUN_CMD echo '{"weatherLocation": "Jharkhand, India", "weatherCoordinates": "23.63,85.52"}' > "$SESSION_FILE"
+            $DRY_RUN_CMD echo '{"weatherLocation": "Jharkhand, India", "weatherCoordinates": "23.63,85.52", "use24HourClock": true}' > "$SESSION_FILE"
           fi
         '';
 
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
           configVersion = 6;
+          use24HourClock = true;
           screenPreferences = {
             wallpaper = [ ]; # This replaces the old disableWallpaper = true flag in DMS v6
           };
