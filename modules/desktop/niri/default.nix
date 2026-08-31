@@ -371,7 +371,7 @@ in
               "XF86AudioPrev" { spawn "playerctl" "previous"; }
               "XF86Sleep" { spawn "systemctl" "suspend"; }
               "Mod+P" { spawn "rofi-rbw"; }
-              "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.satty}/bin/satty -f -"; }
+              "Mod+Ctrl+P" { spawn "sh" "-c" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.satty}/bin/satty -f - -o ~/Pictures/Screenshots/satty-%Y%m%d-%H%M%S.png"; }
           }
         '';
 
