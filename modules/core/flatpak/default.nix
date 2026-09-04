@@ -15,6 +15,7 @@
         "org.sabnzbd.sabnzbd" # Free and easy binary newsreader
         "org.freefilesync.FreeFileSync" # Visual folder comparison and synchrocd ..nization
         "io.github.giantpinkrobots.varia" # Download files, videos and torrents
+        "com.bilingify.readest" # Modern, feature-rich ebook reader
         #"it.mijorus.gearlever"           # Manage and support AppImages
         #"com.rtosta.zapzap"              # WhatsApp client
         #"io.github.freedoom.Phase1"      #  Classic Doom FPS 1
