@@ -103,6 +103,10 @@
       url = "github:StevenBlack/hosts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    readest = {
+      url = "github:readest/readest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
