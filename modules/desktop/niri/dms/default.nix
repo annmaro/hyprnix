@@ -123,6 +123,7 @@
 
           modules = {
             bar = true;
+            island = true;
             notifications = true;
             idle = true;
             lockscreen = true;
@@ -166,17 +167,41 @@
 
               # Setting bar transparency to 0 hides the background bar background,
               # allowing only the styled widgets to display as floating pill capsules.
-              transparency = 0.30; # Set bar transparency to create a frosted glass effect, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics.
-              widgetTransparency = 0.50; # Set widget transparency to make them slightly see-through, allowing the wallpaper to subtly show through while keeping the content readable. Adjust as needed for your preferred balance of visibility and aesthetics.
+              transparency = 0.30;
+              widgetTransparency = 0.85;
 
-              widgetOutlineEnabled = true; # Enable outlines for widgets to enhance visibility and separation from the background
-              widgetOutlineColor = "primary"; # Use primary color for widget outlines to create a cohesive look with the rest of the theme. Adjust as needed based on your custom theme's color palette for optimal contrast and aesthetics.
-              widgetOutlineOpacity = 1.0; # Set widget outline opacity to fully opaque for maximum visibility and contrast against the background. Adjust as needed for a more subtle effect while maintaining clear separation of widgets from the wallpaper.
-              widgetOutlineThickness = 1; # Set widget outline thickness to 1px for a clean and defined border that enhances visibility without overwhelming the design. Adjust as needed based on your personal preference and the overall aesthetics of your theme.
-              squareCorners = true; # Set to true to make all corners square, overriding gothCornersEnabled for a more classic look
+              widgetOutlineEnabled = false;
+              widgetOutlineColor = "primary";
+              widgetOutlineOpacity = 1.0;
+              widgetOutlineThickness = 1;
+              squareCorners = true;
 
-              fontScale = 1.5; # Increase font scale for better readability and a more impactful visual presence on the bar. Adjust as needed based on your screen resolution and personal preference.
-              iconScale = 1.5; # Increase icon scale to match the larger font size and create a more cohesive look on the bar. Adjust as needed based on your widget sizes and personal preference.
+              fontScale = 1.2;
+              iconScale = 1.2;
+
+              island = true;
+              islandReserveThickness = 31;
+              islandCompactThickness = 29;
+              islandAlongOffset = -98;
+              islandInteractionMode = "hybrid";
+              islandTransparency = 0.85;
+              islandCornerRadius = 16;
+              islandSatellitesEnabled = true;
+              islandSatellitePosition = "near island";
+
+              islandHomeClockDisplay = "both";
+              islandHomeVolumeDisplay = "both";
+              islandHomeBrightnessDisplay = "both";
+
+              islandHomeLayout = [
+                { id = "media"; enabled = true; }
+                { id = "clock"; enabled = true; }
+                { id = "weather"; enabled = true; }
+                { id = "status"; enabled = true; }
+                { id = "volume"; enabled = true; }
+                { id = "brightness"; enabled = true; }
+                { id = "notifications"; enabled = true; }
+              ];
 
               network_click_action = "applet";
               audio_click_action = "applet";
@@ -187,15 +212,12 @@
                 "focusedWindow"
               ];
               centerWidgets = [
-                "clock"
+                "island"
               ];
               rightWidgets = [
-                "weather"
                 "cpuTemp"
                 "systemTray"
                 "memUsage"
-                "controlCenterButton"
-                "notificationButton"
               ];
             }
           ];
