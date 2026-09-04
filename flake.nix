@@ -105,9 +105,8 @@
     };
     # Due to a limitation in how Nix fetches submodules, a regular GitHub input type will fail to evaluate.
     readest = {
-      url = "https://github.com/readest/readest.git";
-      type = "git";
-      submodules = true;
+      url = "git+https://github.com/readest/readest.git?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

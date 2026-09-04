@@ -799,30 +799,6 @@
         "type": "github"
       }
     },
-    "readest": {
-      "inputs": {
-        "android": "android",
-        "fenix": "fenix",
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788538061,
-        "narHash": "sha256-I9NCxCsF9ctnsm8hlBQSCNxAN4J8SJyWWxbIUIwD3+c=",
-        "owner": "readest",
-        "repo": "readest",
-        "rev": "c0bc2ef70a9544ca7ddacddd0ee79a7a695911a3",
-        "submodules": true,
-        "type": "github"
-      },
-      "original": {
-        "owner": "readest",
-        "repo": "readest",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "antigravity-nix": "antigravity-nix",
@@ -840,7 +816,6 @@
         "nur": "nur",
         "nvchad4nix": "nvchad4nix",
         "nvf": "nvf",
-        "readest": "readest",
         "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
