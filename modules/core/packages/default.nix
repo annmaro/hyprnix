@@ -48,7 +48,7 @@
     spek # Acoustic spectrum analyser for audio files
     losslessaudiochecker # Utility to check whether audio is truly lossless or not
     qbittorrent # Featureful free software BitTorrent client
-    libreoffice-fresh # Comprehensive, professional-quality productivity suite
+    libreoffice-stable # Comprehensive, professional-quality productivity suite
     android-tools # Android SDK platform tools
     vulkan-tools # Khronos official Vulkan Tools and Utilities
     age # Modern encryption tool with small explicit keys
