@@ -103,9 +103,11 @@
       url = "github:StevenBlack/hosts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Due to a limitation in how Nix fetches submodules, a regular GitHub input type will fail to evaluate.
     readest = {
-      url = "github:readest/readest";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "https://github.com/readest/readest.git";
+      type = "git";
+      submodules = true;
     };
   };
 
