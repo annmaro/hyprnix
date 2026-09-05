@@ -167,8 +167,6 @@
 
               # Setting bar transparency to 0 hides the background bar background,
               # allowing only the styled widgets to display as floating pill capsules.
-              transparency = 0.30;
-              widgetTransparency = 0.85;
 
               widgetOutlineEnabled = false;
               widgetOutlineColor = "primary";
@@ -225,60 +223,6 @@
               ];
               transparency = 0.30;
               widgetTransparency = 0.85;
-
-              widgetOutlineEnabled = false;
-              widgetOutlineColor = "primary";
-              widgetOutlineOpacity = 1.0;
-              widgetOutlineThickness = 1;
-              squareCorners = true;
-
-              fontScale = 1.2;
-              iconScale = 1.2;
-
-              island = true;
-              islandReserveThickness = 31;
-              islandCompactThickness = 29;
-              islandAlongOffset = -98;
-              islandInteractionMode = "hybrid";
-              islandTransparency = 0.85;
-              islandCornerRadius = 16;
-              islandSatellitesEnabled = true;
-              islandSatellitePosition = "near island";
-
-              islandHomeClockDisplay = "both";
-              islandHomeVolumeDisplay = "both";
-              islandHomeBrightnessDisplay = "both";
-
-              islandHomeLayout = [
-                {
-                  id = "media";
-                  enabled = true;
-                }
-                {
-                  id = "clock";
-                  enabled = true;
-                }
-                {
-                  id = "weather";
-                  enabled = true;
-                }
-                {
-                  id = "status";
-                  enabled = true;
-                }
-                {
-                  id = "volume";
-                  enabled = true;
-                }
-                {
-                  id = "brightness";
-                  enabled = true;
-                }
-                {
-                  id = "notifications";
-                  enabled = true;
-                }
-              ];
 
               network_click_action = "applet";
               audio_click_action = "applet";
