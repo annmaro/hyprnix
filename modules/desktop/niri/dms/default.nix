@@ -123,6 +123,7 @@
 
           modules = {
             bar = true;
+            dankIsland = true;
             notifications = true;
             idle = true;
             lockscreen = true;
@@ -130,6 +131,51 @@
             launcher = false; # Handled by your native rofi setup
             dock = false;
           };
+
+          dankIslandBarId = "default";
+          dankIslandReserveHeight = 31;
+          dankIslandCompactHeight = 29;
+          dankIslandHorizontalOffset = -98;
+          dankIslandInteractionMode = "hybrid";
+          dankIslandTransparency = 0.85;
+          dankIslandCornerRadius = 16;
+          dankIslandSatellitesEnabled = true;
+          dankIslandSatellitePosition = "island";
+
+          dankIslandHomeClockDisplay = "both";
+          dankIslandHomeVolumeDisplay = "both";
+          dankIslandHomeBrightnessDisplay = "both";
+
+          dankIslandHomeLayout = [
+            {
+              id = "media";
+              enabled = true;
+            }
+            {
+              id = "clock";
+              enabled = true;
+            }
+            {
+              id = "weather";
+              enabled = true;
+            }
+            {
+              id = "status";
+              enabled = true;
+            }
+            {
+              id = "volume";
+              enabled = true;
+            }
+            {
+              id = "brightness";
+              enabled = true;
+            }
+            {
+              id = "notifications";
+              enabled = true;
+            }
+          ];
 
           dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
           currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
@@ -175,51 +221,6 @@
 
               fontScale = 1.2;
               iconScale = 1.2;
-
-              island = true;
-              islandReserveThickness = 31;
-              islandCompactThickness = 29;
-              islandAlongOffset = -98;
-              islandInteractionMode = "hybrid";
-              islandTransparency = 0.85;
-              islandCornerRadius = 16;
-              islandSatellitesEnabled = true;
-              islandSatellitePosition = "near island";
-
-              islandHomeClockDisplay = "both";
-              islandHomeVolumeDisplay = "both";
-              islandHomeBrightnessDisplay = "both";
-
-              islandHomeLayout = [
-                {
-                  id = "media";
-                  enabled = true;
-                }
-                {
-                  id = "clock";
-                  enabled = true;
-                }
-                {
-                  id = "weather";
-                  enabled = true;
-                }
-                {
-                  id = "status";
-                  enabled = true;
-                }
-                {
-                  id = "volume";
-                  enabled = true;
-                }
-                {
-                  id = "brightness";
-                  enabled = true;
-                }
-                {
-                  id = "notifications";
-                  enabled = true;
-                }
-              ];
               transparency = 0.30;
               widgetTransparency = 0.85;
 
