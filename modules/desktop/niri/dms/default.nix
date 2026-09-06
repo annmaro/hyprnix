@@ -123,7 +123,6 @@
 
           modules = {
             bar = true;
-            island = true;
             notifications = true;
             idle = true;
             lockscreen = true;
