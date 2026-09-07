@@ -115,7 +115,7 @@
         '';
 
         xdg.configFile."DankMaterialShell/settings.json".text = builtins.toJSON {
-          configVersion = 6;
+          configVersion = 18;
           use24HourClock = true;
           screenPreferences = {
             wallpaper = [ ]; # This replaces the old disableWallpaper = true flag in DMS v6
@@ -123,7 +123,6 @@
 
           modules = {
             bar = true;
-            dankIsland = true;
             notifications = true;
             idle = true;
             lockscreen = true;
@@ -132,50 +131,8 @@
             dock = false;
           };
 
-          dankIslandBarId = "default";
-          dankIslandReserveHeight = 31;
-          dankIslandCompactHeight = 29;
-          dankIslandHorizontalOffset = -98;
-          dankIslandInteractionMode = "hybrid";
-          dankIslandTransparency = 0.85;
-          dankIslandCornerRadius = 16;
-          dankIslandSatellitesEnabled = true;
-          dankIslandSatellitePosition = "island";
 
-          dankIslandHomeClockDisplay = "both";
-          dankIslandHomeVolumeDisplay = "both";
-          dankIslandHomeBrightnessDisplay = "both";
 
-          dankIslandHomeLayout = [
-            {
-              id = "media";
-              enabled = true;
-            }
-            {
-              id = "clock";
-              enabled = true;
-            }
-            {
-              id = "weather";
-              enabled = true;
-            }
-            {
-              id = "status";
-              enabled = true;
-            }
-            {
-              id = "volume";
-              enabled = true;
-            }
-            {
-              id = "brightness";
-              enabled = true;
-            }
-            {
-              id = "notifications";
-              enabled = true;
-            }
-          ];
 
           dynamicTheming = false; # Disable dynamic theming to maintain a consistent look across all widgets, regardless of the current wallpaper or system theme. This ensures that your custom color choices are always applied.
           currentThemeName = "custom"; # Use "custom" to apply your custom theme file specified below
@@ -205,6 +162,50 @@
           barConfigs = [
             {
               id = "default";
+              island = true;
+              islandReserveThickness = 31;
+              islandCompactThickness = 29;
+              islandAlongOffset = -27;
+              islandInteractionMode = "hybrid";
+              islandTransparency = 0.85;
+              islandCornerRadius = 16;
+              islandSatellitesEnabled = true;
+              islandSatellitePosition = "island";
+              islandPalette = "dim";
+              islandSatelliteGap = 4;
+              islandHomeClockDisplay = "both";
+              islandHomeVolumeDisplay = "both";
+              islandHomeBrightnessDisplay = "both";
+              islandHomeLayout = [
+                {
+                  id = "media";
+                  enabled = true;
+                }
+                {
+                  id = "clock";
+                  enabled = true;
+                }
+                {
+                  id = "weather";
+                  enabled = true;
+                }
+                {
+                  id = "status";
+                  enabled = true;
+                }
+                {
+                  id = "volume";
+                  enabled = true;
+                }
+                {
+                  id = "brightness";
+                  enabled = true;
+                }
+                {
+                  id = "notifications";
+                  enabled = true;
+                }
+              ];
               name = "Main Bar";
               enabled = true;
               position = "top";

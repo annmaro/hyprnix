@@ -24,6 +24,8 @@
             catppuccin.catppuccin-vsc
             catppuccin.catppuccin-vsc-icons
             bbenoist.nix
+            ms-python.python
+            rust-lang.rust-analyzer
             arrterian.nix-env-selector
             github.vscode-github-actions
             yzhang.markdown-all-in-one

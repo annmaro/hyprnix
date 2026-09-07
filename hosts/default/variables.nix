@@ -9,7 +9,7 @@
   browser = "firefox"; # Options: firefox, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
   shell = "fish"; # Options: fish, zsh, bash
-  games = true; # Whether to enable the gaming module
+  games = false; # Whether to enable the gaming module
 
   # Hardware Configuration
   videoDriver = "intel"; # CRITICAL: Choose your GPU driver (nvidia, amdgpu, intel)
