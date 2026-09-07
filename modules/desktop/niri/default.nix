@@ -4,6 +4,6 @@ let
 in
 {
   imports = [
-    (if vars.shell == "noctalia" then ./noctalia_niri.nix else ./dms_niri.nix)
+    (if vars.bar == "noctalia" then ./noctalia_niri.nix else ./dms_niri.nix)
   ];
 }

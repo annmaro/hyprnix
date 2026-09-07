@@ -8,7 +8,8 @@
   editor = "neovim"; # Options: vscode, antigravity, neovim
   browser = "firefox"; # Options: firefox, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
-  shell = "DMS"; # Options: DMS, noctalia
+  shell = "fish"; # Options: bash, zsh, fish
+  bar = "DMS"; # Options: DMS, noctalia
   games = false; # Whether to enable the gaming module
 
   # Hardware Configuration

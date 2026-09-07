@@ -22,7 +22,9 @@ This section defines your preferred applications and user-specific settings.
 - **`tuiFileManager`**: Your preferred terminal-based file manager.
   - *Options*: `yazi`, `lf`
 - **`shell`**: Your default login shell.
-  - *Options*: `zsh`, `bash`
+  - *Options*: `zsh`, `bash`, `fish`
+- **`bar`**: Your preferred desktop bar/shell interface.
+  - *Options*: `DMS`, `noctalia`
 - **`games`**: A boolean (`true` or `false`) that toggles the inclusion of the gaming module (installs Steam, Lutris, MangoHud, etc.).
 
 ### 2. Hardware Configuration
