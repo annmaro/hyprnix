@@ -209,7 +209,7 @@ in
           layer-rule {
                match namespace=r#"^dms:.*"#
                background-effect {
-                   
+                   blur true
                    xray false
                }
            } 

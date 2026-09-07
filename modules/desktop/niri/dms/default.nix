@@ -165,12 +165,12 @@
               island = true;
               islandReserveThickness = 31;
               islandCompactThickness = 29;
-              islandAlongOffset = -27;
+              islandAlongOffset = 0;
               islandInteractionMode = "hybrid";
               islandTransparency = 0.85;
               islandCornerRadius = 16;
               islandSatellitesEnabled = true;
-              islandSatellitePosition = "island";
+              islandSatellitePosition = "adjacent";
               islandPalette = "dim";
               islandSatelliteGap = 4;
               islandHomeClockDisplay = "both";
@@ -222,7 +222,7 @@
 
               fontScale = 1.2;
               iconScale = 1.2;
-              transparency = 0.30;
+              transparency = 0.0;
               widgetTransparency = 0.85;
 
               network_click_action = "applet";
