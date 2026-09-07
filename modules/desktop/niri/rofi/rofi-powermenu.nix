@@ -7,7 +7,7 @@
 }:
 
 let
-  wallpaperImg = "${self}/modules/wallpapers/tree-rofi.jpg";
+  wallpaperImg = "${self}/modules/wallpapers/cranerofi.jpg";
 
   stylixColors = config.lib.stylix.colors or { };
 

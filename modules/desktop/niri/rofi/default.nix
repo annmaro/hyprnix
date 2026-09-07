@@ -20,7 +20,7 @@
         accentColor = "#${stylixColors.base0E or "cba6f7"}"; # Selected Focus
         activeColor = "#${stylixColors.base0B or "a6e3a1"}"; # Active States
         urgentColor = "#${stylixColors.base08 or "f38ba8"}"; # Alert States
-        currentWallpaper = "${self}/modules/wallpapers/tree-rofi.jpg";
+        currentWallpaper = "${self}/modules/wallpapers/cranerofi.jpg";
       in
       {
         programs.rofi = {
