@@ -66,7 +66,7 @@ in
         "scanner"
         "vboxusers" # Virtual Box
       ];
-      shell = pkgs.${shell};
+      shell = if (shell == "DMS" || shell == "noctalia") then pkgs.fish else pkgs.${shell};
       ignoreShellProgramCheck = true;
     };
   };

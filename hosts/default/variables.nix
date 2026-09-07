@@ -3,12 +3,12 @@
   username = "annmaro";
   gitUsername = "annmaro";
   gitEmail = "anandk60440@gmail.com";
-  desktop = "niri";
+  desktop = "niri"; # Window manager (niri)
   terminal = "foot"; # Options: foot, kitty
   editor = "neovim"; # Options: vscode, antigravity, neovim
   browser = "firefox"; # Options: firefox, zen
   tuiFileManager = "yazi"; # Options: yazi, lf
-  shell = "fish"; # Options: fish, zsh, bash
+  shell = "DMS"; # Options: fish, zsh, bash, DMS, noctalia
   games = false; # Whether to enable the gaming module
 
   # Hardware Configuration
