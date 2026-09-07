@@ -9,15 +9,15 @@ let
   sddm-theme = inputs.silentSDDM.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
     theme = "silvia"; # select the config of your choice
     # Pass the local image so it gets copied into the theme's background folder
-    extraBackgrounds = [ (self + "/modules/wallpapers/catppuccinMochaLogoNix.png") ];
+    extraBackgrounds = [ (self + "/modules/wallpapers/catppuccinMocha.jpg") ];
 
     # Tell SilentSDDM to use this image
     theme-overrides = {
       "LoginScreen" = {
-        background = "city-horizon.jpg";
+        background = "catppuccinMocha.jpg";
       };
       "LockScreen" = {
-        background = "city-horizon.jpg";
+        background = "catppuccinMocha.jpg";
       };
     };
   };
