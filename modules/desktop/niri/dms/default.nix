@@ -167,7 +167,7 @@
               islandCompactThickness = 29;
               islandAlongOffset = 0;
               islandInteractionMode = "hybrid";
-              islandTransparency = 0.85;
+              islandTransparency = 0.65;
               islandCornerRadius = 16;
               islandSatellitesEnabled = true;
               islandSatellitePosition = "adjacent";
