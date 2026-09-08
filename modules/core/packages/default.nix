@@ -37,14 +37,12 @@
     vivaldi # Browser for our Friends, powerful and personal
     pdf4qt # Open source PDF editor
     nicotine-plus # Graphical client for the SoulSeek peer-to-peer system
-    easyeffects # Audio effects for PipeWire applications
     # pay-respects # Magnificent app which corrects your previous console command
     nix-tree # Interactively browse a Nix store paths dependencies
     imagemagickBig # Software suite to create, edit, compose, or convert bitmap images
     nomacs # Qt-based image viewer
     epiphany # WebKit based web browser
     # digikam # Photo management application
-    gapless # Beautiful, fast, fluent, light weight music player written in GTK4
     spek # Acoustic spectrum analyser for audio files
     losslessaudiochecker # Utility to check whether audio is truly lossless or not
     qbittorrent # Featureful free software BitTorrent client
