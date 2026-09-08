@@ -60,7 +60,7 @@
     # cowsay # Great Fun Terminal Program
     duf # Utility For Viewing Disk Usage In Terminal
     # dysk # Disk space util nice formattting
-    # ffmpeg # Terminal Video / Audio Editing
+    ffmpeg # Terminal Video / Audio Editing
     inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # lolcat # Add Colors To Your Terminal Command Output
