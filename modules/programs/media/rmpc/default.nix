@@ -133,7 +133,7 @@
                         ],
                         right: [
                             (kind: Text("Volume: "), style: (fg: "#8aadf4")),
-                            (kind: Widget(Volume), style: (fg: "#8aadf4")),
+                            (kind: Property(Widget(Volume)), style: (fg: "#8aadf4")),
                             (kind: Text(" "), style: (fg: "#8aadf4")),
                             (kind: Property(Status(Volume)), style: (fg: "#8aadf4")),
                             (kind: Text("%"), style: (fg: "#8aadf4"))
@@ -154,7 +154,7 @@
                             (kind: Property(Song(Album)), style: (fg: "#cad3f5"), default: (kind: Text("Unknown Album"), style: (fg: "#cad3f5")))
                         ],
                         right: [
-                            (kind: Widget(States(active_style: (fg: "#cad3f5", modifiers: "Bold"), separator_style: (fg: "#5c5f77"))))
+                            (kind: Property(Widget(States(active_style: (fg: "#cad3f5", modifiers: "Bold"), separator_style: (fg: "#5c5f77")))))
                         ]
                     )
                 ],
