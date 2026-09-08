@@ -61,16 +61,23 @@
                 direction: Vertical,
                 panes: [
                     (
+                        size: "4",
+                        borders: "ALL",
                         pane: Pane(Header),
-                        size: "1",
                     ),
                     (
-                        pane: Pane(TabContent),
+                        size: "3",
+                        pane: Pane(Tabs),
+                    ),
+                    (
                         size: "100%",
+                        borders: "ALL",
+                        pane: Pane(TabContent),
                     ),
                     (
+                        size: "3",
+                        borders: "ALL",
                         pane: Pane(ProgressBar),
-                        size: "1",
                     ),
                 ],
             ),
@@ -117,19 +124,37 @@
                 rows: [
                     (
                         left: [
-                            (kind: Text("["), style: (fg: "#b7bdf8", modifiers: "Bold")),
-                            (kind: Property(Status(State)), style: (fg: "#b7bdf8", modifiers: "Bold")),
-                            (kind: Text("]"), style: (fg: "#b7bdf8", modifiers: "Bold"))
+                            (kind: Text("["), style: (fg: "#eed49f", modifiers: "Bold")),
+                            (kind: Property(Status(State)), style: (fg: "#eed49f", modifiers: "Bold")),
+                            (kind: Text("]"), style: (fg: "#eed49f", modifiers: "Bold"))
+                        ],
+                        center: [
+                            (kind: Property(Song(Title)), style: (fg: "#cad3f5", modifiers: "Bold"), default: (kind: Text("No Song"), style: (fg: "#cad3f5", modifiers: "Bold")))
+                        ],
+                        right: [
+                            (kind: Text("Volume: "), style: (fg: "#8aadf4")),
+                            (kind: Widget(Volume), style: (fg: "#8aadf4")),
+                            (kind: Text(" "), style: (fg: "#8aadf4")),
+                            (kind: Property(Status(Volume)), style: (fg: "#8aadf4")),
+                            (kind: Text("%"), style: (fg: "#8aadf4"))
+                        ]
+                    ),
+                    (
+                        left: [
+                            (kind: Property(Status(Elapsed)), style: (fg: "#cad3f5")),
+                            (kind: Text(" / "), style: (fg: "#cad3f5")),
+                            (kind: Property(Status(Duration)), style: (fg: "#cad3f5")),
+                            (kind: Text(" ("), style: (fg: "#cad3f5")),
+                            (kind: Property(Status(Bitrate)), style: (fg: "#cad3f5")),
+                            (kind: Text(" kbps)"), style: (fg: "#cad3f5"))
                         ],
                         center: [
                             (kind: Property(Song(Artist)), style: (fg: "#eed49f", modifiers: "Bold"), default: (kind: Text("Unknown"), style: (fg: "#eed49f", modifiers: "Bold"))),
-                            (kind: Text(" - ")),
-                            (kind: Property(Song(Title)), style: (fg: "#7dc4e4", modifiers: "Bold"), default: (kind: Text("No Song"), style: (fg: "#7dc4e4", modifiers: "Bold")))
+                            (kind: Text(" - "), style: (fg: "#cad3f5")),
+                            (kind: Property(Song(Album)), style: (fg: "#cad3f5"), default: (kind: Text("Unknown Album"), style: (fg: "#cad3f5")))
                         ],
                         right: [
-                            (kind: Text("Vol: "), style: (fg: "#b7bdf8", modifiers: "Bold")),
-                            (kind: Property(Status(Volume)), style: (fg: "#b7bdf8", modifiers: "Bold")),
-                            (kind: Text("% "), style: (fg: "#b7bdf8", modifiers: "Bold"))
+                            (kind: Widget(States(active_style: (fg: "#cad3f5", modifiers: "Bold"), separator_style: (fg: "#5c5f77"))))
                         ]
                     )
                 ],
