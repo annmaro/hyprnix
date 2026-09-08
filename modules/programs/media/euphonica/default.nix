@@ -1,13 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.euphonica ];
+  home-manager.sharedModules = [
+    (_: {
+      home.packages = [ pkgs.euphonica ];
 
-  xdg.configFile."euphonica/config.ron".text = ''
-    (
-      mpd: (
-        address: "127.0.0.1:6600",
-      ),
-    )
-  '';
+      xdg.configFile."euphonica/config.ron".text = ''
+        (
+          mpd: (
+            address: "127.0.0.1:6600",
+          ),
+        )
+      '';
+    })
+  ];
 }
