@@ -58,6 +58,7 @@ in
     # "${self}/modules/programs/media/discord"
     "${self}/modules/programs/media/spicetify"
     "${self}/modules/programs/media/euphonica"
+    "${self}/modules/programs/media/easyeffects"
     "${self}/modules/programs/media/rmpc"
     "${self}/modules/programs/media/rmpd"
     # "${self}/modules/programs/media/youtube-music"
