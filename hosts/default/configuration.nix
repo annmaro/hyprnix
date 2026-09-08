@@ -13,7 +13,7 @@ in
     "${self}/modules/core/boot"
     "${self}/modules/core/bash"
     "${self}/modules/core/fish"
-    "${self}/modules/core/games"
+    # "${self}/modules/core/games" # Handled by conditional import at bottom
     "${self}/modules/core/starship"
     "${self}/modules/core/fonts"
     "${self}/modules/core/hardware"
