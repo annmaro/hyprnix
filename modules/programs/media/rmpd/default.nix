@@ -40,6 +40,7 @@ in
 
         [network]
         port = 6600
+        mpris = true
 
         [audio]
         default_output = "pipewire"
